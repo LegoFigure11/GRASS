@@ -134,18 +134,22 @@ public static class KeyboardTools
             var tmpRow = GetKeyRow(c, kbdindex, row);
             var (keyCol, keyRow) = GetKeyColRow(c, kbdindex, tmpRow, col);
 
+            // Choose direction
             var rowDir = keyRow >= row ? SwitchButton.DDOWN : SwitchButton.DUP;
             var colDir = keyCol >= col ? SwitchButton.DRIGHT : SwitchButton.DLEFT;
 
+            // Get distance from current location
             var rowDiff = Math.Abs(keyRow - row);
             var colDiff = Math.Abs(keyCol - col);
 
+            // See if wrapping around would be less "moves"
             if (rowDiff > _keyboard[kbdindex].Length / 2)
             {
                 rowDiff = _keyboard[kbdindex].Length - rowDiff;
                 rowDir = rowDir == SwitchButton.DDOWN ? SwitchButton.DUP : SwitchButton.DDOWN;
             }
 
+            // Wrapping cols includes an extra one at the end
             var extra = false;
             var extraDir = SwitchButton.DRIGHT;
             if (colDiff > (_keyboard[kbdindex][row].Length / 2) + 1)
@@ -156,7 +160,7 @@ public static class KeyboardTools
                 extraDir = colDir;
             }
 
-
+            // Add moves
             for (var x = 0; x < rowDiff; x++)
             {
                 inputs.Add(rowDir);
