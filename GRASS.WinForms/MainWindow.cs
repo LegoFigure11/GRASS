@@ -148,6 +148,9 @@ public partial class MainWindow : Form
 
                 SetComboBoxSelectedIndex((int)ConnectionWrapper.GetSavVersion(), CB_Game);
 
+                var (tid, sid) = await ConnectionWrapper.GetSavIDs(token).ConfigureAwait(false);
+                SetControlText($"{tid:D5}", TB_TID);
+                SetControlText($"{sid:D5}", TB_SID);
 
                 UpdateStatus("Reading RNG State...");
 
@@ -835,6 +838,61 @@ public partial class MainWindow : Form
     {
         SetControlEnabledState(RB_SID_SpecificValue.GetIsChecked(), L_SIDSID, TB_SIDSID);
         SetControlEnabledState(!RB_SID_SpecificValue.GetIsChecked(), L_SIDPID, TB_SIDPID, L_SIDTID, TB_SIDTID);
+    }
+
+    private void B_ReadIDs_Click(object sender, EventArgs e)
+    {
+        readPause = true;
+        SetControlEnabledState(false, B_ReadIDs);
+        Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(100, Source.Token).ConfigureAwait(false);
+                var (tid, sid) = await ConnectionWrapper.GetSavIDs(Source.Token).ConfigureAwait(false);
+                SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
+                SetControlText($"{sid:D5}", TB_SID, TB_SIDSID);
+
+                readPause = false;
+
+                SetControlEnabledState(true, B_ReadIDs);
+
+            }
+            catch (Exception ex)
+            {
+                readPause = false;
+
+                SetControlEnabledState(true, B_ReadIDs);
+                this.DisplayMessageBox(ex.Message);
+            }
+        });
+    }
+
+    private void B_ReadTempTID_Click(object sender, EventArgs e)
+    {
+        readPause = true;
+        SetControlEnabledState(false, B_ReadIDs);
+        Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(100, Source.Token).ConfigureAwait(false);
+                var tid = await ConnectionWrapper.GetInitialRNGState(Source.Token).ConfigureAwait(false);
+                SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
+
+                readPause = false;
+
+                SetControlEnabledState(true, B_ReadIDs);
+
+            }
+            catch (Exception ex)
+            {
+                readPause = false;
+
+                SetControlEnabledState(true, B_ReadIDs);
+                this.DisplayMessageBox(ex.Message);
+            }
+        });
     }
 }
 

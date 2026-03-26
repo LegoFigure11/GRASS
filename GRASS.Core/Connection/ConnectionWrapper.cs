@@ -84,6 +84,11 @@ public class ConnectionWrapperAsync(SwitchConnectionConfig Config, Action<string
     }
 
     public Game GetSavVersion() => (Game)(sav.Version - GameVersion.FR);
+    public async Task<(ushort TID, ushort SID)> GetSavIDs(CancellationToken token)
+    {
+        await GetFakeTrainerSAV(title, token).ConfigureAwait(false);
+        return (sav.TID16, sav.SID16);
+    }
 
     public async Task GetFakeTrainerSAV(string titleID, CancellationToken token)
     {

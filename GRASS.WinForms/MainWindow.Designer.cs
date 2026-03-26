@@ -101,6 +101,7 @@ namespace GRASS.WinForms;
         TC_Main = new TabControl();
         TP_IDs = new TabPage();
         GB_SID = new GroupBox();
+        B_ReadIDs = new Button();
         B_SID_Generate = new Button();
         L_SIDAdvances = new Label();
         L_SIDInitial = new Label();
@@ -130,6 +131,7 @@ namespace GRASS.WinForms;
         seedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         sIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         BS_SID = new BindingSource(components);
+        B_ReadTempTID = new Button();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -921,6 +923,8 @@ namespace GRASS.WinForms;
         // 
         // GB_SID
         // 
+        GB_SID.Controls.Add(B_ReadTempTID);
+        GB_SID.Controls.Add(B_ReadIDs);
         GB_SID.Controls.Add(B_SID_Generate);
         GB_SID.Controls.Add(L_SIDAdvances);
         GB_SID.Controls.Add(L_SIDInitial);
@@ -943,6 +947,16 @@ namespace GRASS.WinForms;
         GB_SID.TabIndex = 1;
         GB_SID.TabStop = false;
         GB_SID.Text = "SID";
+        // 
+        // B_ReadIDs
+        // 
+        B_ReadIDs.Location = new Point(6, 169);
+        B_ReadIDs.Name = "B_ReadIDs";
+        B_ReadIDs.Size = new Size(150, 25);
+        B_ReadIDs.TabIndex = 175;
+        B_ReadIDs.Text = "Read IDs from RAM";
+        B_ReadIDs.UseVisualStyleBackColor = true;
+        B_ReadIDs.Click += B_ReadIDs_Click;
         // 
         // B_SID_Generate
         // 
@@ -1257,6 +1271,16 @@ namespace GRASS.WinForms;
         // 
         BS_SID.DataSource = typeof(Core.Interfaces.SIDFrame);
         // 
+        // B_ReadTempTID
+        // 
+        B_ReadTempTID.Location = new Point(6, 142);
+        B_ReadTempTID.Name = "B_ReadTempTID";
+        B_ReadTempTID.Size = new Size(150, 25);
+        B_ReadTempTID.TabIndex = 176;
+        B_ReadTempTID.Text = "Read Temp TID";
+        B_ReadTempTID.UseVisualStyleBackColor = true;
+        B_ReadTempTID.Click += B_ReadTempTID_Click;
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1411,5 +1435,7 @@ namespace GRASS.WinForms;
     private DataGridViewTextBoxColumn seedDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn sIDDataGridViewTextBoxColumn;
     private BindingSource BS_SID;
+    private Button B_ReadIDs;
+    private Button B_ReadTempTID;
 }
 
