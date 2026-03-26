@@ -17,6 +17,7 @@ namespace GRASS.WinForms;
 public partial class MainWindow : Form
 {
     private static CancellationTokenSource Source = new();
+    private static CancellationTokenSource TIDResetSource = new();
     private static readonly Lock _connectLock = new();
 
     public ClientConfig Config;
@@ -26,7 +27,6 @@ public partial class MainWindow : Form
     private bool stop;
     private bool reset;
     private bool readPause;
-    private bool tidStop;
     private uint total;
 
     private PK3 _enc = new();
@@ -233,6 +233,8 @@ public partial class MainWindow : Form
                 }
                 await Source.CancelAsync().ConfigureAwait(false);
                 Source = new();
+                await TIDResetSource.CancelAsync().ConfigureAwait(false);
+                TIDResetSource = new();
                 SetControlEnabledState(true, B_Connect);
             },
             token
@@ -719,7 +721,6 @@ public partial class MainWindow : Form
     private void B_TID_Reset_Click(object sender, EventArgs e)
     {
         readPause = true;
-        tidStop = false;
         SetControlEnabledState(false, B_TID_Reset);
         SetControlEnabledState(true, B_TID_Cancel);
         Task.Run(async () =>
@@ -727,12 +728,12 @@ public partial class MainWindow : Form
             try
             {
                 // Try to connect controller
-                await ConnectionWrapper.DoTurboCommand("Release Stick", Source.Token).ConfigureAwait(false);
+                await ConnectionWrapper.DoTurboCommand("Release Stick", TIDResetSource.Token).ConfigureAwait(false);
                 await Task.Delay(100, Source.Token).ConfigureAwait(false);
 
                 List<ushort> IDs = [];
 
-                var init = await ConnectionWrapper.GetInitialRNGState(Source.Token).ConfigureAwait(false);
+                var init = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
 
                 var found = false;
                 var ct = 0;
@@ -754,29 +755,30 @@ public partial class MainWindow : Form
                     UpdateStatus($"Entering name: {name}");
                     foreach (var input in buttons)
                     {
-                        await ConnectionWrapper.PressButton(input, Config.NameEntryButtonPressDelay, Source.Token).ConfigureAwait(false);
-                        if (input is SwitchButton.MINUS) await Task.Delay(Config.NameEntryPageChangeDelay, Source.Token).ConfigureAwait(false);
+                        await ConnectionWrapper.PressButton(input, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        if (input is SwitchButton.MINUS) await Task.Delay(Config.NameEntryPageChangeDelay, TIDResetSource.Token).ConfigureAwait(false);
                     }
-                    await ConnectionWrapper.PressButton(SwitchButton.A, Config.NameEntryButtonPressDelay, Source.Token).ConfigureAwait(false);
+                    await ConnectionWrapper.PressButton(SwitchButton.A, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
 
                     // OT entered, check TID. Try for up to 10 sec, otherwise assume same TID was hit twice consecutively
-                    var rng = await ConnectionWrapper.GetInitialRNGState(Source.Token).ConfigureAwait(false);
+                    var rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
                     for (var tries = 0; tries < 100 && rng == init; tries++)
                     {
-                        await Task.Delay(100, Source.Token).ConfigureAwait(false);
-                        rng = await ConnectionWrapper.GetInitialRNGState(Source.Token).ConfigureAwait(false);
+                        await Task.Delay(100, TIDResetSource.Token).ConfigureAwait(false);
+                        rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
                     }
 
                     UpdateStatus($"Found TID: {rng:D5} | {ct}");
                     SetControlText($"{rng:X8}", TB_InitialSeed);
                     SetControlText($"{rng:D5}", TB_TID, TB_SIDTID);
                     await Task.Delay(Config.NameEntryRejectDelay, Source.Token).ConfigureAwait(false);
+                    await Task.Delay(Config.NameEntryRejectDelay, TIDResetSource.Token).ConfigureAwait(false);
                     init = rng;
                     if (IDs.Contains(rng)) found = true;
                     ct++;
-                    if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, Source.Token).ConfigureAwait(false);
+                    if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, TIDResetSource.Token).ConfigureAwait(false);
 
-                } while (!found && !tidStop);
+                } while (!found && !TIDResetSource.IsCancellationRequested);
 
                 await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
                 await ConnectionWrapper.DetachController(Source.Token);
@@ -791,14 +793,15 @@ public partial class MainWindow : Form
                 SetControlEnabledState(true, B_TID_Reset);
                 SetControlEnabledState(false, B_TID_Cancel);
                 await ConnectionWrapper.DetachController(Source.Token);
-                this.DisplayMessageBox(ex.Message);
+                if (ex is not TaskCanceledException) this.DisplayMessageBox(ex.Message);
             }
         });
     }
 
     private void B_TID_Cancel_Click(object sender, EventArgs e)
     {
-        tidStop = true;
+        TIDResetSource.Cancel();
+        TIDResetSource = new();
     }
 
     private void CB_SID_Delay_CheckedChanged(object sender, EventArgs e)
