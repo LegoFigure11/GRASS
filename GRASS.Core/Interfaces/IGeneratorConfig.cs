@@ -47,7 +47,6 @@ public class ChainPokemonConfig : IGeneratorConfig
     public Shiny Shiny => IsShinyPatch ? Shiny.Always : Shiny.Random;
 
     public ShinyType TargetShiny { get; set; } = ShinyType.Any;
-    public ScaleType TargetScale { get; set; } = ScaleType.Any;
 
     public bool ForceHiddenAbility { get; set; } = false;
 
