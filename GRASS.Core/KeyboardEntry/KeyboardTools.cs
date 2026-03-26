@@ -72,20 +72,37 @@ public static class KeyboardTools
 
     }
 
-    private static bool CheckLength(string text, LanguageID lang) => lang switch
+    private static bool CheckLength(string text) => _lang switch
     {
         LanguageID.Japanese => text.Length <= 5,
         _                   => text.Length <= 7,
     };
 
+    public static string NormalizeInput(string text)
+    {
+        // Seperate out Dakuten/Handakuten
+        text = text.Normalize(NormalizationForm.FormD);
+
+        // Convert halfwidth to ｆｕｌｌｗｉｄｔｈ
+        string ret = string.Empty;
+        foreach (char c in text)
+        {
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) ret += c.ToFullWidth();
+            else ret += c;
+        }
+        return ret;
+    }
+
+    internal static char ToFullWidth(this char c) => (char)(c + 0xFEE0); 
+
     public static List<SwitchButton> GetInputsForName(string text)
     {
-        if (!CheckLength(text, _lang)) throw new ArgumentException($"Name {text} is too long for the connected game language!");
+        if (!CheckLength(text)) throw new ArgumentException($"Name {text} is too long for the connected game language!");
+
+        // JPN-only text conversions
+        if (_lang == LanguageID.Japanese) text = NormalizeInput(text);
 
         if (string.IsNullOrEmpty(text)) throw new ArgumentException($"No OT Name provided!");
-
-        // Normalize out Dakuten/Handakuten if applicable
-        if (_lang == LanguageID.Japanese) text = text.Normalize(NormalizationForm.FormD);
 
         // start at 0, 0 on Upper
         var kbdindex = 0;
