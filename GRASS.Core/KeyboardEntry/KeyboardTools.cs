@@ -87,7 +87,7 @@ public static class KeyboardTools
         string ret = string.Empty;
         foreach (char c in text)
         {
-            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) ret += c.ToFullWidth();
+            if (char.IsBetween(c, 'a', 'z') || char.IsBetween(c, 'A', 'Z') || char.IsBetween(c, '0', '9')) ret += c.ToFullWidth();
             else ret += c;
         }
         return ret;
