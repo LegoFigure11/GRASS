@@ -28,6 +28,8 @@ namespace GRASS.WinForms;
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
+        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
         GB_Connection = new GroupBox();
         TB_AdvancesIncrease = new TextBox();
@@ -98,13 +100,36 @@ namespace GRASS.WinForms;
         TB_Wild = new TextBox();
         TC_Main = new TabControl();
         TP_IDs = new TabPage();
+        GB_SID = new GroupBox();
+        B_SID_Generate = new Button();
+        L_SIDAdvances = new Label();
+        L_SIDInitial = new Label();
+        TB_SIDAdvances = new TextBox();
+        TB_SIDInitial = new TextBox();
+        CB_SID_FiltersEnabled = new CheckBox();
+        CB_SID_Delay = new CheckBox();
+        NUD_SID_Delay = new NumericUpDown();
+        L_SIDPID = new Label();
+        L_SIDTID = new Label();
+        L_SIDSID = new Label();
+        TB_SIDSID = new TextBox();
+        TB_SIDTID = new TextBox();
+        TB_SIDPID = new TextBox();
+        RB_SID_FromPID = new RadioButton();
+        RB_SID_SpecificValue = new RadioButton();
         groupBox1 = new GroupBox();
+        B_TID_Cancel = new Button();
         B_TID_Reset = new Button();
         B_TID_EditList = new Button();
         L_LoadedTIDs = new Label();
         tabPage2 = new TabPage();
         GB_ConnectionSettings = new GroupBox();
         B_ConnectionSettings = new Button();
+        DGV_Results = new DataGridView();
+        advancesDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        seedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        sIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        BS_SID = new BindingSource(components);
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -124,8 +149,12 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_HP_Min).BeginInit();
         TC_Main.SuspendLayout();
         TP_IDs.SuspendLayout();
+        GB_SID.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_SID_Delay).BeginInit();
         groupBox1.SuspendLayout();
         GB_ConnectionSettings.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)BS_SID).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -433,6 +462,7 @@ namespace GRASS.WinForms;
         GB_Filters.TabIndex = 126;
         GB_Filters.TabStop = false;
         GB_Filters.Text = "Search Filters";
+        GB_Filters.Visible = false;
         // 
         // CB_Delay
         // 
@@ -852,6 +882,7 @@ namespace GRASS.WinForms;
         B_ReadWildPokemon.TabIndex = 9;
         B_ReadWildPokemon.Text = "Read Encounter";
         B_ReadWildPokemon.UseVisualStyleBackColor = true;
+        B_ReadWildPokemon.Visible = false;
         B_ReadWildPokemon.Click += B_ReadWildPokemon_Click;
         // 
         // TB_Wild
@@ -864,6 +895,7 @@ namespace GRASS.WinForms;
         TB_Wild.TabIndex = 8;
         TB_Wild.TabStop = false;
         TB_Wild.Text = "Shiny - Species (Gender) @ Item\r\nEC: WWWWWWWW\r\nPID: WWWWWWWW\r\nWWWWWWW Nature\r\nAbility: WWWWWWWWWW\r\nIVs: 22/22/22/22/22/22\r\nHeight: 255 (XXXL)\r\nMark: WWWWWWWWWW\r\n- Move 1\r\n- Move 2\r\n- Move 3\r\n- Move 4";
+        TB_Wild.Visible = false;
         // 
         // TC_Main
         // 
@@ -872,31 +904,256 @@ namespace GRASS.WinForms;
         TC_Main.Location = new Point(211, 1);
         TC_Main.Name = "TC_Main";
         TC_Main.SelectedIndex = 0;
-        TC_Main.Size = new Size(388, 266);
+        TC_Main.Size = new Size(388, 325);
         TC_Main.TabIndex = 127;
         // 
         // TP_IDs
         // 
+        TP_IDs.Controls.Add(GB_SID);
         TP_IDs.Controls.Add(groupBox1);
         TP_IDs.Location = new Point(4, 24);
         TP_IDs.Name = "TP_IDs";
         TP_IDs.Padding = new Padding(3);
-        TP_IDs.Size = new Size(380, 238);
+        TP_IDs.Size = new Size(380, 297);
         TP_IDs.TabIndex = 0;
         TP_IDs.Text = "TID/SID";
         TP_IDs.UseVisualStyleBackColor = true;
         // 
+        // GB_SID
+        // 
+        GB_SID.Controls.Add(B_SID_Generate);
+        GB_SID.Controls.Add(L_SIDAdvances);
+        GB_SID.Controls.Add(L_SIDInitial);
+        GB_SID.Controls.Add(TB_SIDAdvances);
+        GB_SID.Controls.Add(TB_SIDInitial);
+        GB_SID.Controls.Add(CB_SID_FiltersEnabled);
+        GB_SID.Controls.Add(CB_SID_Delay);
+        GB_SID.Controls.Add(NUD_SID_Delay);
+        GB_SID.Controls.Add(L_SIDPID);
+        GB_SID.Controls.Add(L_SIDTID);
+        GB_SID.Controls.Add(L_SIDSID);
+        GB_SID.Controls.Add(TB_SIDSID);
+        GB_SID.Controls.Add(TB_SIDTID);
+        GB_SID.Controls.Add(TB_SIDPID);
+        GB_SID.Controls.Add(RB_SID_FromPID);
+        GB_SID.Controls.Add(RB_SID_SpecificValue);
+        GB_SID.Location = new Point(6, 89);
+        GB_SID.Name = "GB_SID";
+        GB_SID.Size = new Size(367, 202);
+        GB_SID.TabIndex = 1;
+        GB_SID.TabStop = false;
+        GB_SID.Text = "SID";
+        // 
+        // B_SID_Generate
+        // 
+        B_SID_Generate.Location = new Point(162, 169);
+        B_SID_Generate.Name = "B_SID_Generate";
+        B_SID_Generate.Size = new Size(200, 25);
+        B_SID_Generate.TabIndex = 4;
+        B_SID_Generate.Text = "Generate";
+        B_SID_Generate.UseVisualStyleBackColor = true;
+        B_SID_Generate.Click += B_SID_Generate_Click;
+        // 
+        // L_SIDAdvances
+        // 
+        L_SIDAdvances.AutoSize = true;
+        L_SIDAdvances.Location = new Point(240, 147);
+        L_SIDAdvances.Name = "L_SIDAdvances";
+        L_SIDAdvances.Size = new Size(15, 15);
+        L_SIDAdvances.TabIndex = 174;
+        L_SIDAdvances.Text = "+";
+        // 
+        // L_SIDInitial
+        // 
+        L_SIDInitial.AutoSize = true;
+        L_SIDInitial.Location = new Point(162, 123);
+        L_SIDInitial.Name = "L_SIDInitial";
+        L_SIDInitial.Size = new Size(93, 15);
+        L_SIDInitial.TabIndex = 173;
+        L_SIDInitial.Text = "Initial Advances:";
+        // 
+        // TB_SIDAdvances
+        // 
+        TB_SIDAdvances.CharacterCasing = CharacterCasing.Upper;
+        TB_SIDAdvances.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SIDAdvances.Location = new Point(261, 145);
+        TB_SIDAdvances.MaxLength = 10;
+        TB_SIDAdvances.Name = "TB_SIDAdvances";
+        TB_SIDAdvances.Size = new Size(101, 22);
+        TB_SIDAdvances.TabIndex = 172;
+        TB_SIDAdvances.Text = "100000";
+        TB_SIDAdvances.TextAlign = HorizontalAlignment.Right;
+        TB_SIDAdvances.KeyDown += Dec_HandlePaste;
+        TB_SIDAdvances.KeyPress += AllowOnlyNumerical_KeyPress;
+        // 
+        // TB_SIDInitial
+        // 
+        TB_SIDInitial.CharacterCasing = CharacterCasing.Upper;
+        TB_SIDInitial.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SIDInitial.Location = new Point(261, 121);
+        TB_SIDInitial.MaxLength = 10;
+        TB_SIDInitial.Name = "TB_SIDInitial";
+        TB_SIDInitial.Size = new Size(101, 22);
+        TB_SIDInitial.TabIndex = 171;
+        TB_SIDInitial.Text = "0";
+        TB_SIDInitial.TextAlign = HorizontalAlignment.Right;
+        TB_SIDInitial.KeyDown += Dec_HandlePaste;
+        TB_SIDInitial.KeyPress += AllowOnlyNumerical_KeyPress;
+        // 
+        // CB_SID_FiltersEnabled
+        // 
+        CB_SID_FiltersEnabled.AutoSize = true;
+        CB_SID_FiltersEnabled.CheckAlign = ContentAlignment.MiddleRight;
+        CB_SID_FiltersEnabled.Checked = true;
+        CB_SID_FiltersEnabled.CheckState = CheckState.Checked;
+        CB_SID_FiltersEnabled.Location = new Point(255, 90);
+        CB_SID_FiltersEnabled.Name = "CB_SID_FiltersEnabled";
+        CB_SID_FiltersEnabled.Size = new Size(107, 19);
+        CB_SID_FiltersEnabled.TabIndex = 170;
+        CB_SID_FiltersEnabled.Tag = "";
+        CB_SID_FiltersEnabled.Text = "Filters Enabled?";
+        CB_SID_FiltersEnabled.UseVisualStyleBackColor = true;
+        // 
+        // CB_SID_Delay
+        // 
+        CB_SID_Delay.AutoSize = true;
+        CB_SID_Delay.CheckAlign = ContentAlignment.MiddleRight;
+        CB_SID_Delay.Location = new Point(162, 66);
+        CB_SID_Delay.Name = "CB_SID_Delay";
+        CB_SID_Delay.Size = new Size(58, 19);
+        CB_SID_Delay.TabIndex = 169;
+        CB_SID_Delay.Tag = "";
+        CB_SID_Delay.Text = "Delay:";
+        CB_SID_Delay.UseVisualStyleBackColor = true;
+        CB_SID_Delay.CheckedChanged += CB_SID_Delay_CheckedChanged;
+        // 
+        // NUD_SID_Delay
+        // 
+        NUD_SID_Delay.Enabled = false;
+        NUD_SID_Delay.Location = new Point(238, 65);
+        NUD_SID_Delay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_SID_Delay.Name = "NUD_SID_Delay";
+        NUD_SID_Delay.Size = new Size(123, 23);
+        NUD_SID_Delay.TabIndex = 168;
+        NUD_SID_Delay.TextAlign = HorizontalAlignment.Right;
+        NUD_SID_Delay.Value = new decimal(new int[] { 465, 0, 0, 0 });
+        // 
+        // L_SIDPID
+        // 
+        L_SIDPID.AutoSize = true;
+        L_SIDPID.Enabled = false;
+        L_SIDPID.Location = new Point(162, 45);
+        L_SIDPID.Name = "L_SIDPID";
+        L_SIDPID.Size = new Size(28, 15);
+        L_SIDPID.TabIndex = 7;
+        L_SIDPID.Text = "PID:";
+        // 
+        // L_SIDTID
+        // 
+        L_SIDTID.AutoSize = true;
+        L_SIDTID.Enabled = false;
+        L_SIDTID.Location = new Point(278, 45);
+        L_SIDTID.Name = "L_SIDTID";
+        L_SIDTID.Size = new Size(27, 15);
+        L_SIDTID.TabIndex = 6;
+        L_SIDTID.Text = "TID:";
+        // 
+        // L_SIDSID
+        // 
+        L_SIDSID.AutoSize = true;
+        L_SIDSID.Location = new Point(278, 19);
+        L_SIDSID.Name = "L_SIDSID";
+        L_SIDSID.Size = new Size(27, 15);
+        L_SIDSID.TabIndex = 5;
+        L_SIDSID.Text = "SID:";
+        // 
+        // TB_SIDSID
+        // 
+        TB_SIDSID.CharacterCasing = CharacterCasing.Upper;
+        TB_SIDSID.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SIDSID.Location = new Point(320, 17);
+        TB_SIDSID.MaxLength = 5;
+        TB_SIDSID.Name = "TB_SIDSID";
+        TB_SIDSID.Size = new Size(41, 22);
+        TB_SIDSID.TabIndex = 4;
+        TB_SIDSID.Text = "12345";
+        TB_SIDSID.KeyDown += Dec_HandlePaste;
+        TB_SIDSID.KeyPress += AllowOnlyNumerical_KeyPress;
+        // 
+        // TB_SIDTID
+        // 
+        TB_SIDTID.CharacterCasing = CharacterCasing.Upper;
+        TB_SIDTID.Enabled = false;
+        TB_SIDTID.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SIDTID.Location = new Point(321, 41);
+        TB_SIDTID.MaxLength = 5;
+        TB_SIDTID.Name = "TB_SIDTID";
+        TB_SIDTID.Size = new Size(41, 22);
+        TB_SIDTID.TabIndex = 3;
+        TB_SIDTID.Text = "12345";
+        TB_SIDTID.KeyDown += Dec_HandlePaste;
+        TB_SIDTID.KeyPress += AllowOnlyNumerical_KeyPress;
+        // 
+        // TB_SIDPID
+        // 
+        TB_SIDPID.CharacterCasing = CharacterCasing.Upper;
+        TB_SIDPID.Enabled = false;
+        TB_SIDPID.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SIDPID.Location = new Point(205, 41);
+        TB_SIDPID.MaxLength = 8;
+        TB_SIDPID.Name = "TB_SIDPID";
+        TB_SIDPID.Size = new Size(62, 22);
+        TB_SIDPID.TabIndex = 2;
+        TB_SIDPID.Text = "01234567";
+        TB_SIDPID.KeyDown += State_HandlePaste;
+        TB_SIDPID.KeyPress += AllowOnlyHex_KeyPress;
+        // 
+        // RB_SID_FromPID
+        // 
+        RB_SID_FromPID.AutoSize = true;
+        RB_SID_FromPID.Location = new Point(6, 41);
+        RB_SID_FromPID.Name = "RB_SID_FromPID";
+        RB_SID_FromPID.Size = new Size(118, 19);
+        RB_SID_FromPID.TabIndex = 1;
+        RB_SID_FromPID.Text = "SIDs for Shiny PID";
+        RB_SID_FromPID.UseVisualStyleBackColor = true;
+        // 
+        // RB_SID_SpecificValue
+        // 
+        RB_SID_SpecificValue.AutoSize = true;
+        RB_SID_SpecificValue.Checked = true;
+        RB_SID_SpecificValue.Location = new Point(6, 17);
+        RB_SID_SpecificValue.Name = "RB_SID_SpecificValue";
+        RB_SID_SpecificValue.Size = new Size(86, 19);
+        RB_SID_SpecificValue.TabIndex = 0;
+        RB_SID_SpecificValue.TabStop = true;
+        RB_SID_SpecificValue.Text = "Specific SID";
+        RB_SID_SpecificValue.UseVisualStyleBackColor = true;
+        RB_SID_SpecificValue.CheckedChanged += RB_SID_SpecificValue_CheckedChanged;
+        // 
         // groupBox1
         // 
+        groupBox1.Controls.Add(B_TID_Cancel);
         groupBox1.Controls.Add(B_TID_Reset);
         groupBox1.Controls.Add(B_TID_EditList);
         groupBox1.Controls.Add(L_LoadedTIDs);
         groupBox1.Location = new Point(6, 6);
         groupBox1.Name = "groupBox1";
-        groupBox1.Size = new Size(367, 68);
+        groupBox1.Size = new Size(367, 82);
         groupBox1.TabIndex = 0;
         groupBox1.TabStop = false;
         groupBox1.Text = "TID";
+        // 
+        // B_TID_Cancel
+        // 
+        B_TID_Cancel.Enabled = false;
+        B_TID_Cancel.Location = new Point(162, 49);
+        B_TID_Cancel.Name = "B_TID_Cancel";
+        B_TID_Cancel.Size = new Size(200, 25);
+        B_TID_Cancel.TabIndex = 3;
+        B_TID_Cancel.Text = "Cancel";
+        B_TID_Cancel.UseVisualStyleBackColor = true;
+        B_TID_Cancel.Click += B_TID_Cancel_Click;
         // 
         // B_TID_Reset
         // 
@@ -921,7 +1178,7 @@ namespace GRASS.WinForms;
         // L_LoadedTIDs
         // 
         L_LoadedTIDs.AutoSize = true;
-        L_LoadedTIDs.Location = new Point(6, 50);
+        L_LoadedTIDs.Location = new Point(6, 54);
         L_LoadedTIDs.Name = "L_LoadedTIDs";
         L_LoadedTIDs.Size = new Size(109, 15);
         L_LoadedTIDs.TabIndex = 0;
@@ -932,7 +1189,7 @@ namespace GRASS.WinForms;
         tabPage2.Location = new Point(4, 24);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(380, 238);
+        tabPage2.Size = new Size(380, 297);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "tabPage2";
         tabPage2.UseVisualStyleBackColor = true;
@@ -956,11 +1213,56 @@ namespace GRASS.WinForms;
         B_ConnectionSettings.UseVisualStyleBackColor = true;
         B_ConnectionSettings.Click += B_ResetSettings_Click;
         // 
+        // DGV_Results
+        // 
+        DGV_Results.AllowUserToAddRows = false;
+        DGV_Results.AllowUserToDeleteRows = false;
+        dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
+        DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+        DGV_Results.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        DGV_Results.AutoGenerateColumns = false;
+        DGV_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        DGV_Results.Columns.AddRange(new DataGridViewColumn[] { advancesDataGridViewTextBoxColumn, seedDataGridViewTextBoxColumn, sIDDataGridViewTextBoxColumn });
+        DGV_Results.DataSource = BS_SID;
+        DGV_Results.Location = new Point(11, 332);
+        DGV_Results.Name = "DGV_Results";
+        DGV_Results.ReadOnly = true;
+        DGV_Results.RowHeadersVisible = false;
+        DGV_Results.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        DGV_Results.Size = new Size(584, 306);
+        DGV_Results.TabIndex = 129;
+        // 
+        // advancesDataGridViewTextBoxColumn
+        // 
+        advancesDataGridViewTextBoxColumn.DataPropertyName = "Advances";
+        advancesDataGridViewTextBoxColumn.HeaderText = "Advances";
+        advancesDataGridViewTextBoxColumn.Name = "advancesDataGridViewTextBoxColumn";
+        advancesDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // seedDataGridViewTextBoxColumn
+        // 
+        seedDataGridViewTextBoxColumn.DataPropertyName = "Seed";
+        seedDataGridViewTextBoxColumn.HeaderText = "Seed";
+        seedDataGridViewTextBoxColumn.Name = "seedDataGridViewTextBoxColumn";
+        seedDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // sIDDataGridViewTextBoxColumn
+        // 
+        sIDDataGridViewTextBoxColumn.DataPropertyName = "SID";
+        sIDDataGridViewTextBoxColumn.HeaderText = "SID";
+        sIDDataGridViewTextBoxColumn.Name = "sIDDataGridViewTextBoxColumn";
+        sIDDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // BS_SID
+        // 
+        BS_SID.DataSource = typeof(Core.Interfaces.SIDFrame);
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1234, 315);
+        ClientSize = new Size(607, 650);
+        Controls.Add(DGV_Results);
         Controls.Add(GB_Connection);
         Controls.Add(GB_SAVInfo);
         Controls.Add(GB_ConnectionSettings);
@@ -996,9 +1298,14 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_HP_Min).EndInit();
         TC_Main.ResumeLayout(false);
         TP_IDs.ResumeLayout(false);
+        GB_SID.ResumeLayout(false);
+        GB_SID.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_SID_Delay).EndInit();
         groupBox1.ResumeLayout(false);
         groupBox1.PerformLayout();
         GB_ConnectionSettings.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)DGV_Results).EndInit();
+        ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -1072,7 +1379,7 @@ namespace GRASS.WinForms;
     private TextBox TB_Wild;
     private NumericUpDown NUD_Delay;
     public CheckBox CB_Delay;
-    private Label label3;
+    private Label L_SIDPID;
     private TabControl TC_Main;
     private TabPage TP_IDs;
     private TabPage tabPage2;
@@ -1082,5 +1389,27 @@ namespace GRASS.WinForms;
     private GroupBox GB_ConnectionSettings;
     private Button B_ConnectionSettings;
     internal Label L_LoadedTIDs;
+    private Button B_TID_Cancel;
+    private GroupBox GB_SID;
+    private RadioButton RB_SID_FromPID;
+    private RadioButton RB_SID_SpecificValue;
+    public TextBox TB_SIDSID;
+    public TextBox TB_SIDTID;
+    public TextBox TB_SIDPID;
+    private Label L_SIDTID;
+    private Label L_SIDSID;
+    public CheckBox CB_SID_Delay;
+    private NumericUpDown NUD_SID_Delay;
+    private CheckBox CB_SID_FiltersEnabled;
+    public TextBox TB_SIDAdvances;
+    public TextBox TB_SIDInitial;
+    private Button B_SID_Generate;
+    private Label L_SIDAdvances;
+    private Label L_SIDInitial;
+    private DataGridView DGV_Results;
+    private DataGridViewTextBoxColumn advancesDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn seedDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn sIDDataGridViewTextBoxColumn;
+    private BindingSource BS_SID;
 }
 

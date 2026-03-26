@@ -26,15 +26,13 @@ public partial class MainWindow : Form
     private bool stop;
     private bool reset;
     private bool readPause;
+    private bool tidStop;
     private uint total;
 
     private PK3 _enc = new();
 
     internal List<string> TIDs = [];
 
-    private RadarContinuationConfig _cfg = new();
-
-    private List<RadarContinuationFrame> ContinuationFrames = [];
 
     public readonly GameStrings Strings = GameInfo.GetStrings("en");
 
@@ -718,6 +716,9 @@ public partial class MainWindow : Form
     private void B_TID_Reset_Click(object sender, EventArgs e)
     {
         readPause = true;
+        tidStop = false;
+        SetControlEnabledState(false, B_TID_Reset);
+        SetControlEnabledState(true, B_TID_Cancel);
         Task.Run(async () =>
         {
             try
@@ -765,26 +766,75 @@ public partial class MainWindow : Form
 
                     UpdateStatus($"Found TID: {rng:D5} | {ct}");
                     SetControlText($"{rng:X8}", TB_InitialSeed);
+                    SetControlText($"{rng:D5}", TB_TID, TB_SIDTID);
                     await Task.Delay(Config.NameEntryRejectDelay, Source.Token).ConfigureAwait(false);
                     init = rng;
                     if (IDs.Contains(rng)) found = true;
                     ct++;
                     if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, Source.Token).ConfigureAwait(false);
 
-                } while (!found);
+                } while (!found && !tidStop);
 
                 await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
                 await ConnectionWrapper.DetachController(Source.Token);
                 _ = true;
                 readPause = false;
+                SetControlEnabledState(true, B_TID_Reset);
+                SetControlEnabledState(false, B_TID_Cancel);
             }
             catch (Exception ex)
             {
                 readPause = false;
+                SetControlEnabledState(true, B_TID_Reset);
+                SetControlEnabledState(false, B_TID_Cancel);
                 await ConnectionWrapper.DetachController(Source.Token);
                 this.DisplayMessageBox(ex.Message);
             }
         });
+    }
+
+    private void B_TID_Cancel_Click(object sender, EventArgs e)
+    {
+        tidStop = true;
+    }
+
+    private void CB_SID_Delay_CheckedChanged(object sender, EventArgs e)
+    {
+        SetControlEnabledState(CB_SID_Delay.GetIsChecked(), NUD_SID_Delay);
+    }
+
+    private void B_SID_Generate_Click(object sender, EventArgs e)
+    {
+        SetControlEnabledState(false, B_SID_Generate);
+        Task.Run(async () =>
+        {
+            var seed = uint.Parse(TB_InitialSeed.Text, NumberStyles.AllowHexSpecifier);
+            var start = uint.Parse(TB_SIDInitial.Text);
+            var end = uint.Parse(TB_SIDAdvances.Text);
+            var cfg = new SIDConfig()
+            {
+                SID = ushort.Parse(TB_SIDSID.Text),
+                TID = ushort.Parse(TB_SIDTID.Text),
+                PID = uint.Parse(TB_SIDPID.Text, NumberStyles.AllowHexSpecifier),
+
+                UseDelay = CB_SID_Delay.GetIsChecked(),
+                Delay = NUD_SID_Delay.GetValue(),
+
+                FiltersEnabled = CB_SID_FiltersEnabled.GetIsChecked(),
+
+                SearchMode = RB_SID_SpecificValue.GetIsChecked() ? SIDSearchMode.SpecificSID : SIDSearchMode.FromPID,
+            };
+            var sidFrames = await Core.RNG.SID.Generate(seed, start, end, cfg);
+
+            SetBindingSourceDataSource(sidFrames, BS_SID);
+            SetControlEnabledState(true, B_SID_Generate);
+        });
+    }
+
+    private void RB_SID_SpecificValue_CheckedChanged(object sender, EventArgs e)
+    {
+        SetControlEnabledState(RB_SID_SpecificValue.GetIsChecked(), L_SIDSID, TB_SIDSID);
+        SetControlEnabledState(!RB_SID_SpecificValue.GetIsChecked(), L_SIDPID, TB_SIDPID, L_SIDTID, TB_SIDTID);
     }
 }
 

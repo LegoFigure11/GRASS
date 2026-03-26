@@ -8,6 +8,7 @@ public static class WinFormsUtil
         (uint)(nud.InvokeRequired ? nud.Invoke(() => nud.Value) : nud.Value);
 
     internal static bool GetIsChecked(this CheckBox cb) => cb.InvokeRequired ? cb.Invoke(() => cb.Checked) : cb.Checked;
+    internal static bool GetIsChecked(this RadioButton rb) => rb.InvokeRequired ? rb.Invoke(() => rb.Checked) : rb.Checked;
 
     internal static int GetSelectedIndex(this ComboBox cb) =>
         cb.InvokeRequired ? cb.Invoke(() => cb.SelectedIndex) : cb.SelectedIndex;

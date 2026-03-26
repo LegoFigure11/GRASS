@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using PKHeX.Core;
+﻿using PKHeX.Core;
 
 namespace GRASS.Core.RNG;
 
@@ -12,8 +8,8 @@ public static class RNGUtil
     {
         public static uint Skip(uint seed, uint dist)
         {
-            var jumpConstants = GetJumpConstants(dist);
-            return seed * jumpConstants.Mult + jumpConstants.Add;
+            var (Mult, Add) = GetJumpConstants(dist);
+            return seed * Mult + Add;
         }
     }
 
@@ -41,5 +37,10 @@ public static class RNGUtil
 
         return (outM, outA);
     }
+
+    public static uint GetShinyValue(uint x, uint y) => x ^ y;
+    public static uint GetShinyValue(uint x) => (x >> 16) ^ (x & 0xFFFF);
+
+    public static uint GetShinyXOR(uint pid, uint tsv) => GetShinyValue(GetShinyValue(pid), tsv);
 }
 
