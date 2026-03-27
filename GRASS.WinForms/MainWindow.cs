@@ -187,6 +187,12 @@ public partial class MainWindow : Form
                     {
                         if (ConnectionWrapper.Connected && !readPause)
                         {
+                            if (reset)
+                            {
+                                InitialRNGState = await ConnectionWrapper.GetInitialRNGState(token).ConfigureAwait(false);
+                                prevSeed = InitialRNGState;
+                                SetControlText($"{InitialRNGState:X8}", TB_InitialSeed);
+                            }
                             var currSeed = await ConnectionWrapper.GetCurrentRNGState(token).ConfigureAwait(false);
 
                             if (currSeed == prevSeed)
@@ -776,6 +782,7 @@ public partial class MainWindow : Form
     private void B_TID_Reset_Click(object sender, EventArgs e)
     {
         readPause = true;
+        reset = true;
         SetControlEnabledState(false, B_TID_Reset);
         SetControlEnabledState(true, B_TID_Cancel);
         Task.Run(async () =>
