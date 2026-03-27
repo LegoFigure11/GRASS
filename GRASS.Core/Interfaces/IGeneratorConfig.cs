@@ -25,6 +25,7 @@ public class SIDConfig : IGeneratorConfig
     public SIDSearchMode SearchMode { get; set; } = SIDSearchMode.SpecificSID;
 }
 
+/*
 public class ChainPokemonConfig : IGeneratorConfig
 {
 
@@ -61,7 +62,8 @@ public class ChainPokemonConfig : IGeneratorConfig
 
     public uint TID { get; set; } = 0;
     public uint SID { get; set; } = 0;
-    public uint TSV => RNG.Util.GetShinyValue(TID, SID);
+    public uint TSV => RNG.RNGUtil.GetShinyValue(TID, SID);
 
     public bool FiltersEnabled { get; set; } = false;
 }
+*/
