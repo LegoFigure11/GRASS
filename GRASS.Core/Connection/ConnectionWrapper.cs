@@ -122,10 +122,12 @@ public class ConnectionWrapperAsync(SwitchConnectionConfig Config, Action<string
         return seed;
     }
 
+    private uint _currentSeedOffset = 0;
     public async Task<uint> GetCurrentRNGState(CancellationToken token)
     {
-        var offs = LanguageVersionOffsetsFRLG.GetCurrentSeedOffsetFromLanguageAndVersion((LanguageID)sav.Language, sav.Version);
-        return await GetCurrentRNGState(offs, token).ConfigureAwait(false);
+        if (_currentSeedOffset == 0)
+            _currentSeedOffset = LanguageVersionOffsetsFRLG.GetCurrentSeedOffsetFromLanguageAndVersion((LanguageID)sav.Language, sav.Version);
+        return await GetCurrentRNGState(_currentSeedOffset, token).ConfigureAwait(false);
     }
 
     public async Task<uint> GetCurrentRNGState(uint offset, CancellationToken token)
