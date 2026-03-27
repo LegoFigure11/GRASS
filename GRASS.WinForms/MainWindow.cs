@@ -33,7 +33,6 @@ public partial class MainWindow : Form
     internal List<string> TIDs = [];
 
 
-    public readonly GameStrings Strings = GameInfo.GetStrings("en");
 
     private readonly Version CurrentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!;
 
@@ -518,6 +517,63 @@ public partial class MainWindow : Form
 
     private void B_ReadWildPokemon_Click(object sender, EventArgs e)
     {
+        if (ConnectionWrapper.Connected)
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    readPause = true;
+                    await Task.Delay(100, Source.Token).ConfigureAwait(false);
+                    var pk = await ConnectionWrapper.ReadEncounter(Source.Token).ConfigureAwait(false);
+                    readPause = false;
+                    if (pk is { Valid: true, Species: > 0 })
+                    {
+                        _enc = pk;
+                        SetControlText(Utils.ParsePK3(pk), TB_Wild);
+                    }
+                    else
+                    {
+                        SetControlText("Not found!", TB_Wild);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.DisplayMessageBox(ex.Message);
+                }
+            });
+        }
+    }
+
+    private void B_ReadParty_Click(object sender, EventArgs e)
+    {
+        if (ConnectionWrapper.Connected)
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    readPause = true;
+                    await Task.Delay(100, Source.Token).ConfigureAwait(false);
+                    var slot = NUD_PartySlot.GetValue();
+                    var pk = await ConnectionWrapper.ReadPartyPokemon(slot, Source.Token).ConfigureAwait(false);
+                    readPause = false;
+                    if (pk is { Valid: true, Species: > 0 })
+                    {
+                        _enc = pk;
+                        SetControlText(Utils.ParsePK3(pk), TB_Wild);
+                    }
+                    else
+                    {
+                        SetControlText("Not found!", TB_Wild);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.DisplayMessageBox(ex.Message);
+                }
+            });
+        }
     }
 
 
@@ -770,7 +826,6 @@ public partial class MainWindow : Form
                     UpdateStatus($"Found TID: {rng:D5} | {ct}");
                     SetControlText($"{rng:X8}", TB_InitialSeed);
                     SetControlText($"{rng:D5}", TB_TID, TB_SIDTID);
-                    await Task.Delay(Config.NameEntryRejectDelay, Source.Token).ConfigureAwait(false);
                     await Task.Delay(Config.NameEntryRejectDelay, TIDResetSource.Token).ConfigureAwait(false);
                     init = rng;
                     if (IDs.Contains(rng)) found = true;

@@ -101,6 +101,7 @@ namespace GRASS.WinForms;
         TC_Main = new TabControl();
         TP_IDs = new TabPage();
         GB_SID = new GroupBox();
+        B_ReadTempTID = new Button();
         B_ReadIDs = new Button();
         B_SID_Generate = new Button();
         L_SIDAdvances = new Label();
@@ -131,7 +132,8 @@ namespace GRASS.WinForms;
         seedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         sIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         BS_SID = new BindingSource(components);
-        B_ReadTempTID = new Button();
+        B_ReadParty = new Button();
+        NUD_PartySlot = new NumericUpDown();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -157,6 +159,7 @@ namespace GRASS.WinForms;
         GB_ConnectionSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -878,26 +881,24 @@ namespace GRASS.WinForms;
         // 
         // B_ReadWildPokemon
         // 
-        B_ReadWildPokemon.Location = new Point(1034, 200);
+        B_ReadWildPokemon.Location = new Point(601, 146);
         B_ReadWildPokemon.Name = "B_ReadWildPokemon";
         B_ReadWildPokemon.Size = new Size(181, 25);
         B_ReadWildPokemon.TabIndex = 9;
         B_ReadWildPokemon.Text = "Read Encounter";
         B_ReadWildPokemon.UseVisualStyleBackColor = true;
-        B_ReadWildPokemon.Visible = false;
         B_ReadWildPokemon.Click += B_ReadWildPokemon_Click;
         // 
         // TB_Wild
         // 
-        TB_Wild.Location = new Point(1034, 12);
+        TB_Wild.Location = new Point(601, 3);
         TB_Wild.Multiline = true;
         TB_Wild.Name = "TB_Wild";
         TB_Wild.ReadOnly = true;
-        TB_Wild.Size = new Size(181, 186);
+        TB_Wild.Size = new Size(181, 141);
         TB_Wild.TabIndex = 8;
         TB_Wild.TabStop = false;
-        TB_Wild.Text = "Shiny - Species (Gender) @ Item\r\nEC: WWWWWWWW\r\nPID: WWWWWWWW\r\nWWWWWWW Nature\r\nAbility: WWWWWWWWWW\r\nIVs: 22/22/22/22/22/22\r\nHeight: 255 (XXXL)\r\nMark: WWWWWWWWWW\r\n- Move 1\r\n- Move 2\r\n- Move 3\r\n- Move 4";
-        TB_Wild.Visible = false;
+        TB_Wild.Text = "Shiny - Species (Gender) @ Item\r\nPID: WWWWWWWW\r\nWWWWWWW Nature\r\nAbility: WWWWWWWWWW\r\nIVs: 22/22/22/22/22/22\r\n- Move 1\r\n- Move 2\r\n- Move 3\r\n- Move 4";
         // 
         // TC_Main
         // 
@@ -947,6 +948,16 @@ namespace GRASS.WinForms;
         GB_SID.TabIndex = 1;
         GB_SID.TabStop = false;
         GB_SID.Text = "SID";
+        // 
+        // B_ReadTempTID
+        // 
+        B_ReadTempTID.Location = new Point(6, 142);
+        B_ReadTempTID.Name = "B_ReadTempTID";
+        B_ReadTempTID.Size = new Size(150, 25);
+        B_ReadTempTID.TabIndex = 176;
+        B_ReadTempTID.Text = "Read Temp TID";
+        B_ReadTempTID.UseVisualStyleBackColor = true;
+        B_ReadTempTID.Click += B_ReadTempTID_Click;
         // 
         // B_ReadIDs
         // 
@@ -1243,7 +1254,7 @@ namespace GRASS.WinForms;
         DGV_Results.ReadOnly = true;
         DGV_Results.RowHeadersVisible = false;
         DGV_Results.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        DGV_Results.Size = new Size(584, 306);
+        DGV_Results.Size = new Size(1254, 306);
         DGV_Results.TabIndex = 129;
         // 
         // advancesDataGridViewTextBoxColumn
@@ -1271,21 +1282,33 @@ namespace GRASS.WinForms;
         // 
         BS_SID.DataSource = typeof(Core.Interfaces.SIDFrame);
         // 
-        // B_ReadTempTID
+        // B_ReadParty
         // 
-        B_ReadTempTID.Location = new Point(6, 142);
-        B_ReadTempTID.Name = "B_ReadTempTID";
-        B_ReadTempTID.Size = new Size(150, 25);
-        B_ReadTempTID.TabIndex = 176;
-        B_ReadTempTID.Text = "Read Temp TID";
-        B_ReadTempTID.UseVisualStyleBackColor = true;
-        B_ReadTempTID.Click += B_ReadTempTID_Click;
+        B_ReadParty.Location = new Point(601, 172);
+        B_ReadParty.Name = "B_ReadParty";
+        B_ReadParty.Size = new Size(147, 25);
+        B_ReadParty.TabIndex = 130;
+        B_ReadParty.Text = "Read Party";
+        B_ReadParty.UseVisualStyleBackColor = true;
+        B_ReadParty.Click += B_ReadParty_Click;
+        // 
+        // NUD_PartySlot
+        // 
+        NUD_PartySlot.Location = new Point(754, 173);
+        NUD_PartySlot.Maximum = new decimal(new int[] { 6, 0, 0, 0 });
+        NUD_PartySlot.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        NUD_PartySlot.Name = "NUD_PartySlot";
+        NUD_PartySlot.Size = new Size(28, 23);
+        NUD_PartySlot.TabIndex = 131;
+        NUD_PartySlot.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(607, 650);
+        ClientSize = new Size(1277, 650);
+        Controls.Add(NUD_PartySlot);
+        Controls.Add(B_ReadParty);
         Controls.Add(DGV_Results);
         Controls.Add(GB_Connection);
         Controls.Add(GB_SAVInfo);
@@ -1330,6 +1353,7 @@ namespace GRASS.WinForms;
         GB_ConnectionSettings.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)DGV_Results).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -1437,5 +1461,7 @@ namespace GRASS.WinForms;
     private BindingSource BS_SID;
     private Button B_ReadIDs;
     private Button B_ReadTempTID;
+    private Button B_ReadParty;
+    private NumericUpDown NUD_PartySlot;
 }
 

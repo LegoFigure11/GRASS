@@ -137,6 +137,26 @@ public class ConnectionWrapperAsync(SwitchConnectionConfig Config, Action<string
         return seed;
     }
 
+    private uint _wildPokemonOffset = 0;
+    public async Task<PK3> ReadEncounter(CancellationToken token)
+    {
+        if (_wildPokemonOffset == 0)
+            _wildPokemonOffset = LanguageVersionOffsetsFRLG.GetWildPokemonOffsetFromLanguageAndVersion((LanguageID)sav.Language, sav.Version);
+
+        var data = await Connection.ReadBytesAsync(_wildPokemonOffset, BoxFormatSlotSize, token).ConfigureAwait(false);
+        return new PK3(data);
+    }
+
+    private uint _partyPokemonOffset = 0;
+    public async Task<PK3> ReadPartyPokemon(uint slot, CancellationToken token)
+    {
+        if (_partyPokemonOffset == 0)
+            _partyPokemonOffset = LanguageVersionOffsetsFRLG.GetPartyStartOffsetFromTitleID(title);
+
+        var data = await Connection.ReadBytesAsync(_partyPokemonOffset + ((slot - 1u) * 0x64u), BoxFormatSlotSize, token).ConfigureAwait(false);
+        return new PK3(data);
+    }
+
     public async Task<bool> GetIsBoxPointerLoaded(CancellationToken token)
     {
         return await GetBoxStartOffset(title, token).ConfigureAwait(false) != 0;

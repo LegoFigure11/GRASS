@@ -8,6 +8,8 @@ public static class Utils
     private static readonly Assembly thisAssembly;
     private static readonly Dictionary<string, string> resourceNameMap;
 
+    private static readonly GameStrings Strings = GameInfo.GetStrings("en");
+
     static Utils()
     {
         thisAssembly = Assembly.GetExecutingAssembly();
@@ -72,5 +74,30 @@ public static class Utils
         if (patchIndex != -1) tagString = tagString.ToString().Remove(patchIndex).AsSpan();
 
         return !Version.TryParse(tagString, out var latestVersion) ? null : latestVersion;
+    }
+
+    public static string ParsePK3(PK3 pk)
+    {
+        var n = Environment.NewLine;
+
+        var form = pk.Form == 0 ? string.Empty : $"-{pk.Form}";
+        var gender = pk.Gender switch
+        {
+            0 => " (M)",
+            1 => " (F)",
+            _ => string.Empty,
+        };
+        var shiny = pk.ShinyXor switch
+        {
+            0 => "■ - ",
+            < 8 => "★ - ",
+            _ => string.Empty,
+        };
+
+        var item = pk.HeldItem > 0 ? $" @ {Strings.Item[pk.HeldItem]}" : string.Empty;
+
+        var moves = pk.Moves.TakeWhile(move => move != 0).Aggregate(string.Empty, (current, move) => current + $"{n}- {Strings.Move[move]}");
+
+        return $"{shiny}{(Species)pk.Species}{form}{gender}{item}{n}PID: {pk.PID:X8}{n}{Strings.Natures[(int)pk.Nature]} Nature{n}Ability: {Strings.Ability[pk.Ability]}{n}IVs: {pk.IV_HP}/{pk.IV_ATK}/{pk.IV_DEF}/{pk.IV_SPA}/{pk.IV_SPD}/{pk.IV_SPE}{n}{moves}";
     }
 }
