@@ -10,7 +10,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 //using static GRASS.Core.Encounters;
-using static GRASS.Core.RNG.Util;
 
 namespace GRASS.WinForms;
 
