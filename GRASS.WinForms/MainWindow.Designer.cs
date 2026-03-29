@@ -126,6 +126,8 @@ namespace GRASS.WinForms;
         L_LoadedTIDs = new Label();
         TP_Seed = new TabPage();
         GB_SeedReset = new GroupBox();
+        B_CancelSeedReset = new Button();
+        B_ResetSeed = new Button();
         L_SS_SeedList = new Label();
         B_SS_SeedList = new Button();
         RB_SS_SpecificSeed = new RadioButton();
@@ -153,8 +155,6 @@ namespace GRASS.WinForms;
         BS_SID = new BindingSource(components);
         B_ReadParty = new Button();
         NUD_PartySlot = new NumericUpDown();
-        B_ResetSeed = new Button();
-        B_CancelSeedReset = new Button();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -1272,6 +1272,26 @@ namespace GRASS.WinForms;
         GB_SeedReset.TabIndex = 9;
         GB_SeedReset.TabStop = false;
         // 
+        // B_CancelSeedReset
+        // 
+        B_CancelSeedReset.Enabled = false;
+        B_CancelSeedReset.Location = new Point(6, 262);
+        B_CancelSeedReset.Name = "B_CancelSeedReset";
+        B_CancelSeedReset.Size = new Size(150, 25);
+        B_CancelSeedReset.TabIndex = 31;
+        B_CancelSeedReset.Text = "Cancel";
+        B_CancelSeedReset.UseVisualStyleBackColor = true;
+        // 
+        // B_ResetSeed
+        // 
+        B_ResetSeed.Location = new Point(162, 262);
+        B_ResetSeed.Name = "B_ResetSeed";
+        B_ResetSeed.Size = new Size(200, 25);
+        B_ResetSeed.TabIndex = 30;
+        B_ResetSeed.Text = "Reset for Seed";
+        B_ResetSeed.UseVisualStyleBackColor = true;
+        B_ResetSeed.Click += B_ResetSeed_Click;
+        // 
         // L_SS_SeedList
         // 
         L_SS_SeedList.AutoSize = true;
@@ -1552,25 +1572,6 @@ namespace GRASS.WinForms;
         NUD_PartySlot.Size = new Size(28, 23);
         NUD_PartySlot.TabIndex = 131;
         NUD_PartySlot.Value = new decimal(new int[] { 1, 0, 0, 0 });
-        // 
-        // B_ResetSeed
-        // 
-        B_ResetSeed.Location = new Point(162, 262);
-        B_ResetSeed.Name = "B_ResetSeed";
-        B_ResetSeed.Size = new Size(200, 25);
-        B_ResetSeed.TabIndex = 30;
-        B_ResetSeed.Text = "Reset for Seed";
-        B_ResetSeed.UseVisualStyleBackColor = true;
-        B_ResetSeed.Click += B_ResetSeed_Click;
-        // 
-        // B_CancelSeedReset
-        // 
-        B_CancelSeedReset.Location = new Point(6, 262);
-        B_CancelSeedReset.Name = "B_CancelSeedReset";
-        B_CancelSeedReset.Size = new Size(150, 25);
-        B_CancelSeedReset.TabIndex = 31;
-        B_CancelSeedReset.Text = "Cancel";
-        B_CancelSeedReset.UseVisualStyleBackColor = true;
         // 
         // MainWindow
         // 
