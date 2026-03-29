@@ -192,6 +192,7 @@ public partial class MainWindow : Form
                                 InitialRNGState = await ConnectionWrapper.GetInitialRNGState(token).ConfigureAwait(false);
                                 prevSeed = InitialRNGState;
                                 SetControlText($"{InitialRNGState:X8}", TB_InitialSeed);
+                                reset = false;
                             }
                             var currSeed = await ConnectionWrapper.GetCurrentRNGState(token).ConfigureAwait(false);
 
