@@ -1,6 +1,6 @@
 ﻿namespace GRASS.WinForms.Subforms
 {
-    partial class TIDList
+    partial class SeedList
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TIDList));
-            LB_IDs = new ListBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeedList));
+            LB_Seeds = new ListBox();
             B_Add = new Button();
             L_ID = new Label();
-            TB_ID = new TextBox();
+            TB_Seed = new TextBox();
             B_Remove = new Button();
             SuspendLayout();
             // 
-            // LB_IDs
+            // LB_Seeds
             // 
-            LB_IDs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            LB_IDs.FormattingEnabled = true;
-            LB_IDs.Location = new Point(8, 8);
-            LB_IDs.Name = "LB_IDs";
-            LB_IDs.Size = new Size(120, 139);
-            LB_IDs.TabIndex = 3;
-            LB_IDs.SelectedIndexChanged += LB_IDs_SelectedIndexChanged;
+            LB_Seeds.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            LB_Seeds.FormattingEnabled = true;
+            LB_Seeds.Location = new Point(8, 8);
+            LB_Seeds.Name = "LB_Seeds";
+            LB_Seeds.Size = new Size(120, 139);
+            LB_Seeds.TabIndex = 3;
+            LB_Seeds.SelectedIndexChanged += LB_Seeds_SelectedIndexChanged;
             // 
             // B_Add
             // 
@@ -61,20 +61,20 @@
             L_ID.AutoSize = true;
             L_ID.Location = new Point(134, 11);
             L_ID.Name = "L_ID";
-            L_ID.Size = new Size(21, 15);
+            L_ID.Size = new Size(35, 15);
             L_ID.TabIndex = 2;
-            L_ID.Text = "ID:";
+            L_ID.Text = "Seed:";
             // 
-            // TB_ID
+            // TB_Seed
             // 
-            TB_ID.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TB_ID.Location = new Point(168, 8);
-            TB_ID.MaxLength = 5;
-            TB_ID.Name = "TB_ID";
-            TB_ID.Size = new Size(41, 22);
-            TB_ID.TabIndex = 0;
-            TB_ID.Text = "12345";
-            TB_ID.KeyPress += TB_ID_KeyPress;
+            TB_Seed.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TB_Seed.Location = new Point(174, 8);
+            TB_Seed.MaxLength = 4;
+            TB_Seed.Name = "TB_Seed";
+            TB_Seed.Size = new Size(35, 22);
+            TB_Seed.TabIndex = 0;
+            TB_Seed.Text = "ABCD";
+            TB_Seed.KeyPress += TB_Seed_KeyPress;
             // 
             // B_Remove
             // 
@@ -86,30 +86,30 @@
             B_Remove.UseVisualStyleBackColor = true;
             B_Remove.Click += B_Remove_Click;
             // 
-            // TIDList
+            // SeedList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(215, 153);
             Controls.Add(B_Remove);
-            Controls.Add(TB_ID);
+            Controls.Add(TB_Seed);
             Controls.Add(L_ID);
             Controls.Add(B_Add);
-            Controls.Add(LB_IDs);
+            Controls.Add(LB_Seeds);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "TIDList";
-            Text = "TID List";
-            FormClosing += IDList_FormClosing;
+            Name = "SeedList";
+            Text = "Seed List";
+            FormClosing += SeedList_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ListBox LB_IDs;
+        private ListBox LB_Seeds;
         private Button B_Add;
         private Label L_ID;
-        private TextBox TB_ID;
+        private TextBox TB_Seed;
         private Button B_Remove;
     }
 }

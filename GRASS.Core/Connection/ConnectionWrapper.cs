@@ -157,6 +157,21 @@ public class ConnectionWrapperAsync(SwitchConnectionConfig Config, Action<string
         return new PK3(data);
     }
 
+    public async Task SoftReset(CancellationToken token)
+    {
+        await PressAndHold([A, B, X, Y], 0_500, 0_500, token).ConfigureAwait(false);
+    }
+
+    public async Task PressAndHold(IEnumerable<SwitchButton> b, int hold, int delay, CancellationToken token)
+    {
+        foreach (var key in b)
+            await Connection.SendAsync(Hold(key, CRLF), token).ConfigureAwait(false);
+        await Task.Delay(hold, token).ConfigureAwait(false);
+        foreach (var key in b)
+            await Connection.SendAsync(Release(key, CRLF), token).ConfigureAwait(false);
+        await Task.Delay(delay, token).ConfigureAwait(false);
+    }
+
     public async Task<bool> GetIsBoxPointerLoaded(CancellationToken token)
     {
         return await GetBoxStartOffset(title, token).ConfigureAwait(false) != 0;

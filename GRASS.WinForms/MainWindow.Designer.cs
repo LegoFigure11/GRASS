@@ -124,7 +124,26 @@ namespace GRASS.WinForms;
         B_TID_Reset = new Button();
         B_TID_EditList = new Button();
         L_LoadedTIDs = new Label();
-        tabPage2 = new TabPage();
+        TP_Seed = new TabPage();
+        GB_SeedReset = new GroupBox();
+        L_SS_SeedList = new Label();
+        B_SS_SeedList = new Button();
+        RB_SS_SpecificSeed = new RadioButton();
+        L_SS_SeedCount = new Label();
+        TB_SS_SeedCount = new TextBox();
+        B_SS_CountSeeds = new Button();
+        L_SS_Adv = new Label();
+        TB_SS_Adv = new TextBox();
+        L_SS_NumSeeds = new Label();
+        L_SS_MaxAdv = new Label();
+        TB_SS_MaxAdv = new TextBox();
+        B_SS_FindMax = new Button();
+        NUD_SS_NumSeeds = new NumericUpDown();
+        RB_SS_Distance = new RadioButton();
+        TB_SS_TargetSeed = new TextBox();
+        L_SS_TargetSeed = new Label();
+        RB_SS_Number = new RadioButton();
+        tabPage1 = new TabPage();
         GB_ConnectionSettings = new GroupBox();
         B_ConnectionSettings = new Button();
         DGV_Results = new DataGridView();
@@ -134,6 +153,8 @@ namespace GRASS.WinForms;
         BS_SID = new BindingSource(components);
         B_ReadParty = new Button();
         NUD_PartySlot = new NumericUpDown();
+        B_ResetSeed = new Button();
+        B_CancelSeedReset = new Button();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -156,6 +177,9 @@ namespace GRASS.WinForms;
         GB_SID.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_SID_Delay).BeginInit();
         groupBox1.SuspendLayout();
+        TP_Seed.SuspendLayout();
+        GB_SeedReset.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).BeginInit();
         GB_ConnectionSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).BeginInit();
@@ -903,7 +927,8 @@ namespace GRASS.WinForms;
         // TC_Main
         // 
         TC_Main.Controls.Add(TP_IDs);
-        TC_Main.Controls.Add(tabPage2);
+        TC_Main.Controls.Add(TP_Seed);
+        TC_Main.Controls.Add(tabPage1);
         TC_Main.Location = new Point(211, 1);
         TC_Main.Name = "TC_Main";
         TC_Main.SelectedIndex = 0;
@@ -1209,15 +1234,241 @@ namespace GRASS.WinForms;
         L_LoadedTIDs.TabIndex = 0;
         L_LoadedTIDs.Text = "Loaded TIDs: None!";
         // 
-        // tabPage2
+        // TP_Seed
         // 
-        tabPage2.Location = new Point(4, 24);
-        tabPage2.Name = "tabPage2";
-        tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(380, 297);
-        tabPage2.TabIndex = 1;
-        tabPage2.Text = "tabPage2";
-        tabPage2.UseVisualStyleBackColor = true;
+        TP_Seed.Controls.Add(GB_SeedReset);
+        TP_Seed.Location = new Point(4, 24);
+        TP_Seed.Name = "TP_Seed";
+        TP_Seed.Padding = new Padding(3);
+        TP_Seed.Size = new Size(380, 297);
+        TP_Seed.TabIndex = 1;
+        TP_Seed.Text = "Seed Reset";
+        TP_Seed.UseVisualStyleBackColor = true;
+        // 
+        // GB_SeedReset
+        // 
+        GB_SeedReset.Controls.Add(B_CancelSeedReset);
+        GB_SeedReset.Controls.Add(B_ResetSeed);
+        GB_SeedReset.Controls.Add(L_SS_SeedList);
+        GB_SeedReset.Controls.Add(B_SS_SeedList);
+        GB_SeedReset.Controls.Add(RB_SS_SpecificSeed);
+        GB_SeedReset.Controls.Add(L_SS_SeedCount);
+        GB_SeedReset.Controls.Add(TB_SS_SeedCount);
+        GB_SeedReset.Controls.Add(B_SS_CountSeeds);
+        GB_SeedReset.Controls.Add(L_SS_Adv);
+        GB_SeedReset.Controls.Add(TB_SS_Adv);
+        GB_SeedReset.Controls.Add(L_SS_NumSeeds);
+        GB_SeedReset.Controls.Add(L_SS_MaxAdv);
+        GB_SeedReset.Controls.Add(TB_SS_MaxAdv);
+        GB_SeedReset.Controls.Add(B_SS_FindMax);
+        GB_SeedReset.Controls.Add(NUD_SS_NumSeeds);
+        GB_SeedReset.Controls.Add(RB_SS_Distance);
+        GB_SeedReset.Controls.Add(TB_SS_TargetSeed);
+        GB_SeedReset.Controls.Add(L_SS_TargetSeed);
+        GB_SeedReset.Controls.Add(RB_SS_Number);
+        GB_SeedReset.Location = new Point(6, -2);
+        GB_SeedReset.Name = "GB_SeedReset";
+        GB_SeedReset.Size = new Size(368, 293);
+        GB_SeedReset.TabIndex = 9;
+        GB_SeedReset.TabStop = false;
+        // 
+        // L_SS_SeedList
+        // 
+        L_SS_SeedList.AutoSize = true;
+        L_SS_SeedList.Enabled = false;
+        L_SS_SeedList.Location = new Point(94, 231);
+        L_SS_SeedList.Name = "L_SS_SeedList";
+        L_SS_SeedList.Size = new Size(117, 15);
+        L_SS_SeedList.TabIndex = 29;
+        L_SS_SeedList.Text = "Loaded Seeds: None!";
+        // 
+        // B_SS_SeedList
+        // 
+        B_SS_SeedList.Enabled = false;
+        B_SS_SeedList.Location = new Point(287, 226);
+        B_SS_SeedList.Name = "B_SS_SeedList";
+        B_SS_SeedList.Size = new Size(75, 25);
+        B_SS_SeedList.TabIndex = 28;
+        B_SS_SeedList.Text = "Edit";
+        B_SS_SeedList.UseVisualStyleBackColor = true;
+        B_SS_SeedList.Click += B_SeedList_Click;
+        // 
+        // RB_SS_SpecificSeed
+        // 
+        RB_SS_SpecificSeed.AutoSize = true;
+        RB_SS_SpecificSeed.Location = new Point(6, 201);
+        RB_SS_SpecificSeed.Name = "RB_SS_SpecificSeed";
+        RB_SS_SpecificSeed.Size = new Size(155, 19);
+        RB_SS_SpecificSeed.TabIndex = 26;
+        RB_SS_SpecificSeed.Text = "Search for Specific Seeds";
+        RB_SS_SpecificSeed.UseVisualStyleBackColor = true;
+        RB_SS_SpecificSeed.CheckedChanged += RB_SS_CheckChanged;
+        // 
+        // L_SS_SeedCount
+        // 
+        L_SS_SeedCount.AutoSize = true;
+        L_SS_SeedCount.Enabled = false;
+        L_SS_SeedCount.Location = new Point(55, 173);
+        L_SS_SeedCount.Name = "L_SS_SeedCount";
+        L_SS_SeedCount.Size = new Size(121, 15);
+        L_SS_SeedCount.TabIndex = 24;
+        L_SS_SeedCount.Text = "Initial Seeds in Range:";
+        // 
+        // TB_SS_SeedCount
+        // 
+        TB_SS_SeedCount.CharacterCasing = CharacterCasing.Lower;
+        TB_SS_SeedCount.Enabled = false;
+        TB_SS_SeedCount.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_SeedCount.Location = new Point(185, 171);
+        TB_SS_SeedCount.MaxLength = 13;
+        TB_SS_SeedCount.Name = "TB_SS_SeedCount";
+        TB_SS_SeedCount.ReadOnly = true;
+        TB_SS_SeedCount.Size = new Size(98, 22);
+        TB_SS_SeedCount.TabIndex = 23;
+        TB_SS_SeedCount.TabStop = false;
+        TB_SS_SeedCount.Text = "0";
+        TB_SS_SeedCount.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_SS_CountSeeds
+        // 
+        B_SS_CountSeeds.Enabled = false;
+        B_SS_CountSeeds.Location = new Point(287, 170);
+        B_SS_CountSeeds.Name = "B_SS_CountSeeds";
+        B_SS_CountSeeds.Size = new Size(75, 25);
+        B_SS_CountSeeds.TabIndex = 22;
+        B_SS_CountSeeds.Text = "Count";
+        B_SS_CountSeeds.UseVisualStyleBackColor = true;
+        B_SS_CountSeeds.Click += B_SS_CountSeeds_Click;
+        // 
+        // L_SS_Adv
+        // 
+        L_SS_Adv.AutoSize = true;
+        L_SS_Adv.Enabled = false;
+        L_SS_Adv.Location = new Point(86, 148);
+        L_SS_Adv.Name = "L_SS_Adv";
+        L_SS_Adv.Size = new Size(90, 15);
+        L_SS_Adv.TabIndex = 21;
+        L_SS_Adv.Text = "Max. Advances:";
+        // 
+        // TB_SS_Adv
+        // 
+        TB_SS_Adv.CharacterCasing = CharacterCasing.Lower;
+        TB_SS_Adv.Enabled = false;
+        TB_SS_Adv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_Adv.Location = new Point(287, 146);
+        TB_SS_Adv.MaxLength = 13;
+        TB_SS_Adv.Name = "TB_SS_Adv";
+        TB_SS_Adv.Size = new Size(75, 22);
+        TB_SS_Adv.TabIndex = 20;
+        TB_SS_Adv.TabStop = false;
+        TB_SS_Adv.Text = "2000000";
+        TB_SS_Adv.TextAlign = HorizontalAlignment.Right;
+        // 
+        // L_SS_NumSeeds
+        // 
+        L_SS_NumSeeds.AutoSize = true;
+        L_SS_NumSeeds.Location = new Point(136, 69);
+        L_SS_NumSeeds.Name = "L_SS_NumSeeds";
+        L_SS_NumSeeds.Size = new Size(40, 15);
+        L_SS_NumSeeds.TabIndex = 19;
+        L_SS_NumSeeds.Text = "Seeds:";
+        // 
+        // L_SS_MaxAdv
+        // 
+        L_SS_MaxAdv.AutoSize = true;
+        L_SS_MaxAdv.Location = new Point(86, 95);
+        L_SS_MaxAdv.Name = "L_SS_MaxAdv";
+        L_SS_MaxAdv.Size = new Size(90, 15);
+        L_SS_MaxAdv.TabIndex = 18;
+        L_SS_MaxAdv.Text = "Max. Advances:";
+        // 
+        // TB_SS_MaxAdv
+        // 
+        TB_SS_MaxAdv.CharacterCasing = CharacterCasing.Lower;
+        TB_SS_MaxAdv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_MaxAdv.Location = new Point(185, 93);
+        TB_SS_MaxAdv.MaxLength = 13;
+        TB_SS_MaxAdv.Name = "TB_SS_MaxAdv";
+        TB_SS_MaxAdv.ReadOnly = true;
+        TB_SS_MaxAdv.Size = new Size(98, 22);
+        TB_SS_MaxAdv.TabIndex = 17;
+        TB_SS_MaxAdv.TabStop = false;
+        TB_SS_MaxAdv.Text = "0";
+        TB_SS_MaxAdv.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_SS_FindMax
+        // 
+        B_SS_FindMax.Location = new Point(287, 92);
+        B_SS_FindMax.Name = "B_SS_FindMax";
+        B_SS_FindMax.Size = new Size(75, 25);
+        B_SS_FindMax.TabIndex = 10;
+        B_SS_FindMax.Text = "Find Max";
+        B_SS_FindMax.UseVisualStyleBackColor = true;
+        B_SS_FindMax.Click += B_SS_FindMax_Click;
+        // 
+        // NUD_SS_NumSeeds
+        // 
+        NUD_SS_NumSeeds.Location = new Point(287, 67);
+        NUD_SS_NumSeeds.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+        NUD_SS_NumSeeds.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        NUD_SS_NumSeeds.Name = "NUD_SS_NumSeeds";
+        NUD_SS_NumSeeds.Size = new Size(75, 23);
+        NUD_SS_NumSeeds.TabIndex = 9;
+        NUD_SS_NumSeeds.TextAlign = HorizontalAlignment.Right;
+        NUD_SS_NumSeeds.Value = new decimal(new int[] { 60, 0, 0, 0 });
+        // 
+        // RB_SS_Distance
+        // 
+        RB_SS_Distance.AutoSize = true;
+        RB_SS_Distance.Location = new Point(6, 125);
+        RB_SS_Distance.Name = "RB_SS_Distance";
+        RB_SS_Distance.Size = new Size(173, 19);
+        RB_SS_Distance.TabIndex = 1;
+        RB_SS_Distance.Text = "Search by Distance to Target";
+        RB_SS_Distance.UseVisualStyleBackColor = true;
+        RB_SS_Distance.CheckedChanged += RB_SS_CheckChanged;
+        // 
+        // TB_SS_TargetSeed
+        // 
+        TB_SS_TargetSeed.CharacterCasing = CharacterCasing.Upper;
+        TB_SS_TargetSeed.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_TargetSeed.Location = new Point(300, 22);
+        TB_SS_TargetSeed.MaxLength = 8;
+        TB_SS_TargetSeed.Name = "TB_SS_TargetSeed";
+        TB_SS_TargetSeed.Size = new Size(62, 22);
+        TB_SS_TargetSeed.TabIndex = 7;
+        TB_SS_TargetSeed.Text = "01234567";
+        // 
+        // L_SS_TargetSeed
+        // 
+        L_SS_TargetSeed.AutoSize = true;
+        L_SS_TargetSeed.Location = new Point(224, 24);
+        L_SS_TargetSeed.Name = "L_SS_TargetSeed";
+        L_SS_TargetSeed.Size = new Size(70, 15);
+        L_SS_TargetSeed.TabIndex = 8;
+        L_SS_TargetSeed.Text = "Target Seed:";
+        // 
+        // RB_SS_Number
+        // 
+        RB_SS_Number.AutoSize = true;
+        RB_SS_Number.Checked = true;
+        RB_SS_Number.Location = new Point(6, 46);
+        RB_SS_Number.Name = "RB_SS_Number";
+        RB_SS_Number.Size = new Size(170, 19);
+        RB_SS_Number.TabIndex = 0;
+        RB_SS_Number.TabStop = true;
+        RB_SS_Number.Text = "Search by Number of Seeds";
+        RB_SS_Number.UseVisualStyleBackColor = true;
+        RB_SS_Number.CheckedChanged += RB_SS_CheckChanged;
+        // 
+        // tabPage1
+        // 
+        tabPage1.Location = new Point(4, 24);
+        tabPage1.Name = "tabPage1";
+        tabPage1.Size = new Size(380, 297);
+        tabPage1.TabIndex = 2;
+        tabPage1.Text = "tabPage1";
+        tabPage1.UseVisualStyleBackColor = true;
         // 
         // GB_ConnectionSettings
         // 
@@ -1302,6 +1553,25 @@ namespace GRASS.WinForms;
         NUD_PartySlot.TabIndex = 131;
         NUD_PartySlot.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
+        // B_ResetSeed
+        // 
+        B_ResetSeed.Location = new Point(162, 262);
+        B_ResetSeed.Name = "B_ResetSeed";
+        B_ResetSeed.Size = new Size(200, 25);
+        B_ResetSeed.TabIndex = 30;
+        B_ResetSeed.Text = "Reset for Seed";
+        B_ResetSeed.UseVisualStyleBackColor = true;
+        B_ResetSeed.Click += B_ResetSeed_Click;
+        // 
+        // B_CancelSeedReset
+        // 
+        B_CancelSeedReset.Location = new Point(6, 262);
+        B_CancelSeedReset.Name = "B_CancelSeedReset";
+        B_CancelSeedReset.Size = new Size(150, 25);
+        B_CancelSeedReset.TabIndex = 31;
+        B_CancelSeedReset.Text = "Cancel";
+        B_CancelSeedReset.UseVisualStyleBackColor = true;
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1350,6 +1620,10 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_SID_Delay).EndInit();
         groupBox1.ResumeLayout(false);
         groupBox1.PerformLayout();
+        TP_Seed.ResumeLayout(false);
+        GB_SeedReset.ResumeLayout(false);
+        GB_SeedReset.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).EndInit();
         GB_ConnectionSettings.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)DGV_Results).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
@@ -1430,7 +1704,7 @@ namespace GRASS.WinForms;
     private Label L_SIDPID;
     private TabControl TC_Main;
     private TabPage TP_IDs;
-    private TabPage tabPage2;
+    private TabPage TP_Seed;
     private GroupBox groupBox1;
     private Button B_TID_EditList;
     private Button B_TID_Reset;
@@ -1463,5 +1737,26 @@ namespace GRASS.WinForms;
     private Button B_ReadTempTID;
     private Button B_ReadParty;
     private NumericUpDown NUD_PartySlot;
+    private TabPage tabPage1;
+    private GroupBox GB_SeedReset;
+    private Label L_SS_TargetSeed;
+    public TextBox TB_SS_TargetSeed;
+    private RadioButton RB_SS_Distance;
+    private RadioButton RB_SS_Number;
+    private Button B_SS_FindMax;
+    private NumericUpDown NUD_SS_NumSeeds;
+    private Label L_SS_MaxAdv;
+    public TextBox TB_SS_MaxAdv;
+    private Label L_SS_NumSeeds;
+    private Label L_SS_Adv;
+    public TextBox TB_SS_Adv;
+    private Button B_SS_CountSeeds;
+    private Label L_SS_SeedCount;
+    public TextBox TB_SS_SeedCount;
+    private RadioButton RB_SS_SpecificSeed;
+    private Button B_SS_SeedList;
+    internal Label L_SS_SeedList;
+    private Button B_ResetSeed;
+    private Button B_CancelSeedReset;
 }
 

@@ -36,4 +36,10 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Subforms\SeedList.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

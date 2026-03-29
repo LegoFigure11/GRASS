@@ -8,6 +8,7 @@ using PKHeX.Core;
 using SysBot.Base;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 using System.Text.Json;
 //using static GRASS.Core.Encounters;
 
@@ -61,6 +62,10 @@ public partial class MainWindow : Form
         if (File.Exists(idsPath))
             TIDs = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(idsPath)) ?? [];
 
+        var seedsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "seed-list.json");
+        if (File.Exists(seedsPath))
+            Seeds = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(seedsPath)) ?? [];
+
         var v = CurrentVersion;
 #if DEBUG
         var build = "";
@@ -101,6 +106,7 @@ public partial class MainWindow : Form
         TB_SID.Text = $"{Config.SID:D5}";
 
         L_LoadedTIDs.Text = $"Loaded TIDs: {(TIDs.Count == 0 ? "None" : TIDs.Count)}";
+        L_SS_SeedList.Text = $"Loaded Seeds: {(Seeds.Count == 0 ? "None" : Seeds.Count)}";
 
         CB_Game.SelectedIndex = Config.Game;
         //UpdateEncounterSlotsAreas();
@@ -764,6 +770,22 @@ public partial class MainWindow : Form
         }
     }
 
+    internal bool SeedListFormOpen = false;
+    private SeedList? SeedListForm;
+    private void B_SeedList_Click(object sender, EventArgs e)
+    {
+        if (!SeedListFormOpen)
+        {
+            SeedListFormOpen = true;
+            SeedListForm = new SeedList(ref Seeds, this);
+            SeedListForm.Show();
+        }
+        else
+        {
+            SeedListForm?.Focus();
+        }
+    }
+
     internal bool ResetSettingsFormOpen = false;
     private ResetSettings? ResetSettingsForm;
     private void B_ResetSettings_Click(object sender, EventArgs e)
@@ -782,82 +804,85 @@ public partial class MainWindow : Form
 
     private void B_TID_Reset_Click(object sender, EventArgs e)
     {
-        readPause = true;
-        reset = true;
-        SetControlEnabledState(false, B_TID_Reset);
-        SetControlEnabledState(true, B_TID_Cancel);
-        Task.Run(async () =>
+        if (ConnectionWrapper.Connected)
         {
-            try
+            readPause = true;
+            reset = true;
+            SetControlEnabledState(false, B_TID_Reset);
+            SetControlEnabledState(true, B_TID_Cancel);
+            Task.Run(async () =>
             {
-                // Try to connect controller
-                await ConnectionWrapper.DoTurboCommand("Release Stick", TIDResetSource.Token).ConfigureAwait(false);
-                await Task.Delay(100, Source.Token).ConfigureAwait(false);
-
-                List<ushort> IDs = [];
-
-                var init = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
-
-                var found = false;
-                var ct = 0;
-
-                // Main TID Loop
-                do
+                try
                 {
-                    // ID List can be updated between resets, so we need to re-parse it every time
-                    IDs.Clear();
-                    foreach (string ID in TIDs)
+                    // Try to connect controller
+                    await ConnectionWrapper.DoTurboCommand("Release Stick", TIDResetSource.Token).ConfigureAwait(false);
+                    await Task.Delay(100, Source.Token).ConfigureAwait(false);
+
+                    List<ushort> IDs = [];
+
+                    var init = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+
+                    var found = false;
+                    var ct = 0;
+
+                    // Main TID Loop
+                    do
                     {
-                        if (ushort.TryParse(ID, out ushort tid)) IDs.Add(tid);
-                    }
+                        // ID List can be updated between resets, so we need to re-parse it every time
+                        IDs.Clear();
+                        foreach (string ID in TIDs)
+                        {
+                            if (ushort.TryParse(ID, out ushort tid)) IDs.Add(tid);
+                        }
 
 
-                    // Name entry, will throw if invalid
-                    var name = Config.OT_Name;
-                    var buttons = KeyboardTools.GetInputsForName(name);
-                    UpdateStatus($"Entering name: {name}");
-                    foreach (var input in buttons)
-                    {
-                        await ConnectionWrapper.PressButton(input, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
-                        if (input is SwitchButton.MINUS) await Task.Delay(Config.NameEntryPageChangeDelay, TIDResetSource.Token).ConfigureAwait(false);
-                    }
-                    await ConnectionWrapper.PressButton(SwitchButton.A, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        // Name entry, will throw if invalid
+                        var name = Config.OT_Name;
+                        var buttons = KeyboardTools.GetInputsForName(name);
+                        UpdateStatus($"Entering name: {name}");
+                        foreach (var input in buttons)
+                        {
+                            await ConnectionWrapper.PressButton(input, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
+                            if (input is SwitchButton.MINUS) await Task.Delay(Config.NameEntryPageChangeDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        }
+                        await ConnectionWrapper.PressButton(SwitchButton.A, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
 
-                    // OT entered, check TID. Try for up to 10 sec, otherwise assume same TID was hit twice consecutively
-                    var rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
-                    for (var tries = 0; tries < 100 && rng == init; tries++)
-                    {
-                        await Task.Delay(100, TIDResetSource.Token).ConfigureAwait(false);
-                        rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
-                    }
+                        // OT entered, check TID. Try for up to 10 sec, otherwise assume same TID was hit twice consecutively
+                        var rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+                        for (var tries = 0; tries < 100 && rng == init; tries++)
+                        {
+                            await Task.Delay(100, TIDResetSource.Token).ConfigureAwait(false);
+                            rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+                        }
 
-                    UpdateStatus($"Found TID: {rng:D5} | {ct}");
-                    SetControlText($"{rng:X8}", TB_InitialSeed);
-                    SetControlText($"{rng:D5}", TB_TID, TB_SIDTID);
-                    await Task.Delay(Config.NameEntryRejectDelay, TIDResetSource.Token).ConfigureAwait(false);
-                    init = rng;
-                    if (IDs.Contains(rng)) found = true;
-                    ct++;
-                    if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        UpdateStatus($"Found TID: {rng:D5} | {ct}");
+                        SetControlText($"{rng:X8}", TB_InitialSeed);
+                        SetControlText($"{rng:D5}", TB_TID, TB_SIDTID);
+                        await Task.Delay(Config.NameEntryRejectDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        init = rng;
+                        if (IDs.Contains(rng)) found = true;
+                        ct++;
+                        if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, TIDResetSource.Token).ConfigureAwait(false);
 
-                } while (!found && !TIDResetSource.IsCancellationRequested);
+                    } while (!found && !TIDResetSource.IsCancellationRequested);
 
-                await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
-                await ConnectionWrapper.DetachController(Source.Token);
-                _ = true;
-                readPause = false;
-                SetControlEnabledState(true, B_TID_Reset);
-                SetControlEnabledState(false, B_TID_Cancel);
-            }
-            catch (Exception ex)
-            {
-                readPause = false;
-                SetControlEnabledState(true, B_TID_Reset);
-                SetControlEnabledState(false, B_TID_Cancel);
-                await ConnectionWrapper.DetachController(Source.Token);
-                if (ex is not TaskCanceledException) this.DisplayMessageBox(ex.Message);
-            }
-        });
+                    await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
+                    await ConnectionWrapper.DetachController(Source.Token);
+                    _ = true;
+                    readPause = false;
+                    SetControlEnabledState(true, B_TID_Reset);
+                    SetControlEnabledState(false, B_TID_Cancel);
+                }
+                catch (Exception ex)
+                {
+                    readPause = false;
+                    SetControlEnabledState(true, B_TID_Reset);
+                    SetControlEnabledState(false, B_TID_Cancel);
+                    await ConnectionWrapper.DetachController(Source.Token);
+                    if (ex is not TaskCanceledException) this.DisplayMessageBox(ex.Message);
+                }
+            });
+        }
     }
 
     private void B_TID_Cancel_Click(object sender, EventArgs e)
@@ -958,6 +983,131 @@ public partial class MainWindow : Form
                 this.DisplayMessageBox(ex.Message);
             }
         });
+    }
+
+    private void B_SS_FindMax_Click(object sender, EventArgs e)
+    {
+        // Validate inputs ()
+        Task.Run(async () =>
+        {
+            var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
+            var count = NUD_SS_NumSeeds.GetValue();
+
+            var (advance, _) = await Core.RNG.Back16.FindMaxAdvance(seed, (ushort)count).ConfigureAwait(false);
+            SetControlText($"{advance:N0}", TB_SS_MaxAdv);
+        });
+    }
+
+    private void B_SS_CountSeeds_Click(object sender, EventArgs e)
+    {
+        // Validate inputs ()
+        Task.Run(async () =>
+        {
+            var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
+            var max = uint.Parse(TB_SS_Adv.GetText());
+
+            var ct = await Core.RNG.Back16.CountSeedsInRange(seed, max).ConfigureAwait(false);
+            SetControlText($"{ct:N0}", TB_SS_SeedCount);
+        });
+    }
+
+    private void RB_SS_CheckChanged(object sender, EventArgs e)
+    {
+        SetControlEnabledState(RB_SS_Number.GetIsChecked(), L_SS_NumSeeds, L_SS_MaxAdv, NUD_SS_NumSeeds, TB_SS_MaxAdv, B_SS_FindMax);
+        SetControlEnabledState(RB_SS_Distance.GetIsChecked(), L_SS_Adv, TB_SS_Adv, L_SS_SeedCount, TB_SS_SeedCount, B_SS_CountSeeds);
+        SetControlEnabledState(RB_SS_SpecificSeed.GetIsChecked(), L_SS_SeedList, B_SS_SeedList);
+    }
+
+    private void B_ResetSeed_Click(object sender, EventArgs e)
+    {
+        if (ConnectionWrapper.Connected)
+        {
+            readPause = true;
+            reset = true;
+            SetControlEnabledState(false, B_ResetSeed);
+            SetControlEnabledState(true, B_CancelSeedReset);
+            // Validate inputs ()
+
+            Task.Run(async () =>
+            {
+                try
+                {
+                    // Try to connect controller
+                    await ConnectionWrapper.DoTurboCommand("Release Stick", TIDResetSource.Token).ConfigureAwait(false);
+                    await Task.Delay(100, Source.Token).ConfigureAwait(false);
+
+                    List<ushort> specificSeeds = [];
+
+                    var found = false;
+                    var ct = 0;
+                    ushort init = 0;
+                    var target = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
+
+                    // Main Seed Reset Loop
+                    do
+                    {
+                        List<ushort> seeds = [];
+
+                        if (RB_SS_SpecificSeed.GetIsChecked())
+                        {
+                            foreach (string seed in Seeds)
+                            {
+                                var s = Encoding.UTF8.GetBytes(seed);
+                                if (ushort.TryParse(s, NumberStyles.AllowHexSpecifier, null, out ushort sd)) seeds.Add(sd);
+                            }
+                        }
+                        else
+                        {
+                            target = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
+
+                            if (RB_SS_Number.GetIsChecked())
+                            {
+                                var count = NUD_SS_NumSeeds.GetValue();
+                                seeds = await Core.RNG.Back16.GetSeedsByCount(target, count).ConfigureAwait(false);
+                            }
+                            else if (RB_SS_Distance.GetIsChecked())
+                            {
+                                var dist = uint.Parse(TB_SS_Adv.GetText());
+                                seeds = await Core.RNG.Back16.GetSeedsByAdvances(target, dist).ConfigureAwait(false);
+                            }
+                        }
+
+                        // Finished seed parsing
+                        UpdateStatus("Waiting for RNG init");
+                        while (!await ConnectionWrapper.GetIsBoxPointerLoaded(TIDResetSource.Token).ConfigureAwait(false))
+                        {
+                            await ConnectionWrapper.PressButton(SwitchButton.A, 100, TIDResetSource.Token).ConfigureAwait(false);
+                        }
+
+                        UpdateStatus("Reading Initial Seed");
+                        init = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+
+                        UpdateStatus($"Found Seed: {init:X4} | {ct}");
+                        SetControlText($"{init:X8}", TB_InitialSeed);
+
+                        if (seeds.Contains(init)) found = true;
+                        ct++;
+                        if (!found) await ConnectionWrapper.SoftReset(TIDResetSource.Token).ConfigureAwait(false);
+
+                    } while (!found && !TIDResetSource.IsCancellationRequested);
+
+                    await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
+                    await ConnectionWrapper.DetachController(Source.Token);
+                    readPause = false;
+                    SetControlEnabledState(true, B_ResetSeed);
+                    SetControlEnabledState(false, B_CancelSeedReset);
+                    this.DisplayMessageBox($"Found Initial Seed 0x{init:X4}\nDistance to Target Seed: ${LCRNG.GetDistance(init, target)}", "Seed Result");
+                }
+                catch (Exception ex)
+                {
+                    readPause = false;
+                    SetControlEnabledState(true, B_ResetSeed);
+                    SetControlEnabledState(false, B_CancelSeedReset);
+                    await ConnectionWrapper.DetachController(Source.Token);
+                    if (ex is not TaskCanceledException) this.DisplayMessageBox(ex.Message);
+                }
+            });
+        }
     }
 }
 
