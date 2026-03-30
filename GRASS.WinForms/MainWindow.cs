@@ -1073,10 +1073,11 @@ public partial class MainWindow : Form
                         }
 
                         // Finished seed parsing
-                        UpdateStatus("Waiting for RNG init");
+                        UpdateStatus($"Waiting for RNG | {ct}");
+                        await Task.Delay(Util.Rand.Next(0, 5000), TIDResetSource.Token).ConfigureAwait(false);
                         while (!await ConnectionWrapper.GetIsBoxPointerLoaded(TIDResetSource.Token).ConfigureAwait(false))
                         {
-                            await ConnectionWrapper.PressButton(SwitchButton.A, 100, TIDResetSource.Token).ConfigureAwait(false);
+                            await ConnectionWrapper.PressButton(SwitchButton.A, 50 + Util.Rand.Next(0, 950), TIDResetSource.Token).ConfigureAwait(false);
                         }
 
                         UpdateStatus("Reading Initial Seed");
