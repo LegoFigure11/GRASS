@@ -14,11 +14,11 @@ public static class PIDIV
         return (high << 16) | low;
     }
 
-    public static byte[] GetIVs(ref uint seed, Method method = Method.Method1)
+    public static byte[] GetIVs(ref uint seed, bool RoamerBug = false, Method method = Method.Method1)
     {
-        var iv1 = LCRNG.Next16(ref seed);
+        var iv1 = RoamerBug ? LCRNG.Next16(ref seed) & 0xFF : LCRNG.Next16(ref seed);
         if (method == Method.Method4) _ = LCRNG.Next16(ref seed); // ABC_E
-        var iv2 = LCRNG.Next16(ref seed);
+        var iv2 = RoamerBug ? 0 : LCRNG.Next16(ref seed);
 
         return [
             (byte)((iv1 >>  0) & 31), // HP
@@ -30,11 +30,11 @@ public static class PIDIV
         ];
     }
 
-    public static (uint pid, byte[] iv) GetPIDIV(ref uint seed, Method method = Method.Method1)
+    public static (uint pid, byte[] iv) GetPIDIV(ref uint seed, bool buggedRoamer, Method method = Method.Method1)
     {
         var pid = GetPID(ref seed, method);
         if (method.IsMethod2()) _ = LCRNG.Next16(ref seed); // AB_DE
-        var iv = GetIVs(ref seed, method);
+        var iv = GetIVs(ref seed, buggedRoamer, method);
         return (pid, iv);
     }
 
@@ -44,11 +44,33 @@ public static class PIDIV
         do
         {
             pid = GetPID(ref seed, method);
-        } while (method.IsMethodH() && (pid % 25 != nature /* || CuteCharm */));
+        } while (method.IsMethodH() && (pid.Nature != nature /* || CuteCharm */));
 
         if (method.IsMethod2()) _ = LCRNG.Next16(ref seed); // AB_DE
 
-        var iv = GetIVs(ref seed, method);
+        var iv = GetIVs(ref seed, false, method);
         return (pid, iv);
+    }   
+
+    public static (uint pid, byte[] iv) GetUnownPIDIV(ref uint seed, byte letter, Method method = Method.MethodH1)
+    {
+        uint pid;
+        do
+        {
+            pid = GetPID(ref seed, method);
+        } while (pid.UnownLetter != letter);
+
+        if (method.IsMethod2()) _ = LCRNG.Next16(ref seed); // AB_DE
+
+        var iv = GetIVs(ref seed, false, method);
+        return (pid, iv);
+    }
+
+    extension (uint pid)
+    {
+        internal byte UnownLetter => (byte)((((pid & 0x3000000) >> 18) | ((pid & 0x30000) >> 12) | ((pid & 0x300) >> 6) | (pid & 0x3)) % 0x1C);
+        internal byte Nature => (byte)(pid % 25);
+        internal byte Ability => (byte)(pid & 1);
+        internal byte GenderVal => (byte)(pid & 0xFF);
     }
 }
