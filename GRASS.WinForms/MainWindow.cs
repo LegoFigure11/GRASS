@@ -1097,7 +1097,7 @@ public partial class MainWindow : Form
                     readPause = false;
                     SetControlEnabledState(true, B_ResetSeed);
                     SetControlEnabledState(false, B_CancelSeedReset);
-                    this.DisplayMessageBox($"Found Initial Seed 0x{init:X4}\nDistance to Target Seed: ${LCRNG.GetDistance(init, target)}", "Seed Result");
+                    this.DisplayMessageBox($"Found Initial Seed 0x{init:X4} after {ct} attempt{(ct == 1 ? string.Empty : "s")}\nDistance to Target Seed: {LCRNG.GetDistance(init, target):N0}", "Seed Result");
                 }
                 catch (Exception ex)
                 {
