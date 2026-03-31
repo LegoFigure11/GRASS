@@ -17,7 +17,8 @@ namespace GRASS.WinForms;
 public partial class MainWindow : Form
 {
     private static CancellationTokenSource Source = new();
-    private static CancellationTokenSource TIDResetSource = new();
+    private static CancellationTokenSource GameResetSource = new();
+
     private static readonly Lock _connectLock = new();
 
     public ClientConfig Config;
@@ -244,8 +245,8 @@ public partial class MainWindow : Form
                 }
                 await Source.CancelAsync().ConfigureAwait(false);
                 Source = new();
-                await TIDResetSource.CancelAsync().ConfigureAwait(false);
-                TIDResetSource = new();
+                await GameResetSource.CancelAsync().ConfigureAwait(false);
+                GameResetSource = new();
                 SetControlEnabledState(true, B_Connect);
             },
             token
@@ -815,12 +816,12 @@ public partial class MainWindow : Form
                 try
                 {
                     // Try to connect controller
-                    await ConnectionWrapper.DoTurboCommand("Release Stick", TIDResetSource.Token).ConfigureAwait(false);
+                    await ConnectionWrapper.DoTurboCommand("Release Stick", GameResetSource.Token).ConfigureAwait(false);
                     await Task.Delay(100, Source.Token).ConfigureAwait(false);
 
                     List<ushort> IDs = [];
 
-                    var init = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+                    var init = await ConnectionWrapper.GetInitialRNGState(GameResetSource.Token).ConfigureAwait(false);
 
                     var found = false;
                     var ct = 0;
@@ -842,29 +843,29 @@ public partial class MainWindow : Form
                         UpdateStatus($"Entering name: {name}");
                         foreach (var input in buttons)
                         {
-                            await ConnectionWrapper.PressButton(input, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
-                            if (input is SwitchButton.MINUS) await Task.Delay(Config.NameEntryPageChangeDelay, TIDResetSource.Token).ConfigureAwait(false);
+                            await ConnectionWrapper.PressButton(input, Config.NameEntryButtonPressDelay, GameResetSource.Token).ConfigureAwait(false);
+                            if (input is SwitchButton.MINUS) await Task.Delay(Config.NameEntryPageChangeDelay, GameResetSource.Token).ConfigureAwait(false);
                         }
-                        await ConnectionWrapper.PressButton(SwitchButton.A, Config.NameEntryButtonPressDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        await ConnectionWrapper.PressButton(SwitchButton.A, Config.NameEntryButtonPressDelay, GameResetSource.Token).ConfigureAwait(false);
 
                         // OT entered, check TID. Try for up to 10 sec, otherwise assume same TID was hit twice consecutively
-                        var rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+                        var rng = await ConnectionWrapper.GetInitialRNGState(GameResetSource.Token).ConfigureAwait(false);
                         for (var tries = 0; tries < 100 && rng == init; tries++)
                         {
-                            await Task.Delay(100, TIDResetSource.Token).ConfigureAwait(false);
-                            rng = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+                            await Task.Delay(100, GameResetSource.Token).ConfigureAwait(false);
+                            rng = await ConnectionWrapper.GetInitialRNGState(GameResetSource.Token).ConfigureAwait(false);
                         }
 
                         UpdateStatus($"Found TID: {rng:D5} | {ct}");
                         SetControlText($"{rng:X8}", TB_InitialSeed);
                         SetControlText($"{rng:D5}", TB_TID, TB_SIDTID);
-                        await Task.Delay(Config.NameEntryRejectDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        await Task.Delay(Config.NameEntryRejectDelay, GameResetSource.Token).ConfigureAwait(false);
                         init = rng;
                         if (IDs.Contains(rng)) found = true;
                         ct++;
-                        if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, TIDResetSource.Token).ConfigureAwait(false);
+                        if (!found) await ConnectionWrapper.PressButton(SwitchButton.B, Config.NameEntryReloadNameScreenDelay, GameResetSource.Token).ConfigureAwait(false);
 
-                    } while (!found && !TIDResetSource.IsCancellationRequested);
+                    } while (!found && !GameResetSource.IsCancellationRequested);
 
                     await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
                     await ConnectionWrapper.DetachController(Source.Token);
@@ -885,10 +886,10 @@ public partial class MainWindow : Form
         }
     }
 
-    private void B_TID_Cancel_Click(object sender, EventArgs e)
+    private void B_Reset_Cancel_Click(object sender, EventArgs e)
     {
-        TIDResetSource.Cancel();
-        TIDResetSource = new();
+        GameResetSource.Cancel();
+        GameResetSource = new();
     }
 
     private void CB_SID_Delay_CheckedChanged(object sender, EventArgs e)
@@ -1033,7 +1034,7 @@ public partial class MainWindow : Form
                 try
                 {
                     // Try to connect controller
-                    await ConnectionWrapper.DoTurboCommand("Release Stick", TIDResetSource.Token).ConfigureAwait(false);
+                    await ConnectionWrapper.DoTurboCommand("Release Stick", GameResetSource.Token).ConfigureAwait(false);
                     await Task.Delay(100, Source.Token).ConfigureAwait(false);
 
                     List<ushort> specificSeeds = [];
@@ -1074,23 +1075,23 @@ public partial class MainWindow : Form
 
                         // Finished seed parsing
                         UpdateStatus($"Waiting for RNG | {ct}");
-                        await Task.Delay(Util.Rand.Next(0, 5000), TIDResetSource.Token).ConfigureAwait(false);
-                        while (!await ConnectionWrapper.GetIsBoxPointerLoaded(TIDResetSource.Token).ConfigureAwait(false))
+                        await Task.Delay(Util.Rand.Next(0, 5000), GameResetSource.Token).ConfigureAwait(false);
+                        while (!await ConnectionWrapper.GetIsBoxPointerLoaded(GameResetSource.Token).ConfigureAwait(false))
                         {
-                            await ConnectionWrapper.PressButton(SwitchButton.A, 50 + Util.Rand.Next(0, 950), TIDResetSource.Token).ConfigureAwait(false);
+                            await ConnectionWrapper.PressButton(SwitchButton.A, 50 + Util.Rand.Next(0, 950), GameResetSource.Token).ConfigureAwait(false);
                         }
 
                         UpdateStatus("Reading Initial Seed");
-                        init = await ConnectionWrapper.GetInitialRNGState(TIDResetSource.Token).ConfigureAwait(false);
+                        init = await ConnectionWrapper.GetInitialRNGState(GameResetSource.Token).ConfigureAwait(false);
 
                         UpdateStatus($"Found Seed: {init:X4} | {ct}");
                         SetControlText($"{init:X8}", TB_InitialSeed);
 
                         if (seeds.Contains(init)) found = true;
                         ct++;
-                        if (!found) await ConnectionWrapper.SoftReset(TIDResetSource.Token).ConfigureAwait(false);
+                        if (!found) await ConnectionWrapper.SoftReset(GameResetSource.Token).ConfigureAwait(false);
 
-                    } while (!found && !TIDResetSource.IsCancellationRequested);
+                    } while (!found && !GameResetSource.IsCancellationRequested);
 
                     await ConnectionWrapper.PressHOME(0, Source.Token).ConfigureAwait(false);
                     await ConnectionWrapper.DetachController(Source.Token);
