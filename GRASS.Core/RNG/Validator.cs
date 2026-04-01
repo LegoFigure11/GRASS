@@ -24,5 +24,20 @@ internal static class Validator
 
     public static bool CheckEC(uint ec, bool rare) => !rare || (rare && ec % 100 == 0);
 
-    public static bool CheckNature(string nature, Nature target) => nature == "Sync" || target == Nature.Random || nature == Natures[(int)target];
+    public static bool CheckNature(byte nature, Nature target) => target == Nature.Random || nature == (byte)target;
+
+    public static bool CheckIVs(byte[] IVs, IIVGeneratorConfig cfg)
+    {
+        for (var i = 0; i < 6; i++)
+        {
+            var iv = IVs[i];
+
+            if (cfg.SearchTypes[i] == IVSearchType.Range && (iv < cfg.TargetMinIVs[i] || iv > cfg.TargetMaxIVs[i]) ||
+                cfg.SearchTypes[i] == IVSearchType.Or && iv != cfg.TargetMinIVs[i] && iv != cfg.TargetMaxIVs[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

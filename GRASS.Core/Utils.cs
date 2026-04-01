@@ -1,3 +1,4 @@
+using GRASS.Core.Enums;
 using PKHeX.Core;
 using System.Reflection;
 
@@ -8,7 +9,7 @@ public static class Utils
     private static readonly Assembly thisAssembly;
     private static readonly Dictionary<string, string> resourceNameMap;
 
-    private static readonly GameStrings Strings = GameInfo.GetStrings("en");
+    public static readonly GameStrings Strings = GameInfo.GetStrings("en");
 
     static Utils()
     {
@@ -100,4 +101,7 @@ public static class Utils
 
         return $"{shiny}{(Species)pk.Species}{form}{gender}{item}{n}PID: {pk.PID:X8}{n}{Strings.Natures[(int)pk.Nature]} Nature{n}Ability: {Strings.Ability[pk.Ability]}{n}IVs: {pk.IV_HP}/{pk.IV_ATK}/{pk.IV_DEF}/{pk.IV_SPA}/{pk.IV_SPD}/{pk.IV_SPE}{moves}";
     }
+
+    public static IVSearchType GetIVSearchType(string labelText) =>
+        labelText == "||" ? IVSearchType.Or : IVSearchType.Range;
 }

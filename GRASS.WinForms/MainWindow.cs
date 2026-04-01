@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
+using static GRASS.Core.Utils;
 //using static GRASS.Core.Encounters;
 
 namespace GRASS.WinForms;
@@ -33,8 +34,7 @@ public partial class MainWindow : Form
     private PK3 _enc = new();
 
     internal List<string> TIDs = [];
-
-
+    internal List<string> Seeds = [];
 
     private readonly Version CurrentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!;
 
@@ -112,7 +112,7 @@ public partial class MainWindow : Form
         CB_Game.SelectedIndex = Config.Game;
         //UpdateEncounterSlotsAreas();
 
-        SetComboBoxSelectedIndex(0, CB_Filter_Shiny);
+        SetComboBoxSelectedIndex(0, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Static_Species);
 
         SetControlText("0", TB_InitialSeed);
         SetControlText(string.Empty, TB_CurrentAdvances, TB_AdvancesIncrease, TB_CurrentSeed);
@@ -330,6 +330,47 @@ public partial class MainWindow : Form
         }
     }
 
+    public void SetDataGridViewDataSource(object source, params object[] obj)
+    {
+        foreach (object o in obj)
+        {
+            if (o is not DataGridView d)
+                continue;
+
+            if (InvokeRequired)
+            {
+                Invoke(() =>
+                {
+                    d.AutoGenerateColumns = true;
+                    d.DataSource = source;
+
+                    d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["HP"]?.Width = 50;
+                    d.Columns["Atk"]?.Width = 50;
+                    d.Columns["Def"]?.Width = 50;
+                    d.Columns["SpA"]?.Width = 50;
+                    d.Columns["SpD"]?.Width = 50;
+                    d.Columns["Spe"]?.Width = 50;
+
+
+                });
+            }
+            else
+            {
+                d.AutoGenerateColumns = true;
+                d.DataSource = source;
+
+                d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["HP"]?.Width = 50;
+                d.Columns["Atk"]?.Width = 50;
+                d.Columns["Def"]?.Width = 50;
+                d.Columns["SpA"]?.Width = 50;
+                d.Columns["SpD"]?.Width = 50;
+                d.Columns["Spe"]?.Width = 50;
+            }
+        }
+    }
+
     public void SetNUDValue(decimal val, params NumericUpDown[] nuds)
     {
         foreach (var nud in nuds)
@@ -381,41 +422,68 @@ public partial class MainWindow : Form
     }
 
     private readonly Color _defaultBackColor = Color.FromArgb(0, 120, 215);
+
+    private static ShinyType GetFilterShinyType(int selected) => selected switch
+    {
+        1 => ShinyType.Either,
+        2 => ShinyType.Square,
+        3 => ShinyType.Star,
+        4 => ShinyType.None,
+        _ => ShinyType.Any, 
+    };
+
+    private static Nature GetFilterNatureType(int selected) => selected switch
+    {
+        0 => Nature.Random,
+        _ => (Nature)(selected - 1),
+    };
+
     private void B_IV_Max_Click(object sender, EventArgs e)
     {
         var st = ((Button)sender).Name.Replace("B_", string.Empty).Replace("_Max", string.Empty);
-        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [st];
+        var underscore = st.IndexOf('_');
+        var page = st[..underscore];
+        var skill = st[(underscore + 1)..];
+        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
+        var val = ModifierKeys == Keys.Control ? 30 : 31;
         foreach (var stat in stats)
         {
-            var min = (NumericUpDown)Controls.Find($"NUD_{stat}_Min", true).FirstOrDefault()!;
-            var max = (NumericUpDown)Controls.Find($"NUD_{stat}_Max", true).FirstOrDefault()!;
-            min.Value = 31;
-            max.Value = 31;
+            var min = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Min", true).FirstOrDefault()!;
+            var max = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Max", true).FirstOrDefault()!;
+            min.Value = val;
+            max.Value = val;
         }
     }
 
     private void B_IV_Min_Click(object sender, EventArgs e)
     {
         var st = ((Button)sender).Name.Replace("B_", string.Empty).Replace("_Min", string.Empty);
-        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [st];
+        var underscore = st.IndexOf('_');
+        var page = st[..underscore];
+        var skill = st[(underscore + 1)..];
+        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
+        var val = ModifierKeys == Keys.Control ? 1 : 0;
         foreach (var stat in stats)
         {
-            var min = (NumericUpDown)Controls.Find($"NUD_{stat}_Min", true).FirstOrDefault()!;
-            var max = (NumericUpDown)Controls.Find($"NUD_{stat}_Max", true).FirstOrDefault()!;
-            min.Value = 0;
-            max.Value = 0;
+            var min = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Min", true).FirstOrDefault()!;
+            var max = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Max", true).FirstOrDefault()!;
+            min.Value = val;
+            max.Value = val;
         }
     }
 
     private void IV_Label_Click(object sender, EventArgs e)
     {
         var st = ((Label)sender).Name.Replace("L_", string.Empty);
-        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [st];
+        var underscore = st.IndexOf('_');
+        var page = st[..underscore];
+        var skill = st[(underscore + 1)..];
+        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
         foreach (var stat in stats)
         {
-            var min = (NumericUpDown)Controls.Find($"NUD_{stat}_Min", true).FirstOrDefault()!;
-            var max = (NumericUpDown)Controls.Find($"NUD_{stat}_Max", true).FirstOrDefault()!;
-            var lab = (Label)Controls.Find($"L_{stat}Spacer", true).FirstOrDefault()!;
+            var min = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Min", true).FirstOrDefault()!;
+            var max = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Max", true).FirstOrDefault()!;
+            var lab = (Label)Controls.Find($"L_{page}_{stat}Spacer", true).FirstOrDefault()!;
             min.Value = 0;
             max.Value = 31;
             if (lab.Text == "||")
@@ -544,7 +612,7 @@ public partial class MainWindow : Form
                     if (pk is { Valid: true, Species: > 0 })
                     {
                         _enc = pk;
-                        SetControlText(Utils.ParsePK3(pk), TB_Wild);
+                        SetControlText(ParsePK3(pk), TB_Wild);
                     }
                     else
                     {
@@ -575,7 +643,7 @@ public partial class MainWindow : Form
                     if (pk is { Valid: true, Species: > 0 })
                     {
                         _enc = pk;
-                        SetControlText(Utils.ParsePK3(pk), TB_Wild);
+                        SetControlText(ParsePK3(pk), TB_Wild);
                     }
                     else
                     {
@@ -718,7 +786,7 @@ public partial class MainWindow : Form
         Task.Run(async () =>
         {
             Version? latestVersion;
-            try { latestVersion = Utils.GetLatestVersion(); }
+            try { latestVersion = GetLatestVersion(); }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Exception while checking for latest version: {ex}");
@@ -752,7 +820,7 @@ public partial class MainWindow : Form
 
     private void CB_Delay_CheckedChanged(object sender, EventArgs e)
     {
-        SetControlEnabledState(CB_Delay.GetIsChecked(), NUD_Delay);
+        SetControlEnabledState(CB_Static_Delay.GetIsChecked(), NUD_Static_Delay);
     }
 
     internal bool TIDListSubformOpen = false;
@@ -899,6 +967,7 @@ public partial class MainWindow : Form
 
     private void B_SID_Generate_Click(object sender, EventArgs e)
     {
+        // Validate Inputs ()
         SetControlEnabledState(false, B_SID_Generate);
         Task.Run(async () =>
         {
@@ -921,6 +990,7 @@ public partial class MainWindow : Form
             var sidFrames = await Core.RNG.SID.Generate(seed, start, end, cfg);
 
             SetBindingSourceDataSource(sidFrames, BS_SID);
+            SetDataGridViewDataSource(BS_SID, DGV_Results);
             SetControlEnabledState(true, B_SID_Generate);
         });
     }
@@ -1110,6 +1180,42 @@ public partial class MainWindow : Form
                 }
             });
         }
+    }
+
+    private void B_Static_Search_Click(object sender, EventArgs e)
+    {
+        SetControlEnabledState(false, B_Static_Search);
+        Task.Run(async () =>
+        {
+            var seed = uint.Parse(TB_InitialSeed.GetText(), NumberStyles.AllowHexSpecifier);
+            var start = uint.Parse(TB_Static_Initial.GetText());
+            var end = uint.Parse(TB_Static_Advances.GetText());
+            var cfg = new StaticConfig()
+            {
+                SID = ushort.Parse(TB_SID.GetText()),
+                TID = ushort.Parse(TB_TID.GetText()),
+
+                UseDelay = CB_Static_Delay.GetIsChecked(),
+                Delay = NUD_Static_Delay.GetValue(),
+
+                TargetShiny = GetFilterShinyType(CB_Static_Shiny.GetSelectedIndex()),
+                TargetNature = GetFilterNatureType(CB_Static_Nature.GetSelectedIndex()),
+
+                TargetMinIVs = [NUD_Static_HP_Min.GetValue(), NUD_Static_Atk_Min.GetValue(), NUD_Static_Def_Min.GetValue(), NUD_Static_SpA_Min.GetValue(), NUD_Static_SpD_Min.GetValue(), NUD_Static_Spe_Min.GetValue()],
+                TargetMaxIVs = [NUD_Static_HP_Max.GetValue(), NUD_Static_Atk_Max.GetValue(), NUD_Static_Def_Max.GetValue(), NUD_Static_SpA_Max.GetValue(), NUD_Static_SpD_Max.GetValue(), NUD_Static_Spe_Max.GetValue()],
+                SearchTypes = [GetIVSearchType(L_Static_HPSpacer.GetText()), GetIVSearchType(L_Static_AtkSpacer.GetText()), GetIVSearchType(L_Static_DefSpacer.GetText()), GetIVSearchType(L_Static_SpASpacer.GetText()), GetIVSearchType(L_Static_SpDSpacer.GetText()), GetIVSearchType(L_Static_SpeSpacer.GetText())],
+
+
+                BuggedRoamer = CB_Static_RoamerBug.GetIsChecked(),
+
+                FiltersEnabled = CB_Static_FiltersEnabled.GetIsChecked(),
+            };
+            var staticFrames = await Core.RNG.Static.Generate(seed, start, end, cfg);
+
+            SetBindingSourceDataSource(staticFrames, BS_Static);
+            SetDataGridViewDataSource(BS_Static, DGV_Results);
+            SetControlEnabledState(true, B_Static_Search);
+        });
     }
 }
 

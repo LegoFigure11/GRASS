@@ -1,4 +1,5 @@
 using GRASS.Core.Enums;
+using GRASS.Core.RNG;
 using PKHeX.Core;
 
 namespace GRASS.Core.Interfaces;
@@ -9,6 +10,14 @@ internal interface IGeneratorConfig
     public uint Delay { get; set; }
 
     public bool FiltersEnabled { get; set; }
+}
+
+internal interface IIVGeneratorConfig
+{
+    uint[] TargetMinIVs { get; }
+    uint[] TargetMaxIVs { get; }
+    IVSearchType[] SearchTypes { get; }
+
 }
 
 public class SIDConfig : IGeneratorConfig
@@ -23,6 +32,31 @@ public class SIDConfig : IGeneratorConfig
     public uint PID { get; set; } = 0;
 
     public SIDSearchMode SearchMode { get; set; } = SIDSearchMode.SpecificSID;
+}
+
+public class StaticConfig : IGeneratorConfig, IIVGeneratorConfig
+{
+    public Method Method { get; set; } = Method.Method1;
+
+    public bool UseDelay { get; set; } = true;
+    public uint Delay { get; set; } = 0;
+
+    public bool FiltersEnabled { get; set; } = true;
+
+    public ushort TID { get; set; } = 0;
+    public ushort SID { get; set; } = 0;
+
+    public ushort TSV => (ushort)RNGUtil.GetShinyValue(TID, SID);
+
+    public bool BuggedRoamer { get; set; } = false;
+
+    public ShinyType TargetShiny { get; set; } = ShinyType.Any;
+    public Nature TargetNature { get; set; } = Nature.Random;
+
+    public uint[] TargetMinIVs { get; set; } = [0, 0, 0, 0, 0, 0];
+    public uint[] TargetMaxIVs { get; set; } = [31, 31, 31, 31, 31, 31];
+    public IVSearchType[] SearchTypes { get; set; } = [IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range];
+
 }
 
 /*
