@@ -29,7 +29,7 @@ namespace GRASS.WinForms;
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
-        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
         GB_Connection = new GroupBox();
         TB_AdvancesIncrease = new TextBox();
@@ -159,6 +159,10 @@ namespace GRASS.WinForms;
         NUD_Static_HP_Max = new NumericUpDown();
         NUD_Static_HP_Min = new NumericUpDown();
         GB_ConnectionSettings = new GroupBox();
+        B_BabyMode_Cancel = new Button();
+        B_BabyMode_Go = new Button();
+        L_BabyMode = new Label();
+        TB_BabyMode = new TextBox();
         B_ConnectionSettings = new Button();
         DGV_Results = new DataGridView();
         BS_SID = new BindingSource(components);
@@ -1234,6 +1238,7 @@ namespace GRASS.WinForms;
         CB_Static_Delay.Tag = "";
         CB_Static_Delay.Text = "Delay:";
         CB_Static_Delay.UseVisualStyleBackColor = true;
+        CB_Static_Delay.CheckedChanged += CB_Static_Delay_CheckedChanged;
         // 
         // NUD_Static_Delay
         // 
@@ -1635,12 +1640,58 @@ namespace GRASS.WinForms;
         // 
         // GB_ConnectionSettings
         // 
+        GB_ConnectionSettings.Controls.Add(B_BabyMode_Cancel);
+        GB_ConnectionSettings.Controls.Add(B_BabyMode_Go);
+        GB_ConnectionSettings.Controls.Add(L_BabyMode);
+        GB_ConnectionSettings.Controls.Add(TB_BabyMode);
         GB_ConnectionSettings.Controls.Add(B_ConnectionSettings);
         GB_ConnectionSettings.Location = new Point(0, 209);
         GB_ConnectionSettings.Name = "GB_ConnectionSettings";
-        GB_ConnectionSettings.Size = new Size(212, 48);
+        GB_ConnectionSettings.Size = new Size(212, 99);
         GB_ConnectionSettings.TabIndex = 128;
         GB_ConnectionSettings.TabStop = false;
+        // 
+        // B_BabyMode_Cancel
+        // 
+        B_BabyMode_Cancel.Location = new Point(11, 69);
+        B_BabyMode_Cancel.Name = "B_BabyMode_Cancel";
+        B_BabyMode_Cancel.Size = new Size(71, 25);
+        B_BabyMode_Cancel.TabIndex = 174;
+        B_BabyMode_Cancel.Text = "Cancel";
+        B_BabyMode_Cancel.UseVisualStyleBackColor = true;
+        B_BabyMode_Cancel.Click += B_BabyMode_Cancel_Click;
+        // 
+        // B_BabyMode_Go
+        // 
+        B_BabyMode_Go.Location = new Point(88, 69);
+        B_BabyMode_Go.Name = "B_BabyMode_Go";
+        B_BabyMode_Go.Size = new Size(117, 25);
+        B_BabyMode_Go.TabIndex = 173;
+        B_BabyMode_Go.Text = "Go!";
+        B_BabyMode_Go.UseVisualStyleBackColor = true;
+        B_BabyMode_Go.Click += B_BabyMode_Go_Click;
+        // 
+        // L_BabyMode
+        // 
+        L_BabyMode.AutoSize = true;
+        L_BabyMode.Location = new Point(12, 47);
+        L_BabyMode.Name = "L_BabyMode";
+        L_BabyMode.Size = new Size(70, 15);
+        L_BabyMode.TabIndex = 21;
+        L_BabyMode.Text = "Baby Mode:";
+        // 
+        // TB_BabyMode
+        // 
+        TB_BabyMode.CharacterCasing = CharacterCasing.Upper;
+        TB_BabyMode.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_BabyMode.Location = new Point(88, 45);
+        TB_BabyMode.MaxLength = 10;
+        TB_BabyMode.Name = "TB_BabyMode";
+        TB_BabyMode.Size = new Size(118, 22);
+        TB_BabyMode.TabIndex = 172;
+        TB_BabyMode.TextAlign = HorizontalAlignment.Right;
+        TB_BabyMode.KeyDown += Dec_HandlePaste;
+        TB_BabyMode.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // B_ConnectionSettings
         // 
@@ -1656,8 +1707,8 @@ namespace GRASS.WinForms;
         // 
         DGV_Results.AllowUserToAddRows = false;
         DGV_Results.AllowUserToDeleteRows = false;
-        dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
-        DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+        dataGridViewCellStyle2.BackColor = Color.WhiteSmoke;
+        DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
         DGV_Results.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         DGV_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         DGV_Results.Location = new Point(11, 332);
@@ -1750,6 +1801,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Max).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Min).EndInit();
         GB_ConnectionSettings.ResumeLayout(false);
+        GB_ConnectionSettings.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).EndInit();
@@ -1894,5 +1946,9 @@ namespace GRASS.WinForms;
     private Label L_Static_Method;
     public ComboBox CB_Static_Method;
     private BindingSource BS_Static;
+    private Button B_BabyMode_Cancel;
+    private Button B_BabyMode_Go;
+    private Label L_BabyMode;
+    public TextBox TB_BabyMode;
 }
 

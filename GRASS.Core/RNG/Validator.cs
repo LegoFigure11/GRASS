@@ -5,7 +5,8 @@ using PKHeX.Core;
 namespace GRASS.Core.RNG;
 internal static class Validator
 {
-    private readonly static IReadOnlyList<string> Natures = GameInfo.GetStrings("en").Natures;
+    internal readonly static IReadOnlyList<string> Natures = Utils.Strings.Natures;
+    internal readonly static IReadOnlyList<string> Types = Utils.Strings.Types;
     public static bool CheckSID(uint sid, SIDConfig config) => config.SearchMode switch
     {
         SIDSearchMode.FromPID => CheckIsShiny(RNGUtil.GetShinyXOR(config.PID, RNGUtil.GetShinyValue(config.TID, sid)), ShinyType.Either),

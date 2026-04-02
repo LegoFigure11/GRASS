@@ -31,6 +31,10 @@ public partial class MainWindow : Form
     private bool readPause;
     private uint total;
 
+    private bool babyMode;
+    private bool babyModePrimed;
+    private uint babyModeTarget = 0;
+
     private PK3 _enc = new();
 
     internal List<string> TIDs = [];
@@ -201,6 +205,13 @@ public partial class MainWindow : Form
                                 SetControlText($"{InitialRNGState:X8}", TB_InitialSeed);
                                 reset = false;
                             }
+
+                            if (babyMode && !babyModePrimed)
+                            {
+                                babyModePrimed = true;
+                                await ConnectionWrapper.DoTurboCommand("Release Stick", token).ConfigureAwait(false);
+                            }
+
                             var currSeed = await ConnectionWrapper.GetCurrentRNGState(token).ConfigureAwait(false);
 
                             if (currSeed == prevSeed)
@@ -209,6 +220,14 @@ public partial class MainWindow : Form
                             total = LCRNG.GetDistance(InitialRNGState, currSeed);
                             var adv = LCRNG.GetDistance(prevSeed, currSeed);
 
+                            if (babyMode && total > babyModeTarget)
+                            {
+                                await ConnectionWrapper.PressButton(SwitchButton.A, 0, token).ConfigureAwait(false);
+                                await ConnectionWrapper.DetachController(token).ConfigureAwait(false);
+                                babyMode = false;
+                                babyModePrimed = false;
+                                UpdateStatus("Monitoring RNG State...");
+                            }
 
                             SetControlText($"{currSeed:X8}", TB_CurrentSeed);
                             SetControlText($"{total:N0}", TB_CurrentAdvances);
@@ -429,7 +448,7 @@ public partial class MainWindow : Form
         2 => ShinyType.Square,
         3 => ShinyType.Star,
         4 => ShinyType.None,
-        _ => ShinyType.Any, 
+        _ => ShinyType.Any,
     };
 
     private static Nature GetFilterNatureType(int selected) => selected switch
@@ -1215,6 +1234,30 @@ public partial class MainWindow : Form
             SetBindingSourceDataSource(staticFrames, BS_Static);
             SetDataGridViewDataSource(BS_Static, DGV_Results);
             SetControlEnabledState(true, B_Static_Search);
+        });
+    }
+
+    private void CB_Static_Delay_CheckedChanged(object sender, EventArgs e)
+    {
+        SetControlEnabledState(CB_Static_Delay.GetIsChecked(), NUD_Static_Delay);
+    }
+
+    private void B_BabyMode_Go_Click(object sender, EventArgs e)
+    {
+        babyModeTarget = uint.Parse(TB_BabyMode.GetText());
+        babyMode = true;
+        babyModePrimed = false;
+        UpdateStatus($"Primed: {babyModeTarget:N0}");
+    }
+
+    private void B_BabyMode_Cancel_Click(object sender, EventArgs e)
+    {
+        babyMode = false;
+        babyModePrimed = false;
+        UpdateStatus("Monitoring RNG State...");
+        Task.Run(async () =>
+        {
+            await ConnectionWrapper.DetachController(Source.Token).ConfigureAwait(false);
         });
     }
 }
