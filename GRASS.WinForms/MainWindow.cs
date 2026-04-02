@@ -220,7 +220,7 @@ public partial class MainWindow : Form
                             total = LCRNG.GetDistance(InitialRNGState, currSeed);
                             var adv = LCRNG.GetDistance(prevSeed, currSeed);
 
-                            if (babyMode && total > babyModeTarget)
+                            if (babyMode && total >= babyModeTarget)
                             {
                                 await ConnectionWrapper.PressButton(SwitchButton.A, 0, token).ConfigureAwait(false);
                                 await ConnectionWrapper.DetachController(token).ConfigureAwait(false);
