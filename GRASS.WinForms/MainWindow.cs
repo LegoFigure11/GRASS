@@ -1245,6 +1245,8 @@ public partial class MainWindow : Form
     private void B_BabyMode_Go_Click(object sender, EventArgs e)
     {
         babyModeTarget = uint.Parse(TB_BabyMode.GetText());
+        var delay = CB_BabyModeDelay.GetIsChecked() ? NUD_BabyModeDelay.GetValue() : 0u;
+        babyModeTarget -= delay;
         babyMode = true;
         babyModePrimed = false;
         UpdateStatus($"Primed: {babyModeTarget:N0}");
@@ -1255,10 +1257,8 @@ public partial class MainWindow : Form
         babyMode = false;
         babyModePrimed = false;
         UpdateStatus("Monitoring RNG State...");
-        Task.Run(async () =>
+        try
         {
-            await ConnectionWrapper.DetachController(Source.Token).ConfigureAwait(false);
-        });
     }
 }
 
