@@ -1,0 +1,152 @@
+[
+    {
+        "_species": 1,
+        "Level": 5,
+        "Location": "Starter"
+    },
+    {
+        "_species": 4,
+        "Level": 5,
+        "Location": "Starter"
+    },
+    {
+        "_species": 7,
+        "Level": 5,
+        "Location": "Starter"
+    },
+    {
+        "_species": 138,
+        "Level": 5,
+        "Location": "Fossil"
+    },
+    {
+        "_species": 140,
+        "Level": 5,
+        "Location": "Fossil"
+    },
+    {
+        "_species": 142,
+        "Level": 5,
+        "Location": "Fossil"
+    },
+    {
+        "_species": 106,
+        "Level": 25,
+        "Location": "Gift"
+    },
+    {
+        "_species": 107,
+        "Level": 25,
+        "Location": "Gift"
+    },
+    {
+        "_species": 129,
+        "Level": 5,
+        "Location": "Gift"
+    },
+    {
+        "_species": 131,
+        "Level": 25,
+        "Location": "Gift"
+    },
+    {
+        "_species": 133,
+        "Level": 25,
+        "Location": "Gift"
+    },
+    {
+        "_species": 175,
+        "Level": 5,
+        "Location": "Gift"
+    },
+    {
+        "_species": 63,
+        "Level": 7,
+        "Location": "Game Corner"
+    },
+    {
+        "_species": 35,
+        "Level": 12,
+        "Location": "Game Corner"
+    },
+    {
+        "_species": 127,
+        "Level": 18,
+        "Location": "Game Corner"
+    },
+    {
+        "_species": 147,
+        "Level": 24,
+        "Location": "Game Corner"
+    },
+    {
+        "_species": 137,
+        "Level": 18,
+        "Location": "Game Corner"
+    },
+    {
+        "_species": 97,
+        "Level": 30,
+        "Location": "Stationary"
+    },
+    {
+        "_species": 101,
+        "Level": 34,
+        "Location": "Stationary"
+    },
+    {
+        "_species": 143,
+        "Level": 30,
+        "Location": "Stationary"
+    },
+    {
+        "_species": 144,
+        "Level": 50,
+        "Location": "Legendary"
+    },
+    {
+        "_species": 145,
+        "Level": 50,
+        "Location": "Legendary"
+    },
+    {
+        "_species": 146,
+        "Level": 50,
+        "Location": "Legendary"
+    },
+    {
+        "_species": 150,
+        "Level": 70,
+        "Location": "Legendary"
+    },
+    {
+        "_species": 386,
+        "Level": 30,
+        "Location": "Event"
+    },
+    {
+        "_species": 249,
+        "Level": 70,
+        "Location": "Event"
+    },
+    {
+        "_species": 250,
+        "Level": 70,
+        "Location": "Event"
+    },
+    {
+        "_species": 243,
+        "Level": 50,
+        "Location": "Roamer"
+    },
+    {
+        "_species": 244,
+        "Level": 50,
+        "Location": "Roamer"
+    },
+    {
+        "_species": 245,
+        "Level": 50,
+        "Location": "Roamer"
+    }
+]

@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Encounters\Data\FireRed\FR_Static.json" />
+    <None Remove="Encounters\Data\LeafGreen\LG_Static.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Encounters\Data\FireRed\fr_static.json" />
+    <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_static.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="LibUsbDotNet" Version="2.2.29" />
     <PackageReference Include="NLog" Version="5.4.0" />
     <PackageReference Include="PKHeX.Core" Version="26.3.20" />

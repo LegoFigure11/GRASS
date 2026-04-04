@@ -11,7 +11,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using static GRASS.Core.Utils;
-//using static GRASS.Core.Encounters;
+using static GRASS.Core.Encounters;
 
 namespace GRASS.WinForms;
 
@@ -43,8 +43,6 @@ public partial class MainWindow : Form
     internal List<object> Frames = [];
 
     private readonly Version CurrentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!;
-
-    private readonly Color _defaultBackColor = Color.FromArgb(0, 120, 215);
     public static readonly Font BoldFont = new("Microsoft Sans Serif", 8, FontStyle.Bold);
 
     public MainWindow()
@@ -119,7 +117,8 @@ public partial class MainWindow : Form
         L_SS_SeedList.Text = $"Loaded Seeds: {(Seeds.Count == 0 ? "None" : Seeds.Count)}";
 
         CB_Game.SelectedIndex = Config.Game;
-        //UpdateEncounterSlotsAreas();
+
+        UpdateStaticSpeciesList((Game)Config.Game);
 
         SetComboBoxSelectedIndex(0, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Static_Species);
 
@@ -535,8 +534,21 @@ public partial class MainWindow : Form
     private void CB_Game_SelectedIndexChanged(object sender, EventArgs e)
     {
         Config.Game = CB_Game.SelectedIndex;
+        UpdateStaticSpeciesList();
     }
 
+    private void UpdateStaticSpeciesList() => UpdateStaticSpeciesList((Game)CB_Game.SelectedIndex);
+
+    private void UpdateStaticSpeciesList(Game game)
+    {
+        var list = GetStaticEncounterSpeciesList(game);
+        var combobox = CB_Static_Species;
+        combobox.Items.Clear();
+        foreach (var item in list)
+        {
+            combobox.Items.Add(item);
+        }
+    }
 
     private void UpdateEncounterSlotsSpecies()
     {
@@ -1213,6 +1225,13 @@ public partial class MainWindow : Form
             var seed = uint.Parse(TB_InitialSeed.GetText(), NumberStyles.AllowHexSpecifier);
             var start = uint.Parse(TB_Static_Initial.GetText());
             var end = uint.Parse(TB_Static_Advances.GetText());
+
+            var enc = GetStaticEncounterFromSpecies(
+                GetStaticEncounterSpeciesList(
+                    (Game)Config.Game
+                )[CB_Static_Species.GetSelectedIndex()], (Game)Config.Game
+            );
+
             var cfg = new StaticConfig()
             {
                 SID = ushort.Parse(TB_SID.GetText()),
@@ -1228,6 +1247,7 @@ public partial class MainWindow : Form
                 TargetMaxIVs = [NUD_Static_HP_Max.GetValue(), NUD_Static_Atk_Max.GetValue(), NUD_Static_Def_Max.GetValue(), NUD_Static_SpA_Max.GetValue(), NUD_Static_SpD_Max.GetValue(), NUD_Static_Spe_Max.GetValue()],
                 SearchTypes = [GetIVSearchType(L_Static_HPSpacer.GetText()), GetIVSearchType(L_Static_AtkSpacer.GetText()), GetIVSearchType(L_Static_DefSpacer.GetText()), GetIVSearchType(L_Static_SpASpacer.GetText()), GetIVSearchType(L_Static_SpDSpacer.GetText()), GetIVSearchType(L_Static_SpeSpacer.GetText())],
 
+                Encounter = enc,
 
                 BuggedRoamer = CB_Static_RoamerBug.GetIsChecked(),
 

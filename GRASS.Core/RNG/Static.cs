@@ -34,6 +34,20 @@ public static class Static
                     continue;
                 }
 
+                var Gender = cfg.Encounter.Personal.Gender switch
+                {
+                    PersonalInfo.RatioMagicGenderless => '-',
+                    PersonalInfo.RatioMagicFemale => 'F',
+                    PersonalInfo.RatioMagicMale => 'M',
+                    _ => 'S',
+                };
+
+                if (Gender == 'S')
+                {
+                    var gv = PID.GenderVal;
+                    Gender = gv < cfg.Encounter.Personal.Gender ? 'F' : 'M';
+                }
+
                 results.Add(new StaticFrame()
                 {
                     _seed = outer,
@@ -41,6 +55,8 @@ public static class Static
                     _pid = PID,
                     _ivs = IVs,
                     _shinyXor = (ushort)shinyXor,
+                    Gender = Gender,
+                    Ability = $"{Abilities[cfg.Encounter.Personal.GetAbilityAtIndex(PID.Ability)]} ({PID.Ability})",
                 });
 
                 outer = LCRNG.Next(outer);

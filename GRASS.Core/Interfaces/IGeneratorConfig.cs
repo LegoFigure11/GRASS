@@ -57,6 +57,7 @@ public class StaticConfig : IGeneratorConfig, IIVGeneratorConfig
     public uint[] TargetMaxIVs { get; set; } = [31, 31, 31, 31, 31, 31];
     public IVSearchType[] SearchTypes { get; set; } = [IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range];
 
+    public StaticEncounter Encounter { get; set; } = new();
 }
 
 /*
