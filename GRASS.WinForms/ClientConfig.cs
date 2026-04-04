@@ -20,4 +20,7 @@ public class ClientConfig
     public int NameEntryPageChangeDelay { get; set; } = 800;
     public int NameEntryRejectDelay { get; set; } = 4_000;
     public int NameEntryReloadNameScreenDelay { get; set; } = 1_700;
+
+    // Misc
+    public bool ColorHiddenPowerResults { get; set; } = false;
 }

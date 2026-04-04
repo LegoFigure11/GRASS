@@ -1294,11 +1294,16 @@ public partial class MainWindow : Form
             else row.DefaultCellStyle.BackColor = row.Index % 2 == 0 ? Color.White : Color.WhiteSmoke;
         }
 
-        if (result is IHiddenPowerFrame hp)
+        if (Config.ColorHiddenPowerResults && result is IHiddenPowerFrame hp)
         {
-            var col = DGV_Results.Columns["Power"]!.Index;
-            if (hp.Power == 70) row.Cells[col].Style.Font = BoldFont;
-            else row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+            var pow = DGV_Results.Columns["Power"]!.Index;
+            var typ = DGV_Results.Columns["Hidden"]!.Index;
+            if (hp.Power == 70) row.Cells[pow].Style.Font = BoldFont;
+            else row.Cells[pow].Style.Font = row.DefaultCellStyle.Font;
+
+            var color = WinFormsUtil.GetHiddenPowerColor(hp.Hidden);
+            row.Cells[pow].Style.BackColor = color;
+            row.Cells[typ].Style.BackColor = color;
         }
 
         // IVs
