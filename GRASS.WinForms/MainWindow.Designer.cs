@@ -159,6 +159,8 @@ namespace GRASS.WinForms;
         NUD_Static_HP_Max = new NumericUpDown();
         NUD_Static_HP_Min = new NumericUpDown();
         GB_ConnectionSettings = new GroupBox();
+        CB_BabyModeDelay = new CheckBox();
+        NUD_BabyModeDelay = new NumericUpDown();
         B_BabyMode_Cancel = new Button();
         B_BabyMode_Go = new Button();
         L_BabyMode = new Label();
@@ -169,8 +171,6 @@ namespace GRASS.WinForms;
         B_ReadParty = new Button();
         NUD_PartySlot = new NumericUpDown();
         BS_Static = new BindingSource(components);
-        CB_BabyModeDelay = new CheckBox();
-        NUD_BabyModeDelay = new NumericUpDown();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -198,11 +198,11 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Max).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Min).BeginInit();
         GB_ConnectionSettings.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).BeginInit();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -1656,6 +1656,29 @@ namespace GRASS.WinForms;
         GB_ConnectionSettings.TabIndex = 128;
         GB_ConnectionSettings.TabStop = false;
         // 
+        // CB_BabyModeDelay
+        // 
+        CB_BabyModeDelay.AutoSize = true;
+        CB_BabyModeDelay.CheckAlign = ContentAlignment.MiddleRight;
+        CB_BabyModeDelay.Location = new Point(12, 66);
+        CB_BabyModeDelay.Name = "CB_BabyModeDelay";
+        CB_BabyModeDelay.Size = new Size(58, 19);
+        CB_BabyModeDelay.TabIndex = 176;
+        CB_BabyModeDelay.Tag = "";
+        CB_BabyModeDelay.Text = "Delay:";
+        CB_BabyModeDelay.UseVisualStyleBackColor = true;
+        CB_BabyModeDelay.CheckedChanged += CB_BabyModeDelay_CheckedChanged;
+        // 
+        // NUD_BabyModeDelay
+        // 
+        NUD_BabyModeDelay.Enabled = false;
+        NUD_BabyModeDelay.Location = new Point(88, 65);
+        NUD_BabyModeDelay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_BabyModeDelay.Name = "NUD_BabyModeDelay";
+        NUD_BabyModeDelay.Size = new Size(117, 23);
+        NUD_BabyModeDelay.TabIndex = 175;
+        NUD_BabyModeDelay.TextAlign = HorizontalAlignment.Right;
+        // 
         // B_BabyMode_Cancel
         // 
         B_BabyMode_Cancel.Location = new Point(11, 90);
@@ -1723,6 +1746,7 @@ namespace GRASS.WinForms;
         DGV_Results.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DGV_Results.Size = new Size(1254, 306);
         DGV_Results.TabIndex = 129;
+        DGV_Results.CellFormatting += DGV_Results_CellFormatting;
         // 
         // BS_SID
         // 
@@ -1751,29 +1775,6 @@ namespace GRASS.WinForms;
         // BS_Static
         // 
         BS_Static.DataSource = typeof(Core.Interfaces.StaticFrame);
-        // 
-        // CB_BabyModeDelay
-        // 
-        CB_BabyModeDelay.AutoSize = true;
-        CB_BabyModeDelay.CheckAlign = ContentAlignment.MiddleRight;
-        CB_BabyModeDelay.Location = new Point(12, 66);
-        CB_BabyModeDelay.Name = "CB_BabyModeDelay";
-        CB_BabyModeDelay.Size = new Size(58, 19);
-        CB_BabyModeDelay.TabIndex = 176;
-        CB_BabyModeDelay.Tag = "";
-        CB_BabyModeDelay.Text = "Delay:";
-        CB_BabyModeDelay.UseVisualStyleBackColor = true;
-        CB_BabyModeDelay.CheckedChanged += CB_BabyModeDelay_CheckedChanged;
-        // 
-        // NUD_BabyModeDelay
-        // 
-        NUD_BabyModeDelay.Enabled = false;
-        NUD_BabyModeDelay.Location = new Point(88, 65);
-        NUD_BabyModeDelay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-        NUD_BabyModeDelay.Name = "NUD_BabyModeDelay";
-        NUD_BabyModeDelay.Size = new Size(117, 23);
-        NUD_BabyModeDelay.TabIndex = 175;
-        NUD_BabyModeDelay.TextAlign = HorizontalAlignment.Right;
         // 
         // MainWindow
         // 
@@ -1830,11 +1831,11 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Min).EndInit();
         GB_ConnectionSettings.ResumeLayout(false);
         GB_ConnectionSettings.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).EndInit();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).EndInit();
-        ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }

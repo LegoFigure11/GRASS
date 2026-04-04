@@ -40,7 +40,12 @@ public partial class MainWindow : Form
     internal List<string> TIDs = [];
     internal List<string> Seeds = [];
 
+    internal List<object> Frames = [];
+
     private readonly Version CurrentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!;
+
+    private readonly Color _defaultBackColor = Color.FromArgb(0, 120, 215);
+    public static readonly Font BoldFont = new("Microsoft Sans Serif", 8, FontStyle.Bold);
 
     public MainWindow()
     {
@@ -440,7 +445,6 @@ public partial class MainWindow : Form
         }
     }
 
-    private readonly Color _defaultBackColor = Color.FromArgb(0, 120, 215);
 
     private static ShinyType GetFilterShinyType(int selected) => selected switch
     {
@@ -1234,6 +1238,7 @@ public partial class MainWindow : Form
             SetBindingSourceDataSource(staticFrames, BS_Static);
             SetDataGridViewDataSource(BS_Static, DGV_Results);
             SetControlEnabledState(true, B_Static_Search);
+            Frames = staticFrames.Cast<object>().ToList();
         });
     }
 
@@ -1259,6 +1264,68 @@ public partial class MainWindow : Form
         UpdateStatus("Monitoring RNG State...");
         try
         {
+            Task.Run(async () =>
+            {
+                await ConnectionWrapper.DetachController(Source.Token).ConfigureAwait(false);
+            });
+        }
+        catch
+        {
+            // Ignored
+        }
+    }
+
+    private void CB_BabyModeDelay_CheckedChanged(object sender, EventArgs e)
+    {
+        SetControlEnabledState(CB_BabyModeDelay.GetIsChecked(), NUD_BabyModeDelay);
+    }
+
+    private void DGV_Results_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+    {
+        var index = e.RowIndex;
+        if (Frames.Count <= index) return;
+        var row = DGV_Results.Rows[index];
+        var result = Frames[index];
+
+        if (result is IShinyFrame s)
+        {
+            if (s.Shiny is "Square") row.DefaultCellStyle.BackColor = Color.LightCyan;
+            else if (s.Shiny.Contains("Star")) row.DefaultCellStyle.BackColor = Color.PapayaWhip;
+            else row.DefaultCellStyle.BackColor = row.Index % 2 == 0 ? Color.White : Color.WhiteSmoke;
+        }
+
+        if (result is IHiddenPowerFrame hp)
+        {
+            var col = DGV_Results.Columns["Power"]!.Index;
+            if (hp.Power == 70) row.Cells[col].Style.Font = BoldFont;
+            else row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+        }
+
+        // IVs
+        if (result is IIVFrame iv)
+        {
+            string[] stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"];
+            byte[] ivs = [iv.HP, iv.Atk, iv.Def, iv.SpA, iv.SpD, iv.Spe];
+            for (var i = 0; i < stats.Length; i++)
+            {
+                var col = DGV_Results.Columns[stats[i]]!.Index;
+                if (ivs[i] == 0)
+                {
+                    row.Cells[col].Style.Font = BoldFont;
+                    row.Cells[col].Style.ForeColor = Color.OrangeRed;
+                }
+                else if (ivs[i] == 31)
+                {
+                    row.Cells[col].Style.Font = BoldFont;
+                    row.Cells[col].Style.ForeColor = Color.SeaGreen;
+                }
+                else
+                {
+                    row.Cells[col].Style.ForeColor = row.DefaultCellStyle.ForeColor;
+                    row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+                }
+            }
+        }
     }
 }
 

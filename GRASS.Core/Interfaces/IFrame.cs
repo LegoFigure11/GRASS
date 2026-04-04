@@ -9,7 +9,7 @@ internal interface IBasicFrame
     string Seed { get; }
 }
 
-internal interface IIVFrame
+public interface IIVFrame
 {
     byte HP { get; }
     byte Atk { get; }
@@ -17,6 +17,17 @@ internal interface IIVFrame
     byte SpA { get; }
     byte SpD { get; }
     byte Spe { get; }
+}
+
+public interface IShinyFrame
+{
+    string Shiny { get; }
+}
+
+public interface IHiddenPowerFrame
+{
+    string Hidden { get; }
+    int Power { get; }
 }
 
 public class SIDFrame : IBasicFrame
@@ -30,7 +41,7 @@ public class SIDFrame : IBasicFrame
     public string SID => $"{_sid:00000}";
 }
 
-public class StaticFrame : IBasicFrame, IIVFrame
+public class StaticFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
 {
     internal uint _advances { get; set; } = 0;
     internal uint _seed { get; set; } = 0;
@@ -42,9 +53,9 @@ public class StaticFrame : IBasicFrame, IIVFrame
     public string Advances => $"{_advances:N0}";
     public string PID => $"{_pid:X8}";
 
-    public string Shiny => $"{(_shinyXor == 0 ? "Square" : (_shinyXor < 8 ? "Star" : "No"))}";
+    public string Shiny => $"{(_shinyXor == 0 ? "Square" : (_shinyXor < 8 ? $"Star ({_shinyXor})" : "No"))}";
 
-    public byte Ability => _pid.Ability;
+    public string Ability { get; set; } = string.Empty;
     public string Nature => Validator.Natures[_nature];
 
     public byte HP => _ivs[0];
