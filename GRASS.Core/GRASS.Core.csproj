@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Encounters\Data\FireRed\fr_grasscave.json" />
     <EmbeddedResource Include="Encounters\Data\FireRed\fr_static.json" />
+    <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_grasscave.json" />
     <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_static.json" />
   </ItemGroup>
 
