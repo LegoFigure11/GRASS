@@ -17,7 +17,7 @@ public static class PIDIV
     public static byte[] GetIVs(ref uint seed, bool RoamerBug = false, Method method = Method.Method1)
     {
         var iv1 = RoamerBug ? LCRNG.Next16(ref seed) & 0xFF : LCRNG.Next16(ref seed);
-        if (method == Method.Method4) _ = LCRNG.Next16(ref seed); // ABC_E
+        if (method.IsMethod4()) _ = LCRNG.Next16(ref seed); // ABC_E
         var iv2 = RoamerBug ? 0 : LCRNG.Next16(ref seed);
 
         return [
