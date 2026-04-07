@@ -218,6 +218,7 @@ namespace GRASS.WinForms;
         NUD_Wild_HP_Max = new NumericUpDown();
         NUD_Wild_HP_Min = new NumericUpDown();
         GB_ConnectionSettings = new GroupBox();
+        CB_BabyMode_Action = new ComboBox();
         CB_BabyModeDelay = new CheckBox();
         NUD_BabyModeDelay = new NumericUpDown();
         B_BabyMode_Cancel = new Button();
@@ -2350,6 +2351,7 @@ namespace GRASS.WinForms;
         // 
         // GB_ConnectionSettings
         // 
+        GB_ConnectionSettings.Controls.Add(CB_BabyMode_Action);
         GB_ConnectionSettings.Controls.Add(CB_BabyModeDelay);
         GB_ConnectionSettings.Controls.Add(NUD_BabyModeDelay);
         GB_ConnectionSettings.Controls.Add(B_BabyMode_Cancel);
@@ -2362,6 +2364,16 @@ namespace GRASS.WinForms;
         GB_ConnectionSettings.Size = new Size(212, 117);
         GB_ConnectionSettings.TabIndex = 128;
         GB_ConnectionSettings.TabStop = false;
+        // 
+        // CB_BabyMode_Action
+        // 
+        CB_BabyMode_Action.FormattingEnabled = true;
+        CB_BabyMode_Action.Items.AddRange(new object[] { "A", "HOME" });
+        CB_BabyMode_Action.Location = new Point(134, 65);
+        CB_BabyMode_Action.Name = "CB_BabyMode_Action";
+        CB_BabyMode_Action.Size = new Size(72, 23);
+        CB_BabyMode_Action.TabIndex = 21;
+        CB_BabyMode_Action.SelectedIndexChanged += CB_BabyMode_Action_SelectedIndexChanged;
         // 
         // CB_BabyModeDelay
         // 
@@ -2382,9 +2394,10 @@ namespace GRASS.WinForms;
         NUD_BabyModeDelay.Location = new Point(88, 65);
         NUD_BabyModeDelay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
         NUD_BabyModeDelay.Name = "NUD_BabyModeDelay";
-        NUD_BabyModeDelay.Size = new Size(117, 23);
+        NUD_BabyModeDelay.Size = new Size(40, 23);
         NUD_BabyModeDelay.TabIndex = 175;
         NUD_BabyModeDelay.TextAlign = HorizontalAlignment.Right;
+        NUD_BabyModeDelay.Value = new decimal(new int[] { 999, 0, 0, 0 });
         // 
         // B_BabyMode_Cancel
         // 
@@ -2783,5 +2796,6 @@ namespace GRASS.WinForms;
     private NumericUpDown NUD_Wild_HP_Min;
     private BindingSource BS_Wild;
     private Button B_CopyIVs;
+    public ComboBox CB_BabyMode_Action;
 }
 

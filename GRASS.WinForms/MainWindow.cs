@@ -34,6 +34,7 @@ public partial class MainWindow : Form
     private bool babyMode;
     private bool babyModePrimed;
     private uint babyModeTarget = 0;
+    private SwitchButton babyModeButton = SwitchButton.A;
 
     private PK3 _enc = new();
 
@@ -117,7 +118,7 @@ public partial class MainWindow : Form
         L_SS_SeedList.Text = $"Loaded Seeds: {(Seeds.Count == 0 ? "None" : Seeds.Count)}";
 
 
-        SetComboBoxSelectedIndex(0, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Static_Species, CB_Wild_Encounter, CB_Wild_Method);
+        SetComboBoxSelectedIndex(0, CB_BabyMode_Action, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Static_Species, CB_Wild_Encounter, CB_Wild_Method, CB_Wild_Nature, CB_Wild_Shiny);
 
         CB_Game.SelectedIndex = Config.Game;
 
@@ -227,7 +228,7 @@ public partial class MainWindow : Form
 
                             if (babyMode && total >= babyModeTarget)
                             {
-                                await ConnectionWrapper.PressButton(SwitchButton.A, 0, token).ConfigureAwait(false);
+                                await ConnectionWrapper.PressButton(babyModeButton, 0, token).ConfigureAwait(false);
                                 await ConnectionWrapper.DetachController(token).ConfigureAwait(false);
                                 babyMode = false;
                                 babyModePrimed = false;
@@ -1436,11 +1437,16 @@ public partial class MainWindow : Form
                             else if (nud.Name.IndexOf("SpA") > 0) nud.Value = _enc.IV_SPA;
                             else if (nud.Name.IndexOf("SpD") > 0) nud.Value = _enc.IV_SPD;
                             else if (nud.Name.IndexOf("Spe") > 0) nud.Value = _enc.IV_SPE;
-                        } 
+                        }
                     }
                 }
             }
         }
+    }
+
+    private void CB_BabyMode_Action_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        babyModeButton = CB_BabyMode_Action.GetSelectedIndex() == 0 ? SwitchButton.A : SwitchButton.HOME;
     }
 }
 
