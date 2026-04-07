@@ -75,7 +75,7 @@ public static class Encounters
     public static List<string> GetEncounterAreaSpecies(Game game, EncounterTableType type, int index) =>
         [.. GetEncounterSlotEncounters(game, type, index).Select(e => e.Name).Distinct()];
 
-    public static int GetEncounterSlotIndex(int rand, EncounterTableType table) => table switch {
+    public static int GetEncounterSlotIndex(uint rand, EncounterTableType table) => table switch {
         EncounterTableType.Surf      => GetEncounterTableIndexSurf(rand),
         EncounterTableType.RockSmash => GetEncounterTableIndexRockSmash(rand),
         EncounterTableType.OldRod    => GetEncounterTableIndexOldRod(rand),
@@ -84,7 +84,7 @@ public static class Encounters
         _                            => GetEncounterTableIndexGrassCave(rand)
     };
 
-    private static int GetEncounterTableIndexGrassCave(int rand) => rand switch {
+    private static int GetEncounterTableIndexGrassCave(uint rand) => rand switch {
         >= 99 => 11,
         >= 98 => 10,
         >= 94 =>  9,
@@ -99,7 +99,7 @@ public static class Encounters
         _     =>  0,
     };
 
-    private static int GetEncounterTableIndexSurf(int rand) => rand switch
+    private static int GetEncounterTableIndexSurf(uint rand) => rand switch
     {
         >= 99 => 4,
         >= 95 => 3,
@@ -108,18 +108,18 @@ public static class Encounters
         _     => 0,
     };
 
-    private static int GetEncounterTableIndexRockSmash(int rand) => rand >= 80 ? 1 : 0;
+    private static int GetEncounterTableIndexRockSmash(uint rand) => rand >= 80 ? 1 : 0;
 
-    private static int GetEncounterTableIndexOldRod(int rand) => rand >= 70 ? 1 : 0;
+    private static int GetEncounterTableIndexOldRod(uint rand) => rand >= 70 ? 1 : 0;
 
-    private static int GetEncounterTableIndexGoodRod(int rand) => rand switch
+    private static int GetEncounterTableIndexGoodRod(uint rand) => rand switch
     {
         >= 80 => 2,
         >= 60 => 1,
         _     => 0,
     };
 
-    private static int GetEncounterTableIndexSuperRod(int rand) => rand switch
+    private static int GetEncounterTableIndexSuperRod(uint rand) => rand switch
     {
         >= 99 => 4, 
         >= 95 => 3,

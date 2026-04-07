@@ -113,7 +113,7 @@ namespace GRASS.WinForms;
         L_Static_Initial = new Label();
         TB_Static_Advances = new TextBox();
         TB_Static_Initial = new TextBox();
-        GB_Filters = new GroupBox();
+        GB_Static_Filters = new GroupBox();
         L_Static_Nature = new Label();
         CB_Static_Nature = new ComboBox();
         CB_Static_Delay = new CheckBox();
@@ -158,6 +158,65 @@ namespace GRASS.WinForms;
         L_Static_HPSpacer = new Label();
         NUD_Static_HP_Max = new NumericUpDown();
         NUD_Static_HP_Min = new NumericUpDown();
+        TP_Wild = new TabPage();
+        L_Wild_Encounter = new Label();
+        CB_Wild_Encounter = new ComboBox();
+        L_Wild_Area = new Label();
+        CB_Wild_Area = new ComboBox();
+        L_Wild_Method = new Label();
+        CB_Wild_Method = new ComboBox();
+        L_Wild_Species = new Label();
+        CB_Wild_Species = new ComboBox();
+        B_Wild_Generate = new Button();
+        L_Wild_Advances = new Label();
+        L_Wild_Initial = new Label();
+        TB_Wild_Advances = new TextBox();
+        TB_Wild_Initial = new TextBox();
+        B_Wild_Filters = new GroupBox();
+        L_Wild_Nature = new Label();
+        CB_Wild_Nature = new ComboBox();
+        CB_Wild_Delay = new CheckBox();
+        NUD_Wild_Delay = new NumericUpDown();
+        CB_Wild_RareEC = new CheckBox();
+        CB_Wild_FiltersEnabled = new CheckBox();
+        L_Wild_Shiny = new Label();
+        CB_Wild_Shiny = new ComboBox();
+        B_Wild_Spe_Max = new Button();
+        B_Wild_Spe_Min = new Button();
+        L_Wild_Spe = new Label();
+        L_Wild_SpeSpacer = new Label();
+        NUD_Wild_Spe_Max = new NumericUpDown();
+        NUD_Wild_Spe_Min = new NumericUpDown();
+        B_Wild_SpD_Max = new Button();
+        B_Wild_SpD_Min = new Button();
+        L_Wild_SpD = new Label();
+        L_Wild_SpDSpacer = new Label();
+        NUD_Wild_SpD_Max = new NumericUpDown();
+        NUD_Wild_SpD_Min = new NumericUpDown();
+        B_Wild_SpA_Max = new Button();
+        B_Wild_SpA_Min = new Button();
+        L_Wild_SpA = new Label();
+        L_Wild_SpASpacer = new Label();
+        NUD_Wild_SpA_Max = new NumericUpDown();
+        NUD_Wild_SpA_Min = new NumericUpDown();
+        B_Wild_Def_Max = new Button();
+        B_Wild_Def_Min = new Button();
+        L_Wild_Def = new Label();
+        L_Wild_DefSpacer = new Label();
+        NUD_Wild_Def_Max = new NumericUpDown();
+        NUD_Wild_Def_Min = new NumericUpDown();
+        B_Wild_Atk_Max = new Button();
+        B_Wild_Atk_Min = new Button();
+        L_Wild_Atk = new Label();
+        L_Wild_AtkSpacer = new Label();
+        NUD_Wild_Atk_Max = new NumericUpDown();
+        NUD_Wild_Atk_Min = new NumericUpDown();
+        B_Wild_HP_Max = new Button();
+        B_Wild_HP_Min = new Button();
+        L_Wild_HP = new Label();
+        L_Wild_HPSpacer = new Label();
+        NUD_Wild_HP_Max = new NumericUpDown();
+        NUD_Wild_HP_Min = new NumericUpDown();
         GB_ConnectionSettings = new GroupBox();
         CB_BabyModeDelay = new CheckBox();
         NUD_BabyModeDelay = new NumericUpDown();
@@ -171,6 +230,7 @@ namespace GRASS.WinForms;
         B_ReadParty = new Button();
         NUD_PartySlot = new NumericUpDown();
         BS_Static = new BindingSource(components);
+        BS_Wild = new BindingSource(components);
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -183,7 +243,7 @@ namespace GRASS.WinForms;
         GB_SeedReset.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).BeginInit();
         TP_Static.SuspendLayout();
-        GB_Filters.SuspendLayout();
+        GB_Static_Filters.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Delay).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Spe_Max).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Spe_Min).BeginInit();
@@ -197,12 +257,28 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Atk_Min).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Max).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Min).BeginInit();
+        TP_Wild.SuspendLayout();
+        B_Wild_Filters.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Delay).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Spe_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Spe_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpD_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpD_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpA_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpA_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Def_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Def_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Atk_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Atk_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Min).BeginInit();
         GB_ConnectionSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).BeginInit();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_SID).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)BS_Wild).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -486,6 +562,7 @@ namespace GRASS.WinForms;
         TC_Main.Controls.Add(TP_IDs);
         TC_Main.Controls.Add(TP_Seed);
         TC_Main.Controls.Add(TP_Static);
+        TC_Main.Controls.Add(TP_Wild);
         TC_Main.Location = new Point(211, 1);
         TC_Main.Name = "TC_Main";
         TC_Main.SelectedIndex = 0;
@@ -1051,7 +1128,7 @@ namespace GRASS.WinForms;
         TP_Static.Controls.Add(L_Static_Initial);
         TP_Static.Controls.Add(TB_Static_Advances);
         TP_Static.Controls.Add(TB_Static_Initial);
-        TP_Static.Controls.Add(GB_Filters);
+        TP_Static.Controls.Add(GB_Static_Filters);
         TP_Static.Location = new Point(4, 24);
         TP_Static.Name = "TP_Static";
         TP_Static.Size = new Size(380, 297);
@@ -1159,58 +1236,58 @@ namespace GRASS.WinForms;
         TB_Static_Initial.Text = "0";
         TB_Static_Initial.TextAlign = HorizontalAlignment.Right;
         // 
-        // GB_Filters
+        // GB_Static_Filters
         // 
-        GB_Filters.Controls.Add(L_Static_Nature);
-        GB_Filters.Controls.Add(CB_Static_Nature);
-        GB_Filters.Controls.Add(CB_Static_Delay);
-        GB_Filters.Controls.Add(NUD_Static_Delay);
-        GB_Filters.Controls.Add(CB_RareEC);
-        GB_Filters.Controls.Add(CB_Static_FiltersEnabled);
-        GB_Filters.Controls.Add(L_Static_Shiny);
-        GB_Filters.Controls.Add(CB_Static_Shiny);
-        GB_Filters.Controls.Add(B_Static_Spe_Max);
-        GB_Filters.Controls.Add(B_Static_Spe_Min);
-        GB_Filters.Controls.Add(L_Static_Spe);
-        GB_Filters.Controls.Add(L_Static_SpeSpacer);
-        GB_Filters.Controls.Add(NUD_Static_Spe_Max);
-        GB_Filters.Controls.Add(NUD_Static_Spe_Min);
-        GB_Filters.Controls.Add(B_Static_SpD_Max);
-        GB_Filters.Controls.Add(B_Static_SpD_Min);
-        GB_Filters.Controls.Add(L_Static_SpD);
-        GB_Filters.Controls.Add(L_Static_SpDSpacer);
-        GB_Filters.Controls.Add(NUD_Static_SpD_Max);
-        GB_Filters.Controls.Add(NUD_Static_SpD_Min);
-        GB_Filters.Controls.Add(B_Static_SpA_Max);
-        GB_Filters.Controls.Add(B_Static_SpA_Min);
-        GB_Filters.Controls.Add(L_Static_SpA);
-        GB_Filters.Controls.Add(L_Static_SpASpacer);
-        GB_Filters.Controls.Add(NUD_Static_SpA_Max);
-        GB_Filters.Controls.Add(NUD_Static_SpA_Min);
-        GB_Filters.Controls.Add(B_Static_Def_Max);
-        GB_Filters.Controls.Add(B_Static_Def_Min);
-        GB_Filters.Controls.Add(L_Static_Def);
-        GB_Filters.Controls.Add(L_Static_DefSpacer);
-        GB_Filters.Controls.Add(NUD_Static_Def_Max);
-        GB_Filters.Controls.Add(NUD_Static_Def_Min);
-        GB_Filters.Controls.Add(B_Static_Atk_Max);
-        GB_Filters.Controls.Add(B_Static_Atk_Min);
-        GB_Filters.Controls.Add(L_Static_Atk);
-        GB_Filters.Controls.Add(L_Static_AtkSpacer);
-        GB_Filters.Controls.Add(NUD_Static_Atk_Max);
-        GB_Filters.Controls.Add(NUD_Static_Atk_Min);
-        GB_Filters.Controls.Add(B_Static_HP_Max);
-        GB_Filters.Controls.Add(B_Static_HP_Min);
-        GB_Filters.Controls.Add(L_Static_HP);
-        GB_Filters.Controls.Add(L_Static_HPSpacer);
-        GB_Filters.Controls.Add(NUD_Static_HP_Max);
-        GB_Filters.Controls.Add(NUD_Static_HP_Min);
-        GB_Filters.Location = new Point(177, 3);
-        GB_Filters.Name = "GB_Filters";
-        GB_Filters.Size = new Size(200, 262);
-        GB_Filters.TabIndex = 127;
-        GB_Filters.TabStop = false;
-        GB_Filters.Text = "Search Filters";
+        GB_Static_Filters.Controls.Add(L_Static_Nature);
+        GB_Static_Filters.Controls.Add(CB_Static_Nature);
+        GB_Static_Filters.Controls.Add(CB_Static_Delay);
+        GB_Static_Filters.Controls.Add(NUD_Static_Delay);
+        GB_Static_Filters.Controls.Add(CB_RareEC);
+        GB_Static_Filters.Controls.Add(CB_Static_FiltersEnabled);
+        GB_Static_Filters.Controls.Add(L_Static_Shiny);
+        GB_Static_Filters.Controls.Add(CB_Static_Shiny);
+        GB_Static_Filters.Controls.Add(B_Static_Spe_Max);
+        GB_Static_Filters.Controls.Add(B_Static_Spe_Min);
+        GB_Static_Filters.Controls.Add(L_Static_Spe);
+        GB_Static_Filters.Controls.Add(L_Static_SpeSpacer);
+        GB_Static_Filters.Controls.Add(NUD_Static_Spe_Max);
+        GB_Static_Filters.Controls.Add(NUD_Static_Spe_Min);
+        GB_Static_Filters.Controls.Add(B_Static_SpD_Max);
+        GB_Static_Filters.Controls.Add(B_Static_SpD_Min);
+        GB_Static_Filters.Controls.Add(L_Static_SpD);
+        GB_Static_Filters.Controls.Add(L_Static_SpDSpacer);
+        GB_Static_Filters.Controls.Add(NUD_Static_SpD_Max);
+        GB_Static_Filters.Controls.Add(NUD_Static_SpD_Min);
+        GB_Static_Filters.Controls.Add(B_Static_SpA_Max);
+        GB_Static_Filters.Controls.Add(B_Static_SpA_Min);
+        GB_Static_Filters.Controls.Add(L_Static_SpA);
+        GB_Static_Filters.Controls.Add(L_Static_SpASpacer);
+        GB_Static_Filters.Controls.Add(NUD_Static_SpA_Max);
+        GB_Static_Filters.Controls.Add(NUD_Static_SpA_Min);
+        GB_Static_Filters.Controls.Add(B_Static_Def_Max);
+        GB_Static_Filters.Controls.Add(B_Static_Def_Min);
+        GB_Static_Filters.Controls.Add(L_Static_Def);
+        GB_Static_Filters.Controls.Add(L_Static_DefSpacer);
+        GB_Static_Filters.Controls.Add(NUD_Static_Def_Max);
+        GB_Static_Filters.Controls.Add(NUD_Static_Def_Min);
+        GB_Static_Filters.Controls.Add(B_Static_Atk_Max);
+        GB_Static_Filters.Controls.Add(B_Static_Atk_Min);
+        GB_Static_Filters.Controls.Add(L_Static_Atk);
+        GB_Static_Filters.Controls.Add(L_Static_AtkSpacer);
+        GB_Static_Filters.Controls.Add(NUD_Static_Atk_Max);
+        GB_Static_Filters.Controls.Add(NUD_Static_Atk_Min);
+        GB_Static_Filters.Controls.Add(B_Static_HP_Max);
+        GB_Static_Filters.Controls.Add(B_Static_HP_Min);
+        GB_Static_Filters.Controls.Add(L_Static_HP);
+        GB_Static_Filters.Controls.Add(L_Static_HPSpacer);
+        GB_Static_Filters.Controls.Add(NUD_Static_HP_Max);
+        GB_Static_Filters.Controls.Add(NUD_Static_HP_Min);
+        GB_Static_Filters.Location = new Point(177, 3);
+        GB_Static_Filters.Name = "GB_Static_Filters";
+        GB_Static_Filters.Size = new Size(200, 262);
+        GB_Static_Filters.TabIndex = 127;
+        GB_Static_Filters.TabStop = false;
+        GB_Static_Filters.Text = "Search Filters";
         // 
         // L_Static_Nature
         // 
@@ -1641,6 +1718,635 @@ namespace GRASS.WinForms;
         NUD_Static_HP_Min.Size = new Size(32, 23);
         NUD_Static_HP_Min.TabIndex = 0;
         // 
+        // TP_Wild
+        // 
+        TP_Wild.Controls.Add(L_Wild_Encounter);
+        TP_Wild.Controls.Add(CB_Wild_Encounter);
+        TP_Wild.Controls.Add(L_Wild_Area);
+        TP_Wild.Controls.Add(CB_Wild_Area);
+        TP_Wild.Controls.Add(L_Wild_Method);
+        TP_Wild.Controls.Add(CB_Wild_Method);
+        TP_Wild.Controls.Add(L_Wild_Species);
+        TP_Wild.Controls.Add(CB_Wild_Species);
+        TP_Wild.Controls.Add(B_Wild_Generate);
+        TP_Wild.Controls.Add(L_Wild_Advances);
+        TP_Wild.Controls.Add(L_Wild_Initial);
+        TP_Wild.Controls.Add(TB_Wild_Advances);
+        TP_Wild.Controls.Add(TB_Wild_Initial);
+        TP_Wild.Controls.Add(B_Wild_Filters);
+        TP_Wild.Location = new Point(4, 24);
+        TP_Wild.Name = "TP_Wild";
+        TP_Wild.Size = new Size(380, 297);
+        TP_Wild.TabIndex = 3;
+        TP_Wild.Text = "Wild";
+        TP_Wild.UseVisualStyleBackColor = true;
+        // 
+        // L_Wild_Encounter
+        // 
+        L_Wild_Encounter.AutoSize = true;
+        L_Wild_Encounter.Location = new Point(3, 23);
+        L_Wild_Encounter.Name = "L_Wild_Encounter";
+        L_Wild_Encounter.Size = new Size(64, 15);
+        L_Wild_Encounter.TabIndex = 199;
+        L_Wild_Encounter.Text = "Encounter:";
+        // 
+        // CB_Wild_Encounter
+        // 
+        CB_Wild_Encounter.FormattingEnabled = true;
+        CB_Wild_Encounter.Items.AddRange(new object[] { "Grass/Cave", "Surf", "Rock Smash", "Old Rod", "Good Rod", "Super Rod" });
+        CB_Wild_Encounter.Location = new Point(70, 20);
+        CB_Wild_Encounter.Name = "CB_Wild_Encounter";
+        CB_Wild_Encounter.Size = new Size(101, 23);
+        CB_Wild_Encounter.TabIndex = 198;
+        CB_Wild_Encounter.SelectedIndexChanged += CB_Wild_Encounter_SelectedIndexChanged;
+        // 
+        // L_Wild_Area
+        // 
+        L_Wild_Area.AutoSize = true;
+        L_Wild_Area.Location = new Point(3, 48);
+        L_Wild_Area.Name = "L_Wild_Area";
+        L_Wild_Area.Size = new Size(34, 15);
+        L_Wild_Area.TabIndex = 197;
+        L_Wild_Area.Text = "Area:";
+        // 
+        // CB_Wild_Area
+        // 
+        CB_Wild_Area.FormattingEnabled = true;
+        CB_Wild_Area.Items.AddRange(new object[] { "Charmander" });
+        CB_Wild_Area.Location = new Point(7, 70);
+        CB_Wild_Area.Name = "CB_Wild_Area";
+        CB_Wild_Area.Size = new Size(164, 23);
+        CB_Wild_Area.TabIndex = 196;
+        CB_Wild_Area.SelectedIndexChanged += CB_Wild_Area_SelectedIndexChanged;
+        // 
+        // L_Wild_Method
+        // 
+        L_Wild_Method.AutoSize = true;
+        L_Wild_Method.Location = new Point(3, 123);
+        L_Wild_Method.Name = "L_Wild_Method";
+        L_Wild_Method.Size = new Size(52, 15);
+        L_Wild_Method.TabIndex = 195;
+        L_Wild_Method.Text = "Method:";
+        // 
+        // CB_Wild_Method
+        // 
+        CB_Wild_Method.FormattingEnabled = true;
+        CB_Wild_Method.Items.AddRange(new object[] { "Method H1", "Method H2", "Method H3", "Method H4" });
+        CB_Wild_Method.Location = new Point(70, 120);
+        CB_Wild_Method.Name = "CB_Wild_Method";
+        CB_Wild_Method.Size = new Size(101, 23);
+        CB_Wild_Method.TabIndex = 194;
+        // 
+        // L_Wild_Species
+        // 
+        L_Wild_Species.AutoSize = true;
+        L_Wild_Species.Location = new Point(3, 98);
+        L_Wild_Species.Name = "L_Wild_Species";
+        L_Wild_Species.Size = new Size(49, 15);
+        L_Wild_Species.TabIndex = 193;
+        L_Wild_Species.Text = "Species:";
+        // 
+        // CB_Wild_Species
+        // 
+        CB_Wild_Species.FormattingEnabled = true;
+        CB_Wild_Species.Items.AddRange(new object[] { "Charmander" });
+        CB_Wild_Species.Location = new Point(70, 95);
+        CB_Wild_Species.Name = "CB_Wild_Species";
+        CB_Wild_Species.Size = new Size(101, 23);
+        CB_Wild_Species.TabIndex = 192;
+        // 
+        // B_Wild_Generate
+        // 
+        B_Wild_Generate.Location = new Point(3, 269);
+        B_Wild_Generate.Name = "B_Wild_Generate";
+        B_Wild_Generate.Size = new Size(374, 25);
+        B_Wild_Generate.TabIndex = 186;
+        B_Wild_Generate.Text = "Generate";
+        B_Wild_Generate.UseVisualStyleBackColor = true;
+        B_Wild_Generate.Click += B_Wild_Generate_Click;
+        // 
+        // L_Wild_Advances
+        // 
+        L_Wild_Advances.AutoSize = true;
+        L_Wild_Advances.Location = new Point(49, 246);
+        L_Wild_Advances.Name = "L_Wild_Advances";
+        L_Wild_Advances.Size = new Size(15, 15);
+        L_Wild_Advances.TabIndex = 190;
+        L_Wild_Advances.Text = "+";
+        // 
+        // L_Wild_Initial
+        // 
+        L_Wild_Initial.AutoSize = true;
+        L_Wild_Initial.Location = new Point(7, 221);
+        L_Wild_Initial.Name = "L_Wild_Initial";
+        L_Wild_Initial.Size = new Size(57, 15);
+        L_Wild_Initial.TabIndex = 189;
+        L_Wild_Initial.Text = "Init. Adv.:";
+        // 
+        // TB_Wild_Advances
+        // 
+        TB_Wild_Advances.CharacterCasing = CharacterCasing.Upper;
+        TB_Wild_Advances.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_Wild_Advances.Location = new Point(70, 243);
+        TB_Wild_Advances.MaxLength = 10;
+        TB_Wild_Advances.Name = "TB_Wild_Advances";
+        TB_Wild_Advances.Size = new Size(101, 22);
+        TB_Wild_Advances.TabIndex = 188;
+        TB_Wild_Advances.Text = "100000";
+        TB_Wild_Advances.TextAlign = HorizontalAlignment.Right;
+        // 
+        // TB_Wild_Initial
+        // 
+        TB_Wild_Initial.CharacterCasing = CharacterCasing.Upper;
+        TB_Wild_Initial.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_Wild_Initial.Location = new Point(70, 219);
+        TB_Wild_Initial.MaxLength = 10;
+        TB_Wild_Initial.Name = "TB_Wild_Initial";
+        TB_Wild_Initial.Size = new Size(101, 22);
+        TB_Wild_Initial.TabIndex = 187;
+        TB_Wild_Initial.Text = "0";
+        TB_Wild_Initial.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_Wild_Filters
+        // 
+        B_Wild_Filters.Controls.Add(L_Wild_Nature);
+        B_Wild_Filters.Controls.Add(CB_Wild_Nature);
+        B_Wild_Filters.Controls.Add(CB_Wild_Delay);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Delay);
+        B_Wild_Filters.Controls.Add(CB_Wild_RareEC);
+        B_Wild_Filters.Controls.Add(CB_Wild_FiltersEnabled);
+        B_Wild_Filters.Controls.Add(L_Wild_Shiny);
+        B_Wild_Filters.Controls.Add(CB_Wild_Shiny);
+        B_Wild_Filters.Controls.Add(B_Wild_Spe_Max);
+        B_Wild_Filters.Controls.Add(B_Wild_Spe_Min);
+        B_Wild_Filters.Controls.Add(L_Wild_Spe);
+        B_Wild_Filters.Controls.Add(L_Wild_SpeSpacer);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Spe_Max);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Spe_Min);
+        B_Wild_Filters.Controls.Add(B_Wild_SpD_Max);
+        B_Wild_Filters.Controls.Add(B_Wild_SpD_Min);
+        B_Wild_Filters.Controls.Add(L_Wild_SpD);
+        B_Wild_Filters.Controls.Add(L_Wild_SpDSpacer);
+        B_Wild_Filters.Controls.Add(NUD_Wild_SpD_Max);
+        B_Wild_Filters.Controls.Add(NUD_Wild_SpD_Min);
+        B_Wild_Filters.Controls.Add(B_Wild_SpA_Max);
+        B_Wild_Filters.Controls.Add(B_Wild_SpA_Min);
+        B_Wild_Filters.Controls.Add(L_Wild_SpA);
+        B_Wild_Filters.Controls.Add(L_Wild_SpASpacer);
+        B_Wild_Filters.Controls.Add(NUD_Wild_SpA_Max);
+        B_Wild_Filters.Controls.Add(NUD_Wild_SpA_Min);
+        B_Wild_Filters.Controls.Add(B_Wild_Def_Max);
+        B_Wild_Filters.Controls.Add(B_Wild_Def_Min);
+        B_Wild_Filters.Controls.Add(L_Wild_Def);
+        B_Wild_Filters.Controls.Add(L_Wild_DefSpacer);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Def_Max);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Def_Min);
+        B_Wild_Filters.Controls.Add(B_Wild_Atk_Max);
+        B_Wild_Filters.Controls.Add(B_Wild_Atk_Min);
+        B_Wild_Filters.Controls.Add(L_Wild_Atk);
+        B_Wild_Filters.Controls.Add(L_Wild_AtkSpacer);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Atk_Max);
+        B_Wild_Filters.Controls.Add(NUD_Wild_Atk_Min);
+        B_Wild_Filters.Controls.Add(B_Wild_HP_Max);
+        B_Wild_Filters.Controls.Add(B_Wild_HP_Min);
+        B_Wild_Filters.Controls.Add(L_Wild_HP);
+        B_Wild_Filters.Controls.Add(L_Wild_HPSpacer);
+        B_Wild_Filters.Controls.Add(NUD_Wild_HP_Max);
+        B_Wild_Filters.Controls.Add(NUD_Wild_HP_Min);
+        B_Wild_Filters.Location = new Point(177, 3);
+        B_Wild_Filters.Name = "B_Wild_Filters";
+        B_Wild_Filters.Size = new Size(200, 262);
+        B_Wild_Filters.TabIndex = 185;
+        B_Wild_Filters.TabStop = false;
+        B_Wild_Filters.Text = "Search Filters";
+        // 
+        // L_Wild_Nature
+        // 
+        L_Wild_Nature.AutoSize = true;
+        L_Wild_Nature.Location = new Point(2, 196);
+        L_Wild_Nature.Name = "L_Wild_Nature";
+        L_Wild_Nature.Size = new Size(46, 15);
+        L_Wild_Nature.TabIndex = 169;
+        L_Wild_Nature.Text = "Nature:";
+        // 
+        // CB_Wild_Nature
+        // 
+        CB_Wild_Nature.FormattingEnabled = true;
+        CB_Wild_Nature.Items.AddRange(new object[] { "Ignore", "Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax", "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy", "Careful", "Quirky" });
+        CB_Wild_Nature.Location = new Point(53, 193);
+        CB_Wild_Nature.Name = "CB_Wild_Nature";
+        CB_Wild_Nature.Size = new Size(142, 23);
+        CB_Wild_Nature.TabIndex = 168;
+        // 
+        // CB_Wild_Delay
+        // 
+        CB_Wild_Delay.AutoSize = true;
+        CB_Wild_Delay.CheckAlign = ContentAlignment.MiddleRight;
+        CB_Wild_Delay.Location = new Point(8, 219);
+        CB_Wild_Delay.Name = "CB_Wild_Delay";
+        CB_Wild_Delay.Size = new Size(58, 19);
+        CB_Wild_Delay.TabIndex = 167;
+        CB_Wild_Delay.Tag = "";
+        CB_Wild_Delay.Text = "Delay:";
+        CB_Wild_Delay.UseVisualStyleBackColor = true;
+        // 
+        // NUD_Wild_Delay
+        // 
+        NUD_Wild_Delay.Enabled = false;
+        NUD_Wild_Delay.Location = new Point(72, 218);
+        NUD_Wild_Delay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_Wild_Delay.Name = "NUD_Wild_Delay";
+        NUD_Wild_Delay.Size = new Size(123, 23);
+        NUD_Wild_Delay.TabIndex = 166;
+        NUD_Wild_Delay.TextAlign = HorizontalAlignment.Right;
+        NUD_Wild_Delay.Value = new decimal(new int[] { 100, 0, 0, 0 });
+        // 
+        // CB_Wild_RareEC
+        // 
+        CB_Wild_RareEC.AutoSize = true;
+        CB_Wild_RareEC.CheckAlign = ContentAlignment.MiddleRight;
+        CB_Wild_RareEC.Location = new Point(7, 243);
+        CB_Wild_RareEC.Name = "CB_Wild_RareEC";
+        CB_Wild_RareEC.Size = new Size(75, 19);
+        CB_Wild_RareEC.TabIndex = 27;
+        CB_Wild_RareEC.Tag = "";
+        CB_Wild_RareEC.Text = "Rare PID?";
+        CB_Wild_RareEC.UseVisualStyleBackColor = true;
+        // 
+        // CB_Wild_FiltersEnabled
+        // 
+        CB_Wild_FiltersEnabled.AutoSize = true;
+        CB_Wild_FiltersEnabled.CheckAlign = ContentAlignment.MiddleRight;
+        CB_Wild_FiltersEnabled.Checked = true;
+        CB_Wild_FiltersEnabled.CheckState = CheckState.Checked;
+        CB_Wild_FiltersEnabled.Location = new Point(88, 243);
+        CB_Wild_FiltersEnabled.Name = "CB_Wild_FiltersEnabled";
+        CB_Wild_FiltersEnabled.Size = new Size(107, 19);
+        CB_Wild_FiltersEnabled.TabIndex = 28;
+        CB_Wild_FiltersEnabled.Tag = "";
+        CB_Wild_FiltersEnabled.Text = "Filters Enabled?";
+        CB_Wild_FiltersEnabled.UseVisualStyleBackColor = true;
+        // 
+        // L_Wild_Shiny
+        // 
+        L_Wild_Shiny.AutoSize = true;
+        L_Wild_Shiny.Location = new Point(9, 171);
+        L_Wild_Shiny.Name = "L_Wild_Shiny";
+        L_Wild_Shiny.Size = new Size(39, 15);
+        L_Wild_Shiny.TabIndex = 162;
+        L_Wild_Shiny.Text = "Shiny:";
+        // 
+        // CB_Wild_Shiny
+        // 
+        CB_Wild_Shiny.FormattingEnabled = true;
+        CB_Wild_Shiny.Items.AddRange(new object[] { "Ignore", "Star/Square", "Square Only", "Star Only", "Not Shiny" });
+        CB_Wild_Shiny.Location = new Point(53, 168);
+        CB_Wild_Shiny.Name = "CB_Wild_Shiny";
+        CB_Wild_Shiny.Size = new Size(142, 23);
+        CB_Wild_Shiny.TabIndex = 24;
+        // 
+        // B_Wild_Spe_Max
+        // 
+        B_Wild_Spe_Max.Location = new Point(168, 142);
+        B_Wild_Spe_Max.Name = "B_Wild_Spe_Max";
+        B_Wild_Spe_Max.Size = new Size(27, 25);
+        B_Wild_Spe_Max.TabIndex = 23;
+        B_Wild_Spe_Max.Text = "31";
+        B_Wild_Spe_Max.UseVisualStyleBackColor = true;
+        B_Wild_Spe_Max.Click += B_IV_Max_Click;
+        // 
+        // B_Wild_Spe_Min
+        // 
+        B_Wild_Spe_Min.Location = new Point(139, 142);
+        B_Wild_Spe_Min.Name = "B_Wild_Spe_Min";
+        B_Wild_Spe_Min.Size = new Size(27, 25);
+        B_Wild_Spe_Min.TabIndex = 22;
+        B_Wild_Spe_Min.Text = "0";
+        B_Wild_Spe_Min.UseVisualStyleBackColor = true;
+        B_Wild_Spe_Min.Click += B_IV_Min_Click;
+        // 
+        // L_Wild_Spe
+        // 
+        L_Wild_Spe.AutoSize = true;
+        L_Wild_Spe.Location = new Point(19, 147);
+        L_Wild_Spe.Name = "L_Wild_Spe";
+        L_Wild_Spe.Size = new Size(29, 15);
+        L_Wild_Spe.TabIndex = 161;
+        L_Wild_Spe.Text = "Spe:";
+        L_Wild_Spe.Click += IV_Label_Click;
+        // 
+        // L_Wild_SpeSpacer
+        // 
+        L_Wild_SpeSpacer.AutoSize = true;
+        L_Wild_SpeSpacer.Location = new Point(86, 145);
+        L_Wild_SpeSpacer.Name = "L_Wild_SpeSpacer";
+        L_Wild_SpeSpacer.Size = new Size(15, 15);
+        L_Wild_SpeSpacer.TabIndex = 11;
+        L_Wild_SpeSpacer.Text = "~";
+        L_Wild_SpeSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Wild_Spe_Max
+        // 
+        NUD_Wild_Spe_Max.Location = new Point(102, 143);
+        NUD_Wild_Spe_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_Spe_Max.Name = "NUD_Wild_Spe_Max";
+        NUD_Wild_Spe_Max.Size = new Size(32, 23);
+        NUD_Wild_Spe_Max.TabIndex = 140;
+        NUD_Wild_Spe_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Wild_Spe_Min
+        // 
+        NUD_Wild_Spe_Min.Location = new Point(53, 143);
+        NUD_Wild_Spe_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_Spe_Min.Name = "NUD_Wild_Spe_Min";
+        NUD_Wild_Spe_Min.Size = new Size(32, 23);
+        NUD_Wild_Spe_Min.TabIndex = 10;
+        // 
+        // B_Wild_SpD_Max
+        // 
+        B_Wild_SpD_Max.Location = new Point(168, 117);
+        B_Wild_SpD_Max.Name = "B_Wild_SpD_Max";
+        B_Wild_SpD_Max.Size = new Size(27, 25);
+        B_Wild_SpD_Max.TabIndex = 21;
+        B_Wild_SpD_Max.Text = "31";
+        B_Wild_SpD_Max.UseVisualStyleBackColor = true;
+        B_Wild_SpD_Max.Click += B_IV_Max_Click;
+        // 
+        // B_Wild_SpD_Min
+        // 
+        B_Wild_SpD_Min.Location = new Point(139, 117);
+        B_Wild_SpD_Min.Name = "B_Wild_SpD_Min";
+        B_Wild_SpD_Min.Size = new Size(27, 25);
+        B_Wild_SpD_Min.TabIndex = 20;
+        B_Wild_SpD_Min.Text = "0";
+        B_Wild_SpD_Min.UseVisualStyleBackColor = true;
+        B_Wild_SpD_Min.Click += B_IV_Min_Click;
+        // 
+        // L_Wild_SpD
+        // 
+        L_Wild_SpD.AutoSize = true;
+        L_Wild_SpD.Location = new Point(17, 123);
+        L_Wild_SpD.Name = "L_Wild_SpD";
+        L_Wild_SpD.Size = new Size(31, 15);
+        L_Wild_SpD.TabIndex = 160;
+        L_Wild_SpD.Text = "SpD:";
+        L_Wild_SpD.Click += IV_Label_Click;
+        // 
+        // L_Wild_SpDSpacer
+        // 
+        L_Wild_SpDSpacer.AutoSize = true;
+        L_Wild_SpDSpacer.Location = new Point(86, 120);
+        L_Wild_SpDSpacer.Name = "L_Wild_SpDSpacer";
+        L_Wild_SpDSpacer.Size = new Size(15, 15);
+        L_Wild_SpDSpacer.TabIndex = 9;
+        L_Wild_SpDSpacer.Text = "~";
+        L_Wild_SpDSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Wild_SpD_Max
+        // 
+        NUD_Wild_SpD_Max.Location = new Point(102, 118);
+        NUD_Wild_SpD_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_SpD_Max.Name = "NUD_Wild_SpD_Max";
+        NUD_Wild_SpD_Max.Size = new Size(32, 23);
+        NUD_Wild_SpD_Max.TabIndex = 137;
+        NUD_Wild_SpD_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Wild_SpD_Min
+        // 
+        NUD_Wild_SpD_Min.Location = new Point(53, 118);
+        NUD_Wild_SpD_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_SpD_Min.Name = "NUD_Wild_SpD_Min";
+        NUD_Wild_SpD_Min.Size = new Size(32, 23);
+        NUD_Wild_SpD_Min.TabIndex = 8;
+        // 
+        // B_Wild_SpA_Max
+        // 
+        B_Wild_SpA_Max.Location = new Point(168, 92);
+        B_Wild_SpA_Max.Name = "B_Wild_SpA_Max";
+        B_Wild_SpA_Max.Size = new Size(27, 25);
+        B_Wild_SpA_Max.TabIndex = 19;
+        B_Wild_SpA_Max.Text = "31";
+        B_Wild_SpA_Max.UseVisualStyleBackColor = true;
+        B_Wild_SpA_Max.Click += B_IV_Max_Click;
+        // 
+        // B_Wild_SpA_Min
+        // 
+        B_Wild_SpA_Min.Location = new Point(139, 92);
+        B_Wild_SpA_Min.Name = "B_Wild_SpA_Min";
+        B_Wild_SpA_Min.Size = new Size(27, 25);
+        B_Wild_SpA_Min.TabIndex = 18;
+        B_Wild_SpA_Min.Text = "0";
+        B_Wild_SpA_Min.UseVisualStyleBackColor = true;
+        B_Wild_SpA_Min.Click += B_IV_Min_Click;
+        // 
+        // L_Wild_SpA
+        // 
+        L_Wild_SpA.AutoSize = true;
+        L_Wild_SpA.Location = new Point(17, 95);
+        L_Wild_SpA.Name = "L_Wild_SpA";
+        L_Wild_SpA.Size = new Size(31, 15);
+        L_Wild_SpA.TabIndex = 156;
+        L_Wild_SpA.Text = "SpA:";
+        L_Wild_SpA.Click += IV_Label_Click;
+        // 
+        // L_Wild_SpASpacer
+        // 
+        L_Wild_SpASpacer.AutoSize = true;
+        L_Wild_SpASpacer.Location = new Point(86, 95);
+        L_Wild_SpASpacer.Name = "L_Wild_SpASpacer";
+        L_Wild_SpASpacer.Size = new Size(15, 15);
+        L_Wild_SpASpacer.TabIndex = 134;
+        L_Wild_SpASpacer.Text = "~";
+        L_Wild_SpASpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Wild_SpA_Max
+        // 
+        NUD_Wild_SpA_Max.Location = new Point(102, 93);
+        NUD_Wild_SpA_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_SpA_Max.Name = "NUD_Wild_SpA_Max";
+        NUD_Wild_SpA_Max.Size = new Size(32, 23);
+        NUD_Wild_SpA_Max.TabIndex = 7;
+        NUD_Wild_SpA_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Wild_SpA_Min
+        // 
+        NUD_Wild_SpA_Min.Location = new Point(53, 93);
+        NUD_Wild_SpA_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_SpA_Min.Name = "NUD_Wild_SpA_Min";
+        NUD_Wild_SpA_Min.Size = new Size(32, 23);
+        NUD_Wild_SpA_Min.TabIndex = 6;
+        // 
+        // B_Wild_Def_Max
+        // 
+        B_Wild_Def_Max.Location = new Point(168, 67);
+        B_Wild_Def_Max.Name = "B_Wild_Def_Max";
+        B_Wild_Def_Max.Size = new Size(27, 25);
+        B_Wild_Def_Max.TabIndex = 17;
+        B_Wild_Def_Max.Text = "31";
+        B_Wild_Def_Max.UseVisualStyleBackColor = true;
+        B_Wild_Def_Max.Click += B_IV_Max_Click;
+        // 
+        // B_Wild_Def_Min
+        // 
+        B_Wild_Def_Min.Location = new Point(139, 67);
+        B_Wild_Def_Min.Name = "B_Wild_Def_Min";
+        B_Wild_Def_Min.Size = new Size(27, 25);
+        B_Wild_Def_Min.TabIndex = 16;
+        B_Wild_Def_Min.Text = "0";
+        B_Wild_Def_Min.UseVisualStyleBackColor = true;
+        B_Wild_Def_Min.Click += B_IV_Min_Click;
+        // 
+        // L_Wild_Def
+        // 
+        L_Wild_Def.AutoSize = true;
+        L_Wild_Def.Location = new Point(20, 70);
+        L_Wild_Def.Name = "L_Wild_Def";
+        L_Wild_Def.Size = new Size(28, 15);
+        L_Wild_Def.TabIndex = 149;
+        L_Wild_Def.Text = "Def:";
+        L_Wild_Def.Click += IV_Label_Click;
+        // 
+        // L_Wild_DefSpacer
+        // 
+        L_Wild_DefSpacer.AutoSize = true;
+        L_Wild_DefSpacer.Location = new Point(86, 70);
+        L_Wild_DefSpacer.Name = "L_Wild_DefSpacer";
+        L_Wild_DefSpacer.Size = new Size(15, 15);
+        L_Wild_DefSpacer.TabIndex = 129;
+        L_Wild_DefSpacer.Text = "~";
+        L_Wild_DefSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Wild_Def_Max
+        // 
+        NUD_Wild_Def_Max.Location = new Point(102, 68);
+        NUD_Wild_Def_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_Def_Max.Name = "NUD_Wild_Def_Max";
+        NUD_Wild_Def_Max.Size = new Size(32, 23);
+        NUD_Wild_Def_Max.TabIndex = 5;
+        NUD_Wild_Def_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Wild_Def_Min
+        // 
+        NUD_Wild_Def_Min.Location = new Point(53, 68);
+        NUD_Wild_Def_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_Def_Min.Name = "NUD_Wild_Def_Min";
+        NUD_Wild_Def_Min.Size = new Size(32, 23);
+        NUD_Wild_Def_Min.TabIndex = 4;
+        // 
+        // B_Wild_Atk_Max
+        // 
+        B_Wild_Atk_Max.Location = new Point(168, 42);
+        B_Wild_Atk_Max.Name = "B_Wild_Atk_Max";
+        B_Wild_Atk_Max.Size = new Size(27, 25);
+        B_Wild_Atk_Max.TabIndex = 15;
+        B_Wild_Atk_Max.Text = "31";
+        B_Wild_Atk_Max.UseVisualStyleBackColor = true;
+        B_Wild_Atk_Max.Click += B_IV_Max_Click;
+        // 
+        // B_Wild_Atk_Min
+        // 
+        B_Wild_Atk_Min.Location = new Point(139, 42);
+        B_Wild_Atk_Min.Name = "B_Wild_Atk_Min";
+        B_Wild_Atk_Min.Size = new Size(27, 25);
+        B_Wild_Atk_Min.TabIndex = 14;
+        B_Wild_Atk_Min.Text = "0";
+        B_Wild_Atk_Min.UseVisualStyleBackColor = true;
+        B_Wild_Atk_Min.Click += B_IV_Min_Click;
+        // 
+        // L_Wild_Atk
+        // 
+        L_Wild_Atk.AutoSize = true;
+        L_Wild_Atk.Location = new Point(20, 45);
+        L_Wild_Atk.Name = "L_Wild_Atk";
+        L_Wild_Atk.Size = new Size(28, 15);
+        L_Wild_Atk.TabIndex = 142;
+        L_Wild_Atk.Text = "Atk:";
+        L_Wild_Atk.Click += IV_Label_Click;
+        // 
+        // L_Wild_AtkSpacer
+        // 
+        L_Wild_AtkSpacer.AutoSize = true;
+        L_Wild_AtkSpacer.Location = new Point(86, 45);
+        L_Wild_AtkSpacer.Name = "L_Wild_AtkSpacer";
+        L_Wild_AtkSpacer.Size = new Size(15, 15);
+        L_Wild_AtkSpacer.TabIndex = 126;
+        L_Wild_AtkSpacer.Text = "~";
+        L_Wild_AtkSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Wild_Atk_Max
+        // 
+        NUD_Wild_Atk_Max.Location = new Point(102, 43);
+        NUD_Wild_Atk_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_Atk_Max.Name = "NUD_Wild_Atk_Max";
+        NUD_Wild_Atk_Max.Size = new Size(32, 23);
+        NUD_Wild_Atk_Max.TabIndex = 3;
+        NUD_Wild_Atk_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Wild_Atk_Min
+        // 
+        NUD_Wild_Atk_Min.Location = new Point(53, 43);
+        NUD_Wild_Atk_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_Atk_Min.Name = "NUD_Wild_Atk_Min";
+        NUD_Wild_Atk_Min.Size = new Size(32, 23);
+        NUD_Wild_Atk_Min.TabIndex = 2;
+        // 
+        // B_Wild_HP_Max
+        // 
+        B_Wild_HP_Max.Location = new Point(168, 17);
+        B_Wild_HP_Max.Name = "B_Wild_HP_Max";
+        B_Wild_HP_Max.Size = new Size(27, 25);
+        B_Wild_HP_Max.TabIndex = 13;
+        B_Wild_HP_Max.Text = "31";
+        B_Wild_HP_Max.UseVisualStyleBackColor = true;
+        B_Wild_HP_Max.Click += B_IV_Max_Click;
+        // 
+        // B_Wild_HP_Min
+        // 
+        B_Wild_HP_Min.Location = new Point(139, 17);
+        B_Wild_HP_Min.Name = "B_Wild_HP_Min";
+        B_Wild_HP_Min.Size = new Size(27, 25);
+        B_Wild_HP_Min.TabIndex = 12;
+        B_Wild_HP_Min.Text = "0";
+        B_Wild_HP_Min.UseVisualStyleBackColor = true;
+        B_Wild_HP_Min.Click += B_IV_Min_Click;
+        // 
+        // L_Wild_HP
+        // 
+        L_Wild_HP.AutoSize = true;
+        L_Wild_HP.Location = new Point(22, 20);
+        L_Wild_HP.Name = "L_Wild_HP";
+        L_Wild_HP.Size = new Size(26, 15);
+        L_Wild_HP.TabIndex = 132;
+        L_Wild_HP.Text = "HP:";
+        L_Wild_HP.Click += IV_Label_Click;
+        // 
+        // L_Wild_HPSpacer
+        // 
+        L_Wild_HPSpacer.AutoSize = true;
+        L_Wild_HPSpacer.Location = new Point(86, 20);
+        L_Wild_HPSpacer.Name = "L_Wild_HPSpacer";
+        L_Wild_HPSpacer.Size = new Size(15, 15);
+        L_Wild_HPSpacer.TabIndex = 130;
+        L_Wild_HPSpacer.Text = "~";
+        L_Wild_HPSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Wild_HP_Max
+        // 
+        NUD_Wild_HP_Max.Location = new Point(102, 18);
+        NUD_Wild_HP_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_HP_Max.Name = "NUD_Wild_HP_Max";
+        NUD_Wild_HP_Max.Size = new Size(32, 23);
+        NUD_Wild_HP_Max.TabIndex = 1;
+        NUD_Wild_HP_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Wild_HP_Min
+        // 
+        NUD_Wild_HP_Min.Location = new Point(53, 18);
+        NUD_Wild_HP_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Wild_HP_Min.Name = "NUD_Wild_HP_Min";
+        NUD_Wild_HP_Min.Size = new Size(32, 23);
+        NUD_Wild_HP_Min.TabIndex = 0;
+        // 
         // GB_ConnectionSettings
         // 
         GB_ConnectionSettings.Controls.Add(CB_BabyModeDelay);
@@ -1776,6 +2482,10 @@ namespace GRASS.WinForms;
         // 
         BS_Static.DataSource = typeof(Core.Interfaces.StaticFrame);
         // 
+        // BS_Wild
+        // 
+        BS_Wild.DataSource = typeof(Core.Interfaces.WildFrame);
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1814,8 +2524,8 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).EndInit();
         TP_Static.ResumeLayout(false);
         TP_Static.PerformLayout();
-        GB_Filters.ResumeLayout(false);
-        GB_Filters.PerformLayout();
+        GB_Static_Filters.ResumeLayout(false);
+        GB_Static_Filters.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Delay).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Spe_Max).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Spe_Min).EndInit();
@@ -1829,6 +2539,23 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Atk_Min).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Max).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_HP_Min).EndInit();
+        TP_Wild.ResumeLayout(false);
+        TP_Wild.PerformLayout();
+        B_Wild_Filters.ResumeLayout(false);
+        B_Wild_Filters.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Delay).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Spe_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Spe_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpD_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpD_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpA_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_SpA_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Def_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Def_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Atk_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_Atk_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Min).EndInit();
         GB_ConnectionSettings.ResumeLayout(false);
         GB_ConnectionSettings.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).EndInit();
@@ -1836,6 +2563,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).EndInit();
+        ((System.ComponentModel.ISupportInitialize)BS_Wild).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -1920,7 +2648,7 @@ namespace GRASS.WinForms;
     internal Label L_SS_SeedList;
     private Button B_ResetSeed;
     private Button B_CancelSeedReset;
-    private GroupBox GB_Filters;
+    private GroupBox GB_Static_Filters;
     public CheckBox CB_Static_Delay;
     private NumericUpDown NUD_Static_Delay;
     public CheckBox CB_RareEC;
@@ -1982,5 +2710,65 @@ namespace GRASS.WinForms;
     public TextBox TB_BabyMode;
     public CheckBox CB_BabyModeDelay;
     private NumericUpDown NUD_BabyModeDelay;
+    private TabPage TP_Wild;
+    private Label L_Wild_Encounter;
+    public ComboBox CB_Wild_Encounter;
+    private Label L_Wild_Area;
+    public ComboBox CB_Wild_Area;
+    private Label L_Wild_Method;
+    public ComboBox CB_Wild_Method;
+    private Label L_Wild_Species;
+    public ComboBox CB_Wild_Species;
+    private Button B_Wild_Generate;
+    private Label L_Wild_Advances;
+    private Label L_Wild_Initial;
+    public TextBox TB_Wild_Advances;
+    public TextBox TB_Wild_Initial;
+    private GroupBox B_Wild_Filters;
+    private Label L_Wild_Nature;
+    private ComboBox CB_Wild_Nature;
+    public CheckBox CB_Wild_Delay;
+    private NumericUpDown NUD_Wild_Delay;
+    public CheckBox CB_Wild_RareEC;
+    private CheckBox CB_Wild_FiltersEnabled;
+    private Label L_Wild_Shiny;
+    private ComboBox CB_Wild_Shiny;
+    private Button B_Wild_Spe_Max;
+    private Button B_Wild_Spe_Min;
+    private Label L_Wild_Spe;
+    private Label L_Wild_SpeSpacer;
+    private NumericUpDown NUD_Wild_Spe_Max;
+    private NumericUpDown NUD_Wild_Spe_Min;
+    private Button B_Wild_SpD_Max;
+    private Button B_Wild_SpD_Min;
+    private Label L_Wild_SpD;
+    private Label L_Wild_SpDSpacer;
+    private NumericUpDown NUD_Wild_SpD_Max;
+    private NumericUpDown NUD_Wild_SpD_Min;
+    private Button B_Wild_SpA_Max;
+    private Button B_Wild_SpA_Min;
+    private Label L_Wild_SpA;
+    private Label L_Wild_SpASpacer;
+    private NumericUpDown NUD_Wild_SpA_Max;
+    private NumericUpDown NUD_Wild_SpA_Min;
+    private Button B_Wild_Def_Max;
+    private Button B_Wild_Def_Min;
+    private Label L_Wild_Def;
+    private Label L_Wild_DefSpacer;
+    private NumericUpDown NUD_Wild_Def_Max;
+    private NumericUpDown NUD_Wild_Def_Min;
+    private Button B_Wild_Atk_Max;
+    private Button B_Wild_Atk_Min;
+    private Label L_Wild_Atk;
+    private Label L_Wild_AtkSpacer;
+    private NumericUpDown NUD_Wild_Atk_Max;
+    private NumericUpDown NUD_Wild_Atk_Min;
+    private Button B_Wild_HP_Max;
+    private Button B_Wild_HP_Min;
+    private Label L_Wild_HP;
+    private Label L_Wild_HPSpacer;
+    private NumericUpDown NUD_Wild_HP_Max;
+    private NumericUpDown NUD_Wild_HP_Min;
+    private BindingSource BS_Wild;
 }
 

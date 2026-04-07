@@ -116,11 +116,12 @@ public partial class MainWindow : Form
         L_LoadedTIDs.Text = $"Loaded TIDs: {(TIDs.Count == 0 ? "None" : TIDs.Count)}";
         L_SS_SeedList.Text = $"Loaded Seeds: {(Seeds.Count == 0 ? "None" : Seeds.Count)}";
 
+
+        SetComboBoxSelectedIndex(0, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Static_Species, CB_Wild_Encounter, CB_Wild_Method);
+
         CB_Game.SelectedIndex = Config.Game;
 
         UpdateStaticSpeciesList((Game)Config.Game);
-
-        SetComboBoxSelectedIndex(0, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Static_Species);
 
         SetControlText("0", TB_InitialSeed);
         SetControlText(string.Empty, TB_CurrentAdvances, TB_AdvancesIncrease, TB_CurrentSeed);
@@ -535,6 +536,7 @@ public partial class MainWindow : Form
     {
         Config.Game = CB_Game.SelectedIndex;
         UpdateStaticSpeciesList();
+        ReloadEncounterList();
     }
 
     private void UpdateStaticSpeciesList() => UpdateStaticSpeciesList((Game)CB_Game.SelectedIndex);
@@ -1351,6 +1353,69 @@ public partial class MainWindow : Form
                 }
             }
         }
+    }
+
+    private void CB_Wild_Encounter_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ReloadEncounterList();
+    }
+
+    private void ReloadEncounterList()
+    {
+        CB_Wild_Area.Items.Clear();
+        var items = GetEncounterAreas((Game)CB_Game.GetSelectedIndex(), (EncounterTableType)CB_Wild_Encounter.GetSelectedIndex());
+        foreach (var item in items) CB_Wild_Area.Items.Add(item);
+        CB_Wild_Area.SelectedIndex = 0;
+    }
+
+    private void CB_Wild_Area_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        CB_Wild_Species.Items.Clear();
+        var items = GetEncounterAreaSpecies((Game)CB_Game.GetSelectedIndex(), (EncounterTableType)CB_Wild_Encounter.GetSelectedIndex(), CB_Wild_Area.GetSelectedIndex());
+        items.Sort();
+        foreach (var item in items) CB_Wild_Species.Items.Add(item);
+        CB_Wild_Species.SelectedIndex = 0;
+    }
+
+    private void B_Wild_Generate_Click(object sender, EventArgs e)
+    {
+        SetControlEnabledState(false, B_Wild_Generate);
+        Task.Run(async () =>
+        {
+            var seed = uint.Parse(TB_InitialSeed.GetText(), NumberStyles.AllowHexSpecifier);
+            var start = uint.Parse(TB_Wild_Initial.GetText());
+            var end = uint.Parse(TB_Wild_Advances.GetText());
+
+            var enc = GetEncounterSlotEncounters((Game)CB_Game.GetSelectedIndex(), (EncounterTableType)CB_Wild_Encounter.GetSelectedIndex(), CB_Wild_Area.GetSelectedIndex());
+
+            var cfg = new WildConfig()
+            {
+                SID = ushort.Parse(TB_SID.GetText()),
+                TID = ushort.Parse(TB_TID.GetText()),
+
+                UseDelay = CB_Wild_Delay.GetIsChecked(),
+                Delay = NUD_Wild_Delay.GetValue(),
+
+                TargetShiny = GetFilterShinyType(CB_Wild_Shiny.GetSelectedIndex()),
+                TargetNature = GetFilterNatureType(CB_Wild_Nature.GetSelectedIndex()),
+
+                TargetMinIVs = [NUD_Wild_HP_Min.GetValue(), NUD_Wild_Atk_Min.GetValue(), NUD_Wild_Def_Min.GetValue(), NUD_Wild_SpA_Min.GetValue(), NUD_Wild_SpD_Min.GetValue(), NUD_Wild_Spe_Min.GetValue()],
+                TargetMaxIVs = [NUD_Wild_HP_Max.GetValue(), NUD_Wild_Atk_Max.GetValue(), NUD_Wild_Def_Max.GetValue(), NUD_Wild_SpA_Max.GetValue(), NUD_Wild_SpD_Max.GetValue(), NUD_Wild_Spe_Max.GetValue()],
+                SearchTypes = [GetIVSearchType(L_Wild_HPSpacer.GetText()), GetIVSearchType(L_Wild_AtkSpacer.GetText()), GetIVSearchType(L_Wild_DefSpacer.GetText()), GetIVSearchType(L_Wild_SpASpacer.GetText()), GetIVSearchType(L_Wild_SpDSpacer.GetText()), GetIVSearchType(L_Wild_SpeSpacer.GetText())],
+
+                Table = enc,
+
+                RarePID = CB_Wild_RareEC.GetIsChecked(),
+
+                FiltersEnabled = CB_Wild_FiltersEnabled.GetIsChecked(),
+            };
+            var wildFrames = await Core.RNG.Wild.Generate(seed, start, end, cfg);
+
+            SetBindingSourceDataSource(wildFrames, BS_Wild);
+            SetDataGridViewDataSource(BS_Wild, DGV_Results);
+            SetControlEnabledState(true, B_Wild_Generate);
+            Frames = wildFrames.Cast<object>().ToList();
+        });
     }
 }
 
