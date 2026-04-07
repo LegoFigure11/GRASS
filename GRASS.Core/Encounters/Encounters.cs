@@ -11,6 +11,8 @@ public static class Encounters
     private static readonly StaticEncounter[]? LG_Static;
     private static readonly Dictionary<string, EncounterSlotEncounter[]>? FR_GrassCave;
     private static readonly Dictionary<string, EncounterSlotEncounter[]>? LG_GrassCave;
+    private static readonly Dictionary<string, EncounterSlotEncounter[]>? FR_Surf;
+    private static readonly Dictionary<string, EncounterSlotEncounter[]>? LG_Surf;
     static Encounters()
     {
         FR_Static = JsonSerializer.Deserialize<StaticEncounter[]>(Utils.GetStringResource("fr_static.json") ?? "{}");
@@ -18,6 +20,9 @@ public static class Encounters
 
         FR_GrassCave = JsonSerializer.Deserialize<Dictionary<string, EncounterSlotEncounter[]>>(Utils.GetStringResource("fr_grasscave.json") ?? "{}");
         LG_GrassCave = JsonSerializer.Deserialize<Dictionary<string, EncounterSlotEncounter[]>>(Utils.GetStringResource("lg_grasscave.json") ?? "{}");
+
+        FR_Surf = JsonSerializer.Deserialize<Dictionary<string, EncounterSlotEncounter[]>>(Utils.GetStringResource("fr_surf.json") ?? "{}");
+        LG_Surf = JsonSerializer.Deserialize<Dictionary<string, EncounterSlotEncounter[]>>(Utils.GetStringResource("lg_surf.json") ?? "{}");
     }
 
     public static List<string> GetStaticEncounterSpeciesList(Game game) => game switch
@@ -56,14 +61,19 @@ public static class Encounters
     public static List<string> GetEncounterAreas(Game game, EncounterTableType type) => type switch
     {
         EncounterTableType.GrassCave => [.. (game == Game.FireRed ? FR_GrassCave! : LG_GrassCave!).Keys],
+        EncounterTableType.Surf      => [.. (game == Game.FireRed ? FR_Surf! : LG_Surf!).Keys],
         _ => throw new ArgumentOutOfRangeException(nameof(game), game, null)
     };
 
-    public static List<string> GetEncounterAreaSpecies(Game game, EncounterTableType type, int index) => type switch
+    public static EncounterSlotEncounter[] GetEncounterSlotEncounters(Game game, EncounterTableType type, int index) => type switch
     {
-        EncounterTableType.GrassCave => [.. (game == Game.FireRed ? FR_GrassCave! : LG_GrassCave!).Values.ElementAt(index).Select(e => e.Name).Distinct()],
+        EncounterTableType.GrassCave => (game == Game.FireRed ? FR_GrassCave! : LG_GrassCave!).Values.ElementAt(index),
+        EncounterTableType.Surf      => (game == Game.FireRed ? FR_Surf! : LG_Surf!).Values.ElementAt(index),
         _ => throw new ArgumentOutOfRangeException(nameof(game), game, null)
     };
+
+    public static List<string> GetEncounterAreaSpecies(Game game, EncounterTableType type, int index) =>
+        [.. GetEncounterSlotEncounters(game, type, index).Select(e => e.Name).Distinct()];
 
     public static int GetEncounterSlotIndex(int rand, EncounterTableType table) => table switch {
         EncounterTableType.Surf      => GetEncounterTableIndexSurf(rand),
