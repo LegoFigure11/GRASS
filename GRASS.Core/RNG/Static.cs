@@ -39,14 +39,8 @@ public static class Static
                     PersonalInfo.RatioMagicGenderless => '-',
                     PersonalInfo.RatioMagicFemale => 'F',
                     PersonalInfo.RatioMagicMale => 'M',
-                    _ => 'S',
+                    _ => PID.GenderVal < cfg.Encounter.Personal.Gender ? 'F' : 'M'
                 };
-
-                if (Gender == 'S')
-                {
-                    var gv = PID.GenderVal;
-                    Gender = gv < cfg.Encounter.Personal.Gender ? 'F' : 'M';
-                }
 
                 results.Add(new StaticFrame()
                 {
