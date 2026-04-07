@@ -1417,5 +1417,30 @@ public partial class MainWindow : Form
             Frames = wildFrames.Cast<object>().ToList();
         });
     }
+
+    private void B_CopyIVs_Click(object sender, EventArgs e)
+    {
+        foreach (Control ctrl in TC_Main.SelectedTab!.Controls)
+        {
+            if (ctrl is GroupBox gb)
+            {
+                if (gb.Name.EndsWith("_Filters"))
+                {
+                    foreach (Control child in gb.Controls)
+                    {
+                        if (child is NumericUpDown nud)
+                        {
+                            if (nud.Name.IndexOf("HP") > 0) nud.Value = _enc.IV_HP;
+                            else if (nud.Name.IndexOf("Atk") > 0) nud.Value = _enc.IV_ATK;
+                            else if (nud.Name.IndexOf("Def") > 0) nud.Value = _enc.IV_DEF;
+                            else if (nud.Name.IndexOf("SpA") > 0) nud.Value = _enc.IV_SPA;
+                            else if (nud.Name.IndexOf("SpD") > 0) nud.Value = _enc.IV_SPD;
+                            else if (nud.Name.IndexOf("Spe") > 0) nud.Value = _enc.IV_SPE;
+                        } 
+                    }
+                }
+            }
+        }
+    }
 }
 

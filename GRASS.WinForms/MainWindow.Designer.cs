@@ -231,6 +231,7 @@ namespace GRASS.WinForms;
         NUD_PartySlot = new NumericUpDown();
         BS_Static = new BindingSource(components);
         BS_Wild = new BindingSource(components);
+        B_CopyIVs = new Button();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -2486,11 +2487,22 @@ namespace GRASS.WinForms;
         // 
         BS_Wild.DataSource = typeof(Core.Interfaces.WildFrame);
         // 
+        // B_CopyIVs
+        // 
+        B_CopyIVs.Location = new Point(601, 226);
+        B_CopyIVs.Name = "B_CopyIVs";
+        B_CopyIVs.Size = new Size(181, 25);
+        B_CopyIVs.TabIndex = 133;
+        B_CopyIVs.Text = "Copy IVs to Filters";
+        B_CopyIVs.UseVisualStyleBackColor = true;
+        B_CopyIVs.Click += B_CopyIVs_Click;
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1277, 650);
+        Controls.Add(B_CopyIVs);
         Controls.Add(NUD_PartySlot);
         Controls.Add(B_ReadParty);
         Controls.Add(DGV_Results);
@@ -2770,5 +2782,6 @@ namespace GRASS.WinForms;
     private NumericUpDown NUD_Wild_HP_Max;
     private NumericUpDown NUD_Wild_HP_Min;
     private BindingSource BS_Wild;
+    private Button B_CopyIVs;
 }
 
