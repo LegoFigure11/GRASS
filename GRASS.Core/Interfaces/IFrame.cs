@@ -91,6 +91,7 @@ public class WildFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
     public byte Level { get; set; } = 0;
     public string PID => $"{_pid:X8}";
 
+    public uint Rerolls { get; set; } = 0;
     public string Shiny => $"{(_shinyXor == 0 ? "Square" : (_shinyXor < 8 ? $"Star ({_shinyXor})" : "No"))}";
 
     public string Ability { get; set; } = string.Empty;

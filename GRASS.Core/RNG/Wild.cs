@@ -51,7 +51,7 @@ public static class Wild
                     continue;
                 }
 
-                var (PID, IVs) = PIDIV.GetPIDIV(ref s, Nature, cfg.Method);
+                var (PID, IVs, Rerolls) = PIDIV.GetPIDIV(ref s, Nature, cfg.Method);
 
                 var shinyXor = RNGUtil.GetShinyXOR(PID, cfg.TSV);
 
@@ -86,6 +86,7 @@ public static class Wild
                     Level = (byte)Level,
                     Gender = Gender,
                     Ability = $"{Abilities[Encounter.Personal.GetAbilityAtIndex(PID.Ability)]} ({PID.Ability})",
+                    Rerolls = Rerolls,
                 });
 
                 outer = LCRNG.Next(outer);

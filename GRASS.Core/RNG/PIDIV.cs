@@ -38,32 +38,34 @@ public static class PIDIV
         return (pid, iv);
     }
 
-    public static (uint pid, byte[] iv) GetPIDIV(ref uint seed, uint nature, Method method = Method.MethodH1)
+    public static (uint pid, byte[] iv, uint rerolls) GetPIDIV(ref uint seed, uint nature, Method method = Method.MethodH1)
     {
-        uint pid;
+        uint pid, rerolls = 0;
         do
         {
             pid = GetPID(ref seed, method);
+            rerolls++;
         } while (method.IsMethodH() && (pid.Nature != nature /* || CuteCharm */));
 
         if (method.IsMethod2()) _ = LCRNG.Next16(ref seed); // AB_DE
 
         var iv = GetIVs(ref seed, false, method);
-        return (pid, iv);
+        return (pid, iv, --rerolls);
     }   
 
-    public static (uint pid, byte[] iv) GetUnownPIDIV(ref uint seed, byte letter, Method method = Method.MethodH1)
+    public static (uint pid, byte[] iv, uint rerolls) GetUnownPIDIV(ref uint seed, byte letter, Method method = Method.MethodH1)
     {
-        uint pid;
+        uint pid, rerolls = 0;
         do
         {
             pid = GetPID(ref seed, method);
+            rerolls++;
         } while (pid.UnownLetter != letter);
 
         if (method.IsMethod2()) _ = LCRNG.Next16(ref seed); // AB_DE
 
         var iv = GetIVs(ref seed, false, method);
-        return (pid, iv);
+        return (pid, iv, --rerolls);
     }
 
     extension (uint pid)
