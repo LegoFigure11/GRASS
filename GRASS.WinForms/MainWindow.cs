@@ -1374,13 +1374,17 @@ public partial class MainWindow : Form
         CB_Wild_Species.Items.Clear();
         var items = GetEncounterAreaSpecies((Game)CB_Game.GetSelectedIndex(), (EncounterTableType)CB_Wild_Encounter.GetSelectedIndex(), CB_Wild_Area.GetSelectedIndex());
         items.Sort();
+
+        CB_Wild_Species.Items.Add("(Any)");
         foreach (var item in items) CB_Wild_Species.Items.Add(item);
+
         CB_Wild_Species.SelectedIndex = 0;
     }
 
     private void B_Wild_Generate_Click(object sender, EventArgs e)
     {
         SetControlEnabledState(false, B_Wild_Generate);
+        var s = CB_Wild_Species.SelectedItem!.ToString();
         Task.Run(async () =>
         {
             var seed = uint.Parse(TB_InitialSeed.GetText(), NumberStyles.AllowHexSpecifier);
@@ -1388,6 +1392,7 @@ public partial class MainWindow : Form
             var end = uint.Parse(TB_Wild_Advances.GetText());
 
             var enc = GetEncounterSlotEncounters((Game)CB_Game.GetSelectedIndex(), (EncounterTableType)CB_Wild_Encounter.GetSelectedIndex(), CB_Wild_Area.GetSelectedIndex());
+            _ = SpeciesName.TryGetSpecies(s, 2, out var species);
 
             var cfg = new WildConfig()
             {
@@ -1397,6 +1402,8 @@ public partial class MainWindow : Form
                 UseDelay = CB_Wild_Delay.GetIsChecked(),
                 Delay = NUD_Wild_Delay.GetValue(),
 
+                Method = Method.MethodH1 + CB_Wild_Method.GetSelectedIndex(),
+
                 TargetShiny = GetFilterShinyType(CB_Wild_Shiny.GetSelectedIndex()),
                 TargetNature = GetFilterNatureType(CB_Wild_Nature.GetSelectedIndex()),
 
@@ -1405,6 +1412,9 @@ public partial class MainWindow : Form
                 SearchTypes = [GetIVSearchType(L_Wild_HPSpacer.GetText()), GetIVSearchType(L_Wild_AtkSpacer.GetText()), GetIVSearchType(L_Wild_DefSpacer.GetText()), GetIVSearchType(L_Wild_SpASpacer.GetText()), GetIVSearchType(L_Wild_SpDSpacer.GetText()), GetIVSearchType(L_Wild_SpeSpacer.GetText())],
 
                 Table = enc,
+
+                FilterBySpecies = CB_Wild_Species.GetSelectedIndex() != 0,
+                TargetSpecies = species,
 
                 RarePID = CB_Wild_RareEC.GetIsChecked(),
 
