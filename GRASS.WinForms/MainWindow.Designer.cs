@@ -525,6 +525,8 @@ namespace GRASS.WinForms;
         TB_SID.TabIndex = 1;
         TB_SID.Text = "54321";
         TB_SID.TextChanged += TB_SID_TextChanged;
+        TB_SID.KeyDown += Dec_HandlePaste;
+        TB_SID.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // TB_TID
         // 
@@ -537,6 +539,8 @@ namespace GRASS.WinForms;
         TB_TID.TabIndex = 0;
         TB_TID.Text = "12345";
         TB_TID.TextChanged += TB_TID_TextChanged;
+        TB_TID.KeyDown += Dec_HandlePaste;
+        TB_TID.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // B_ReadWildPokemon
         // 
@@ -1020,6 +1024,8 @@ namespace GRASS.WinForms;
         TB_SS_Adv.TabStop = false;
         TB_SS_Adv.Text = "2000000";
         TB_SS_Adv.TextAlign = HorizontalAlignment.Right;
+        TB_SS_Adv.KeyDown += Dec_HandlePaste;
+        TB_SS_Adv.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // L_SS_NumSeeds
         // 
@@ -1095,6 +1101,8 @@ namespace GRASS.WinForms;
         TB_SS_TargetSeed.Size = new Size(62, 22);
         TB_SS_TargetSeed.TabIndex = 7;
         TB_SS_TargetSeed.Text = "01234567";
+        TB_SS_TargetSeed.KeyDown += State_HandlePaste;
+        TB_SS_TargetSeed.KeyPress += AllowOnlyHex_KeyPress;
         // 
         // L_SS_TargetSeed
         // 
@@ -1225,6 +1233,8 @@ namespace GRASS.WinForms;
         TB_Static_Advances.TabIndex = 177;
         TB_Static_Advances.Text = "100000";
         TB_Static_Advances.TextAlign = HorizontalAlignment.Right;
+        TB_Static_Advances.KeyDown += Dec_HandlePaste;
+        TB_Static_Advances.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // TB_Static_Initial
         // 
@@ -1237,6 +1247,8 @@ namespace GRASS.WinForms;
         TB_Static_Initial.TabIndex = 176;
         TB_Static_Initial.Text = "0";
         TB_Static_Initial.TextAlign = HorizontalAlignment.Right;
+        TB_Static_Initial.KeyDown += Dec_HandlePaste;
+        TB_Static_Initial.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // GB_Static_Filters
         // 
@@ -1856,6 +1868,8 @@ namespace GRASS.WinForms;
         TB_Wild_Advances.TabIndex = 188;
         TB_Wild_Advances.Text = "100000";
         TB_Wild_Advances.TextAlign = HorizontalAlignment.Right;
+        TB_Wild_Advances.KeyDown += Dec_HandlePaste;
+        TB_Wild_Advances.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // TB_Wild_Initial
         // 
@@ -1868,6 +1882,8 @@ namespace GRASS.WinForms;
         TB_Wild_Initial.TabIndex = 187;
         TB_Wild_Initial.Text = "0";
         TB_Wild_Initial.TextAlign = HorizontalAlignment.Right;
+        TB_Wild_Initial.KeyDown += Dec_HandlePaste;
+        TB_Wild_Initial.KeyPress += AllowOnlyNumerical_KeyPress;
         // 
         // B_Wild_Filters
         // 
@@ -1951,6 +1967,7 @@ namespace GRASS.WinForms;
         CB_Wild_Delay.Tag = "";
         CB_Wild_Delay.Text = "Delay:";
         CB_Wild_Delay.UseVisualStyleBackColor = true;
+        CB_Wild_Delay.CheckedChanged += CB_Wild_Delay_CheckedChanged;
         // 
         // NUD_Wild_Delay
         // 

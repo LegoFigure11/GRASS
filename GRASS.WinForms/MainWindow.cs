@@ -1458,5 +1458,10 @@ public partial class MainWindow : Form
     {
         babyModeButton = CB_BabyMode_Action.GetSelectedIndex() == 0 ? SwitchButton.A : SwitchButton.HOME;
     }
+
+    private void CB_Wild_Delay_CheckedChanged(object sender, EventArgs e)
+    {
+        SetControlEnabledState(CB_Wild_Delay.GetIsChecked(), NUD_Wild_Delay);
+    }
 }
 
