@@ -1030,6 +1030,7 @@ public partial class MainWindow : Form
             SetBindingSourceDataSource(sidFrames, BS_SID);
             SetDataGridViewDataSource(BS_SID, DGV_Results);
             SetControlEnabledState(true, B_SID_Generate);
+            Frames = sidFrames.Cast<object>().ToList();
         });
     }
 
