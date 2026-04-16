@@ -1,0 +1,1352 @@
+{
+    "Berry Forest": [
+        {
+            "_species": 118,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 119,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Bond Bridge": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Cape Brink": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Celadon City": [
+        {
+            "_species": 129,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 129,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 129,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 129,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 88,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Cerulean Cave 1F": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Cerulean Cave B1F": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Cerulean City": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Cinnabar Island": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Five Island Meadow": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Five Island": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Four Island": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Fuchsia City": [
+        {
+            "_species": 118,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 119,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Green Path": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Icefall Cave Back": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Icefall Cave Entrance": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Kindle Road": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Memorial Pillar": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "One Island": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Outcast Island": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Pallet Town": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Resort Gorgeous": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 4": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 6": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 10": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 11": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 12": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 13": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 19": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 20": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 21 North": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 21 South": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 22": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 23": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 24": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Route 25": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Ruin Valley": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "SS Anne Exterior": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Safari Zone Center": [
+        {
+            "_species": 118,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 119,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 147,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 148,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Safari Zone East": [
+        {
+            "_species": 118,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 119,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 147,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 148,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Safari Zone North": [
+        {
+            "_species": 118,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 119,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 147,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 148,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Safari Zone West": [
+        {
+            "_species": 118,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 119,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 147,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 148,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Seafoam Islands B3F": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Seafoam Islands B4F": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Tanoby Ruins": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Trainer Tower": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Treasure Beach": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Vermilion City": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 90,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 116,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Viridian City": [
+        {
+            "_species": 60,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 61,
+            "MinLevel": 20,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Water Labyrinth": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Water Path": [
+        {
+            "_species": 116,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 211,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 130,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 117,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 54,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ]
+}

@@ -1412,6 +1412,7 @@ public partial class MainWindow : Form
                 TargetMaxIVs = [NUD_Wild_HP_Max.GetValue(), NUD_Wild_Atk_Max.GetValue(), NUD_Wild_Def_Max.GetValue(), NUD_Wild_SpA_Max.GetValue(), NUD_Wild_SpD_Max.GetValue(), NUD_Wild_Spe_Max.GetValue()],
                 SearchTypes = [GetIVSearchType(L_Wild_HPSpacer.GetText()), GetIVSearchType(L_Wild_AtkSpacer.GetText()), GetIVSearchType(L_Wild_DefSpacer.GetText()), GetIVSearchType(L_Wild_SpASpacer.GetText()), GetIVSearchType(L_Wild_SpDSpacer.GetText()), GetIVSearchType(L_Wild_SpeSpacer.GetText())],
 
+                Type = EncounterTableType.GrassCave + CB_Wild_Encounter.GetSelectedIndex(),
                 Table = enc,
 
                 FilterBySpecies = CB_Wild_Species.GetSelectedIndex() != 0,

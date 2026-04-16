@@ -1,0 +1,380 @@
+{
+    "Cerulean Cave 1F": [
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 75,
+            "MinLevel": 40,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 75,
+            "MinLevel": 45,
+            "MaxLevel": 55
+        },
+        {
+            "_species": 74,
+            "MinLevel": 40,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 40,
+            "MaxLevel": 50
+        }
+    ],
+    "Cerulean Cave 2F": [
+        {
+            "_species": 74,
+            "MinLevel": 35,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 45,
+            "MaxLevel": 55
+        },
+        {
+            "_species": 75,
+            "MinLevel": 50,
+            "MaxLevel": 60
+        },
+        {
+            "_species": 74,
+            "MinLevel": 45,
+            "MaxLevel": 55
+        },
+        {
+            "_species": 74,
+            "MinLevel": 45,
+            "MaxLevel": 55
+        }
+    ],
+    "Cerulean Cave B1F": [
+        {
+            "_species": 74,
+            "MinLevel": 40,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 75,
+            "MinLevel": 50,
+            "MaxLevel": 60
+        },
+        {
+            "_species": 75,
+            "MinLevel": 55,
+            "MaxLevel": 65
+        },
+        {
+            "_species": 74,
+            "MinLevel": 50,
+            "MaxLevel": 60
+        },
+        {
+            "_species": 74,
+            "MinLevel": 50,
+            "MaxLevel": 60
+        }
+    ],
+    "Rock Tunnel B1F": [
+        {
+            "_species": 74,
+            "MinLevel": 5,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 10,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 15,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 75,
+            "MinLevel": 25,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Exterior": [
+        {
+            "_species": 74,
+            "MinLevel": 5,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 10,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 15,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 75,
+            "MinLevel": 25,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Summit Path 2F": [
+        {
+            "_species": 74,
+            "MinLevel": 5,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 10,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 15,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 75,
+            "MinLevel": 25,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Ruby Path 1F": [
+        {
+            "_species": 74,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 35,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Ruby Path B1F": [
+        {
+            "_species": 74,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 35,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Ruby Path B2F": [
+        {
+            "_species": 74,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 35,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Ruby Path B3F": [
+        {
+            "_species": 218,
+            "MinLevel": 15,
+            "MaxLevel": 25
+        },
+        {
+            "_species": 218,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 219,
+            "MinLevel": 40,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 219,
+            "MinLevel": 35,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 219,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        }
+    ],
+    "Mt Ember Ruby Path B1F Stairs": [
+        {
+            "_species": 74,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 35,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Mt Ember Ruby Path B2F Stairs": [
+        {
+            "_species": 74,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 35,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Kindle Road": [
+        {
+            "_species": 74,
+            "MinLevel": 5,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 10,
+            "MaxLevel": 20
+        },
+        {
+            "_species": 74,
+            "MinLevel": 15,
+            "MaxLevel": 30
+        },
+        {
+            "_species": 75,
+            "MinLevel": 25,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ],
+    "Sevault Canyon": [
+        {
+            "_species": 74,
+            "MinLevel": 25,
+            "MaxLevel": 35
+        },
+        {
+            "_species": 75,
+            "MinLevel": 30,
+            "MaxLevel": 45
+        },
+        {
+            "_species": 75,
+            "MinLevel": 35,
+            "MaxLevel": 50
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        },
+        {
+            "_species": 74,
+            "MinLevel": 30,
+            "MaxLevel": 40
+        }
+    ]
+}

@@ -9,14 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Encounters\Data\FireRed\FR_Static.json" />
-    <None Remove="Encounters\Data\LeafGreen\LG_Static.json" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <EmbeddedResource Include="Encounters\Data\FireRed\fr_superrod.json" />
+    <EmbeddedResource Include="Encounters\Data\FireRed\fr_goodrod.json" />
+    <EmbeddedResource Include="Encounters\Data\FireRed\fr_oldrod.json" />
+    <EmbeddedResource Include="Encounters\Data\FireRed\fr_rocksmash.json" />
     <EmbeddedResource Include="Encounters\Data\FireRed\fr_surf.json" />
     <EmbeddedResource Include="Encounters\Data\FireRed\fr_grasscave.json" />
     <EmbeddedResource Include="Encounters\Data\FireRed\fr_static.json" />
+    <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_superrod.json" />
+    <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_goodrod.json" />
+    <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_rocksmash.json" />
+    <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_oldrod.json" />
     <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_surf.json" />
     <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_grasscave.json" />
     <EmbeddedResource Include="Encounters\Data\LeafGreen\lg_static.json" />
