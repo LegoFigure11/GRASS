@@ -819,6 +819,38 @@ public partial class MainWindow : Form
         }
     }
 
+    private void ValidateInputs()
+    {
+        // Initial
+        if (string.IsNullOrEmpty(TB_InitialSeed.GetText())) SetControlText("0", TB_InitialSeed);
+        if (string.IsNullOrEmpty(TB_SIDInitial.GetText())) SetControlText("0", TB_SIDInitial);
+        if (string.IsNullOrEmpty(TB_Static_Initial.GetText())) SetControlText("0", TB_Static_Initial);
+        if (string.IsNullOrEmpty(TB_Wild_Initial.GetText())) SetControlText("0", TB_Wild_Initial);
+        if (string.IsNullOrEmpty(TB_SS_TargetSeed.GetText())) SetControlText("0", TB_SS_TargetSeed);
+        if (string.IsNullOrEmpty(TB_SIDPID.GetText())) SetControlText("0", TB_SIDPID);
+
+        // Advances
+        if (string.IsNullOrEmpty(TB_SIDAdvances.GetText())) SetControlText("0", TB_SIDAdvances);
+        if (string.IsNullOrEmpty(TB_Static_Advances.GetText())) SetControlText("0", TB_Static_Advances);
+        if (string.IsNullOrEmpty(TB_Wild_Advances.GetText())) SetControlText("0", TB_Wild_Advances);
+        if (string.IsNullOrEmpty(TB_SS_Adv.GetText())) SetControlText("0", TB_SS_Adv);
+
+        // Seed
+        SetControlText(TB_InitialSeed.GetText().PadLeft(8, '0'), TB_InitialSeed);
+        SetControlText(TB_SS_TargetSeed.GetText().PadLeft(8, '0'), TB_SS_TargetSeed);
+        SetControlText(TB_SIDPID.GetText().PadLeft(8, '0'), TB_SIDPID);
+
+        // IDs
+        if (string.IsNullOrEmpty(TB_TID.GetText())) SetControlText("0", TB_TID);
+        if (string.IsNullOrEmpty(TB_SID.GetText())) SetControlText("0", TB_SID);
+        if (string.IsNullOrEmpty(TB_SIDSID.GetText())) SetControlText("0", TB_SIDSID);
+        if (string.IsNullOrEmpty(TB_SIDTID.GetText())) SetControlText("0", TB_SIDTID);
+        SetControlText(TB_TID.GetText().PadLeft(5, '0'), TB_TID);
+        SetControlText(TB_SID.GetText().PadLeft(5, '0'), TB_SID);
+        SetControlText(TB_SIDSID.GetText().PadLeft(5, '0'), TB_SIDSID);
+        SetControlText(TB_SIDTID.GetText().PadLeft(5, '0'), TB_SIDTID);
+    }
+
     private void CheckForUpdates()
     {
         Task.Run(async () =>
@@ -1005,7 +1037,7 @@ public partial class MainWindow : Form
 
     private void B_SID_Generate_Click(object sender, EventArgs e)
     {
-        // Validate Inputs ()
+        ValidateInputs();
         SetControlEnabledState(false, B_SID_Generate);
         Task.Run(async () =>
         {
@@ -1030,7 +1062,7 @@ public partial class MainWindow : Form
             SetBindingSourceDataSource(sidFrames, BS_SID);
             SetDataGridViewDataSource(BS_SID, DGV_Results);
             SetControlEnabledState(true, B_SID_Generate);
-            Frames = sidFrames.Cast<object>().ToList();
+            Frames = [.. sidFrames.Cast<object>()];
         });
     }
 
@@ -1097,7 +1129,7 @@ public partial class MainWindow : Form
 
     private void B_SS_FindMax_Click(object sender, EventArgs e)
     {
-        // Validate inputs ()
+        ValidateInputs();
         Task.Run(async () =>
         {
             var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
@@ -1110,7 +1142,7 @@ public partial class MainWindow : Form
 
     private void B_SS_CountSeeds_Click(object sender, EventArgs e)
     {
-        // Validate inputs ()
+        ValidateInputs();
         Task.Run(async () =>
         {
             var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
@@ -1130,13 +1162,13 @@ public partial class MainWindow : Form
 
     private void B_ResetSeed_Click(object sender, EventArgs e)
     {
+        ValidateInputs();
         if (ConnectionWrapper.Connected)
         {
             readPause = true;
             reset = true;
             SetControlEnabledState(false, B_ResetSeed);
             SetControlEnabledState(true, B_CancelSeedReset);
-            // Validate inputs ()
 
             Task.Run(async () =>
             {
@@ -1224,6 +1256,7 @@ public partial class MainWindow : Form
     private void B_Static_Search_Click(object sender, EventArgs e)
     {
         SetControlEnabledState(false, B_Static_Search);
+        ValidateInputs();
         Task.Run(async () =>
         {
             var seed = uint.Parse(TB_InitialSeed.GetText(), NumberStyles.AllowHexSpecifier);
@@ -1262,7 +1295,7 @@ public partial class MainWindow : Form
             SetBindingSourceDataSource(staticFrames, BS_Static);
             SetDataGridViewDataSource(BS_Static, DGV_Results);
             SetControlEnabledState(true, B_Static_Search);
-            Frames = staticFrames.Cast<object>().ToList();
+            Frames = [.. staticFrames.Cast<object>()];
         });
     }
 
@@ -1273,6 +1306,7 @@ public partial class MainWindow : Form
 
     private void B_BabyMode_Go_Click(object sender, EventArgs e)
     {
+        ValidateInputs();
         babyModeTarget = uint.Parse(TB_BabyMode.GetText());
         var delay = CB_BabyModeDelay.GetIsChecked() ? NUD_BabyModeDelay.GetValue() : 0u;
         babyModeTarget -= delay;
@@ -1385,6 +1419,7 @@ public partial class MainWindow : Form
     private void B_Wild_Generate_Click(object sender, EventArgs e)
     {
         SetControlEnabledState(false, B_Wild_Generate);
+        ValidateInputs();
         var s = CB_Wild_Species.SelectedItem!.ToString();
         Task.Run(async () =>
         {
@@ -1427,7 +1462,7 @@ public partial class MainWindow : Form
             SetBindingSourceDataSource(wildFrames, BS_Wild);
             SetDataGridViewDataSource(BS_Wild, DGV_Results);
             SetControlEnabledState(true, B_Wild_Generate);
-            Frames = wildFrames.Cast<object>().ToList();
+            Frames = [.. wildFrames.Cast<object>()];
         });
     }
 
