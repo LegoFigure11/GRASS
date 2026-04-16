@@ -86,7 +86,7 @@ public static class Encounters
         EncounterTableType.OldRod    => [.. (game == Game.FireRed ? FR_OldRod! : LG_OldRod!).Keys],
         EncounterTableType.GoodRod   => [.. (game == Game.FireRed ? FR_GoodRod! : LG_GoodRod!).Keys],
         EncounterTableType.SuperRod  => [.. (game == Game.FireRed ? FR_SuperRod! : LG_SuperRod!).Keys],
-        _ => throw new ArgumentOutOfRangeException(nameof(game), game, null)
+        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 
     public static EncounterSlotEncounter[] GetEncounterSlotEncounters(Game game, EncounterTableType type, int index) => type switch
@@ -97,7 +97,7 @@ public static class Encounters
         EncounterTableType.OldRod    => (game == Game.FireRed ? FR_OldRod! : LG_OldRod!).Values.ElementAt(index),
         EncounterTableType.GoodRod   => (game == Game.FireRed ? FR_GoodRod! : LG_GoodRod!).Values.ElementAt(index),
         EncounterTableType.SuperRod  => (game == Game.FireRed ? FR_SuperRod! : LG_SuperRod!).Values.ElementAt(index),
-        _ => throw new ArgumentOutOfRangeException(nameof(game), game, null)
+        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 
     public static List<string> GetEncounterAreaSpecies(Game game, EncounterTableType type, int index) =>

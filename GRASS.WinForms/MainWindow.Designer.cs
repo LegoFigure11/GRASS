@@ -1176,7 +1176,6 @@ namespace GRASS.WinForms;
         // CB_Static_Species
         // 
         CB_Static_Species.FormattingEnabled = true;
-        CB_Static_Species.Items.AddRange(new object[] { "Charmander" });
         CB_Static_Species.Location = new Point(70, 20);
         CB_Static_Species.Name = "CB_Static_Species";
         CB_Static_Species.Size = new Size(101, 23);
