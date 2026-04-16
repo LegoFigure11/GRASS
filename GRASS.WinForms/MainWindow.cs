@@ -880,7 +880,7 @@ public partial class MainWindow : Form
         using Subforms.UpdateNotifPopup nup = new(CurrentVersion, version);
         if (nup.ShowDialog() == DialogResult.OK)
         {
-            Process.Start(new ProcessStartInfo("https://github.com/LegoFigure11/AutomaticRadGRASSedExtrapolator/releases/")
+            Process.Start(new ProcessStartInfo("https://github.com/LegoFigure11/GRASS/releases/")
             {
                 UseShellExecute = true
             });

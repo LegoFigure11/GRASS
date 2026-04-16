@@ -55,7 +55,7 @@ public static class Utils
 
     public static Version? GetLatestVersion()
     {
-        const string endpoint = "https://api.github.com/repos/LegoFigure11/AutomaticRadGRASSedExtrapolator/releases/latest";
+        const string endpoint = "https://api.github.com/repos/LegoFigure11/GRASS/releases/latest";
         var response = NetUtil.GetStringFromURL(new Uri(endpoint));
         if (response is null) return null;
 
