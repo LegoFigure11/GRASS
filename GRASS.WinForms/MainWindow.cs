@@ -1530,7 +1530,7 @@ public partial class MainWindow : Form
         Task.Run(async () =>
         {
             var seed = uint.Parse(TB_PID.GetText(), NumberStyles.AllowHexSpecifier);
-            var pidtoivFrames = await Core.RNG.RNGUtil.GetPIDtoIVs(seed);
+            var pidtoivFrames = await Core.RNG.Recovery.GetPIDtoIVs(seed);
 
             SetBindingSourceDataSource(pidtoivFrames, BS_PIDtoIVs);
             SetDataGridViewDataSource(BS_PIDtoIVs, DGV_Results);
