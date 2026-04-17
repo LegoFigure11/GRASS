@@ -587,6 +587,7 @@ public partial class MainWindow : Form
         {
             combobox.Items.Add(item);
         }
+        CB_Static_Species.SelectedIndex = 0;
     }
 
     private void UpdateEncounterSlotsSpecies()
