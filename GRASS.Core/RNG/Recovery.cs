@@ -1,4 +1,5 @@
 ﻿using GRASS.Core.Interfaces;
+using GRASS.Core.Enums;
 using PKHeX.Core;
 
 namespace GRASS.Core.RNG;
@@ -19,12 +20,12 @@ public static class Recovery
                 {
                     var ab = AB.ElementAt(i);
                     var _ab = ab; // Copy
-                    var (_, ivs) = PIDIV.GetPIDIV(ref _ab, false, Enums.Method.Method1);
+                    var (_, ivs) = PIDIV.GetPIDIV(ref _ab, false, Method.Method1);
                     var f = new PIDtoIVsFrame()
                     {
                         _seed = ab,
                         _ivs = ivs,
-                        _method = Enums.Method.Method1,
+                        _method = Method.Method1,
                     };
                     results.Add(f);
                 }
@@ -37,12 +38,12 @@ public static class Recovery
                 {
                     var ab = AB.ElementAt(i);
                     var _ab = ab; // Copy
-                    var (_, ivs) = PIDIV.GetPIDIV(ref _ab, false, Enums.Method.Method2);
+                    var (_, ivs) = PIDIV.GetPIDIV(ref _ab, false, Method.Method2);
                     var f = new PIDtoIVsFrame()
                     {
                         _seed = ab,
                         _ivs = ivs,
-                        _method = Enums.Method.Method2,
+                        _method = Method.Method2,
                     };
                     results.Add(f);
                 }
@@ -55,12 +56,12 @@ public static class Recovery
                 {
                     var ac = A_C.ElementAt(i);
                     var _ac = ac; // Copy
-                    var (_, ivs) = PIDIV.GetPIDIV(ref _ac, false, Enums.Method.Method3);
+                    var (_, ivs) = PIDIV.GetPIDIV(ref _ac, false, Method.Method3);
                     var f = new PIDtoIVsFrame()
                     {
                         _seed = ac,
                         _ivs = ivs,
-                        _method = Enums.Method.Method3,
+                        _method = Method.Method3,
                     };
                     results.Add(f);
                 }
@@ -73,12 +74,12 @@ public static class Recovery
                 {
                     var ab = AB.ElementAt(i);
                     var _ab = ab; // Copy
-                    var (_, ivs) = PIDIV.GetPIDIV(ref _ab, false, Enums.Method.Method4);
+                    var (_, ivs) = PIDIV.GetPIDIV(ref _ab, false, Method.Method4);
                     var f = new PIDtoIVsFrame()
                     {
                         _seed = ab,
                         _ivs = ivs,
-                        _method = Enums.Method.Method4,
+                        _method = Method.Method4,
                     };
                     results.Add(f);
                 }
