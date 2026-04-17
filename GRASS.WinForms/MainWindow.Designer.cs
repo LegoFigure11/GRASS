@@ -218,6 +218,20 @@ namespace GRASS.WinForms;
         NUD_Wild_HP_Max = new NumericUpDown();
         NUD_Wild_HP_Min = new NumericUpDown();
         TP_PIDIV = new TabPage();
+        GB_IVsToPID = new GroupBox();
+        NUD_App_Spe = new NumericUpDown();
+        NUD_App_SpD = new NumericUpDown();
+        NUD_App_SpA = new NumericUpDown();
+        NUD_App_Def = new NumericUpDown();
+        NUD_App_Atk = new NumericUpDown();
+        NUD_App_HP = new NumericUpDown();
+        L_App_Spe = new Label();
+        L_App_SpD = new Label();
+        L_App_SpA = new Label();
+        L_App_Def = new Label();
+        L_App_Atk = new Label();
+        L_App_HP = new Label();
+        B_IVsToPID = new Button();
         GB_PIDtoIVs = new GroupBox();
         B_PIDtoIVs = new Button();
         TB_PID = new TextBox();
@@ -239,6 +253,7 @@ namespace GRASS.WinForms;
         BS_Wild = new BindingSource(components);
         B_CopyIVs = new Button();
         BS_PIDtoIVs = new BindingSource(components);
+        BS_IVsToPID = new BindingSource(components);
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -281,6 +296,13 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Max).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Min).BeginInit();
         TP_PIDIV.SuspendLayout();
+        GB_IVsToPID.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_Spe).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_SpD).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_SpA).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_Def).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_Atk).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_HP).BeginInit();
         GB_PIDtoIVs.SuspendLayout();
         GB_ConnectionSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).BeginInit();
@@ -290,6 +312,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)BS_Static).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_Wild).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_PIDtoIVs).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)BS_IVsToPID).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -2377,6 +2400,7 @@ namespace GRASS.WinForms;
         // 
         // TP_PIDIV
         // 
+        TP_PIDIV.Controls.Add(GB_IVsToPID);
         TP_PIDIV.Controls.Add(GB_PIDtoIVs);
         TP_PIDIV.Location = new Point(4, 24);
         TP_PIDIV.Name = "TP_PIDIV";
@@ -2385,6 +2409,140 @@ namespace GRASS.WinForms;
         TP_PIDIV.TabIndex = 4;
         TP_PIDIV.Text = "PID/IV Utils";
         TP_PIDIV.UseVisualStyleBackColor = true;
+        // 
+        // GB_IVsToPID
+        // 
+        GB_IVsToPID.Controls.Add(NUD_App_Spe);
+        GB_IVsToPID.Controls.Add(NUD_App_SpD);
+        GB_IVsToPID.Controls.Add(NUD_App_SpA);
+        GB_IVsToPID.Controls.Add(NUD_App_Def);
+        GB_IVsToPID.Controls.Add(NUD_App_Atk);
+        GB_IVsToPID.Controls.Add(NUD_App_HP);
+        GB_IVsToPID.Controls.Add(L_App_Spe);
+        GB_IVsToPID.Controls.Add(L_App_SpD);
+        GB_IVsToPID.Controls.Add(L_App_SpA);
+        GB_IVsToPID.Controls.Add(L_App_Def);
+        GB_IVsToPID.Controls.Add(L_App_Atk);
+        GB_IVsToPID.Controls.Add(L_App_HP);
+        GB_IVsToPID.Controls.Add(B_IVsToPID);
+        GB_IVsToPID.Location = new Point(6, 61);
+        GB_IVsToPID.Name = "GB_IVsToPID";
+        GB_IVsToPID.Size = new Size(368, 75);
+        GB_IVsToPID.TabIndex = 1;
+        GB_IVsToPID.TabStop = false;
+        GB_IVsToPID.Text = "IVs to PID";
+        // 
+        // NUD_App_Spe
+        // 
+        NUD_App_Spe.Location = new Point(332, 16);
+        NUD_App_Spe.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_App_Spe.Name = "NUD_App_Spe";
+        NUD_App_Spe.Size = new Size(32, 23);
+        NUD_App_Spe.TabIndex = 194;
+        // 
+        // NUD_App_SpD
+        // 
+        NUD_App_SpD.Location = new Point(271, 16);
+        NUD_App_SpD.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_App_SpD.Name = "NUD_App_SpD";
+        NUD_App_SpD.Size = new Size(32, 23);
+        NUD_App_SpD.TabIndex = 193;
+        // 
+        // NUD_App_SpA
+        // 
+        NUD_App_SpA.Location = new Point(208, 16);
+        NUD_App_SpA.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_App_SpA.Name = "NUD_App_SpA";
+        NUD_App_SpA.Size = new Size(32, 23);
+        NUD_App_SpA.TabIndex = 192;
+        // 
+        // NUD_App_Def
+        // 
+        NUD_App_Def.Location = new Point(145, 16);
+        NUD_App_Def.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_App_Def.Name = "NUD_App_Def";
+        NUD_App_Def.Size = new Size(32, 23);
+        NUD_App_Def.TabIndex = 191;
+        // 
+        // NUD_App_Atk
+        // 
+        NUD_App_Atk.Location = new Point(85, 16);
+        NUD_App_Atk.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_App_Atk.Name = "NUD_App_Atk";
+        NUD_App_Atk.Size = new Size(32, 23);
+        NUD_App_Atk.TabIndex = 190;
+        // 
+        // NUD_App_HP
+        // 
+        NUD_App_HP.Location = new Point(25, 16);
+        NUD_App_HP.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_App_HP.Name = "NUD_App_HP";
+        NUD_App_HP.Size = new Size(32, 23);
+        NUD_App_HP.TabIndex = 188;
+        // 
+        // L_App_Spe
+        // 
+        L_App_Spe.AutoSize = true;
+        L_App_Spe.Location = new Point(303, 18);
+        L_App_Spe.Name = "L_App_Spe";
+        L_App_Spe.Size = new Size(29, 15);
+        L_App_Spe.TabIndex = 199;
+        L_App_Spe.Text = "Spe:";
+        // 
+        // L_App_SpD
+        // 
+        L_App_SpD.AutoSize = true;
+        L_App_SpD.Location = new Point(240, 18);
+        L_App_SpD.Name = "L_App_SpD";
+        L_App_SpD.Size = new Size(31, 15);
+        L_App_SpD.TabIndex = 198;
+        L_App_SpD.Text = "SpD:";
+        // 
+        // L_App_SpA
+        // 
+        L_App_SpA.AutoSize = true;
+        L_App_SpA.Location = new Point(177, 18);
+        L_App_SpA.Name = "L_App_SpA";
+        L_App_SpA.Size = new Size(31, 15);
+        L_App_SpA.TabIndex = 197;
+        L_App_SpA.Text = "SpA:";
+        // 
+        // L_App_Def
+        // 
+        L_App_Def.AutoSize = true;
+        L_App_Def.Location = new Point(117, 18);
+        L_App_Def.Name = "L_App_Def";
+        L_App_Def.Size = new Size(28, 15);
+        L_App_Def.TabIndex = 196;
+        L_App_Def.Text = "Def:";
+        // 
+        // L_App_Atk
+        // 
+        L_App_Atk.AutoSize = true;
+        L_App_Atk.Location = new Point(57, 18);
+        L_App_Atk.Name = "L_App_Atk";
+        L_App_Atk.Size = new Size(28, 15);
+        L_App_Atk.TabIndex = 195;
+        L_App_Atk.Text = "Atk:";
+        // 
+        // L_App_HP
+        // 
+        L_App_HP.AutoSize = true;
+        L_App_HP.Location = new Point(-1, 19);
+        L_App_HP.Name = "L_App_HP";
+        L_App_HP.Size = new Size(26, 15);
+        L_App_HP.TabIndex = 189;
+        L_App_HP.Text = "HP:";
+        // 
+        // B_IVsToPID
+        // 
+        B_IVsToPID.Location = new Point(2, 45);
+        B_IVsToPID.Name = "B_IVsToPID";
+        B_IVsToPID.Size = new Size(364, 25);
+        B_IVsToPID.TabIndex = 187;
+        B_IVsToPID.Text = "Generate";
+        B_IVsToPID.UseVisualStyleBackColor = true;
+        B_IVsToPID.Click += B_IVsToPID_Click;
         // 
         // GB_PIDtoIVs
         // 
@@ -2595,6 +2753,10 @@ namespace GRASS.WinForms;
         // 
         BS_PIDtoIVs.DataSource = typeof(Core.Interfaces.PIDtoIVsFrame);
         // 
+        // BS_IVsToPID
+        // 
+        BS_IVsToPID.DataSource = typeof(Core.Interfaces.IVsToPIDFrame);
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -2667,6 +2829,14 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Max).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Min).EndInit();
         TP_PIDIV.ResumeLayout(false);
+        GB_IVsToPID.ResumeLayout(false);
+        GB_IVsToPID.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_Spe).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_SpD).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_SpA).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_Def).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_Atk).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_App_HP).EndInit();
         GB_PIDtoIVs.ResumeLayout(false);
         GB_PIDtoIVs.PerformLayout();
         GB_ConnectionSettings.ResumeLayout(false);
@@ -2678,6 +2848,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)BS_Static).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_Wild).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_PIDtoIVs).EndInit();
+        ((System.ComponentModel.ISupportInitialize)BS_IVsToPID).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -2892,5 +3063,20 @@ namespace GRASS.WinForms;
     private Label L_PID;
     private Button B_PIDtoIVs;
     private BindingSource BS_PIDtoIVs;
+    private GroupBox GB_IVsToPID;
+    private Label L_App_HP;
+    private NumericUpDown NUD_App_HP;
+    private Button B_IVsToPID;
+    private Label L_App_Spe;
+    private NumericUpDown NUD_App_Spe;
+    private Label L_App_SpD;
+    private NumericUpDown NUD_App_SpD;
+    private Label L_App_SpA;
+    private NumericUpDown NUD_App_SpA;
+    private Label L_App_Def;
+    private NumericUpDown NUD_App_Def;
+    private Label L_App_Atk;
+    private NumericUpDown NUD_App_Atk;
+    private BindingSource BS_IVsToPID;
 }
 

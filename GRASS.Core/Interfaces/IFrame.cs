@@ -134,6 +134,27 @@ public class PIDtoIVsFrame : IIVFrame, IHiddenPowerFrame
     private int _HPBitValPower => ((HP & 2) >> 1) | ((Atk & 2) >> 0) | ((Def & 2) << 1) | ((Spe & 2) << 2) | ((SpA & 2) << 3) | ((SpD & 2) << 4);
     public string Hidden => $"{Validator.Types[(15 * _HPBitValType / 63) + 1]}";
     public int Power => ((40 * _HPBitValPower) / 63) + 30;
+}
 
+public class IVsToPIDFrame
+{
+    internal uint _seed { get; set; } = 0;
+    internal Method _method { get; set; } = Enums.Method.Method1;
+    internal uint _pid { get; set; } = 0;
+
+    public string Seed => $"{_seed:X8}";
+    public string Method => _method.ToString();
+
+    public string PID => $"{_pid:X8}";
+
+    internal byte _nature => _pid.Nature;
+    public string Nature => Validator.Natures[_nature];
+    public int Ability => _pid.Ability;
+    internal byte GenderVal => _pid.GenderVal;
+
+    public char _18th => GenderVal <= 30 ? 'F' : 'M';
+    public char _14th => GenderVal <= 63 ? 'F' : 'M';
+    public char _12th => GenderVal <= 126 ? 'F' : 'M';
+    public char _34th => GenderVal <= 190 ? 'F' : 'M';
 }
 

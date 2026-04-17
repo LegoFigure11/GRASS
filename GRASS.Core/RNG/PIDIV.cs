@@ -14,32 +14,6 @@ public static class PIDIV
         return (high << 16) | low;
     }
 
-    public static (List<uint> AB, List<uint> A_C) GetPIDSeeds(uint pid)
-    {
-        List<uint> AB = [];
-        List<uint> A_C = [];
-
-        uint targetLow = pid & 0xFFFF;
-        uint targetHigh = pid >> 16;
-
-        for (ushort i = 0; i < 0xFFFF; i++)
-        {
-            var seed = (targetLow << 16) | i; // A
-            var B = LCRNG.Next16(ref seed);
-            if (B == targetHigh)
-            {
-                AB.Add(LCRNG.Prev((targetLow << 16) | i));
-            }
-            var _C = LCRNG.Next16(ref seed);
-            if (_C == targetHigh)
-            {
-                A_C.Add(LCRNG.Prev((targetLow << 16) | i));
-            }
-        }
-
-        return (AB, A_C);
-    }
-
     public static byte[] GetIVs(ref uint seed, bool RoamerBug = false, Method method = Method.Method1)
     {
         var iv1 = RoamerBug ? LCRNG.Next16(ref seed) & 0xFF : LCRNG.Next16(ref seed);

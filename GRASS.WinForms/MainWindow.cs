@@ -386,8 +386,15 @@ public partial class MainWindow : Form
                     d.Columns["SpA"]?.Width = 50;
                     d.Columns["SpD"]?.Width = 50;
                     d.Columns["Spe"]?.Width = 50;
-
-
+                    d.Columns["Rerolls"]?.Width = 75;
+                    d.Columns["_18th"]?.Width = 75;
+                    d.Columns["_18th"]?.HeaderText = "12.5% F";
+                    d.Columns["_14th"]?.Width = 75;
+                    d.Columns["_14th"]?.HeaderText = "25% F";
+                    d.Columns["_12th"]?.Width = 75;
+                    d.Columns["_12th"]?.HeaderText = "50% F";
+                    d.Columns["_34th"]?.Width = 75;
+                    d.Columns["_34th"]?.HeaderText = "75% F";
                 });
             }
             else
@@ -412,6 +419,15 @@ public partial class MainWindow : Form
                 d.Columns["SpA"]?.Width = 50;
                 d.Columns["SpD"]?.Width = 50;
                 d.Columns["Spe"]?.Width = 50;
+                d.Columns["Rerolls"]?.Width = 75;
+                d.Columns["_18th"]?.Width = 75;
+                d.Columns["_18th"]?.HeaderText = "12.5% F";
+                d.Columns["_14th"]?.Width = 75;
+                d.Columns["_14th"]?.HeaderText = "25% F";
+                d.Columns["_12th"]?.Width = 75;
+                d.Columns["_12th"]?.HeaderText = "50% F";
+                d.Columns["_34th"]?.Width = 75;
+                d.Columns["_34th"]?.HeaderText = "75% F";
             }
         }
     }
@@ -1536,6 +1552,21 @@ public partial class MainWindow : Form
             SetDataGridViewDataSource(BS_PIDtoIVs, DGV_Results);
             SetControlEnabledState(true, B_PIDtoIVs);
             Frames = [.. pidtoivFrames.Cast<object>()];
+        });
+    }
+
+    private void B_IVsToPID_Click(object sender, EventArgs e)
+    {
+        SetControlEnabledState(false, B_IVsToPID);
+        ValidateInputs();
+        Task.Run(async () =>
+        {
+            var ivstopidFrames = await Core.RNG.Recovery.GetIVsToPID((byte)NUD_App_HP.GetValue(), (byte)NUD_App_Atk.GetValue(), (byte)NUD_App_Def.GetValue(), (byte)NUD_App_SpA.GetValue(), (byte)NUD_App_SpD.GetValue(), (byte)NUD_App_Spe.GetValue());
+
+            SetBindingSourceDataSource(ivstopidFrames, BS_IVsToPID);
+            SetDataGridViewDataSource(BS_IVsToPID, DGV_Results);
+            SetControlEnabledState(true, B_IVsToPID);
+            Frames = [.. ivstopidFrames.Cast<object>()];
         });
     }
 }
