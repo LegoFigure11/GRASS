@@ -119,7 +119,7 @@ public partial class MainWindow : Form
 
         UpdateStaticSpeciesList((Game)Config.Game);
 
-        SetComboBoxSelectedIndex(0, CB_BabyMode_Action, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Wild_Method, CB_Wild_Nature, CB_Wild_Shiny, CB_Static_Species, CB_Wild_Encounter);
+        SetComboBoxSelectedIndex(0, CB_Method, CB_Nature, CB_BabyMode_Action, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Wild_Method, CB_Wild_Nature, CB_Wild_Shiny, CB_Static_Species, CB_Wild_Encounter);
 
         CB_Game.SelectedIndex = Config.Game;
 
@@ -368,6 +368,14 @@ public partial class MainWindow : Form
                     d.AutoGenerateColumns = true;
                     d.DataSource = source;
 
+                    d.Columns["Nature"]?.DisplayIndex = 0;
+                    d.Columns["Ability"]?.DisplayIndex = 0;
+                    d.Columns["Shiny"]?.DisplayIndex = 0;
+                    d.Columns["Rerolls"]?.DisplayIndex = 0;
+                    d.Columns["PID"]?.DisplayIndex = 0;
+                    d.Columns["Level"]?.DisplayIndex = 0;
+                    d.Columns["Species"]?.DisplayIndex = 0;
+                    d.Columns["Advances"]?.DisplayIndex = 0;
                     d.Columns["Method"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["HP"]?.DisplayIndex = d.Columns.Count - 1;
@@ -401,6 +409,15 @@ public partial class MainWindow : Form
             {
                 d.AutoGenerateColumns = true;
                 d.DataSource = source;
+
+                d.Columns["Nature"]?.DisplayIndex = 0;
+                d.Columns["Ability"]?.DisplayIndex = 0;
+                d.Columns["Shiny"]?.DisplayIndex = 0;
+                d.Columns["Rerolls"]?.DisplayIndex = 0;
+                d.Columns["PID"]?.DisplayIndex = 0;
+                d.Columns["Level"]?.DisplayIndex = 0;
+                d.Columns["Species"]?.DisplayIndex = 0;
+                d.Columns["Advances"]?.DisplayIndex = 0;
                 d.Columns["Method"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["HP"]?.DisplayIndex = d.Columns.Count - 1;
@@ -1379,54 +1396,61 @@ public partial class MainWindow : Form
 
     private void DGV_Results_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
     {
-        var index = e.RowIndex;
-        if (Frames.Count <= index) return;
-        var row = DGV_Results.Rows[index];
-        var result = Frames[index];
-
-        if (result is IShinyFrame s)
+        try
         {
-            if (s.Shiny is "Square") row.DefaultCellStyle.BackColor = Color.LightCyan;
-            else if (s.Shiny.Contains("Star")) row.DefaultCellStyle.BackColor = Color.PapayaWhip;
-            else row.DefaultCellStyle.BackColor = row.Index % 2 == 0 ? Color.White : Color.WhiteSmoke;
-        }
+            var index = e.RowIndex;
+            if (Frames.Count <= index) return;
+            var row = DGV_Results.Rows[index];
+            var result = Frames[index];
 
-        if (Config.ColorHiddenPowerResults && result is IHiddenPowerFrame hp)
-        {
-            var pow = DGV_Results.Columns["Power"]!.Index;
-            var typ = DGV_Results.Columns["Hidden"]!.Index;
-            if (hp.Power == 70) row.Cells[pow].Style.Font = BoldFont;
-            else row.Cells[pow].Style.Font = row.DefaultCellStyle.Font;
-
-            var color = WinFormsUtil.GetHiddenPowerColor(hp.Hidden);
-            row.Cells[pow].Style.BackColor = color;
-            row.Cells[typ].Style.BackColor = color;
-        }
-
-        // IVs
-        if (result is IIVFrame iv)
-        {
-            string[] stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"];
-            byte[] ivs = [iv.HP, iv.Atk, iv.Def, iv.SpA, iv.SpD, iv.Spe];
-            for (var i = 0; i < stats.Length; i++)
+            if (result is IShinyFrame s)
             {
-                var col = DGV_Results.Columns[stats[i]]!.Index;
-                if (ivs[i] == 0)
+                if (s.Shiny is "Square") row.DefaultCellStyle.BackColor = Color.LightCyan;
+                else if (s.Shiny.Contains("Star")) row.DefaultCellStyle.BackColor = Color.PapayaWhip;
+                else row.DefaultCellStyle.BackColor = row.Index % 2 == 0 ? Color.White : Color.WhiteSmoke;
+            }
+
+            if (Config.ColorHiddenPowerResults && result is IHiddenPowerFrame hp)
+            {
+                var pow = DGV_Results.Columns["Power"]!.Index;
+                var typ = DGV_Results.Columns["Hidden"]!.Index;
+                if (hp.Power == 70) row.Cells[pow].Style.Font = BoldFont;
+                else row.Cells[pow].Style.Font = row.DefaultCellStyle.Font;
+
+                var color = WinFormsUtil.GetHiddenPowerColor(hp.Hidden);
+                row.Cells[pow].Style.BackColor = color;
+                row.Cells[typ].Style.BackColor = color;
+            }
+
+            // IVs
+            if (result is IIVFrame iv)
+            {
+                string[] stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"];
+                byte[] ivs = [iv.HP, iv.Atk, iv.Def, iv.SpA, iv.SpD, iv.Spe];
+                for (var i = 0; i < stats.Length; i++)
                 {
-                    row.Cells[col].Style.Font = BoldFont;
-                    row.Cells[col].Style.ForeColor = Color.OrangeRed;
-                }
-                else if (ivs[i] == 31)
-                {
-                    row.Cells[col].Style.Font = BoldFont;
-                    row.Cells[col].Style.ForeColor = Color.SeaGreen;
-                }
-                else
-                {
-                    row.Cells[col].Style.ForeColor = row.DefaultCellStyle.ForeColor;
-                    row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+                    var col = DGV_Results.Columns[stats[i]]!.Index;
+                    if (ivs[i] == 0)
+                    {
+                        row.Cells[col].Style.Font = BoldFont;
+                        row.Cells[col].Style.ForeColor = Color.OrangeRed;
+                    }
+                    else if (ivs[i] == 31)
+                    {
+                        row.Cells[col].Style.Font = BoldFont;
+                        row.Cells[col].Style.ForeColor = Color.SeaGreen;
+                    }
+                    else
+                    {
+                        row.Cells[col].Style.ForeColor = row.DefaultCellStyle.ForeColor;
+                        row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+                    }
                 }
             }
+        }
+        catch
+        {
+            // Ignore
         }
     }
 
@@ -1563,6 +1587,18 @@ public partial class MainWindow : Form
         Task.Run(async () =>
         {
             var ivstopidFrames = await Core.RNG.Recovery.GetIVsToPID((byte)NUD_App_HP.GetValue(), (byte)NUD_App_Atk.GetValue(), (byte)NUD_App_Def.GetValue(), (byte)NUD_App_SpA.GetValue(), (byte)NUD_App_SpD.GetValue(), (byte)NUD_App_Spe.GetValue());
+
+            var method = (Method)CB_Method.GetSelectedIndex() - 1;
+            if (method is Method.Method1 or Method.Method2 or Method.Method3 or Method.Method4)
+            {
+                ivstopidFrames = [.. ivstopidFrames.Where(f => f.Method == method.ToString())];
+            }
+
+            var nature = CB_Nature.GetSelectedIndex() - 1;
+            if (nature != -1)
+            {
+                ivstopidFrames = [.. ivstopidFrames.Where(f => f.Nature == Core.RNG.Validator.Natures[nature])];
+            }
 
             SetBindingSourceDataSource(ivstopidFrames, BS_IVsToPID);
             SetDataGridViewDataSource(BS_IVsToPID, DGV_Results);

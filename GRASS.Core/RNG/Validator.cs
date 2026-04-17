@@ -3,9 +3,9 @@ using GRASS.Core.Interfaces;
 using PKHeX.Core;
 
 namespace GRASS.Core.RNG;
-internal static class Validator
+public static class Validator
 {
-    internal readonly static IReadOnlyList<string> Natures = Utils.Strings.Natures;
+    public readonly static IReadOnlyList<string> Natures = Utils.Strings.Natures;
     internal readonly static IReadOnlyList<string> Types = Utils.Strings.Types;
     internal readonly static IReadOnlyList<string> Abilities = Utils.Strings.Ability;
     public static bool CheckSID(uint sid, SIDConfig config) => config.SearchMode switch

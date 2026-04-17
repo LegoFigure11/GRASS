@@ -12,7 +12,7 @@ internal interface IGeneratorConfig
     public bool FiltersEnabled { get; set; }
 }
 
-internal interface IIVGeneratorConfig
+public interface IIVGeneratorConfig
 {
     uint[] TargetMinIVs { get; }
     uint[] TargetMaxIVs { get; }

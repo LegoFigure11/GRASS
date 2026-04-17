@@ -29,7 +29,7 @@ namespace GRASS.WinForms;
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
-        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
         GB_Connection = new GroupBox();
         TB_AdvancesIncrease = new TextBox();
@@ -219,6 +219,10 @@ namespace GRASS.WinForms;
         NUD_Wild_HP_Min = new NumericUpDown();
         TP_PIDIV = new TabPage();
         GB_IVsToPID = new GroupBox();
+        L_Method = new Label();
+        CB_Method = new ComboBox();
+        L_Nature = new Label();
+        CB_Nature = new ComboBox();
         NUD_App_Spe = new NumericUpDown();
         NUD_App_SpD = new NumericUpDown();
         NUD_App_SpA = new NumericUpDown();
@@ -2412,6 +2416,10 @@ namespace GRASS.WinForms;
         // 
         // GB_IVsToPID
         // 
+        GB_IVsToPID.Controls.Add(L_Method);
+        GB_IVsToPID.Controls.Add(CB_Method);
+        GB_IVsToPID.Controls.Add(L_Nature);
+        GB_IVsToPID.Controls.Add(CB_Nature);
         GB_IVsToPID.Controls.Add(NUD_App_Spe);
         GB_IVsToPID.Controls.Add(NUD_App_SpD);
         GB_IVsToPID.Controls.Add(NUD_App_SpA);
@@ -2427,10 +2435,46 @@ namespace GRASS.WinForms;
         GB_IVsToPID.Controls.Add(B_IVsToPID);
         GB_IVsToPID.Location = new Point(6, 61);
         GB_IVsToPID.Name = "GB_IVsToPID";
-        GB_IVsToPID.Size = new Size(368, 75);
+        GB_IVsToPID.Size = new Size(368, 97);
         GB_IVsToPID.TabIndex = 1;
         GB_IVsToPID.TabStop = false;
         GB_IVsToPID.Text = "IVs to PID";
+        // 
+        // L_Method
+        // 
+        L_Method.AutoSize = true;
+        L_Method.Location = new Point(-1, 46);
+        L_Method.Name = "L_Method";
+        L_Method.Size = new Size(52, 15);
+        L_Method.TabIndex = 203;
+        L_Method.Text = "Method:";
+        // 
+        // CB_Method
+        // 
+        CB_Method.FormattingEnabled = true;
+        CB_Method.Items.AddRange(new object[] { "Any", "Method 1", "Method 2", "Method 3", "Method 4" });
+        CB_Method.Location = new Point(57, 43);
+        CB_Method.Name = "CB_Method";
+        CB_Method.Size = new Size(120, 23);
+        CB_Method.TabIndex = 202;
+        // 
+        // L_Nature
+        // 
+        L_Nature.AutoSize = true;
+        L_Nature.Location = new Point(188, 46);
+        L_Nature.Name = "L_Nature";
+        L_Nature.Size = new Size(46, 15);
+        L_Nature.TabIndex = 201;
+        L_Nature.Text = "Nature:";
+        // 
+        // CB_Nature
+        // 
+        CB_Nature.FormattingEnabled = true;
+        CB_Nature.Items.AddRange(new object[] { "Ignore", "Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax", "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy", "Careful", "Quirky" });
+        CB_Nature.Location = new Point(240, 43);
+        CB_Nature.Name = "CB_Nature";
+        CB_Nature.Size = new Size(124, 23);
+        CB_Nature.TabIndex = 200;
         // 
         // NUD_App_Spe
         // 
@@ -2536,7 +2580,7 @@ namespace GRASS.WinForms;
         // 
         // B_IVsToPID
         // 
-        B_IVsToPID.Location = new Point(2, 45);
+        B_IVsToPID.Location = new Point(2, 68);
         B_IVsToPID.Name = "B_IVsToPID";
         B_IVsToPID.Size = new Size(364, 25);
         B_IVsToPID.TabIndex = 187;
@@ -2694,8 +2738,8 @@ namespace GRASS.WinForms;
         // 
         DGV_Results.AllowUserToAddRows = false;
         DGV_Results.AllowUserToDeleteRows = false;
-        dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
-        DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+        dataGridViewCellStyle2.BackColor = Color.WhiteSmoke;
+        DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
         DGV_Results.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         DGV_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         DGV_Results.Location = new Point(11, 332);
@@ -3078,5 +3122,9 @@ namespace GRASS.WinForms;
     private Label L_App_Atk;
     private NumericUpDown NUD_App_Atk;
     private BindingSource BS_IVsToPID;
+    private Label L_Method;
+    public ComboBox CB_Method;
+    private Label L_Nature;
+    private ComboBox CB_Nature;
 }
 
