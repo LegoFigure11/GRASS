@@ -883,6 +883,8 @@ public partial class MainWindow : Form
         if (string.IsNullOrEmpty(TB_SS_TargetSeed.GetText())) SetControlText("0", TB_SS_TargetSeed);
         if (string.IsNullOrEmpty(TB_SIDPID.GetText())) SetControlText("0", TB_SIDPID);
         if (string.IsNullOrEmpty(TB_PID.GetText())) SetControlText("0", TB_PID);
+        if (string.IsNullOrEmpty(TB_32to16Seed.GetText())) SetControlText("0", TB_32to16Seed);
+        if (string.IsNullOrEmpty(TB_NaturePairPID.GetText())) SetControlText("0", TB_NaturePairPID);
 
         // Advances
         if (string.IsNullOrEmpty(TB_SIDAdvances.GetText())) SetControlText("0", TB_SIDAdvances);
@@ -895,6 +897,8 @@ public partial class MainWindow : Form
         SetControlText(TB_SS_TargetSeed.GetText().PadLeft(8, '0'), TB_SS_TargetSeed);
         SetControlText(TB_SIDPID.GetText().PadLeft(8, '0'), TB_SIDPID);
         SetControlText(TB_PID.GetText().PadLeft(8, '0'), TB_PID);
+        SetControlText(TB_32to16Seed.GetText().PadLeft(8, '0'), TB_32to16Seed);
+        SetControlText(TB_NaturePairPID.GetText().PadLeft(8, '0'), TB_NaturePairPID);
 
         // IDs
         if (string.IsNullOrEmpty(TB_TID.GetText())) SetControlText("0", TB_TID);
@@ -1605,6 +1609,31 @@ public partial class MainWindow : Form
             SetControlEnabledState(true, B_IVsToPID);
             Frames = [.. ivstopidFrames.Cast<object>()];
         });
+    }
+
+    private void B_32to16_Click(object sender, EventArgs e)
+    {
+        ValidateInputs();
+
+        var seed = uint.Parse(TB_32to16Seed.GetText(), NumberStyles.AllowHexSpecifier);
+        var prev = Core.RNG.Back16.GetLast16(seed);
+        var dist = LCRNG.GetDistance(prev, seed);
+
+        SetControlText($"{prev:X4}", TB_16);
+        SetControlText($"{dist:N0}", TB_16Dist);
+    }
+
+    private void B_NaturePair_Click(object sender, EventArgs e)
+    {
+        ValidateInputs();
+
+        var pid = uint.Parse(TB_NaturePairPID.GetText(), NumberStyles.AllowHexSpecifier);
+
+        List<NaturePairFrame> naturePairFrames = Core.RNG.RNGUtil.GetNaturePairFrames(pid);
+
+        SetBindingSourceDataSource(naturePairFrames, BS_NaturePair);
+        SetDataGridViewDataSource(BS_NaturePair, DGV_Results);
+        Frames = [.. naturePairFrames.Cast<object>()];
     }
 }
 

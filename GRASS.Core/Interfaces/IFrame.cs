@@ -158,3 +158,12 @@ public class IVsToPIDFrame
     public char _34th => GenderVal <= 190 ? 'F' : 'M';
 }
 
+public class NaturePairFrame
+{
+    internal uint _pid { get; set; } = 0;
+    internal byte _nature => _pid.Nature;
+
+    public string PID => $"{_pid:X8}";
+    public string Nature => Validator.Natures[_nature];
+}
+

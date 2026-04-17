@@ -1,4 +1,5 @@
-﻿using PKHeX.Core;
+﻿using GRASS.Core.Interfaces;
+using PKHeX.Core;
 
 namespace GRASS.Core.RNG;
 
@@ -42,5 +43,16 @@ public static class RNGUtil
     public static uint GetShinyValue(uint x) => (x >> 16) ^ (x & 0xFFFF);
 
     public static uint GetShinyXOR(uint pid, uint tsv) => GetShinyValue(GetShinyValue(pid), tsv);
+
+    public static List<NaturePairFrame> GetNaturePairFrames(uint pid)
+    {
+        var f = new List<NaturePairFrame>
+        {
+            new() { _pid = pid },
+            new() { _pid = pid ^ 0x80008000 }
+        };
+
+        return f;
+    }
 }
 
