@@ -217,6 +217,11 @@ namespace GRASS.WinForms;
         L_Wild_HPSpacer = new Label();
         NUD_Wild_HP_Max = new NumericUpDown();
         NUD_Wild_HP_Min = new NumericUpDown();
+        TP_PIDIV = new TabPage();
+        GB_PIDtoIVs = new GroupBox();
+        B_PIDtoIVs = new Button();
+        TB_PID = new TextBox();
+        L_PID = new Label();
         GB_ConnectionSettings = new GroupBox();
         CB_BabyMode_Action = new ComboBox();
         CB_BabyModeDelay = new CheckBox();
@@ -233,6 +238,7 @@ namespace GRASS.WinForms;
         BS_Static = new BindingSource(components);
         BS_Wild = new BindingSource(components);
         B_CopyIVs = new Button();
+        BS_PIDtoIVs = new BindingSource(components);
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -274,6 +280,8 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_Atk_Min).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Max).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Min).BeginInit();
+        TP_PIDIV.SuspendLayout();
+        GB_PIDtoIVs.SuspendLayout();
         GB_ConnectionSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).BeginInit();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
@@ -281,6 +289,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_Wild).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)BS_PIDtoIVs).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -569,6 +578,7 @@ namespace GRASS.WinForms;
         TC_Main.Controls.Add(TP_Seed);
         TC_Main.Controls.Add(TP_Static);
         TC_Main.Controls.Add(TP_Wild);
+        TC_Main.Controls.Add(TP_PIDIV);
         TC_Main.Location = new Point(211, 1);
         TC_Main.Name = "TC_Main";
         TC_Main.SelectedIndex = 0;
@@ -2365,6 +2375,61 @@ namespace GRASS.WinForms;
         NUD_Wild_HP_Min.Size = new Size(32, 23);
         NUD_Wild_HP_Min.TabIndex = 0;
         // 
+        // TP_PIDIV
+        // 
+        TP_PIDIV.Controls.Add(GB_PIDtoIVs);
+        TP_PIDIV.Location = new Point(4, 24);
+        TP_PIDIV.Name = "TP_PIDIV";
+        TP_PIDIV.Padding = new Padding(3);
+        TP_PIDIV.Size = new Size(380, 297);
+        TP_PIDIV.TabIndex = 4;
+        TP_PIDIV.Text = "PID/IV Utils";
+        TP_PIDIV.UseVisualStyleBackColor = true;
+        // 
+        // GB_PIDtoIVs
+        // 
+        GB_PIDtoIVs.Controls.Add(B_PIDtoIVs);
+        GB_PIDtoIVs.Controls.Add(TB_PID);
+        GB_PIDtoIVs.Controls.Add(L_PID);
+        GB_PIDtoIVs.Location = new Point(6, 6);
+        GB_PIDtoIVs.Name = "GB_PIDtoIVs";
+        GB_PIDtoIVs.Size = new Size(368, 53);
+        GB_PIDtoIVs.TabIndex = 0;
+        GB_PIDtoIVs.TabStop = false;
+        GB_PIDtoIVs.Text = "PID to IVs";
+        // 
+        // B_PIDtoIVs
+        // 
+        B_PIDtoIVs.Location = new Point(106, 21);
+        B_PIDtoIVs.Name = "B_PIDtoIVs";
+        B_PIDtoIVs.Size = new Size(256, 25);
+        B_PIDtoIVs.TabIndex = 187;
+        B_PIDtoIVs.Text = "Generate";
+        B_PIDtoIVs.UseVisualStyleBackColor = true;
+        B_PIDtoIVs.Click += B_PIDtoIVs_Click;
+        // 
+        // TB_PID
+        // 
+        TB_PID.CharacterCasing = CharacterCasing.Upper;
+        TB_PID.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_PID.Location = new Point(38, 22);
+        TB_PID.MaxLength = 8;
+        TB_PID.Name = "TB_PID";
+        TB_PID.Size = new Size(62, 22);
+        TB_PID.TabIndex = 9;
+        TB_PID.Text = "01234567";
+        TB_PID.KeyDown += State_HandlePaste;
+        TB_PID.KeyPress += AllowOnlyHex_KeyPress;
+        // 
+        // L_PID
+        // 
+        L_PID.AutoSize = true;
+        L_PID.Location = new Point(4, 24);
+        L_PID.Name = "L_PID";
+        L_PID.Size = new Size(28, 15);
+        L_PID.TabIndex = 10;
+        L_PID.Text = "PID:";
+        // 
         // GB_ConnectionSettings
         // 
         GB_ConnectionSettings.Controls.Add(CB_BabyMode_Action);
@@ -2526,6 +2591,10 @@ namespace GRASS.WinForms;
         B_CopyIVs.UseVisualStyleBackColor = true;
         B_CopyIVs.Click += B_CopyIVs_Click;
         // 
+        // BS_PIDtoIVs
+        // 
+        BS_PIDtoIVs.DataSource = typeof(Core.Interfaces.PIDtoIVsFrame);
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -2597,6 +2666,9 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_Atk_Min).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Max).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_Wild_HP_Min).EndInit();
+        TP_PIDIV.ResumeLayout(false);
+        GB_PIDtoIVs.ResumeLayout(false);
+        GB_PIDtoIVs.PerformLayout();
         GB_ConnectionSettings.ResumeLayout(false);
         GB_ConnectionSettings.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).EndInit();
@@ -2605,6 +2677,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_Wild).EndInit();
+        ((System.ComponentModel.ISupportInitialize)BS_PIDtoIVs).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -2813,5 +2886,11 @@ namespace GRASS.WinForms;
     private BindingSource BS_Wild;
     private Button B_CopyIVs;
     public ComboBox CB_BabyMode_Action;
+    private TabPage TP_PIDIV;
+    private GroupBox GB_PIDtoIVs;
+    public TextBox TB_PID;
+    private Label L_PID;
+    private Button B_PIDtoIVs;
+    private BindingSource BS_PIDtoIVs;
 }
 

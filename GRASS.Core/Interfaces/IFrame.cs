@@ -1,3 +1,4 @@
+using GRASS.Core.Enums;
 using GRASS.Core.RNG;
 using PKHeX.Core;
 
@@ -112,5 +113,27 @@ public class WildFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
     public int Power => ((40 * _HPBitValPower) / 63) + 30;
 
     public string Seed => $"{_seed:X8}";
+}
+
+public class PIDtoIVsFrame : IIVFrame, IHiddenPowerFrame
+{
+    internal uint _seed { get; set; } = 0;
+    internal Method _method { get; set; } = Enums.Method.Method1;
+    internal byte[] _ivs { get; set; } = [];
+
+    public string Seed => $"{_seed:X8}";
+    public string Method => _method.ToString();
+    public byte HP => _ivs[0];
+    public byte Atk => _ivs[1];
+    public byte Def => _ivs[2];
+    public byte SpA => _ivs[3];
+    public byte SpD => _ivs[4];
+    public byte Spe => _ivs[5];
+
+    private int _HPBitValType => ((HP & 1) >> 0) | ((Atk & 1) << 1) | ((Def & 1) << 2) | ((Spe & 1) << 3) | ((SpA & 1) << 4) | ((SpD & 1) << 5);
+    private int _HPBitValPower => ((HP & 2) >> 1) | ((Atk & 2) >> 0) | ((Def & 2) << 1) | ((Spe & 2) << 2) | ((SpA & 2) << 3) | ((SpD & 2) << 4);
+    public string Hidden => $"{Validator.Types[(15 * _HPBitValType / 63) + 1]}";
+    public int Power => ((40 * _HPBitValPower) / 63) + 30;
+
 }
 

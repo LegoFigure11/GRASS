@@ -121,7 +121,7 @@ public partial class MainWindow : Form
 
         SetComboBoxSelectedIndex(0, CB_BabyMode_Action, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Wild_Method, CB_Wild_Nature, CB_Wild_Shiny, CB_Static_Species, CB_Wild_Encounter);
 
-        CB_Game.SelectedIndex = (int)Config.Game;
+        CB_Game.SelectedIndex = Config.Game;
 
         SetControlText("0", TB_InitialSeed);
         SetControlText(string.Empty, TB_CurrentAdvances, TB_AdvancesIncrease, TB_CurrentSeed);
@@ -368,6 +368,17 @@ public partial class MainWindow : Form
                     d.AutoGenerateColumns = true;
                     d.DataSource = source;
 
+                    d.Columns["Method"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["HP"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Atk"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Def"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["SpA"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["SpD"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Spe"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Gender"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Hidden"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Power"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["HP"]?.Width = 50;
                     d.Columns["Atk"]?.Width = 50;
@@ -383,7 +394,17 @@ public partial class MainWindow : Form
             {
                 d.AutoGenerateColumns = true;
                 d.DataSource = source;
-
+                d.Columns["Method"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["HP"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Atk"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Def"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["SpA"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["SpD"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Spe"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Gender"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Hidden"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Power"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["HP"]?.Width = 50;
                 d.Columns["Atk"]?.Width = 50;
@@ -827,6 +848,7 @@ public partial class MainWindow : Form
         if (string.IsNullOrEmpty(TB_Wild_Initial.GetText())) SetControlText("0", TB_Wild_Initial);
         if (string.IsNullOrEmpty(TB_SS_TargetSeed.GetText())) SetControlText("0", TB_SS_TargetSeed);
         if (string.IsNullOrEmpty(TB_SIDPID.GetText())) SetControlText("0", TB_SIDPID);
+        if (string.IsNullOrEmpty(TB_PID.GetText())) SetControlText("0", TB_PID);
 
         // Advances
         if (string.IsNullOrEmpty(TB_SIDAdvances.GetText())) SetControlText("0", TB_SIDAdvances);
@@ -838,6 +860,7 @@ public partial class MainWindow : Form
         SetControlText(TB_InitialSeed.GetText().PadLeft(8, '0'), TB_InitialSeed);
         SetControlText(TB_SS_TargetSeed.GetText().PadLeft(8, '0'), TB_SS_TargetSeed);
         SetControlText(TB_SIDPID.GetText().PadLeft(8, '0'), TB_SIDPID);
+        SetControlText(TB_PID.GetText().PadLeft(8, '0'), TB_PID);
 
         // IDs
         if (string.IsNullOrEmpty(TB_TID.GetText())) SetControlText("0", TB_TID);
@@ -1498,6 +1521,22 @@ public partial class MainWindow : Form
     private void CB_Wild_Delay_CheckedChanged(object sender, EventArgs e)
     {
         SetControlEnabledState(CB_Wild_Delay.GetIsChecked(), NUD_Wild_Delay);
+    }
+
+    private void B_PIDtoIVs_Click(object sender, EventArgs e)
+    {
+        SetControlEnabledState(false, B_PIDtoIVs);
+        ValidateInputs();
+        Task.Run(async () =>
+        {
+            var seed = uint.Parse(TB_PID.GetText(), NumberStyles.AllowHexSpecifier);
+            var pidtoivFrames = await Core.RNG.RNGUtil.GetPIDtoIVs(seed);
+
+            SetBindingSourceDataSource(pidtoivFrames, BS_PIDtoIVs);
+            SetDataGridViewDataSource(BS_PIDtoIVs, DGV_Results);
+            SetControlEnabledState(true, B_PIDtoIVs);
+            Frames = [.. pidtoivFrames.Cast<object>()];
+        });
     }
 }
 
