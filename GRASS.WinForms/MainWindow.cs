@@ -10,8 +10,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
-using static GRASS.Core.Utils;
 using static GRASS.Core.Encounters;
+using static GRASS.Core.Utils;
 
 namespace GRASS.WinForms;
 
@@ -1634,6 +1634,52 @@ public partial class MainWindow : Form
         SetBindingSourceDataSource(naturePairFrames, BS_NaturePair);
         SetDataGridViewDataSource(BS_NaturePair, DGV_Results);
         Frames = [.. naturePairFrames.Cast<object>()];
+    }
+
+    private void CalcExpectedResets(uint seeds)
+    {
+        if (seeds != 0)
+        {
+            ulong denom = 0xFFFFu << 16;
+            ulong result = denom / seeds;
+
+            uint intPart = (uint)(result >> 16);
+            uint fractPart = (uint)(result & 0xFFFF);
+
+            string dp = fractPart == 0 ? string.Empty : $".{fractPart}";
+            SetControlText($"{intPart:N0}{dp}", TB_ExpectedResets);
+        }
+        else
+        {
+            SetControlText("ERR! div by 0", TB_ExpectedResets);
+        }
+    }
+
+    private void B_ExpectedResets_Click(object sender, EventArgs e)
+    {
+        ValidateInputs();
+        Task.Run(async () =>
+        {
+            var seeds = 0u;
+            if (RB_SS_Number.GetIsChecked())
+            {
+                seeds = NUD_SS_NumSeeds.GetValue();
+            }
+            else if (RB_SS_SpecificSeed.GetIsChecked())
+            {
+                seeds = (uint)Seeds.Count;
+            }
+            else
+            {
+                var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
+                var max = uint.Parse(TB_SS_Adv.GetText());
+
+                seeds = await Core.RNG.Back16.CountSeedsInRange(seed, max).ConfigureAwait(false);
+                SetControlText($"{seeds:N0}", TB_SS_SeedCount);
+            }
+
+            CalcExpectedResets(seeds);
+        });
     }
 }
 

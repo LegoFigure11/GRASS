@@ -83,6 +83,9 @@ namespace GRASS.WinForms;
         L_LoadedTIDs = new Label();
         TP_Seed = new TabPage();
         GB_SeedReset = new GroupBox();
+        L_ExpectedResets = new Label();
+        TB_ExpectedResets = new TextBox();
+        B_ExpectedResets = new Button();
         B_CancelSeedReset = new Button();
         B_ResetSeed = new Button();
         L_SS_SeedList = new Label();
@@ -940,6 +943,9 @@ namespace GRASS.WinForms;
         // 
         // GB_SeedReset
         // 
+        GB_SeedReset.Controls.Add(L_ExpectedResets);
+        GB_SeedReset.Controls.Add(TB_ExpectedResets);
+        GB_SeedReset.Controls.Add(B_ExpectedResets);
         GB_SeedReset.Controls.Add(B_CancelSeedReset);
         GB_SeedReset.Controls.Add(B_ResetSeed);
         GB_SeedReset.Controls.Add(L_SS_SeedList);
@@ -964,6 +970,39 @@ namespace GRASS.WinForms;
         GB_SeedReset.Size = new Size(368, 293);
         GB_SeedReset.TabIndex = 9;
         GB_SeedReset.TabStop = false;
+        // 
+        // L_ExpectedResets
+        // 
+        L_ExpectedResets.AutoSize = true;
+        L_ExpectedResets.Location = new Point(82, 238);
+        L_ExpectedResets.Name = "L_ExpectedResets";
+        L_ExpectedResets.Size = new Size(94, 15);
+        L_ExpectedResets.TabIndex = 34;
+        L_ExpectedResets.Text = "Expected Resets:";
+        // 
+        // TB_ExpectedResets
+        // 
+        TB_ExpectedResets.CharacterCasing = CharacterCasing.Lower;
+        TB_ExpectedResets.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_ExpectedResets.Location = new Point(185, 236);
+        TB_ExpectedResets.MaxLength = 17;
+        TB_ExpectedResets.Name = "TB_ExpectedResets";
+        TB_ExpectedResets.ReadOnly = true;
+        TB_ExpectedResets.Size = new Size(98, 22);
+        TB_ExpectedResets.TabIndex = 33;
+        TB_ExpectedResets.TabStop = false;
+        TB_ExpectedResets.Text = "0";
+        TB_ExpectedResets.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_ExpectedResets
+        // 
+        B_ExpectedResets.Location = new Point(287, 235);
+        B_ExpectedResets.Name = "B_ExpectedResets";
+        B_ExpectedResets.Size = new Size(75, 25);
+        B_ExpectedResets.TabIndex = 32;
+        B_ExpectedResets.Text = "Calculate";
+        B_ExpectedResets.UseVisualStyleBackColor = true;
+        B_ExpectedResets.Click += B_ExpectedResets_Click;
         // 
         // B_CancelSeedReset
         // 
@@ -990,7 +1029,7 @@ namespace GRASS.WinForms;
         // 
         L_SS_SeedList.AutoSize = true;
         L_SS_SeedList.Enabled = false;
-        L_SS_SeedList.Location = new Point(94, 231);
+        L_SS_SeedList.Location = new Point(94, 213);
         L_SS_SeedList.Name = "L_SS_SeedList";
         L_SS_SeedList.Size = new Size(117, 15);
         L_SS_SeedList.TabIndex = 29;
@@ -999,7 +1038,7 @@ namespace GRASS.WinForms;
         // B_SS_SeedList
         // 
         B_SS_SeedList.Enabled = false;
-        B_SS_SeedList.Location = new Point(287, 226);
+        B_SS_SeedList.Location = new Point(287, 208);
         B_SS_SeedList.Name = "B_SS_SeedList";
         B_SS_SeedList.Size = new Size(75, 25);
         B_SS_SeedList.TabIndex = 28;
@@ -1010,7 +1049,7 @@ namespace GRASS.WinForms;
         // RB_SS_SpecificSeed
         // 
         RB_SS_SpecificSeed.AutoSize = true;
-        RB_SS_SpecificSeed.Location = new Point(6, 201);
+        RB_SS_SpecificSeed.Location = new Point(6, 183);
         RB_SS_SpecificSeed.Name = "RB_SS_SpecificSeed";
         RB_SS_SpecificSeed.Size = new Size(155, 19);
         RB_SS_SpecificSeed.TabIndex = 26;
@@ -1022,7 +1061,7 @@ namespace GRASS.WinForms;
         // 
         L_SS_SeedCount.AutoSize = true;
         L_SS_SeedCount.Enabled = false;
-        L_SS_SeedCount.Location = new Point(55, 173);
+        L_SS_SeedCount.Location = new Point(55, 159);
         L_SS_SeedCount.Name = "L_SS_SeedCount";
         L_SS_SeedCount.Size = new Size(121, 15);
         L_SS_SeedCount.TabIndex = 24;
@@ -1033,7 +1072,7 @@ namespace GRASS.WinForms;
         TB_SS_SeedCount.CharacterCasing = CharacterCasing.Lower;
         TB_SS_SeedCount.Enabled = false;
         TB_SS_SeedCount.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_SeedCount.Location = new Point(185, 171);
+        TB_SS_SeedCount.Location = new Point(185, 157);
         TB_SS_SeedCount.MaxLength = 13;
         TB_SS_SeedCount.Name = "TB_SS_SeedCount";
         TB_SS_SeedCount.ReadOnly = true;
@@ -1046,7 +1085,7 @@ namespace GRASS.WinForms;
         // B_SS_CountSeeds
         // 
         B_SS_CountSeeds.Enabled = false;
-        B_SS_CountSeeds.Location = new Point(287, 170);
+        B_SS_CountSeeds.Location = new Point(287, 156);
         B_SS_CountSeeds.Name = "B_SS_CountSeeds";
         B_SS_CountSeeds.Size = new Size(75, 25);
         B_SS_CountSeeds.TabIndex = 22;
@@ -1058,7 +1097,7 @@ namespace GRASS.WinForms;
         // 
         L_SS_Adv.AutoSize = true;
         L_SS_Adv.Enabled = false;
-        L_SS_Adv.Location = new Point(86, 148);
+        L_SS_Adv.Location = new Point(86, 134);
         L_SS_Adv.Name = "L_SS_Adv";
         L_SS_Adv.Size = new Size(90, 15);
         L_SS_Adv.TabIndex = 21;
@@ -1069,7 +1108,7 @@ namespace GRASS.WinForms;
         TB_SS_Adv.CharacterCasing = CharacterCasing.Lower;
         TB_SS_Adv.Enabled = false;
         TB_SS_Adv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_Adv.Location = new Point(287, 146);
+        TB_SS_Adv.Location = new Point(287, 132);
         TB_SS_Adv.MaxLength = 13;
         TB_SS_Adv.Name = "TB_SS_Adv";
         TB_SS_Adv.Size = new Size(75, 22);
@@ -1083,7 +1122,7 @@ namespace GRASS.WinForms;
         // L_SS_NumSeeds
         // 
         L_SS_NumSeeds.AutoSize = true;
-        L_SS_NumSeeds.Location = new Point(136, 69);
+        L_SS_NumSeeds.Location = new Point(136, 59);
         L_SS_NumSeeds.Name = "L_SS_NumSeeds";
         L_SS_NumSeeds.Size = new Size(40, 15);
         L_SS_NumSeeds.TabIndex = 19;
@@ -1092,7 +1131,7 @@ namespace GRASS.WinForms;
         // L_SS_MaxAdv
         // 
         L_SS_MaxAdv.AutoSize = true;
-        L_SS_MaxAdv.Location = new Point(86, 95);
+        L_SS_MaxAdv.Location = new Point(86, 85);
         L_SS_MaxAdv.Name = "L_SS_MaxAdv";
         L_SS_MaxAdv.Size = new Size(90, 15);
         L_SS_MaxAdv.TabIndex = 18;
@@ -1102,7 +1141,7 @@ namespace GRASS.WinForms;
         // 
         TB_SS_MaxAdv.CharacterCasing = CharacterCasing.Lower;
         TB_SS_MaxAdv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_MaxAdv.Location = new Point(185, 93);
+        TB_SS_MaxAdv.Location = new Point(185, 83);
         TB_SS_MaxAdv.MaxLength = 13;
         TB_SS_MaxAdv.Name = "TB_SS_MaxAdv";
         TB_SS_MaxAdv.ReadOnly = true;
@@ -1114,7 +1153,7 @@ namespace GRASS.WinForms;
         // 
         // B_SS_FindMax
         // 
-        B_SS_FindMax.Location = new Point(287, 92);
+        B_SS_FindMax.Location = new Point(287, 82);
         B_SS_FindMax.Name = "B_SS_FindMax";
         B_SS_FindMax.Size = new Size(75, 25);
         B_SS_FindMax.TabIndex = 10;
@@ -1124,7 +1163,7 @@ namespace GRASS.WinForms;
         // 
         // NUD_SS_NumSeeds
         // 
-        NUD_SS_NumSeeds.Location = new Point(287, 67);
+        NUD_SS_NumSeeds.Location = new Point(287, 57);
         NUD_SS_NumSeeds.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
         NUD_SS_NumSeeds.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         NUD_SS_NumSeeds.Name = "NUD_SS_NumSeeds";
@@ -1136,7 +1175,7 @@ namespace GRASS.WinForms;
         // RB_SS_Distance
         // 
         RB_SS_Distance.AutoSize = true;
-        RB_SS_Distance.Location = new Point(6, 125);
+        RB_SS_Distance.Location = new Point(6, 111);
         RB_SS_Distance.Name = "RB_SS_Distance";
         RB_SS_Distance.Size = new Size(173, 19);
         RB_SS_Distance.TabIndex = 1;
@@ -1148,7 +1187,7 @@ namespace GRASS.WinForms;
         // 
         TB_SS_TargetSeed.CharacterCasing = CharacterCasing.Upper;
         TB_SS_TargetSeed.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_TargetSeed.Location = new Point(300, 22);
+        TB_SS_TargetSeed.Location = new Point(300, 12);
         TB_SS_TargetSeed.MaxLength = 8;
         TB_SS_TargetSeed.Name = "TB_SS_TargetSeed";
         TB_SS_TargetSeed.Size = new Size(62, 22);
@@ -1160,7 +1199,7 @@ namespace GRASS.WinForms;
         // L_SS_TargetSeed
         // 
         L_SS_TargetSeed.AutoSize = true;
-        L_SS_TargetSeed.Location = new Point(224, 24);
+        L_SS_TargetSeed.Location = new Point(224, 14);
         L_SS_TargetSeed.Name = "L_SS_TargetSeed";
         L_SS_TargetSeed.Size = new Size(70, 15);
         L_SS_TargetSeed.TabIndex = 8;
@@ -1170,7 +1209,7 @@ namespace GRASS.WinForms;
         // 
         RB_SS_Number.AutoSize = true;
         RB_SS_Number.Checked = true;
-        RB_SS_Number.Location = new Point(6, 46);
+        RB_SS_Number.Location = new Point(6, 36);
         RB_SS_Number.Name = "RB_SS_Number";
         RB_SS_Number.Size = new Size(170, 19);
         RB_SS_Number.TabIndex = 0;
@@ -2429,7 +2468,7 @@ namespace GRASS.WinForms;
         TP_PIDIV.Padding = new Padding(3);
         TP_PIDIV.Size = new Size(380, 297);
         TP_PIDIV.TabIndex = 4;
-        TP_PIDIV.Text = "PID/IV Utils";
+        TP_PIDIV.Text = "Tools";
         TP_PIDIV.UseVisualStyleBackColor = true;
         // 
         // GB_NaturePair
@@ -3296,5 +3335,8 @@ namespace GRASS.WinForms;
     public TextBox TB_NaturePairPID;
     private Label L_NaturePairPID;
     private BindingSource BS_NaturePair;
+    private Label L_ExpectedResets;
+    public TextBox TB_ExpectedResets;
+    private Button B_ExpectedResets;
 }
 
