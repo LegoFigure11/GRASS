@@ -774,7 +774,7 @@ namespace GRASS.WinForms;
         // 
         NUD_SID_Delay.Enabled = false;
         NUD_SID_Delay.Location = new Point(238, 65);
-        NUD_SID_Delay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_SID_Delay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         NUD_SID_Delay.Name = "NUD_SID_Delay";
         NUD_SID_Delay.Size = new Size(123, 23);
         NUD_SID_Delay.TabIndex = 168;
@@ -1390,7 +1390,7 @@ namespace GRASS.WinForms;
         // 
         NUD_Static_Delay.Enabled = false;
         NUD_Static_Delay.Location = new Point(72, 218);
-        NUD_Static_Delay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_Static_Delay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         NUD_Static_Delay.Name = "NUD_Static_Delay";
         NUD_Static_Delay.Size = new Size(123, 23);
         NUD_Static_Delay.TabIndex = 166;
@@ -2025,7 +2025,7 @@ namespace GRASS.WinForms;
         // 
         NUD_Wild_Delay.Enabled = false;
         NUD_Wild_Delay.Location = new Point(72, 218);
-        NUD_Wild_Delay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_Wild_Delay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         NUD_Wild_Delay.Name = "NUD_Wild_Delay";
         NUD_Wild_Delay.Size = new Size(123, 23);
         NUD_Wild_Delay.TabIndex = 166;
@@ -2822,19 +2822,19 @@ namespace GRASS.WinForms;
         // NUD_BabyModeDelay
         // 
         NUD_BabyModeDelay.Enabled = false;
-        NUD_BabyModeDelay.Location = new Point(88, 65);
-        NUD_BabyModeDelay.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_BabyModeDelay.Location = new Point(84, 65);
+        NUD_BabyModeDelay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         NUD_BabyModeDelay.Name = "NUD_BabyModeDelay";
-        NUD_BabyModeDelay.Size = new Size(40, 23);
+        NUD_BabyModeDelay.Size = new Size(44, 23);
         NUD_BabyModeDelay.TabIndex = 175;
         NUD_BabyModeDelay.TextAlign = HorizontalAlignment.Right;
-        NUD_BabyModeDelay.Value = new decimal(new int[] { 999, 0, 0, 0 });
+        NUD_BabyModeDelay.Value = new decimal(new int[] { 100, 0, 0, 0 });
         // 
         // B_BabyMode_Cancel
         // 
         B_BabyMode_Cancel.Location = new Point(11, 90);
         B_BabyMode_Cancel.Name = "B_BabyMode_Cancel";
-        B_BabyMode_Cancel.Size = new Size(71, 25);
+        B_BabyMode_Cancel.Size = new Size(66, 25);
         B_BabyMode_Cancel.TabIndex = 174;
         B_BabyMode_Cancel.Text = "Cancel";
         B_BabyMode_Cancel.UseVisualStyleBackColor = true;
@@ -2842,9 +2842,9 @@ namespace GRASS.WinForms;
         // 
         // B_BabyMode_Go
         // 
-        B_BabyMode_Go.Location = new Point(88, 90);
+        B_BabyMode_Go.Location = new Point(83, 90);
         B_BabyMode_Go.Name = "B_BabyMode_Go";
-        B_BabyMode_Go.Size = new Size(118, 25);
+        B_BabyMode_Go.Size = new Size(123, 25);
         B_BabyMode_Go.TabIndex = 173;
         B_BabyMode_Go.Text = "Go!";
         B_BabyMode_Go.UseVisualStyleBackColor = true;
@@ -2863,10 +2863,10 @@ namespace GRASS.WinForms;
         // 
         TB_BabyMode.CharacterCasing = CharacterCasing.Upper;
         TB_BabyMode.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_BabyMode.Location = new Point(88, 41);
+        TB_BabyMode.Location = new Point(83, 41);
         TB_BabyMode.MaxLength = 10;
         TB_BabyMode.Name = "TB_BabyMode";
-        TB_BabyMode.Size = new Size(118, 22);
+        TB_BabyMode.Size = new Size(123, 22);
         TB_BabyMode.TabIndex = 172;
         TB_BabyMode.TextAlign = HorizontalAlignment.Right;
         TB_BabyMode.KeyDown += Dec_HandlePaste;
