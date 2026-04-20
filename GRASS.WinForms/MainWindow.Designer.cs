@@ -974,11 +974,11 @@ namespace GRASS.WinForms;
         // L_ExpectedResets
         // 
         L_ExpectedResets.AutoSize = true;
-        L_ExpectedResets.Location = new Point(82, 238);
+        L_ExpectedResets.Location = new Point(34, 238);
         L_ExpectedResets.Name = "L_ExpectedResets";
-        L_ExpectedResets.Size = new Size(94, 15);
+        L_ExpectedResets.Size = new Size(142, 15);
         L_ExpectedResets.TabIndex = 34;
-        L_ExpectedResets.Text = "Expected Resets:";
+        L_ExpectedResets.Text = "Average/Expected Resets:";
         // 
         // TB_ExpectedResets
         // 
