@@ -521,8 +521,8 @@ public partial class MainWindow : Form
         var underscore = st.IndexOf('_');
         var page = st[..underscore];
         var skill = st[(underscore + 1)..];
-        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
-        var val = ModifierKeys == Keys.Control ? 30 : 31;
+        List<string> stats = (ModifierKeys & Keys.Shift) == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
+        var val = (ModifierKeys & Keys.Control) == Keys.Control ? 1 : 0;
         foreach (var stat in stats)
         {
             var min = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Min", true).FirstOrDefault()!;
@@ -538,8 +538,8 @@ public partial class MainWindow : Form
         var underscore = st.IndexOf('_');
         var page = st[..underscore];
         var skill = st[(underscore + 1)..];
-        List<string> stats = ModifierKeys == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
-        var val = ModifierKeys == Keys.Control ? 1 : 0;
+        List<string> stats = (ModifierKeys & Keys.Shift) == Keys.Shift ? ["HP", "Atk", "Def", "SpA", "SpD", "Spe"] : [skill];
+        var val = (ModifierKeys & Keys.Control) == Keys.Control ? 1 : 0;
         foreach (var stat in stats)
         {
             var min = (NumericUpDown)Controls.Find($"NUD_{page}_{stat}_Min", true).FirstOrDefault()!;
