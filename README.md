@@ -11,7 +11,7 @@ _by [@LegoFigure11](https://github.com/LegoFigure11/)_
 
 Work-in-progress RNG Tool and sys-botbase client for Pok&eacute;mon FireRed and LeafGreen for the Nintendo Switch.
 
-![Tool screenshot](https://legofigure11.github.io/tools/external/GRASS/readme.png)
+![Tool screenshot](https://legofigure11.github.io/tools/desktop/res/GRASS/readme.png)
 
 <!--A comprehensive usage guide brought to you by [Billo-PS](https://github.com/Billo-PS) can be found **[here](https://billo-guides.github.io/)**.
 
@@ -24,8 +24,8 @@ Work-in-progress RNG Tool and sys-botbase client for Pok&eacute;mon FireRed and 
 
 ## Credits and thanks to
 
-* [@Lusamine](https://github.com/Lusamine/) for research and [moarencounterbots](https://github.com/Lusamine/SysBot.NET/tree/moarencounterbots/SysBot.Pokemon/FRLG) from where offsets and RAM reading methods were taken.
-* [@Billo-PS](https://github.com/Billo-PS) for research and your endless patience and testing, as well as your incredible guides.
+* [@Lusamine](https://github.com/Lusamine/) for research and [moarencounterbots](https://github.com/Lusamine/SysBot.NET/tree/moarencounterbots/SysBot.Pokemon/FRLG/) from where offsets and RAM reading methods were taken.
+* [@Billo-PS](https://github.com/Billo-PS/) for research and your endless patience and testing, as well as your incredible guides.
 
 ## Disclaimer
 
