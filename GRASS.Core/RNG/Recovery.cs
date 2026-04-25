@@ -204,70 +204,39 @@ public static class Recovery
 
     private static (List<uint> AB, List<uint> A_C) GetPIDSeeds(uint pid)
     {
-        List<uint> AB = [];
-        List<uint> A_C = [];
+        Span<uint> ab = stackalloc uint[LCRNG.MaxCountSeedsIV];
+        Span<uint> ac = stackalloc uint[LCRNG.MaxCountSeedsIV];
 
-        uint targetLow = pid & 0xFFFF;
-        uint targetHigh = pid >> 16;
+        var first = (pid & 0xFFFF) << 16;
+        var second = pid >> 16 << 16;
 
-        for (ushort i = 0; i < 0xFFFF; i++)
-        {
-            var seed = (targetLow << 16) | i; // A
-            var copy = seed;
-            var B = LCRNG.Next16(ref seed);
-            if (B == targetHigh)
-            {
-                AB.Add(LCRNG.Prev(copy));
-            }
-            var _C = LCRNG.Next16(ref seed);
-            if (_C == targetHigh)
-            {
-                A_C.Add(LCRNG.Prev(copy));
-            }
-        }
+        var ct1 = LCRNGReversal.GetSeeds(ab, first, second);
+        var ct2 = LCRNGReversalSkip.GetSeeds(ac, first, second);
 
+        var AB = new List<uint>();
+        var A_C = new List<uint>();
+
+        for (var i = 0; i < ct1; i++) AB.Add(ab[i]);
+        for (var i = 0; i < ct2; i++) A_C.Add(ac[i]);
         return (AB, A_C);
     }
 
     private static (List<uint> _123, List<uint> _4) GetIVSeeds(byte hp, byte atk, byte def, byte spa, byte spd, byte spe)
     {
-        List<uint> _123 = [];
-        List<uint> _4 = [];
+        Span<uint> cd = stackalloc uint[LCRNG.MaxCountSeedsIV];
+        Span<uint> de = stackalloc uint[LCRNG.MaxCountSeedsIV];
 
-        var ivHigh = (uint)(hp | (atk << 5) | (def << 10)); // C/D
-        var ivLow = (uint)(spe | (spa << 5) | (spd << 10)); // D/E
+        var first = (uint)((hp << 0) | (atk << 5) | (def << 10)) << 16;
+        var second = (uint)((spe << 0) | (spa << 5) | (spd << 10)) << 16;
 
-        for (ushort i = 0; i < 0xFFFF; i++)
-        {
-            var seed = (ivHigh << 16) | i; // C/D
-            var copy = seed;
-            var DE = LCRNG.Next16(ref seed);
-            if (DE == ivLow || DE == (ivLow ^ 0x8000))
-            {
-                _123.Add(LCRNG.Prev(copy));
-            }
-            var E = LCRNG.Next16(ref seed);
-            if (E == ivLow || E == (ivLow ^ 0x8000))
-            {
-                _4.Add(LCRNG.Prev(copy));
-            }
-        }
+        var ct1 = LCRNGReversal.GetSeedsIVs(cd, first, second);
+        var ct2 = LCRNGReversalSkip.GetSeedsIVs(de, first, second);
 
-        for (ushort i = 0; i < 0xFFFF; i++)
-        {
-            var seed = ((ivHigh << 16) | i) ^ 0x80008000; // C/D
-            var copy = seed;
-            var DE = LCRNG.Next16(ref seed);
-            if (DE == ivLow || DE == (ivLow ^ 0x8000))
-            {
-                _123.Add(LCRNG.Prev(copy));
-            }
-            var E = LCRNG.Next16(ref seed);
-            if (E == ivLow || E == (ivLow ^ 0x8000))
-            {
-                _4.Add(LCRNG.Prev(copy));
-            }
-        }
+        var _123 = new List<uint>();
+        var _4 = new List<uint>();
+
+        for (var i = 0; i < ct1; i++) _123.Add(cd[i]);
+        for (var i = 0; i < ct2; i++) _4.Add(de[i]);
 
         return (_123, _4);
     }
