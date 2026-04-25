@@ -1416,14 +1416,20 @@ public partial class MainWindow : Form
 
             if (Config.ColorHiddenPowerResults && result is IHiddenPowerFrame hp)
             {
-                var pow = DGV_Results.Columns["Power"]!.Index;
-                var typ = DGV_Results.Columns["Hidden"]!.Index;
-                if (hp.Power == 70) row.Cells[pow].Style.Font = BoldFont;
-                else row.Cells[pow].Style.Font = row.DefaultCellStyle.Font;
+                var _pow = DGV_Results.Columns["Power"];
+                var _hid = DGV_Results.Columns["Hidden"];
 
-                var color = WinFormsUtil.GetHiddenPowerColor(hp.Hidden);
-                row.Cells[pow].Style.BackColor = color;
-                row.Cells[typ].Style.BackColor = color;
+                if (_pow is not null && _hid is not null)
+                {
+                    var pow = _pow.Index;
+                    var typ = _hid.Index;
+                    if (hp.Power == 70) row.Cells[pow].Style.Font = BoldFont;
+                    else row.Cells[pow].Style.Font = row.DefaultCellStyle.Font;
+
+                    var color = WinFormsUtil.GetHiddenPowerColor(hp.Hidden);
+                    row.Cells[pow].Style.BackColor = color;
+                    row.Cells[typ].Style.BackColor = color;
+                }
             }
 
             // IVs
@@ -1433,21 +1439,25 @@ public partial class MainWindow : Form
                 byte[] ivs = [iv.HP, iv.Atk, iv.Def, iv.SpA, iv.SpD, iv.Spe];
                 for (var i = 0; i < stats.Length; i++)
                 {
-                    var col = DGV_Results.Columns[stats[i]]!.Index;
-                    if (ivs[i] == 0)
+                    var _col = DGV_Results.Columns[stats[i]];
+                    if (_col != null)
                     {
-                        row.Cells[col].Style.Font = BoldFont;
-                        row.Cells[col].Style.ForeColor = Color.OrangeRed;
-                    }
-                    else if (ivs[i] == 31)
-                    {
-                        row.Cells[col].Style.Font = BoldFont;
-                        row.Cells[col].Style.ForeColor = Color.SeaGreen;
-                    }
-                    else
-                    {
-                        row.Cells[col].Style.ForeColor = row.DefaultCellStyle.ForeColor;
-                        row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+                        var col = _col.Index;
+                        if (ivs[i] == 0)
+                        {
+                            row.Cells[col].Style.Font = BoldFont;
+                            row.Cells[col].Style.ForeColor = Color.OrangeRed;
+                        }
+                        else if (ivs[i] == 31)
+                        {
+                            row.Cells[col].Style.Font = BoldFont;
+                            row.Cells[col].Style.ForeColor = Color.SeaGreen;
+                        }
+                        else
+                        {
+                            row.Cells[col].Style.ForeColor = row.DefaultCellStyle.ForeColor;
+                            row.Cells[col].Style.Font = row.DefaultCellStyle.Font;
+                        }
                     }
                 }
             }
