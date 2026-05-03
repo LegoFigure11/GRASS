@@ -56,6 +56,79 @@ namespace GRASS.WinForms;
         B_ReadWildPokemon = new Button();
         TB_Wild = new TextBox();
         TC_Main = new TabControl();
+        TP_Searcher = new TabPage();
+        B_Finder_Search = new Button();
+        L_Finder_Method = new Label();
+        CB_Finder_Method = new ComboBox();
+        L_Finder_Species = new Label();
+        CB_Finder_Species = new ComboBox();
+        CB_Finder_Roamer = new CheckBox();
+        GB_Finder_Filters = new GroupBox();
+        L_Finder_Spe = new Label();
+        L_Finder_SpA = new Label();
+        L_Finder_Nature = new Label();
+        CB_Finder_Nature = new ComboBox();
+        CB_Finder_RarePID = new CheckBox();
+        L_Finder_Shiny = new Label();
+        CB_Finder_Shiny = new ComboBox();
+        B_Finder_Spe_Max = new Button();
+        B_Finder_Spe_Min = new Button();
+        L_Finder_SpeSpacer = new Label();
+        NUD_Finder_Spe_Max = new NumericUpDown();
+        NUD_Finder_Spe_Min = new NumericUpDown();
+        B_Finder_SpD_Max = new Button();
+        B_Finder_SpD_Min = new Button();
+        L_Finder_SpD = new Label();
+        L_Finder_SpDSpacer = new Label();
+        NUD_Finder_SpD_Max = new NumericUpDown();
+        NUD_Finder_SpD_Min = new NumericUpDown();
+        B_Finder_SpA_Max = new Button();
+        B_Finder_SpA_Min = new Button();
+        L_Finder_SpASpacer = new Label();
+        NUD_Finder_SpA_Max = new NumericUpDown();
+        NUD_Finder_SpA_Min = new NumericUpDown();
+        B_Finder_Def_Max = new Button();
+        B_Finder_Def_Min = new Button();
+        L_Finder_Def = new Label();
+        L_Finder_DefSpacer = new Label();
+        NUD_Finder_Def_Max = new NumericUpDown();
+        NUD_Finder_Def_Min = new NumericUpDown();
+        B_Finder_Atk_Max = new Button();
+        B_Finder_Atk_Min = new Button();
+        L_Finder_Atk = new Label();
+        L_Finder_AtkSpacer = new Label();
+        NUD_Finder_Atk_Max = new NumericUpDown();
+        NUD_Finder_Atk_Min = new NumericUpDown();
+        B_Finder_HP_Max = new Button();
+        B_Finder_HP_Min = new Button();
+        L_Finder_HP = new Label();
+        L_Finder_HPSpacer = new Label();
+        NUD_Finder_HP_Max = new NumericUpDown();
+        NUD_Finder_HP_Min = new NumericUpDown();
+        TP_Seed = new TabPage();
+        GB_SeedReset = new GroupBox();
+        L_ExpectedResets = new Label();
+        TB_ExpectedResets = new TextBox();
+        B_ExpectedResets = new Button();
+        B_CancelSeedReset = new Button();
+        B_ResetSeed = new Button();
+        L_SS_SeedList = new Label();
+        B_SS_SeedList = new Button();
+        RB_SS_SpecificSeed = new RadioButton();
+        L_SS_SeedCount = new Label();
+        TB_SS_SeedCount = new TextBox();
+        B_SS_CountSeeds = new Button();
+        L_SS_Adv = new Label();
+        TB_SS_Adv = new TextBox();
+        L_SS_NumSeeds = new Label();
+        L_SS_MaxAdv = new Label();
+        TB_SS_MaxAdv = new TextBox();
+        B_SS_FindMax = new Button();
+        NUD_SS_NumSeeds = new NumericUpDown();
+        RB_SS_Distance = new RadioButton();
+        TB_SS_TargetSeed = new TextBox();
+        L_SS_TargetSeed = new Label();
+        RB_SS_Number = new RadioButton();
         TP_IDs = new TabPage();
         GB_SID = new GroupBox();
         B_ReadTempTID = new Button();
@@ -81,30 +154,6 @@ namespace GRASS.WinForms;
         B_TID_Reset = new Button();
         B_TID_EditList = new Button();
         L_LoadedTIDs = new Label();
-        TP_Seed = new TabPage();
-        GB_SeedReset = new GroupBox();
-        L_ExpectedResets = new Label();
-        TB_ExpectedResets = new TextBox();
-        B_ExpectedResets = new Button();
-        B_CancelSeedReset = new Button();
-        B_ResetSeed = new Button();
-        L_SS_SeedList = new Label();
-        B_SS_SeedList = new Button();
-        RB_SS_SpecificSeed = new RadioButton();
-        L_SS_SeedCount = new Label();
-        TB_SS_SeedCount = new TextBox();
-        B_SS_CountSeeds = new Button();
-        L_SS_Adv = new Label();
-        TB_SS_Adv = new TextBox();
-        L_SS_NumSeeds = new Label();
-        L_SS_MaxAdv = new Label();
-        TB_SS_MaxAdv = new TextBox();
-        B_SS_FindMax = new Button();
-        NUD_SS_NumSeeds = new NumericUpDown();
-        RB_SS_Distance = new RadioButton();
-        TB_SS_TargetSeed = new TextBox();
-        L_SS_TargetSeed = new Label();
-        RB_SS_Number = new RadioButton();
         TP_Static = new TabPage();
         L_Static_Method = new Label();
         CB_Static_Method = new ComboBox();
@@ -278,13 +327,27 @@ namespace GRASS.WinForms;
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
         TC_Main.SuspendLayout();
+        TP_Searcher.SuspendLayout();
+        GB_Finder_Filters.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Spe_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Spe_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpD_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpD_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpA_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpA_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Def_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Def_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Atk_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Atk_Min).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_HP_Max).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_HP_Min).BeginInit();
+        TP_Seed.SuspendLayout();
+        GB_SeedReset.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).BeginInit();
         TP_IDs.SuspendLayout();
         GB_SID.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_SID_Delay).BeginInit();
         groupBox1.SuspendLayout();
-        TP_Seed.SuspendLayout();
-        GB_SeedReset.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).BeginInit();
         TP_Static.SuspendLayout();
         GB_Static_Filters.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_Static_Delay).BeginInit();
@@ -620,8 +683,9 @@ namespace GRASS.WinForms;
         // 
         // TC_Main
         // 
-        TC_Main.Controls.Add(TP_IDs);
+        TC_Main.Controls.Add(TP_Searcher);
         TC_Main.Controls.Add(TP_Seed);
+        TC_Main.Controls.Add(TP_IDs);
         TC_Main.Controls.Add(TP_Static);
         TC_Main.Controls.Add(TP_Wild);
         TC_Main.Controls.Add(TP_PIDIV);
@@ -630,6 +694,798 @@ namespace GRASS.WinForms;
         TC_Main.SelectedIndex = 0;
         TC_Main.Size = new Size(388, 325);
         TC_Main.TabIndex = 127;
+        // 
+        // TP_Searcher
+        // 
+        TP_Searcher.Controls.Add(B_Finder_Search);
+        TP_Searcher.Controls.Add(L_Finder_Method);
+        TP_Searcher.Controls.Add(CB_Finder_Method);
+        TP_Searcher.Controls.Add(L_Finder_Species);
+        TP_Searcher.Controls.Add(CB_Finder_Species);
+        TP_Searcher.Controls.Add(CB_Finder_Roamer);
+        TP_Searcher.Controls.Add(GB_Finder_Filters);
+        TP_Searcher.Location = new Point(4, 24);
+        TP_Searcher.Name = "TP_Searcher";
+        TP_Searcher.Padding = new Padding(3);
+        TP_Searcher.Size = new Size(380, 297);
+        TP_Searcher.TabIndex = 5;
+        TP_Searcher.Text = "Spread Finder";
+        TP_Searcher.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_Search
+        // 
+        B_Finder_Search.Location = new Point(3, 267);
+        B_Finder_Search.Name = "B_Finder_Search";
+        B_Finder_Search.Size = new Size(374, 25);
+        B_Finder_Search.TabIndex = 190;
+        B_Finder_Search.Text = "Search";
+        B_Finder_Search.UseVisualStyleBackColor = true;
+        B_Finder_Search.Click += B_Finder_Search_Click;
+        // 
+        // L_Finder_Method
+        // 
+        L_Finder_Method.AutoSize = true;
+        L_Finder_Method.Location = new Point(9, 48);
+        L_Finder_Method.Name = "L_Finder_Method";
+        L_Finder_Method.Size = new Size(52, 15);
+        L_Finder_Method.TabIndex = 189;
+        L_Finder_Method.Text = "Method:";
+        // 
+        // CB_Finder_Method
+        // 
+        CB_Finder_Method.FormattingEnabled = true;
+        CB_Finder_Method.Items.AddRange(new object[] { "Method 1", "Method 4" });
+        CB_Finder_Method.Location = new Point(67, 45);
+        CB_Finder_Method.Name = "CB_Finder_Method";
+        CB_Finder_Method.Size = new Size(101, 23);
+        CB_Finder_Method.TabIndex = 188;
+        // 
+        // L_Finder_Species
+        // 
+        L_Finder_Species.AutoSize = true;
+        L_Finder_Species.Location = new Point(12, 23);
+        L_Finder_Species.Name = "L_Finder_Species";
+        L_Finder_Species.Size = new Size(49, 15);
+        L_Finder_Species.TabIndex = 187;
+        L_Finder_Species.Text = "Species:";
+        // 
+        // CB_Finder_Species
+        // 
+        CB_Finder_Species.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        CB_Finder_Species.FormattingEnabled = true;
+        CB_Finder_Species.Location = new Point(67, 20);
+        CB_Finder_Species.Name = "CB_Finder_Species";
+        CB_Finder_Species.Size = new Size(101, 23);
+        CB_Finder_Species.TabIndex = 186;
+        // 
+        // CB_Finder_Roamer
+        // 
+        CB_Finder_Roamer.AutoSize = true;
+        CB_Finder_Roamer.CheckAlign = ContentAlignment.MiddleRight;
+        CB_Finder_Roamer.Location = new Point(21, 194);
+        CB_Finder_Roamer.Name = "CB_Finder_Roamer";
+        CB_Finder_Roamer.Size = new Size(134, 19);
+        CB_Finder_Roamer.TabIndex = 185;
+        CB_Finder_Roamer.Tag = "";
+        CB_Finder_Roamer.Text = "Bugged Roamer IVs?";
+        CB_Finder_Roamer.UseVisualStyleBackColor = true;
+        // 
+        // GB_Finder_Filters
+        // 
+        GB_Finder_Filters.Controls.Add(L_Finder_Spe);
+        GB_Finder_Filters.Controls.Add(L_Finder_SpA);
+        GB_Finder_Filters.Controls.Add(L_Finder_Nature);
+        GB_Finder_Filters.Controls.Add(CB_Finder_Nature);
+        GB_Finder_Filters.Controls.Add(CB_Finder_RarePID);
+        GB_Finder_Filters.Controls.Add(L_Finder_Shiny);
+        GB_Finder_Filters.Controls.Add(CB_Finder_Shiny);
+        GB_Finder_Filters.Controls.Add(B_Finder_Spe_Max);
+        GB_Finder_Filters.Controls.Add(B_Finder_Spe_Min);
+        GB_Finder_Filters.Controls.Add(L_Finder_SpeSpacer);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_Spe_Max);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_Spe_Min);
+        GB_Finder_Filters.Controls.Add(B_Finder_SpD_Max);
+        GB_Finder_Filters.Controls.Add(B_Finder_SpD_Min);
+        GB_Finder_Filters.Controls.Add(L_Finder_SpD);
+        GB_Finder_Filters.Controls.Add(L_Finder_SpDSpacer);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_SpD_Max);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_SpD_Min);
+        GB_Finder_Filters.Controls.Add(B_Finder_SpA_Max);
+        GB_Finder_Filters.Controls.Add(B_Finder_SpA_Min);
+        GB_Finder_Filters.Controls.Add(L_Finder_SpASpacer);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_SpA_Max);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_SpA_Min);
+        GB_Finder_Filters.Controls.Add(B_Finder_Def_Max);
+        GB_Finder_Filters.Controls.Add(B_Finder_Def_Min);
+        GB_Finder_Filters.Controls.Add(L_Finder_Def);
+        GB_Finder_Filters.Controls.Add(L_Finder_DefSpacer);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_Def_Max);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_Def_Min);
+        GB_Finder_Filters.Controls.Add(B_Finder_Atk_Max);
+        GB_Finder_Filters.Controls.Add(B_Finder_Atk_Min);
+        GB_Finder_Filters.Controls.Add(L_Finder_Atk);
+        GB_Finder_Filters.Controls.Add(L_Finder_AtkSpacer);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_Atk_Max);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_Atk_Min);
+        GB_Finder_Filters.Controls.Add(B_Finder_HP_Max);
+        GB_Finder_Filters.Controls.Add(B_Finder_HP_Min);
+        GB_Finder_Filters.Controls.Add(L_Finder_HP);
+        GB_Finder_Filters.Controls.Add(L_Finder_HPSpacer);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_HP_Max);
+        GB_Finder_Filters.Controls.Add(NUD_Finder_HP_Min);
+        GB_Finder_Filters.Location = new Point(174, 3);
+        GB_Finder_Filters.Name = "GB_Finder_Filters";
+        GB_Finder_Filters.Size = new Size(200, 262);
+        GB_Finder_Filters.TabIndex = 128;
+        GB_Finder_Filters.TabStop = false;
+        GB_Finder_Filters.Text = "Search Filters";
+        // 
+        // L_Finder_Spe
+        // 
+        L_Finder_Spe.AutoSize = true;
+        L_Finder_Spe.Location = new Point(19, 147);
+        L_Finder_Spe.Name = "L_Finder_Spe";
+        L_Finder_Spe.Size = new Size(29, 15);
+        L_Finder_Spe.TabIndex = 171;
+        L_Finder_Spe.Text = "Spe:";
+        L_Finder_Spe.Click += IV_Label_Click;
+        // 
+        // L_Finder_SpA
+        // 
+        L_Finder_SpA.AutoSize = true;
+        L_Finder_SpA.Location = new Point(17, 96);
+        L_Finder_SpA.Name = "L_Finder_SpA";
+        L_Finder_SpA.Size = new Size(31, 15);
+        L_Finder_SpA.TabIndex = 170;
+        L_Finder_SpA.Text = "SpA:";
+        L_Finder_SpA.Click += IV_Label_Click;
+        // 
+        // L_Finder_Nature
+        // 
+        L_Finder_Nature.AutoSize = true;
+        L_Finder_Nature.Location = new Point(2, 196);
+        L_Finder_Nature.Name = "L_Finder_Nature";
+        L_Finder_Nature.Size = new Size(46, 15);
+        L_Finder_Nature.TabIndex = 169;
+        L_Finder_Nature.Text = "Nature:";
+        // 
+        // CB_Finder_Nature
+        // 
+        CB_Finder_Nature.FormattingEnabled = true;
+        CB_Finder_Nature.Items.AddRange(new object[] { "Ignore", "Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax", "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy", "Careful", "Quirky" });
+        CB_Finder_Nature.Location = new Point(53, 193);
+        CB_Finder_Nature.Name = "CB_Finder_Nature";
+        CB_Finder_Nature.Size = new Size(142, 23);
+        CB_Finder_Nature.TabIndex = 168;
+        // 
+        // CB_Finder_RarePID
+        // 
+        CB_Finder_RarePID.AutoSize = true;
+        CB_Finder_RarePID.CheckAlign = ContentAlignment.MiddleRight;
+        CB_Finder_RarePID.Location = new Point(7, 243);
+        CB_Finder_RarePID.Name = "CB_Finder_RarePID";
+        CB_Finder_RarePID.Size = new Size(75, 19);
+        CB_Finder_RarePID.TabIndex = 27;
+        CB_Finder_RarePID.Tag = "";
+        CB_Finder_RarePID.Text = "Rare PID?";
+        CB_Finder_RarePID.UseVisualStyleBackColor = true;
+        CB_Finder_RarePID.Visible = false;
+        // 
+        // L_Finder_Shiny
+        // 
+        L_Finder_Shiny.AutoSize = true;
+        L_Finder_Shiny.Location = new Point(9, 171);
+        L_Finder_Shiny.Name = "L_Finder_Shiny";
+        L_Finder_Shiny.Size = new Size(39, 15);
+        L_Finder_Shiny.TabIndex = 162;
+        L_Finder_Shiny.Text = "Shiny:";
+        // 
+        // CB_Finder_Shiny
+        // 
+        CB_Finder_Shiny.FormattingEnabled = true;
+        CB_Finder_Shiny.Items.AddRange(new object[] { "Ignore", "Star/Square", "Square Only", "Star Only", "Not Shiny" });
+        CB_Finder_Shiny.Location = new Point(53, 168);
+        CB_Finder_Shiny.Name = "CB_Finder_Shiny";
+        CB_Finder_Shiny.Size = new Size(142, 23);
+        CB_Finder_Shiny.TabIndex = 24;
+        // 
+        // B_Finder_Spe_Max
+        // 
+        B_Finder_Spe_Max.Location = new Point(168, 142);
+        B_Finder_Spe_Max.Name = "B_Finder_Spe_Max";
+        B_Finder_Spe_Max.Size = new Size(27, 25);
+        B_Finder_Spe_Max.TabIndex = 23;
+        B_Finder_Spe_Max.Text = "31";
+        B_Finder_Spe_Max.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_Spe_Min
+        // 
+        B_Finder_Spe_Min.Location = new Point(139, 142);
+        B_Finder_Spe_Min.Name = "B_Finder_Spe_Min";
+        B_Finder_Spe_Min.Size = new Size(27, 25);
+        B_Finder_Spe_Min.TabIndex = 22;
+        B_Finder_Spe_Min.Text = "0";
+        B_Finder_Spe_Min.UseVisualStyleBackColor = true;
+        // 
+        // L_Finder_SpeSpacer
+        // 
+        L_Finder_SpeSpacer.AutoSize = true;
+        L_Finder_SpeSpacer.Location = new Point(86, 145);
+        L_Finder_SpeSpacer.Name = "L_Finder_SpeSpacer";
+        L_Finder_SpeSpacer.Size = new Size(15, 15);
+        L_Finder_SpeSpacer.TabIndex = 11;
+        L_Finder_SpeSpacer.Text = "~";
+        L_Finder_SpeSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Finder_Spe_Max
+        // 
+        NUD_Finder_Spe_Max.Location = new Point(102, 143);
+        NUD_Finder_Spe_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_Spe_Max.Name = "NUD_Finder_Spe_Max";
+        NUD_Finder_Spe_Max.Size = new Size(32, 23);
+        NUD_Finder_Spe_Max.TabIndex = 140;
+        NUD_Finder_Spe_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Finder_Spe_Min
+        // 
+        NUD_Finder_Spe_Min.Location = new Point(53, 143);
+        NUD_Finder_Spe_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_Spe_Min.Name = "NUD_Finder_Spe_Min";
+        NUD_Finder_Spe_Min.Size = new Size(32, 23);
+        NUD_Finder_Spe_Min.TabIndex = 10;
+        // 
+        // B_Finder_SpD_Max
+        // 
+        B_Finder_SpD_Max.Location = new Point(168, 117);
+        B_Finder_SpD_Max.Name = "B_Finder_SpD_Max";
+        B_Finder_SpD_Max.Size = new Size(27, 25);
+        B_Finder_SpD_Max.TabIndex = 21;
+        B_Finder_SpD_Max.Text = "31";
+        B_Finder_SpD_Max.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_SpD_Min
+        // 
+        B_Finder_SpD_Min.Location = new Point(139, 117);
+        B_Finder_SpD_Min.Name = "B_Finder_SpD_Min";
+        B_Finder_SpD_Min.Size = new Size(27, 25);
+        B_Finder_SpD_Min.TabIndex = 20;
+        B_Finder_SpD_Min.Text = "0";
+        B_Finder_SpD_Min.UseVisualStyleBackColor = true;
+        // 
+        // L_Finder_SpD
+        // 
+        L_Finder_SpD.AutoSize = true;
+        L_Finder_SpD.Location = new Point(17, 123);
+        L_Finder_SpD.Name = "L_Finder_SpD";
+        L_Finder_SpD.Size = new Size(31, 15);
+        L_Finder_SpD.TabIndex = 160;
+        L_Finder_SpD.Text = "SpD:";
+        L_Finder_SpD.Click += IV_Label_Click;
+        // 
+        // L_Finder_SpDSpacer
+        // 
+        L_Finder_SpDSpacer.AutoSize = true;
+        L_Finder_SpDSpacer.Location = new Point(86, 120);
+        L_Finder_SpDSpacer.Name = "L_Finder_SpDSpacer";
+        L_Finder_SpDSpacer.Size = new Size(15, 15);
+        L_Finder_SpDSpacer.TabIndex = 9;
+        L_Finder_SpDSpacer.Text = "~";
+        L_Finder_SpDSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Finder_SpD_Max
+        // 
+        NUD_Finder_SpD_Max.Location = new Point(102, 118);
+        NUD_Finder_SpD_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_SpD_Max.Name = "NUD_Finder_SpD_Max";
+        NUD_Finder_SpD_Max.Size = new Size(32, 23);
+        NUD_Finder_SpD_Max.TabIndex = 137;
+        NUD_Finder_SpD_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Finder_SpD_Min
+        // 
+        NUD_Finder_SpD_Min.Location = new Point(53, 118);
+        NUD_Finder_SpD_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_SpD_Min.Name = "NUD_Finder_SpD_Min";
+        NUD_Finder_SpD_Min.Size = new Size(32, 23);
+        NUD_Finder_SpD_Min.TabIndex = 8;
+        // 
+        // B_Finder_SpA_Max
+        // 
+        B_Finder_SpA_Max.Location = new Point(168, 92);
+        B_Finder_SpA_Max.Name = "B_Finder_SpA_Max";
+        B_Finder_SpA_Max.Size = new Size(27, 25);
+        B_Finder_SpA_Max.TabIndex = 19;
+        B_Finder_SpA_Max.Text = "31";
+        B_Finder_SpA_Max.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_SpA_Min
+        // 
+        B_Finder_SpA_Min.Location = new Point(139, 92);
+        B_Finder_SpA_Min.Name = "B_Finder_SpA_Min";
+        B_Finder_SpA_Min.Size = new Size(27, 25);
+        B_Finder_SpA_Min.TabIndex = 18;
+        B_Finder_SpA_Min.Text = "0";
+        B_Finder_SpA_Min.UseVisualStyleBackColor = true;
+        // 
+        // L_Finder_SpASpacer
+        // 
+        L_Finder_SpASpacer.AutoSize = true;
+        L_Finder_SpASpacer.Location = new Point(86, 95);
+        L_Finder_SpASpacer.Name = "L_Finder_SpASpacer";
+        L_Finder_SpASpacer.Size = new Size(15, 15);
+        L_Finder_SpASpacer.TabIndex = 134;
+        L_Finder_SpASpacer.Text = "~";
+        L_Finder_SpASpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Finder_SpA_Max
+        // 
+        NUD_Finder_SpA_Max.Location = new Point(102, 93);
+        NUD_Finder_SpA_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_SpA_Max.Name = "NUD_Finder_SpA_Max";
+        NUD_Finder_SpA_Max.Size = new Size(32, 23);
+        NUD_Finder_SpA_Max.TabIndex = 7;
+        NUD_Finder_SpA_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Finder_SpA_Min
+        // 
+        NUD_Finder_SpA_Min.Location = new Point(53, 93);
+        NUD_Finder_SpA_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_SpA_Min.Name = "NUD_Finder_SpA_Min";
+        NUD_Finder_SpA_Min.Size = new Size(32, 23);
+        NUD_Finder_SpA_Min.TabIndex = 6;
+        // 
+        // B_Finder_Def_Max
+        // 
+        B_Finder_Def_Max.Location = new Point(168, 67);
+        B_Finder_Def_Max.Name = "B_Finder_Def_Max";
+        B_Finder_Def_Max.Size = new Size(27, 25);
+        B_Finder_Def_Max.TabIndex = 17;
+        B_Finder_Def_Max.Text = "31";
+        B_Finder_Def_Max.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_Def_Min
+        // 
+        B_Finder_Def_Min.Location = new Point(139, 67);
+        B_Finder_Def_Min.Name = "B_Finder_Def_Min";
+        B_Finder_Def_Min.Size = new Size(27, 25);
+        B_Finder_Def_Min.TabIndex = 16;
+        B_Finder_Def_Min.Text = "0";
+        B_Finder_Def_Min.UseVisualStyleBackColor = true;
+        // 
+        // L_Finder_Def
+        // 
+        L_Finder_Def.AutoSize = true;
+        L_Finder_Def.Location = new Point(20, 70);
+        L_Finder_Def.Name = "L_Finder_Def";
+        L_Finder_Def.Size = new Size(28, 15);
+        L_Finder_Def.TabIndex = 149;
+        L_Finder_Def.Text = "Def:";
+        L_Finder_Def.Click += IV_Label_Click;
+        // 
+        // L_Finder_DefSpacer
+        // 
+        L_Finder_DefSpacer.AutoSize = true;
+        L_Finder_DefSpacer.Location = new Point(86, 70);
+        L_Finder_DefSpacer.Name = "L_Finder_DefSpacer";
+        L_Finder_DefSpacer.Size = new Size(15, 15);
+        L_Finder_DefSpacer.TabIndex = 129;
+        L_Finder_DefSpacer.Text = "~";
+        L_Finder_DefSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Finder_Def_Max
+        // 
+        NUD_Finder_Def_Max.Location = new Point(102, 68);
+        NUD_Finder_Def_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_Def_Max.Name = "NUD_Finder_Def_Max";
+        NUD_Finder_Def_Max.Size = new Size(32, 23);
+        NUD_Finder_Def_Max.TabIndex = 5;
+        NUD_Finder_Def_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Finder_Def_Min
+        // 
+        NUD_Finder_Def_Min.Location = new Point(53, 68);
+        NUD_Finder_Def_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_Def_Min.Name = "NUD_Finder_Def_Min";
+        NUD_Finder_Def_Min.Size = new Size(32, 23);
+        NUD_Finder_Def_Min.TabIndex = 4;
+        // 
+        // B_Finder_Atk_Max
+        // 
+        B_Finder_Atk_Max.Location = new Point(168, 42);
+        B_Finder_Atk_Max.Name = "B_Finder_Atk_Max";
+        B_Finder_Atk_Max.Size = new Size(27, 25);
+        B_Finder_Atk_Max.TabIndex = 15;
+        B_Finder_Atk_Max.Text = "31";
+        B_Finder_Atk_Max.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_Atk_Min
+        // 
+        B_Finder_Atk_Min.Location = new Point(139, 42);
+        B_Finder_Atk_Min.Name = "B_Finder_Atk_Min";
+        B_Finder_Atk_Min.Size = new Size(27, 25);
+        B_Finder_Atk_Min.TabIndex = 14;
+        B_Finder_Atk_Min.Text = "0";
+        B_Finder_Atk_Min.UseVisualStyleBackColor = true;
+        // 
+        // L_Finder_Atk
+        // 
+        L_Finder_Atk.AutoSize = true;
+        L_Finder_Atk.Location = new Point(20, 45);
+        L_Finder_Atk.Name = "L_Finder_Atk";
+        L_Finder_Atk.Size = new Size(28, 15);
+        L_Finder_Atk.TabIndex = 142;
+        L_Finder_Atk.Text = "Atk:";
+        L_Finder_Atk.Click += IV_Label_Click;
+        // 
+        // L_Finder_AtkSpacer
+        // 
+        L_Finder_AtkSpacer.AutoSize = true;
+        L_Finder_AtkSpacer.Location = new Point(86, 45);
+        L_Finder_AtkSpacer.Name = "L_Finder_AtkSpacer";
+        L_Finder_AtkSpacer.Size = new Size(15, 15);
+        L_Finder_AtkSpacer.TabIndex = 126;
+        L_Finder_AtkSpacer.Text = "~";
+        L_Finder_AtkSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Finder_Atk_Max
+        // 
+        NUD_Finder_Atk_Max.Location = new Point(102, 43);
+        NUD_Finder_Atk_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_Atk_Max.Name = "NUD_Finder_Atk_Max";
+        NUD_Finder_Atk_Max.Size = new Size(32, 23);
+        NUD_Finder_Atk_Max.TabIndex = 3;
+        NUD_Finder_Atk_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Finder_Atk_Min
+        // 
+        NUD_Finder_Atk_Min.Location = new Point(53, 43);
+        NUD_Finder_Atk_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_Atk_Min.Name = "NUD_Finder_Atk_Min";
+        NUD_Finder_Atk_Min.Size = new Size(32, 23);
+        NUD_Finder_Atk_Min.TabIndex = 2;
+        // 
+        // B_Finder_HP_Max
+        // 
+        B_Finder_HP_Max.Location = new Point(168, 17);
+        B_Finder_HP_Max.Name = "B_Finder_HP_Max";
+        B_Finder_HP_Max.Size = new Size(27, 25);
+        B_Finder_HP_Max.TabIndex = 13;
+        B_Finder_HP_Max.Text = "31";
+        B_Finder_HP_Max.UseVisualStyleBackColor = true;
+        // 
+        // B_Finder_HP_Min
+        // 
+        B_Finder_HP_Min.Location = new Point(139, 17);
+        B_Finder_HP_Min.Name = "B_Finder_HP_Min";
+        B_Finder_HP_Min.Size = new Size(27, 25);
+        B_Finder_HP_Min.TabIndex = 12;
+        B_Finder_HP_Min.Text = "0";
+        B_Finder_HP_Min.UseVisualStyleBackColor = true;
+        // 
+        // L_Finder_HP
+        // 
+        L_Finder_HP.AutoSize = true;
+        L_Finder_HP.Location = new Point(22, 20);
+        L_Finder_HP.Name = "L_Finder_HP";
+        L_Finder_HP.Size = new Size(26, 15);
+        L_Finder_HP.TabIndex = 132;
+        L_Finder_HP.Text = "HP:";
+        L_Finder_HP.Click += IV_Label_Click;
+        // 
+        // L_Finder_HPSpacer
+        // 
+        L_Finder_HPSpacer.AutoSize = true;
+        L_Finder_HPSpacer.Location = new Point(86, 20);
+        L_Finder_HPSpacer.Name = "L_Finder_HPSpacer";
+        L_Finder_HPSpacer.Size = new Size(15, 15);
+        L_Finder_HPSpacer.TabIndex = 130;
+        L_Finder_HPSpacer.Text = "~";
+        L_Finder_HPSpacer.Click += IV_Spacer_Click;
+        // 
+        // NUD_Finder_HP_Max
+        // 
+        NUD_Finder_HP_Max.Location = new Point(102, 18);
+        NUD_Finder_HP_Max.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_HP_Max.Name = "NUD_Finder_HP_Max";
+        NUD_Finder_HP_Max.Size = new Size(32, 23);
+        NUD_Finder_HP_Max.TabIndex = 1;
+        NUD_Finder_HP_Max.Value = new decimal(new int[] { 31, 0, 0, 0 });
+        // 
+        // NUD_Finder_HP_Min
+        // 
+        NUD_Finder_HP_Min.Location = new Point(53, 18);
+        NUD_Finder_HP_Min.Maximum = new decimal(new int[] { 31, 0, 0, 0 });
+        NUD_Finder_HP_Min.Name = "NUD_Finder_HP_Min";
+        NUD_Finder_HP_Min.Size = new Size(32, 23);
+        NUD_Finder_HP_Min.TabIndex = 0;
+        // 
+        // TP_Seed
+        // 
+        TP_Seed.Controls.Add(GB_SeedReset);
+        TP_Seed.Location = new Point(4, 24);
+        TP_Seed.Name = "TP_Seed";
+        TP_Seed.Padding = new Padding(3);
+        TP_Seed.Size = new Size(380, 297);
+        TP_Seed.TabIndex = 1;
+        TP_Seed.Text = "Seed Reset";
+        TP_Seed.UseVisualStyleBackColor = true;
+        // 
+        // GB_SeedReset
+        // 
+        GB_SeedReset.Controls.Add(L_ExpectedResets);
+        GB_SeedReset.Controls.Add(TB_ExpectedResets);
+        GB_SeedReset.Controls.Add(B_ExpectedResets);
+        GB_SeedReset.Controls.Add(B_CancelSeedReset);
+        GB_SeedReset.Controls.Add(B_ResetSeed);
+        GB_SeedReset.Controls.Add(L_SS_SeedList);
+        GB_SeedReset.Controls.Add(B_SS_SeedList);
+        GB_SeedReset.Controls.Add(RB_SS_SpecificSeed);
+        GB_SeedReset.Controls.Add(L_SS_SeedCount);
+        GB_SeedReset.Controls.Add(TB_SS_SeedCount);
+        GB_SeedReset.Controls.Add(B_SS_CountSeeds);
+        GB_SeedReset.Controls.Add(L_SS_Adv);
+        GB_SeedReset.Controls.Add(TB_SS_Adv);
+        GB_SeedReset.Controls.Add(L_SS_NumSeeds);
+        GB_SeedReset.Controls.Add(L_SS_MaxAdv);
+        GB_SeedReset.Controls.Add(TB_SS_MaxAdv);
+        GB_SeedReset.Controls.Add(B_SS_FindMax);
+        GB_SeedReset.Controls.Add(NUD_SS_NumSeeds);
+        GB_SeedReset.Controls.Add(RB_SS_Distance);
+        GB_SeedReset.Controls.Add(TB_SS_TargetSeed);
+        GB_SeedReset.Controls.Add(L_SS_TargetSeed);
+        GB_SeedReset.Controls.Add(RB_SS_Number);
+        GB_SeedReset.Location = new Point(6, -2);
+        GB_SeedReset.Name = "GB_SeedReset";
+        GB_SeedReset.Size = new Size(368, 293);
+        GB_SeedReset.TabIndex = 9;
+        GB_SeedReset.TabStop = false;
+        // 
+        // L_ExpectedResets
+        // 
+        L_ExpectedResets.AutoSize = true;
+        L_ExpectedResets.Location = new Point(34, 238);
+        L_ExpectedResets.Name = "L_ExpectedResets";
+        L_ExpectedResets.Size = new Size(142, 15);
+        L_ExpectedResets.TabIndex = 34;
+        L_ExpectedResets.Text = "Average/Expected Resets:";
+        // 
+        // TB_ExpectedResets
+        // 
+        TB_ExpectedResets.CharacterCasing = CharacterCasing.Lower;
+        TB_ExpectedResets.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_ExpectedResets.Location = new Point(185, 236);
+        TB_ExpectedResets.MaxLength = 17;
+        TB_ExpectedResets.Name = "TB_ExpectedResets";
+        TB_ExpectedResets.ReadOnly = true;
+        TB_ExpectedResets.Size = new Size(98, 22);
+        TB_ExpectedResets.TabIndex = 33;
+        TB_ExpectedResets.TabStop = false;
+        TB_ExpectedResets.Text = "0";
+        TB_ExpectedResets.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_ExpectedResets
+        // 
+        B_ExpectedResets.Location = new Point(287, 235);
+        B_ExpectedResets.Name = "B_ExpectedResets";
+        B_ExpectedResets.Size = new Size(75, 25);
+        B_ExpectedResets.TabIndex = 32;
+        B_ExpectedResets.Text = "Calculate";
+        B_ExpectedResets.UseVisualStyleBackColor = true;
+        B_ExpectedResets.Click += B_ExpectedResets_Click;
+        // 
+        // B_CancelSeedReset
+        // 
+        B_CancelSeedReset.Enabled = false;
+        B_CancelSeedReset.Location = new Point(6, 262);
+        B_CancelSeedReset.Name = "B_CancelSeedReset";
+        B_CancelSeedReset.Size = new Size(150, 25);
+        B_CancelSeedReset.TabIndex = 31;
+        B_CancelSeedReset.Text = "Cancel";
+        B_CancelSeedReset.UseVisualStyleBackColor = true;
+        B_CancelSeedReset.Click += B_Reset_Cancel_Click;
+        // 
+        // B_ResetSeed
+        // 
+        B_ResetSeed.Location = new Point(162, 262);
+        B_ResetSeed.Name = "B_ResetSeed";
+        B_ResetSeed.Size = new Size(200, 25);
+        B_ResetSeed.TabIndex = 30;
+        B_ResetSeed.Text = "Reset for Seed";
+        B_ResetSeed.UseVisualStyleBackColor = true;
+        B_ResetSeed.Click += B_ResetSeed_Click;
+        // 
+        // L_SS_SeedList
+        // 
+        L_SS_SeedList.AutoSize = true;
+        L_SS_SeedList.Enabled = false;
+        L_SS_SeedList.Location = new Point(94, 213);
+        L_SS_SeedList.Name = "L_SS_SeedList";
+        L_SS_SeedList.Size = new Size(117, 15);
+        L_SS_SeedList.TabIndex = 29;
+        L_SS_SeedList.Text = "Loaded Seeds: None!";
+        // 
+        // B_SS_SeedList
+        // 
+        B_SS_SeedList.Enabled = false;
+        B_SS_SeedList.Location = new Point(287, 208);
+        B_SS_SeedList.Name = "B_SS_SeedList";
+        B_SS_SeedList.Size = new Size(75, 25);
+        B_SS_SeedList.TabIndex = 28;
+        B_SS_SeedList.Text = "Edit";
+        B_SS_SeedList.UseVisualStyleBackColor = true;
+        B_SS_SeedList.Click += B_SeedList_Click;
+        // 
+        // RB_SS_SpecificSeed
+        // 
+        RB_SS_SpecificSeed.AutoSize = true;
+        RB_SS_SpecificSeed.Location = new Point(6, 183);
+        RB_SS_SpecificSeed.Name = "RB_SS_SpecificSeed";
+        RB_SS_SpecificSeed.Size = new Size(155, 19);
+        RB_SS_SpecificSeed.TabIndex = 26;
+        RB_SS_SpecificSeed.Text = "Search for Specific Seeds";
+        RB_SS_SpecificSeed.UseVisualStyleBackColor = true;
+        RB_SS_SpecificSeed.CheckedChanged += RB_SS_CheckChanged;
+        // 
+        // L_SS_SeedCount
+        // 
+        L_SS_SeedCount.AutoSize = true;
+        L_SS_SeedCount.Enabled = false;
+        L_SS_SeedCount.Location = new Point(55, 159);
+        L_SS_SeedCount.Name = "L_SS_SeedCount";
+        L_SS_SeedCount.Size = new Size(121, 15);
+        L_SS_SeedCount.TabIndex = 24;
+        L_SS_SeedCount.Text = "Initial Seeds in Range:";
+        // 
+        // TB_SS_SeedCount
+        // 
+        TB_SS_SeedCount.CharacterCasing = CharacterCasing.Lower;
+        TB_SS_SeedCount.Enabled = false;
+        TB_SS_SeedCount.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_SeedCount.Location = new Point(185, 157);
+        TB_SS_SeedCount.MaxLength = 13;
+        TB_SS_SeedCount.Name = "TB_SS_SeedCount";
+        TB_SS_SeedCount.ReadOnly = true;
+        TB_SS_SeedCount.Size = new Size(98, 22);
+        TB_SS_SeedCount.TabIndex = 23;
+        TB_SS_SeedCount.TabStop = false;
+        TB_SS_SeedCount.Text = "0";
+        TB_SS_SeedCount.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_SS_CountSeeds
+        // 
+        B_SS_CountSeeds.Enabled = false;
+        B_SS_CountSeeds.Location = new Point(287, 156);
+        B_SS_CountSeeds.Name = "B_SS_CountSeeds";
+        B_SS_CountSeeds.Size = new Size(75, 25);
+        B_SS_CountSeeds.TabIndex = 22;
+        B_SS_CountSeeds.Text = "Count";
+        B_SS_CountSeeds.UseVisualStyleBackColor = true;
+        B_SS_CountSeeds.Click += B_SS_CountSeeds_Click;
+        // 
+        // L_SS_Adv
+        // 
+        L_SS_Adv.AutoSize = true;
+        L_SS_Adv.Enabled = false;
+        L_SS_Adv.Location = new Point(86, 134);
+        L_SS_Adv.Name = "L_SS_Adv";
+        L_SS_Adv.Size = new Size(90, 15);
+        L_SS_Adv.TabIndex = 21;
+        L_SS_Adv.Text = "Max. Advances:";
+        // 
+        // TB_SS_Adv
+        // 
+        TB_SS_Adv.CharacterCasing = CharacterCasing.Lower;
+        TB_SS_Adv.Enabled = false;
+        TB_SS_Adv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_Adv.Location = new Point(287, 132);
+        TB_SS_Adv.MaxLength = 13;
+        TB_SS_Adv.Name = "TB_SS_Adv";
+        TB_SS_Adv.Size = new Size(75, 22);
+        TB_SS_Adv.TabIndex = 20;
+        TB_SS_Adv.TabStop = false;
+        TB_SS_Adv.Text = "2000000";
+        TB_SS_Adv.TextAlign = HorizontalAlignment.Right;
+        TB_SS_Adv.KeyDown += Dec_HandlePaste;
+        TB_SS_Adv.KeyPress += AllowOnlyNumerical_KeyPress;
+        // 
+        // L_SS_NumSeeds
+        // 
+        L_SS_NumSeeds.AutoSize = true;
+        L_SS_NumSeeds.Location = new Point(136, 59);
+        L_SS_NumSeeds.Name = "L_SS_NumSeeds";
+        L_SS_NumSeeds.Size = new Size(40, 15);
+        L_SS_NumSeeds.TabIndex = 19;
+        L_SS_NumSeeds.Text = "Seeds:";
+        // 
+        // L_SS_MaxAdv
+        // 
+        L_SS_MaxAdv.AutoSize = true;
+        L_SS_MaxAdv.Location = new Point(86, 85);
+        L_SS_MaxAdv.Name = "L_SS_MaxAdv";
+        L_SS_MaxAdv.Size = new Size(90, 15);
+        L_SS_MaxAdv.TabIndex = 18;
+        L_SS_MaxAdv.Text = "Max. Advances:";
+        // 
+        // TB_SS_MaxAdv
+        // 
+        TB_SS_MaxAdv.CharacterCasing = CharacterCasing.Lower;
+        TB_SS_MaxAdv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_MaxAdv.Location = new Point(185, 83);
+        TB_SS_MaxAdv.MaxLength = 13;
+        TB_SS_MaxAdv.Name = "TB_SS_MaxAdv";
+        TB_SS_MaxAdv.ReadOnly = true;
+        TB_SS_MaxAdv.Size = new Size(98, 22);
+        TB_SS_MaxAdv.TabIndex = 17;
+        TB_SS_MaxAdv.TabStop = false;
+        TB_SS_MaxAdv.Text = "0";
+        TB_SS_MaxAdv.TextAlign = HorizontalAlignment.Right;
+        // 
+        // B_SS_FindMax
+        // 
+        B_SS_FindMax.Location = new Point(287, 82);
+        B_SS_FindMax.Name = "B_SS_FindMax";
+        B_SS_FindMax.Size = new Size(75, 25);
+        B_SS_FindMax.TabIndex = 10;
+        B_SS_FindMax.Text = "Find Max";
+        B_SS_FindMax.UseVisualStyleBackColor = true;
+        B_SS_FindMax.Click += B_SS_FindMax_Click;
+        // 
+        // NUD_SS_NumSeeds
+        // 
+        NUD_SS_NumSeeds.Location = new Point(287, 57);
+        NUD_SS_NumSeeds.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+        NUD_SS_NumSeeds.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        NUD_SS_NumSeeds.Name = "NUD_SS_NumSeeds";
+        NUD_SS_NumSeeds.Size = new Size(75, 23);
+        NUD_SS_NumSeeds.TabIndex = 9;
+        NUD_SS_NumSeeds.TextAlign = HorizontalAlignment.Right;
+        NUD_SS_NumSeeds.Value = new decimal(new int[] { 60, 0, 0, 0 });
+        // 
+        // RB_SS_Distance
+        // 
+        RB_SS_Distance.AutoSize = true;
+        RB_SS_Distance.Location = new Point(6, 111);
+        RB_SS_Distance.Name = "RB_SS_Distance";
+        RB_SS_Distance.Size = new Size(173, 19);
+        RB_SS_Distance.TabIndex = 1;
+        RB_SS_Distance.Text = "Search by Distance to Target";
+        RB_SS_Distance.UseVisualStyleBackColor = true;
+        RB_SS_Distance.CheckedChanged += RB_SS_CheckChanged;
+        // 
+        // TB_SS_TargetSeed
+        // 
+        TB_SS_TargetSeed.CharacterCasing = CharacterCasing.Upper;
+        TB_SS_TargetSeed.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        TB_SS_TargetSeed.Location = new Point(300, 12);
+        TB_SS_TargetSeed.MaxLength = 8;
+        TB_SS_TargetSeed.Name = "TB_SS_TargetSeed";
+        TB_SS_TargetSeed.Size = new Size(62, 22);
+        TB_SS_TargetSeed.TabIndex = 7;
+        TB_SS_TargetSeed.Text = "01234567";
+        TB_SS_TargetSeed.KeyDown += State_HandlePaste;
+        TB_SS_TargetSeed.KeyPress += AllowOnlyHex_KeyPress;
+        // 
+        // L_SS_TargetSeed
+        // 
+        L_SS_TargetSeed.AutoSize = true;
+        L_SS_TargetSeed.Location = new Point(224, 14);
+        L_SS_TargetSeed.Name = "L_SS_TargetSeed";
+        L_SS_TargetSeed.Size = new Size(70, 15);
+        L_SS_TargetSeed.TabIndex = 8;
+        L_SS_TargetSeed.Text = "Target Seed:";
+        // 
+        // RB_SS_Number
+        // 
+        RB_SS_Number.AutoSize = true;
+        RB_SS_Number.Checked = true;
+        RB_SS_Number.Location = new Point(6, 36);
+        RB_SS_Number.Name = "RB_SS_Number";
+        RB_SS_Number.Size = new Size(170, 19);
+        RB_SS_Number.TabIndex = 0;
+        RB_SS_Number.TabStop = true;
+        RB_SS_Number.Text = "Search by Number of Seeds";
+        RB_SS_Number.UseVisualStyleBackColor = true;
+        RB_SS_Number.CheckedChanged += RB_SS_CheckChanged;
         // 
         // TP_IDs
         // 
@@ -929,294 +1785,6 @@ namespace GRASS.WinForms;
         L_LoadedTIDs.Size = new Size(109, 15);
         L_LoadedTIDs.TabIndex = 0;
         L_LoadedTIDs.Text = "Loaded TIDs: None!";
-        // 
-        // TP_Seed
-        // 
-        TP_Seed.Controls.Add(GB_SeedReset);
-        TP_Seed.Location = new Point(4, 24);
-        TP_Seed.Name = "TP_Seed";
-        TP_Seed.Padding = new Padding(3);
-        TP_Seed.Size = new Size(380, 297);
-        TP_Seed.TabIndex = 1;
-        TP_Seed.Text = "Seed Reset";
-        TP_Seed.UseVisualStyleBackColor = true;
-        // 
-        // GB_SeedReset
-        // 
-        GB_SeedReset.Controls.Add(L_ExpectedResets);
-        GB_SeedReset.Controls.Add(TB_ExpectedResets);
-        GB_SeedReset.Controls.Add(B_ExpectedResets);
-        GB_SeedReset.Controls.Add(B_CancelSeedReset);
-        GB_SeedReset.Controls.Add(B_ResetSeed);
-        GB_SeedReset.Controls.Add(L_SS_SeedList);
-        GB_SeedReset.Controls.Add(B_SS_SeedList);
-        GB_SeedReset.Controls.Add(RB_SS_SpecificSeed);
-        GB_SeedReset.Controls.Add(L_SS_SeedCount);
-        GB_SeedReset.Controls.Add(TB_SS_SeedCount);
-        GB_SeedReset.Controls.Add(B_SS_CountSeeds);
-        GB_SeedReset.Controls.Add(L_SS_Adv);
-        GB_SeedReset.Controls.Add(TB_SS_Adv);
-        GB_SeedReset.Controls.Add(L_SS_NumSeeds);
-        GB_SeedReset.Controls.Add(L_SS_MaxAdv);
-        GB_SeedReset.Controls.Add(TB_SS_MaxAdv);
-        GB_SeedReset.Controls.Add(B_SS_FindMax);
-        GB_SeedReset.Controls.Add(NUD_SS_NumSeeds);
-        GB_SeedReset.Controls.Add(RB_SS_Distance);
-        GB_SeedReset.Controls.Add(TB_SS_TargetSeed);
-        GB_SeedReset.Controls.Add(L_SS_TargetSeed);
-        GB_SeedReset.Controls.Add(RB_SS_Number);
-        GB_SeedReset.Location = new Point(6, -2);
-        GB_SeedReset.Name = "GB_SeedReset";
-        GB_SeedReset.Size = new Size(368, 293);
-        GB_SeedReset.TabIndex = 9;
-        GB_SeedReset.TabStop = false;
-        // 
-        // L_ExpectedResets
-        // 
-        L_ExpectedResets.AutoSize = true;
-        L_ExpectedResets.Location = new Point(34, 238);
-        L_ExpectedResets.Name = "L_ExpectedResets";
-        L_ExpectedResets.Size = new Size(142, 15);
-        L_ExpectedResets.TabIndex = 34;
-        L_ExpectedResets.Text = "Average/Expected Resets:";
-        // 
-        // TB_ExpectedResets
-        // 
-        TB_ExpectedResets.CharacterCasing = CharacterCasing.Lower;
-        TB_ExpectedResets.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_ExpectedResets.Location = new Point(185, 236);
-        TB_ExpectedResets.MaxLength = 17;
-        TB_ExpectedResets.Name = "TB_ExpectedResets";
-        TB_ExpectedResets.ReadOnly = true;
-        TB_ExpectedResets.Size = new Size(98, 22);
-        TB_ExpectedResets.TabIndex = 33;
-        TB_ExpectedResets.TabStop = false;
-        TB_ExpectedResets.Text = "0";
-        TB_ExpectedResets.TextAlign = HorizontalAlignment.Right;
-        // 
-        // B_ExpectedResets
-        // 
-        B_ExpectedResets.Location = new Point(287, 235);
-        B_ExpectedResets.Name = "B_ExpectedResets";
-        B_ExpectedResets.Size = new Size(75, 25);
-        B_ExpectedResets.TabIndex = 32;
-        B_ExpectedResets.Text = "Calculate";
-        B_ExpectedResets.UseVisualStyleBackColor = true;
-        B_ExpectedResets.Click += B_ExpectedResets_Click;
-        // 
-        // B_CancelSeedReset
-        // 
-        B_CancelSeedReset.Enabled = false;
-        B_CancelSeedReset.Location = new Point(6, 262);
-        B_CancelSeedReset.Name = "B_CancelSeedReset";
-        B_CancelSeedReset.Size = new Size(150, 25);
-        B_CancelSeedReset.TabIndex = 31;
-        B_CancelSeedReset.Text = "Cancel";
-        B_CancelSeedReset.UseVisualStyleBackColor = true;
-        B_CancelSeedReset.Click += B_Reset_Cancel_Click;
-        // 
-        // B_ResetSeed
-        // 
-        B_ResetSeed.Location = new Point(162, 262);
-        B_ResetSeed.Name = "B_ResetSeed";
-        B_ResetSeed.Size = new Size(200, 25);
-        B_ResetSeed.TabIndex = 30;
-        B_ResetSeed.Text = "Reset for Seed";
-        B_ResetSeed.UseVisualStyleBackColor = true;
-        B_ResetSeed.Click += B_ResetSeed_Click;
-        // 
-        // L_SS_SeedList
-        // 
-        L_SS_SeedList.AutoSize = true;
-        L_SS_SeedList.Enabled = false;
-        L_SS_SeedList.Location = new Point(94, 213);
-        L_SS_SeedList.Name = "L_SS_SeedList";
-        L_SS_SeedList.Size = new Size(117, 15);
-        L_SS_SeedList.TabIndex = 29;
-        L_SS_SeedList.Text = "Loaded Seeds: None!";
-        // 
-        // B_SS_SeedList
-        // 
-        B_SS_SeedList.Enabled = false;
-        B_SS_SeedList.Location = new Point(287, 208);
-        B_SS_SeedList.Name = "B_SS_SeedList";
-        B_SS_SeedList.Size = new Size(75, 25);
-        B_SS_SeedList.TabIndex = 28;
-        B_SS_SeedList.Text = "Edit";
-        B_SS_SeedList.UseVisualStyleBackColor = true;
-        B_SS_SeedList.Click += B_SeedList_Click;
-        // 
-        // RB_SS_SpecificSeed
-        // 
-        RB_SS_SpecificSeed.AutoSize = true;
-        RB_SS_SpecificSeed.Location = new Point(6, 183);
-        RB_SS_SpecificSeed.Name = "RB_SS_SpecificSeed";
-        RB_SS_SpecificSeed.Size = new Size(155, 19);
-        RB_SS_SpecificSeed.TabIndex = 26;
-        RB_SS_SpecificSeed.Text = "Search for Specific Seeds";
-        RB_SS_SpecificSeed.UseVisualStyleBackColor = true;
-        RB_SS_SpecificSeed.CheckedChanged += RB_SS_CheckChanged;
-        // 
-        // L_SS_SeedCount
-        // 
-        L_SS_SeedCount.AutoSize = true;
-        L_SS_SeedCount.Enabled = false;
-        L_SS_SeedCount.Location = new Point(55, 159);
-        L_SS_SeedCount.Name = "L_SS_SeedCount";
-        L_SS_SeedCount.Size = new Size(121, 15);
-        L_SS_SeedCount.TabIndex = 24;
-        L_SS_SeedCount.Text = "Initial Seeds in Range:";
-        // 
-        // TB_SS_SeedCount
-        // 
-        TB_SS_SeedCount.CharacterCasing = CharacterCasing.Lower;
-        TB_SS_SeedCount.Enabled = false;
-        TB_SS_SeedCount.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_SeedCount.Location = new Point(185, 157);
-        TB_SS_SeedCount.MaxLength = 13;
-        TB_SS_SeedCount.Name = "TB_SS_SeedCount";
-        TB_SS_SeedCount.ReadOnly = true;
-        TB_SS_SeedCount.Size = new Size(98, 22);
-        TB_SS_SeedCount.TabIndex = 23;
-        TB_SS_SeedCount.TabStop = false;
-        TB_SS_SeedCount.Text = "0";
-        TB_SS_SeedCount.TextAlign = HorizontalAlignment.Right;
-        // 
-        // B_SS_CountSeeds
-        // 
-        B_SS_CountSeeds.Enabled = false;
-        B_SS_CountSeeds.Location = new Point(287, 156);
-        B_SS_CountSeeds.Name = "B_SS_CountSeeds";
-        B_SS_CountSeeds.Size = new Size(75, 25);
-        B_SS_CountSeeds.TabIndex = 22;
-        B_SS_CountSeeds.Text = "Count";
-        B_SS_CountSeeds.UseVisualStyleBackColor = true;
-        B_SS_CountSeeds.Click += B_SS_CountSeeds_Click;
-        // 
-        // L_SS_Adv
-        // 
-        L_SS_Adv.AutoSize = true;
-        L_SS_Adv.Enabled = false;
-        L_SS_Adv.Location = new Point(86, 134);
-        L_SS_Adv.Name = "L_SS_Adv";
-        L_SS_Adv.Size = new Size(90, 15);
-        L_SS_Adv.TabIndex = 21;
-        L_SS_Adv.Text = "Max. Advances:";
-        // 
-        // TB_SS_Adv
-        // 
-        TB_SS_Adv.CharacterCasing = CharacterCasing.Lower;
-        TB_SS_Adv.Enabled = false;
-        TB_SS_Adv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_Adv.Location = new Point(287, 132);
-        TB_SS_Adv.MaxLength = 13;
-        TB_SS_Adv.Name = "TB_SS_Adv";
-        TB_SS_Adv.Size = new Size(75, 22);
-        TB_SS_Adv.TabIndex = 20;
-        TB_SS_Adv.TabStop = false;
-        TB_SS_Adv.Text = "2000000";
-        TB_SS_Adv.TextAlign = HorizontalAlignment.Right;
-        TB_SS_Adv.KeyDown += Dec_HandlePaste;
-        TB_SS_Adv.KeyPress += AllowOnlyNumerical_KeyPress;
-        // 
-        // L_SS_NumSeeds
-        // 
-        L_SS_NumSeeds.AutoSize = true;
-        L_SS_NumSeeds.Location = new Point(136, 59);
-        L_SS_NumSeeds.Name = "L_SS_NumSeeds";
-        L_SS_NumSeeds.Size = new Size(40, 15);
-        L_SS_NumSeeds.TabIndex = 19;
-        L_SS_NumSeeds.Text = "Seeds:";
-        // 
-        // L_SS_MaxAdv
-        // 
-        L_SS_MaxAdv.AutoSize = true;
-        L_SS_MaxAdv.Location = new Point(86, 85);
-        L_SS_MaxAdv.Name = "L_SS_MaxAdv";
-        L_SS_MaxAdv.Size = new Size(90, 15);
-        L_SS_MaxAdv.TabIndex = 18;
-        L_SS_MaxAdv.Text = "Max. Advances:";
-        // 
-        // TB_SS_MaxAdv
-        // 
-        TB_SS_MaxAdv.CharacterCasing = CharacterCasing.Lower;
-        TB_SS_MaxAdv.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_MaxAdv.Location = new Point(185, 83);
-        TB_SS_MaxAdv.MaxLength = 13;
-        TB_SS_MaxAdv.Name = "TB_SS_MaxAdv";
-        TB_SS_MaxAdv.ReadOnly = true;
-        TB_SS_MaxAdv.Size = new Size(98, 22);
-        TB_SS_MaxAdv.TabIndex = 17;
-        TB_SS_MaxAdv.TabStop = false;
-        TB_SS_MaxAdv.Text = "0";
-        TB_SS_MaxAdv.TextAlign = HorizontalAlignment.Right;
-        // 
-        // B_SS_FindMax
-        // 
-        B_SS_FindMax.Location = new Point(287, 82);
-        B_SS_FindMax.Name = "B_SS_FindMax";
-        B_SS_FindMax.Size = new Size(75, 25);
-        B_SS_FindMax.TabIndex = 10;
-        B_SS_FindMax.Text = "Find Max";
-        B_SS_FindMax.UseVisualStyleBackColor = true;
-        B_SS_FindMax.Click += B_SS_FindMax_Click;
-        // 
-        // NUD_SS_NumSeeds
-        // 
-        NUD_SS_NumSeeds.Location = new Point(287, 57);
-        NUD_SS_NumSeeds.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
-        NUD_SS_NumSeeds.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-        NUD_SS_NumSeeds.Name = "NUD_SS_NumSeeds";
-        NUD_SS_NumSeeds.Size = new Size(75, 23);
-        NUD_SS_NumSeeds.TabIndex = 9;
-        NUD_SS_NumSeeds.TextAlign = HorizontalAlignment.Right;
-        NUD_SS_NumSeeds.Value = new decimal(new int[] { 60, 0, 0, 0 });
-        // 
-        // RB_SS_Distance
-        // 
-        RB_SS_Distance.AutoSize = true;
-        RB_SS_Distance.Location = new Point(6, 111);
-        RB_SS_Distance.Name = "RB_SS_Distance";
-        RB_SS_Distance.Size = new Size(173, 19);
-        RB_SS_Distance.TabIndex = 1;
-        RB_SS_Distance.Text = "Search by Distance to Target";
-        RB_SS_Distance.UseVisualStyleBackColor = true;
-        RB_SS_Distance.CheckedChanged += RB_SS_CheckChanged;
-        // 
-        // TB_SS_TargetSeed
-        // 
-        TB_SS_TargetSeed.CharacterCasing = CharacterCasing.Upper;
-        TB_SS_TargetSeed.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TB_SS_TargetSeed.Location = new Point(300, 12);
-        TB_SS_TargetSeed.MaxLength = 8;
-        TB_SS_TargetSeed.Name = "TB_SS_TargetSeed";
-        TB_SS_TargetSeed.Size = new Size(62, 22);
-        TB_SS_TargetSeed.TabIndex = 7;
-        TB_SS_TargetSeed.Text = "01234567";
-        TB_SS_TargetSeed.KeyDown += State_HandlePaste;
-        TB_SS_TargetSeed.KeyPress += AllowOnlyHex_KeyPress;
-        // 
-        // L_SS_TargetSeed
-        // 
-        L_SS_TargetSeed.AutoSize = true;
-        L_SS_TargetSeed.Location = new Point(224, 14);
-        L_SS_TargetSeed.Name = "L_SS_TargetSeed";
-        L_SS_TargetSeed.Size = new Size(70, 15);
-        L_SS_TargetSeed.TabIndex = 8;
-        L_SS_TargetSeed.Text = "Target Seed:";
-        // 
-        // RB_SS_Number
-        // 
-        RB_SS_Number.AutoSize = true;
-        RB_SS_Number.Checked = true;
-        RB_SS_Number.Location = new Point(6, 36);
-        RB_SS_Number.Name = "RB_SS_Number";
-        RB_SS_Number.Size = new Size(170, 19);
-        RB_SS_Number.TabIndex = 0;
-        RB_SS_Number.TabStop = true;
-        RB_SS_Number.Text = "Search by Number of Seeds";
-        RB_SS_Number.UseVisualStyleBackColor = true;
-        RB_SS_Number.CheckedChanged += RB_SS_CheckChanged;
         // 
         // TP_Static
         // 
@@ -3019,16 +3587,32 @@ namespace GRASS.WinForms;
         GB_SAVInfo.ResumeLayout(false);
         GB_SAVInfo.PerformLayout();
         TC_Main.ResumeLayout(false);
+        TP_Searcher.ResumeLayout(false);
+        TP_Searcher.PerformLayout();
+        GB_Finder_Filters.ResumeLayout(false);
+        GB_Finder_Filters.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Spe_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Spe_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpD_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpD_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpA_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_SpA_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Def_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Def_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Atk_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_Atk_Min).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_HP_Max).EndInit();
+        ((System.ComponentModel.ISupportInitialize)NUD_Finder_HP_Min).EndInit();
+        TP_Seed.ResumeLayout(false);
+        GB_SeedReset.ResumeLayout(false);
+        GB_SeedReset.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).EndInit();
         TP_IDs.ResumeLayout(false);
         GB_SID.ResumeLayout(false);
         GB_SID.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_SID_Delay).EndInit();
         groupBox1.ResumeLayout(false);
         groupBox1.PerformLayout();
-        TP_Seed.ResumeLayout(false);
-        GB_SeedReset.ResumeLayout(false);
-        GB_SeedReset.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)NUD_SS_NumSeeds).EndInit();
         TP_Static.ResumeLayout(false);
         TP_Static.PerformLayout();
         GB_Static_Filters.ResumeLayout(false);
@@ -3338,5 +3922,54 @@ namespace GRASS.WinForms;
     private Label L_ExpectedResets;
     public TextBox TB_ExpectedResets;
     private Button B_ExpectedResets;
+    private TabPage TP_Searcher;
+    private GroupBox GB_Finder_Filters;
+    private Label L_Finder_Nature;
+    private ComboBox CB_Finder_Nature;
+    public CheckBox CB_Finder_RarePID;
+    private Label L_Finder_Shiny;
+    private ComboBox CB_Finder_Shiny;
+    private Button B_Finder_Spe_Max;
+    private Button B_Finder_Spe_Min;
+    private Label L_Finder_SpeSpacer;
+    private NumericUpDown NUD_Finder_Spe_Max;
+    private NumericUpDown NUD_Finder_Spe_Min;
+    private Button B_Finder_SpD_Max;
+    private Button B_Finder_SpD_Min;
+    private Label L_Finder_SpD;
+    private Label L_Finder_SpDSpacer;
+    private NumericUpDown NUD_Finder_SpD_Max;
+    private NumericUpDown NUD_Finder_SpD_Min;
+    private Button B_Finder_SpA_Max;
+    private Button B_Finder_SpA_Min;
+    private Label L_Finder_SpASpacer;
+    private NumericUpDown NUD_Finder_SpA_Max;
+    private NumericUpDown NUD_Finder_SpA_Min;
+    private Button B_Finder_Def_Max;
+    private Button B_Finder_Def_Min;
+    private Label L_Finder_Def;
+    private Label L_Finder_DefSpacer;
+    private NumericUpDown NUD_Finder_Def_Max;
+    private NumericUpDown NUD_Finder_Def_Min;
+    private Button B_Finder_Atk_Max;
+    private Button B_Finder_Atk_Min;
+    private Label L_Finder_Atk;
+    private Label L_Finder_AtkSpacer;
+    private NumericUpDown NUD_Finder_Atk_Max;
+    private NumericUpDown NUD_Finder_Atk_Min;
+    private Button B_Finder_HP_Max;
+    private Button B_Finder_HP_Min;
+    private Label L_Finder_HP;
+    private Label L_Finder_HPSpacer;
+    private NumericUpDown NUD_Finder_HP_Max;
+    private NumericUpDown NUD_Finder_HP_Min;
+    private Label L_Finder_Method;
+    public ComboBox CB_Finder_Method;
+    private Label L_Finder_Species;
+    public ComboBox CB_Finder_Species;
+    public CheckBox CB_Finder_Roamer;
+    private Button B_Finder_Search;
+    private Label L_Finder_SpA;
+    private Label L_Finder_Spe;
 }
 

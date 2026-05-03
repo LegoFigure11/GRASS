@@ -1691,5 +1691,10 @@ public partial class MainWindow : Form
             CalcExpectedResets(seeds);
         });
     }
+
+    private void B_Finder_Search_Click(object sender, EventArgs e)
+    {
+        this.DisplayMessageBox("This feature is currently unimplemented. Try again later!");
+    }
 }
 
