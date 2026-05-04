@@ -1120,7 +1120,7 @@ public partial class MainWindow : Form
 
                 SearchMode = RB_SID_SpecificValue.GetIsChecked() ? SIDSearchMode.SpecificSID : SIDSearchMode.FromPID,
             };
-            var sidFrames = await Core.RNG.SID.Generate(seed, start, end, cfg);
+            var sidFrames = await SID.Generate(seed, start, end, cfg);
 
             SetBindingSourceDataSource(sidFrames, BS_SID);
             SetDataGridViewDataSource(BS_SID, DGV_Results);
@@ -1198,7 +1198,7 @@ public partial class MainWindow : Form
             var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
             var count = NUD_SS_NumSeeds.GetValue();
 
-            var (advance, _) = await Core.RNG.Back16.FindMaxAdvance(seed, (ushort)count).ConfigureAwait(false);
+            var (advance, _) = await Back16.FindMaxAdvance(seed, (ushort)count).ConfigureAwait(false);
             SetControlText($"{advance:N0}", TB_SS_MaxAdv);
         });
     }
@@ -1211,7 +1211,7 @@ public partial class MainWindow : Form
             var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
             var max = uint.Parse(TB_SS_Adv.GetText());
 
-            var ct = await Core.RNG.Back16.CountSeedsInRange(seed, max).ConfigureAwait(false);
+            var ct = await Back16.CountSeedsInRange(seed, max).ConfigureAwait(false);
             SetControlText($"{ct:N0}", TB_SS_SeedCount);
         });
     }
@@ -1268,12 +1268,12 @@ public partial class MainWindow : Form
                             if (RB_SS_Number.GetIsChecked())
                             {
                                 var count = NUD_SS_NumSeeds.GetValue();
-                                seeds = await Core.RNG.Back16.GetSeedsByCount(target, count).ConfigureAwait(false);
+                                seeds = await Back16.GetSeedsByCount(target, count).ConfigureAwait(false);
                             }
                             else if (RB_SS_Distance.GetIsChecked())
                             {
                                 var dist = uint.Parse(TB_SS_Adv.GetText());
-                                seeds = await Core.RNG.Back16.GetSeedsByAdvances(target, dist).ConfigureAwait(false);
+                                seeds = await Back16.GetSeedsByAdvances(target, dist).ConfigureAwait(false);
                             }
                         }
 
@@ -1353,7 +1353,7 @@ public partial class MainWindow : Form
 
                 FiltersEnabled = CB_Static_FiltersEnabled.GetIsChecked(),
             };
-            var staticFrames = await Core.RNG.Static.Generate(seed, start, end, cfg);
+            var staticFrames = await Static.Generate(seed, start, end, cfg);
 
             SetBindingSourceDataSource(staticFrames, BS_Static);
             SetDataGridViewDataSource(BS_Static, DGV_Results);
@@ -1545,7 +1545,7 @@ public partial class MainWindow : Form
 
                 FiltersEnabled = CB_Wild_FiltersEnabled.GetIsChecked(),
             };
-            var wildFrames = await Core.RNG.Wild.Generate(seed, start, end, cfg);
+            var wildFrames = await Wild.Generate(seed, start, end, cfg);
 
             SetBindingSourceDataSource(wildFrames, BS_Wild);
             SetDataGridViewDataSource(BS_Wild, DGV_Results);
@@ -1596,7 +1596,7 @@ public partial class MainWindow : Form
         Task.Run(async () =>
         {
             var seed = uint.Parse(TB_PID.GetText(), NumberStyles.AllowHexSpecifier);
-            var pidtoivFrames = await Core.RNG.Recovery.GetPIDtoIVs(seed);
+            var pidtoivFrames = await Recovery.GetPIDtoIVs(seed);
 
             SetBindingSourceDataSource(pidtoivFrames, BS_PIDtoIVs);
             SetDataGridViewDataSource(BS_PIDtoIVs, DGV_Results);
@@ -1611,7 +1611,7 @@ public partial class MainWindow : Form
         ValidateInputs();
         Task.Run(async () =>
         {
-            var ivstopidFrames = await Core.RNG.Recovery.GetIVsToPID((byte)NUD_App_HP.GetValue(), (byte)NUD_App_Atk.GetValue(), (byte)NUD_App_Def.GetValue(), (byte)NUD_App_SpA.GetValue(), (byte)NUD_App_SpD.GetValue(), (byte)NUD_App_Spe.GetValue());
+            var ivstopidFrames = await Recovery.GetIVsToPID((byte)NUD_App_HP.GetValue(), (byte)NUD_App_Atk.GetValue(), (byte)NUD_App_Def.GetValue(), (byte)NUD_App_SpA.GetValue(), (byte)NUD_App_SpD.GetValue(), (byte)NUD_App_Spe.GetValue());
 
             var method = (Method)CB_Method.GetSelectedIndex() - 1;
             if (method is Method.Method1 or Method.Method2 or Method.Method3 or Method.Method4)
@@ -1622,7 +1622,7 @@ public partial class MainWindow : Form
             var nature = CB_Nature.GetSelectedIndex() - 1;
             if (nature != -1)
             {
-                ivstopidFrames = [.. ivstopidFrames.Where(f => f.Nature == Core.RNG.Validator.Natures[nature])];
+                ivstopidFrames = [.. ivstopidFrames.Where(f => f.Nature == Validator.Natures[nature])];
             }
 
             SetBindingSourceDataSource(ivstopidFrames, BS_IVsToPID);
@@ -1637,7 +1637,7 @@ public partial class MainWindow : Form
         ValidateInputs();
 
         var seed = uint.Parse(TB_32to16Seed.GetText(), NumberStyles.AllowHexSpecifier);
-        var prev = Core.RNG.Back16.GetLast16(seed);
+        var prev = Back16.GetLast16(seed);
         var dist = LCRNG.GetDistance(prev, seed);
 
         SetControlText($"{prev:X4}", TB_16);
@@ -1650,7 +1650,7 @@ public partial class MainWindow : Form
 
         var pid = uint.Parse(TB_NaturePairPID.GetText(), NumberStyles.AllowHexSpecifier);
 
-        List<NaturePairFrame> naturePairFrames = Core.RNG.RNGUtil.GetNaturePairFrames(pid);
+        List<NaturePairFrame> naturePairFrames = RNGUtil.GetNaturePairFrames(pid);
 
         SetBindingSourceDataSource(naturePairFrames, BS_NaturePair);
         SetDataGridViewDataSource(BS_NaturePair, DGV_Results);
@@ -1695,7 +1695,7 @@ public partial class MainWindow : Form
                 var seed = uint.Parse(TB_SS_TargetSeed.GetText(), NumberStyles.AllowHexSpecifier);
                 var max = uint.Parse(TB_SS_Adv.GetText());
 
-                seeds = await Core.RNG.Back16.CountSeedsInRange(seed, max).ConfigureAwait(false);
+                seeds = await Back16.CountSeedsInRange(seed, max).ConfigureAwait(false);
                 SetControlText($"{seeds:N0}", TB_SS_SeedCount);
             }
 
@@ -1705,11 +1705,11 @@ public partial class MainWindow : Form
 
     private void B_Finder_Search_Click(object sender, EventArgs e)
     {
-        byte[] MinIVs = [(byte)NUD_Finder_HP_Min.GetValue(), (byte)NUD_Finder_Atk_Min.GetValue(), (byte)NUD_Finder_Def_Min.GetValue(), (byte)NUD_Finder_SpA_Min.GetValue(), (byte)NUD_Finder_SpD_Min.GetValue(), (byte)NUD_Finder_Spe_Min.GetValue()];
-        byte[] MaxIVs = [(byte)NUD_Finder_HP_Max.GetValue(), (byte)NUD_Finder_Atk_Max.GetValue(), (byte)NUD_Finder_Def_Max.GetValue(), (byte)NUD_Finder_SpA_Max.GetValue(), (byte)NUD_Finder_SpD_Max.GetValue(), (byte)NUD_Finder_Spe_Max.GetValue()];
+        uint[] MinIVs = [NUD_Finder_HP_Min.GetValue(), NUD_Finder_Atk_Min.GetValue(), NUD_Finder_Def_Min.GetValue(), NUD_Finder_SpA_Min.GetValue(), NUD_Finder_SpD_Min.GetValue(), NUD_Finder_Spe_Min.GetValue()];
+        uint[] MaxIVs = [NUD_Finder_HP_Max.GetValue(), NUD_Finder_Atk_Max.GetValue(), NUD_Finder_Def_Max.GetValue(), NUD_Finder_SpA_Max.GetValue(), NUD_Finder_SpD_Max.GetValue(), NUD_Finder_Spe_Max.GetValue()];
         IVSearchType[] Types = [GetIVSearchType(L_Finder_HPSpacer.GetText()), GetIVSearchType(L_Finder_AtkSpacer.GetText()), GetIVSearchType(L_Finder_DefSpacer.GetText()), GetIVSearchType(L_Finder_SpASpacer.GetText()), GetIVSearchType(L_Finder_SpDSpacer.GetText()), GetIVSearchType(L_Finder_SpeSpacer.GetText())];
 
-        List<byte>[] ivs = [[], [], [], [], [], []];
+        List<uint>[] ivs = [[], [], [], [], [], []];
 
         for (var i = 0; i < ivs.Length; i++)
         {
@@ -1745,17 +1745,17 @@ public partial class MainWindow : Form
         List<uint> _123 = [];
         List<uint> _4 = [];
 
-        foreach (var hp in ivs[0])
+        foreach (byte hp in ivs[0])
         {
-            foreach (var atk in ivs[1])
+            foreach (byte atk in ivs[1])
             {
-                foreach (var def in ivs[2])
+                foreach (byte def in ivs[2])
                 {
-                    foreach (var spa in ivs[3])
+                    foreach (byte spa in ivs[3])
                     {
-                        foreach (var spd in ivs[4])
+                        foreach (byte spd in ivs[4])
                         {
-                            foreach (var spe in ivs[5])
+                            foreach (byte spe in ivs[5])
                             {
                                 var seeds = Recovery.GetIVSeeds(hp, atk, def, spa, spd, spe);
                                 _123.AddRange(seeds._123);
@@ -1767,11 +1767,32 @@ public partial class MainWindow : Form
             }
         }
 
-        var species = CB_Finder_Species.GetText();
+        var name = CB_Finder_Species.GetText();
+        _ = SpeciesName.TryGetSpecies(name, 2, out var species);
+        var t = GetAcceptableEncounterSlotValues(species, (Game)CB_Game.GetSelectedIndex());
+        //this.DisplayMessageBox("This feature is currently unimplemented. Try again later!");
 
-        var t = GetAcceptableEncounterSlotValues(species, Game.FireRed);
-        //var u = GetAllAreasForSpeciesAndSlot("Oddish", 85u, Game.FireRed);
-        this.DisplayMessageBox("This feature is currently unimplemented. Try again later!");
+        FinderConfig cfg = new()
+        {
+            SID = ushort.Parse(TB_SID.GetText()),
+            TID = ushort.Parse(TB_TID.GetText()),
+
+            TargetSpecies = species,
+
+            TargetShiny = GetFilterShinyType(CB_Finder_Shiny.GetSelectedIndex()),
+            TargetNature = GetFilterNatureType(CB_Finder_Nature.GetSelectedIndex()),
+
+            AcceptableEncounterSlots = t,
+
+            TargetMinIVs = MinIVs,
+            TargetMaxIVs = MaxIVs,
+            SearchTypes = Types,
+        };
+
+        Task.Run(async () =>
+        {
+            var a = await Finder.Generate(_123, cfg);
+        });
     }
 }
 

@@ -93,6 +93,22 @@ public static class Recovery
         });
     }
 
+    public static uint RecoverPIDFromIVSeed(uint seed, Method method)
+    {
+        if (method.IsMethod2()) seed = LCRNG.Prev(seed);
+        var high = (seed >> 16);
+        if (method.IsMethod3()) seed = LCRNG.Prev(seed);
+        return (high << 16) | LCRNG.Prev16(ref seed);
+    }
+
+    public static uint RecoverPIDFromIVSeed(ref uint seed, Method method)
+    {
+        if (method.IsMethod2()) seed = LCRNG.Prev(seed);
+        var high = (seed >> 16);
+        if (method.IsMethod3()) seed = LCRNG.Prev(seed);
+        return (high << 16) | LCRNG.Prev16(ref seed);
+    }
+
     public static Task<List<IVsToPIDFrame>> GetIVsToPID(byte hp, byte atk, byte def, byte spa, byte spd, byte spe)
     {
         return Task.Run(() =>

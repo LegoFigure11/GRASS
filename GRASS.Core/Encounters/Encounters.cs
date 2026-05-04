@@ -161,7 +161,6 @@ public static class Encounters
     {
         HashSet<string> hs = [.. GetStaticEncounterSpeciesList(game)];
 
-
         EncounterTableType[] tables = [
             EncounterTableType.GrassCave, EncounterTableType.Surf, EncounterTableType.RockSmash,
             EncounterTableType.OldRod, EncounterTableType.GoodRod, EncounterTableType.SuperRod,
@@ -180,70 +179,61 @@ public static class Encounters
         return [.. hs.OrderBy(x => x)];
     }
 
-    public static SortedList<uint, HashSet<EncounterTableType>> GetAcceptableEncounterSlotValues(string name, Game game)
+    public static SortedList<uint, HashSet<EncounterTableType>> GetAcceptableEncounterSlotValues(ushort species, Game game)
     {
-        var success = SpeciesName.TryGetSpecies(name, 2, out var species);
         SortedList<uint, HashSet<EncounterTableType>> dict = [];
 
-        if (success)
-        {
-            EncounterTableType[] tables = [
-                EncounterTableType.GrassCave, EncounterTableType.Surf, EncounterTableType.RockSmash,
-                EncounterTableType.OldRod, EncounterTableType.GoodRod, EncounterTableType.SuperRod,
-            ];
+        EncounterTableType[] tables = [
+            EncounterTableType.GrassCave, EncounterTableType.Surf, EncounterTableType.RockSmash,
+            EncounterTableType.OldRod, EncounterTableType.GoodRod, EncounterTableType.SuperRod,
+        ];
 
-            foreach (var table in tables)
+        foreach (var table in tables)
+        {
+            var areas = GetEncounterAreas(game, table);
+            for (var a = 0; a < areas.Count; a++)
             {
-                var areas = GetEncounterAreas(game, table);
-                for (var a = 0; a < areas.Count; a++)
+                var encs = GetEncounterSlotEncounters(game, table, a);
+                for (var i = 0u; i < 100; i++)
                 {
-                    var encs = GetEncounterSlotEncounters(game, table, a);
-                    for (var i = 0u; i < 100; i++)
+                    var slot = GetEncounterSlotIndex(i, table);
+                    if (encs[slot]._species == species)
                     {
-                        var slot = GetEncounterSlotIndex(i, table);
-                        if (encs[slot]._species == species)
+                        if (!dict.TryGetValue(i, out HashSet<EncounterTableType>? value))
                         {
-                            if (!dict.TryGetValue(i, out HashSet<EncounterTableType>? value))
-                            {
-                                dict.Add(i, [table]);
-                            }
-                            else
-                            {
-                                value.Add(table);
-                            }
+                            dict.Add(i, [table]);
+                        }
+                        else
+                        {
+                            value.Add(table);
                         }
                     }
                 }
             }
-
         }
+
         return dict;
     }
 
-    public static HashSet<string> GetAllAreasForSpeciesAndSlot(string name, uint rand, Game game)
+    public static HashSet<string> GetAllAreasForSpeciesAndSlot(ushort species, uint rand, Game game)
     {
         HashSet<string> hs = [];
 
-        var success = SpeciesName.TryGetSpecies(name, 2, out var species);
+        EncounterTableType[] tables = [
+            EncounterTableType.GrassCave, EncounterTableType.Surf, EncounterTableType.RockSmash,
+            EncounterTableType.OldRod, EncounterTableType.GoodRod, EncounterTableType.SuperRod,
+        ];
 
-        if (success)
+        foreach (var table in tables)
         {
-            EncounterTableType[] tables = [
-                EncounterTableType.GrassCave, EncounterTableType.Surf, EncounterTableType.RockSmash,
-                EncounterTableType.OldRod, EncounterTableType.GoodRod, EncounterTableType.SuperRod,
-            ];
-
-            foreach (var table in tables)
+            var areas = GetEncounterAreas(game, table);
+            for (var a = 0; a < areas.Count; a++)
             {
-                var areas = GetEncounterAreas(game, table);
-                for (var a = 0; a < areas.Count; a++)
+                var encs = GetEncounterSlotEncounters(game, table, a);
+                var slot = GetEncounterSlotIndex(rand, table);
+                if (encs[slot]._species == species)
                 {
-                    var encs = GetEncounterSlotEncounters(game, table, a);
-                    var slot = GetEncounterSlotIndex(rand, table);
-                    if (encs[slot]._species == species)
-                    {
-                        hs.Add(areas[a]);
-                    }
+                    hs.Add(areas[a]);
                 }
             }
         }
