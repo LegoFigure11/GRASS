@@ -7,4 +7,5 @@ public enum EncounterTableType
     OldRod,
     GoodRod,
     SuperRod,
+    Static,
 };

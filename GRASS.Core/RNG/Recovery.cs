@@ -221,7 +221,7 @@ public static class Recovery
         return (AB, A_C);
     }
 
-    private static (List<uint> _123, List<uint> _4) GetIVSeeds(byte hp, byte atk, byte def, byte spa, byte spd, byte spe)
+    public static (List<uint> _123, List<uint> _4) GetIVSeeds(byte hp, byte atk, byte def, byte spa, byte spd, byte spe)
     {
         Span<uint> cd = stackalloc uint[LCRNG.MaxCountSeedsIV];
         Span<uint> de = stackalloc uint[LCRNG.MaxCountSeedsIV];

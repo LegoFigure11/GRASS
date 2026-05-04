@@ -3,11 +3,13 @@ using GRASS.Core.Connection;
 using GRASS.Core.Enums;
 using GRASS.Core.Interfaces;
 using GRASS.Core.KeyboardEntry;
+using GRASS.Core.RNG;
 using GRASS.WinForms.Subforms;
 using PKHeX.Core;
 using SysBot.Base;
 using System.Diagnostics;
 using System.Globalization;
+using System.Numerics;
 using System.Text;
 using System.Text.Json;
 using static GRASS.Core.Encounters;
@@ -591,6 +593,7 @@ public partial class MainWindow : Form
         Config.Game = CB_Game.SelectedIndex;
         UpdateStaticSpeciesList();
         ReloadEncounterList();
+        ReloadFinderEncounters();
     }
 
     private void UpdateStaticSpeciesList() => UpdateStaticSpeciesList((Game)CB_Game.SelectedIndex);
@@ -1481,6 +1484,14 @@ public partial class MainWindow : Form
         CB_Wild_Area.SelectedIndex = 0;
     }
 
+    private void ReloadFinderEncounters()
+    {
+        CB_Finder_Species.Items.Clear();
+        var items = GetAllEncounters((Game)CB_Game.GetSelectedIndex());
+        foreach (var item in items) CB_Finder_Species.Items.Add(item);
+        CB_Finder_Species.SelectedIndex = 0;
+    }
+
     private void CB_Wild_Area_SelectedIndexChanged(object sender, EventArgs e)
     {
         CB_Wild_Species.Items.Clear();
@@ -1694,6 +1705,72 @@ public partial class MainWindow : Form
 
     private void B_Finder_Search_Click(object sender, EventArgs e)
     {
+        byte[] MinIVs = [(byte)NUD_Finder_HP_Min.GetValue(), (byte)NUD_Finder_Atk_Min.GetValue(), (byte)NUD_Finder_Def_Min.GetValue(), (byte)NUD_Finder_SpA_Min.GetValue(), (byte)NUD_Finder_SpD_Min.GetValue(), (byte)NUD_Finder_Spe_Min.GetValue()];
+        byte[] MaxIVs = [(byte)NUD_Finder_HP_Max.GetValue(), (byte)NUD_Finder_Atk_Max.GetValue(), (byte)NUD_Finder_Def_Max.GetValue(), (byte)NUD_Finder_SpA_Max.GetValue(), (byte)NUD_Finder_SpD_Max.GetValue(), (byte)NUD_Finder_Spe_Max.GetValue()];
+        IVSearchType[] Types = [GetIVSearchType(L_Finder_HPSpacer.GetText()), GetIVSearchType(L_Finder_AtkSpacer.GetText()), GetIVSearchType(L_Finder_DefSpacer.GetText()), GetIVSearchType(L_Finder_SpASpacer.GetText()), GetIVSearchType(L_Finder_SpDSpacer.GetText()), GetIVSearchType(L_Finder_SpeSpacer.GetText())];
+
+        List<byte>[] ivs = [[], [], [], [], [], []];
+
+        for (var i = 0; i < ivs.Length; i++)
+        {
+            var iv = ivs[i];
+            var type = Types[i];
+
+            if (type == IVSearchType.Or)
+            {
+                iv.Add(MinIVs[i]);
+                iv.Add(MaxIVs[i]);
+            }
+            else
+            {
+                for (var j = MinIVs[i]; j <= MaxIVs[i]; j++)
+                {
+                    iv.Add(j);
+                }
+            }
+        }
+
+        ulong ct = (ulong)ivs[0].Count;
+        for (var i = 1; i < ivs.Length; i++)
+        {
+            ct *= (ulong)ivs[i].Count;
+        }
+
+        if (ct > 0x00100000)
+        {
+            this.DisplayMessageBox($"Oops! It looks like you're trying to search through {ct:N0} IV combinations. That'll hurt your computer a bit, why don't you set your IV filters a little stricter?");
+            return;
+        }
+
+        List<uint> _123 = [];
+        List<uint> _4 = [];
+
+        foreach (var hp in ivs[0])
+        {
+            foreach (var atk in ivs[1])
+            {
+                foreach (var def in ivs[2])
+                {
+                    foreach (var spa in ivs[3])
+                    {
+                        foreach (var spd in ivs[4])
+                        {
+                            foreach (var spe in ivs[5])
+                            {
+                                var seeds = Recovery.GetIVSeeds(hp, atk, def, spa, spd, spe);
+                                _123.AddRange(seeds._123);
+                                _4.AddRange(seeds._4);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        var species = CB_Finder_Species.GetText();
+
+        var t = GetAcceptableEncounterSlotValues(species, Game.FireRed);
+        //var u = GetAllAreasForSpeciesAndSlot("Oddish", 85u, Game.FireRed);
         this.DisplayMessageBox("This feature is currently unimplemented. Try again later!");
     }
 }

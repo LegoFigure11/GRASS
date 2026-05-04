@@ -897,6 +897,7 @@ namespace GRASS.WinForms;
         B_Finder_Spe_Max.TabIndex = 23;
         B_Finder_Spe_Max.Text = "31";
         B_Finder_Spe_Max.UseVisualStyleBackColor = true;
+        B_Finder_Spe_Max.Click += B_IV_Max_Click;
         // 
         // B_Finder_Spe_Min
         // 
@@ -906,6 +907,7 @@ namespace GRASS.WinForms;
         B_Finder_Spe_Min.TabIndex = 22;
         B_Finder_Spe_Min.Text = "0";
         B_Finder_Spe_Min.UseVisualStyleBackColor = true;
+        B_Finder_Spe_Min.Click += B_IV_Min_Click;
         // 
         // L_Finder_SpeSpacer
         // 
@@ -942,6 +944,7 @@ namespace GRASS.WinForms;
         B_Finder_SpD_Max.TabIndex = 21;
         B_Finder_SpD_Max.Text = "31";
         B_Finder_SpD_Max.UseVisualStyleBackColor = true;
+        B_Finder_SpD_Max.Click += B_IV_Max_Click;
         // 
         // B_Finder_SpD_Min
         // 
@@ -951,6 +954,7 @@ namespace GRASS.WinForms;
         B_Finder_SpD_Min.TabIndex = 20;
         B_Finder_SpD_Min.Text = "0";
         B_Finder_SpD_Min.UseVisualStyleBackColor = true;
+        B_Finder_SpD_Min.Click += B_IV_Min_Click;
         // 
         // L_Finder_SpD
         // 
@@ -997,6 +1001,7 @@ namespace GRASS.WinForms;
         B_Finder_SpA_Max.TabIndex = 19;
         B_Finder_SpA_Max.Text = "31";
         B_Finder_SpA_Max.UseVisualStyleBackColor = true;
+        B_Finder_SpA_Max.Click += B_IV_Max_Click;
         // 
         // B_Finder_SpA_Min
         // 
@@ -1006,6 +1011,7 @@ namespace GRASS.WinForms;
         B_Finder_SpA_Min.TabIndex = 18;
         B_Finder_SpA_Min.Text = "0";
         B_Finder_SpA_Min.UseVisualStyleBackColor = true;
+        B_Finder_SpA_Min.Click += B_IV_Min_Click;
         // 
         // L_Finder_SpASpacer
         // 
@@ -1042,6 +1048,7 @@ namespace GRASS.WinForms;
         B_Finder_Def_Max.TabIndex = 17;
         B_Finder_Def_Max.Text = "31";
         B_Finder_Def_Max.UseVisualStyleBackColor = true;
+        B_Finder_Def_Max.Click += B_IV_Max_Click;
         // 
         // B_Finder_Def_Min
         // 
@@ -1051,6 +1058,7 @@ namespace GRASS.WinForms;
         B_Finder_Def_Min.TabIndex = 16;
         B_Finder_Def_Min.Text = "0";
         B_Finder_Def_Min.UseVisualStyleBackColor = true;
+        B_Finder_Def_Min.Click += B_IV_Min_Click;
         // 
         // L_Finder_Def
         // 
@@ -1097,6 +1105,7 @@ namespace GRASS.WinForms;
         B_Finder_Atk_Max.TabIndex = 15;
         B_Finder_Atk_Max.Text = "31";
         B_Finder_Atk_Max.UseVisualStyleBackColor = true;
+        B_Finder_Atk_Max.Click += B_IV_Max_Click;
         // 
         // B_Finder_Atk_Min
         // 
@@ -1106,6 +1115,7 @@ namespace GRASS.WinForms;
         B_Finder_Atk_Min.TabIndex = 14;
         B_Finder_Atk_Min.Text = "0";
         B_Finder_Atk_Min.UseVisualStyleBackColor = true;
+        B_Finder_Atk_Min.Click += B_IV_Min_Click;
         // 
         // L_Finder_Atk
         // 
@@ -1152,6 +1162,7 @@ namespace GRASS.WinForms;
         B_Finder_HP_Max.TabIndex = 13;
         B_Finder_HP_Max.Text = "31";
         B_Finder_HP_Max.UseVisualStyleBackColor = true;
+        B_Finder_HP_Max.Click += B_IV_Max_Click;
         // 
         // B_Finder_HP_Min
         // 
@@ -1161,6 +1172,7 @@ namespace GRASS.WinForms;
         B_Finder_HP_Min.TabIndex = 12;
         B_Finder_HP_Min.Text = "0";
         B_Finder_HP_Min.UseVisualStyleBackColor = true;
+        B_Finder_HP_Min.Click += B_IV_Min_Click;
         // 
         // L_Finder_HP
         // 
