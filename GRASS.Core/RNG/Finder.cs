@@ -13,34 +13,61 @@ public static class Finder
         {
             List<StaticFrame> results = [];
 
+            var personal = PersonalTable.FR[cfg.TargetSpecies];
+
             foreach (var seed in seeds)
             {
                 foreach (var method in cfg.Methods)
                 {
-                    var PID = Recovery.RecoverPIDFromIVSeed(seed, method);
-                    var Nature = PID.Nature;
+                    var s = seed;
+                    var PID = Recovery.RecoverPIDFromIVSeed(ref s, method);
 
+                    var shinyXor = RNGUtil.GetShinyXOR(PID, cfg.TSV);
+                    if (!Validator.CheckIsShiny(shinyXor, cfg.TargetShiny)) continue;
+
+                    var Nature = PID.Nature;
                     if (!Validator.CheckNature(Nature, cfg.TargetNature)) continue;
+
+                    var iv = seed;
+                    var ivs = PIDIV.GetIVs(ref iv, false, method);
+
+                    var Gender = personal.Gender switch
+                    {
+                        PersonalInfo.RatioMagicGenderless => '-',
+                        PersonalInfo.RatioMagicFemale => 'F',
+                        PersonalInfo.RatioMagicMale => 'M',
+                        _ => PID.GenderVal < personal.Gender ? 'F' : 'M'
+                    };
 
                     if (method.IsMethodH())
                     {
-                        uint huntPID, rerolls = 0xFFFFFFFF; // (uint)-1;
-                        uint hunt = seed;
+                        uint huntPID;
+                        uint nextRNG = LCRNG.Prev16(ref s);
+                        uint nextRNG2 = LCRNG.Prev16(ref s);
+                        var ct = 0;
+
                         do
                         {
-                            huntPID = Recovery.RecoverPIDFromIVSeed(ref hunt, method);
-                            rerolls++;
+                            if (nextRNG.Nature == Nature)
+                            {
+                                var SlotRand = LCRNG.Prev16(ref s) % 100;
+                                _ = LCRNG.Prev16(ref s);
+
+                                if (cfg.AcceptableEncounterSlots.ContainsKey(SlotRand))
+                                {
+                                    var areas = Encounters.GetAllAreasForSpeciesAndSlot(cfg.TargetSpecies, SlotRand, cfg.Game);
+
+                                    Debug.WriteLine($"({s:X8}:{ct:000}) {PID:X8} ({(Nature)Nature}) - {method} - {string.Join("/", ivs)} | {string.Join(", ", areas)}");
+
+                                }
+
+                            }
+
+                            huntPID = (nextRNG << 16) | nextRNG2;
+                            nextRNG = LCRNG.Prev16(ref s);
+                            nextRNG2 = LCRNG.Prev16(ref s);
+                            ct++;
                         } while (huntPID.Nature != Nature);
-
-                        var LevelRand = LCRNG.Prev16(ref hunt);
-                        var SlotRand = LCRNG.Prev16(ref hunt) % 100;
-
-                        if (!cfg.AcceptableEncounterSlots.ContainsKey(SlotRand)) continue;
-
-                        var areas = Encounters.GetAllAreasForSpeciesAndSlot(cfg.TargetSpecies, SlotRand, cfg.Game);
-
-                        Debug.WriteLine($"{PID:X8} ({(Nature)Nature}) - {method} | {string.Join(", ", areas)}");
-                        _ = true;
                     }
                 }
             }
