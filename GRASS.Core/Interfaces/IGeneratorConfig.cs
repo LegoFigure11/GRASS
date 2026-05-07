@@ -94,7 +94,7 @@ public class WildConfig : IGeneratorConfig, IIVGeneratorConfig
 
 public class FinderConfig : IIVGeneratorConfig
 {
-    public List<Method> Methods { get; set; } = [Method.Method1, Method.Method2, Method.Method3, Method.Method4, Method.MethodH1, Method.MethodH2, Method.MethodH3, Method.MethodH4];
+    public List<Method> Methods { get; set; } = [Method.MethodH1];
     public Game Game { get; set; } = Game.FireRed;
     public SortedList<uint, HashSet<EncounterTableType>> AcceptableEncounterSlots { get; set; } = [];
 
@@ -117,6 +117,7 @@ public class FinderConfig : IIVGeneratorConfig
     public uint[] TargetMaxIVs { get; set; } = [31, 31, 31, 31, 31, 31];
     public IVSearchType[] SearchTypes { get; set; } = [IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range, IVSearchType.Range];
 
+    public bool BuggedRoamer { get; set; } = false;
     public bool RarePID { get; set; } = false;
 
     public StaticEncounter Encounter { get; set; } = new();

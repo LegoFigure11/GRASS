@@ -29,7 +29,8 @@ public static class Finder
                     if (!Validator.CheckNature(Nature, cfg.TargetNature)) continue;
 
                     var iv = seed;
-                    var ivs = PIDIV.GetIVs(ref iv, false, method);
+                    var IVs = PIDIV.GetIVs(ref iv, cfg.BuggedRoamer, method);
+                    if (!Validator.CheckIVs(IVs, cfg)) continue;
 
                     var Gender = personal.Gender switch
                     {
@@ -50,14 +51,14 @@ public static class Finder
                         {
                             if (nextRNG.Nature == Nature)
                             {
+                                var LevelRand = nextRNG2; // Unused for now
                                 var SlotRand = LCRNG.Prev16(ref s) % 100;
-                                _ = LCRNG.Prev16(ref s);
 
                                 if (cfg.AcceptableEncounterSlots.ContainsKey(SlotRand))
                                 {
                                     var areas = Encounters.GetAllAreasForSpeciesAndSlot(cfg.TargetSpecies, SlotRand, cfg.Game);
 
-                                    Debug.WriteLine($"({s:X8}:{ct:000}) {PID:X8} ({(Nature)Nature}) - {method} - {string.Join("/", ivs)} | {string.Join(", ", areas)}");
+                                    Debug.WriteLine($"({LCRNG.Prev(s):X8}:{ct:000}) {PID:X8} ({(Nature)Nature}) - {method} - {string.Join("/", IVs)} | {string.Join(", ", areas)}");
 
                                 }
 

@@ -157,9 +157,11 @@ public static class Encounters
         _     => 0,
     };
 
-    public static List<string> GetAllEncounters(Game game)
+    public static List<string> GetAllEncounters(Game game, bool IncludeStatics = true)
     {
-        HashSet<string> hs = [.. GetStaticEncounterSpeciesList(game)];
+        HashSet<string> hs = [];
+
+        if (IncludeStatics) hs = [.. GetStaticEncounterSpeciesList(game)];
 
         EncounterTableType[] tables = [
             EncounterTableType.GrassCave, EncounterTableType.Surf, EncounterTableType.RockSmash,
@@ -239,5 +241,22 @@ public static class Encounters
         }
 
         return hs;
+    }
+
+    private static List<Method> StaticMethods = [Method.Method1, Method.Method4];
+    private static List<Method> WildMethods = [Method.MethodH1, Method.MethodH2, Method.MethodH3, Method.MethodH4];
+    public static List<Method> GetMethodsForSpecies(ushort species, Game game)
+    {
+        var methods = new List<Method>();
+
+        var statics = GetStaticEncounterSpeciesList(game);
+        var wilds = GetAllEncounters(game, false);
+
+        var sn = SpeciesName.GetSpeciesName(species, 2);
+
+        if (statics.Contains(sn)) methods.AddRange(StaticMethods);
+        if (wilds.Contains(sn)) methods.AddRange(WildMethods);
+
+        return methods;
     }
 }

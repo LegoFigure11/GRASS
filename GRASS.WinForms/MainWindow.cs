@@ -9,7 +9,6 @@ using PKHeX.Core;
 using SysBot.Base;
 using System.Diagnostics;
 using System.Globalization;
-using System.Numerics;
 using System.Text;
 using System.Text.Json;
 using static GRASS.Core.Encounters;
@@ -121,7 +120,7 @@ public partial class MainWindow : Form
 
         UpdateStaticSpeciesList((Game)Config.Game);
 
-        SetComboBoxSelectedIndex(0, CB_Method, CB_Nature, CB_BabyMode_Action, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Wild_Method, CB_Wild_Nature, CB_Wild_Shiny, CB_Static_Species, CB_Wild_Encounter);
+        SetComboBoxSelectedIndex(0, CB_Finder_Shiny, CB_Finder_Nature, CB_Finder_Method, CB_Method, CB_Nature, CB_BabyMode_Action, CB_Static_Shiny, CB_Static_Nature, CB_Static_Method, CB_Wild_Method, CB_Wild_Nature, CB_Wild_Shiny, CB_Static_Species, CB_Wild_Encounter);
 
         CB_Game.SelectedIndex = Config.Game;
 
@@ -1742,8 +1741,7 @@ public partial class MainWindow : Form
             return;
         }
 
-        List<uint> _123 = [];
-        List<uint> _4 = [];
+        List<uint> _1234 = [];
 
         foreach (byte hp in ivs[0])
         {
@@ -1757,9 +1755,9 @@ public partial class MainWindow : Form
                         {
                             foreach (byte spe in ivs[5])
                             {
-                                var seeds = Recovery.GetIVSeeds(hp, atk, def, spa, spd, spe);
-                                _123.AddRange(seeds._123);
-                                _4.AddRange(seeds._4);
+                                var (_123, _4) = Recovery.GetIVSeeds(hp, atk, def, spa, spd, spe);
+                                _1234.AddRange(_123);
+                                _1234.AddRange(_4);
                             }
                         }
                     }
@@ -1770,12 +1768,16 @@ public partial class MainWindow : Form
         var name = CB_Finder_Species.GetText();
         _ = SpeciesName.TryGetSpecies(name, 2, out var species);
         var t = GetAcceptableEncounterSlotValues(species, (Game)CB_Game.GetSelectedIndex());
-        //this.DisplayMessageBox("This feature is currently unimplemented. Try again later!");
+        var m = GetMethodsForSpecies(species, (Game)CB_Game.GetSelectedIndex());
+
+        var methodText = CB_Finder_Method.GetText();
 
         FinderConfig cfg = new()
         {
             SID = ushort.Parse(TB_SID.GetText()),
             TID = ushort.Parse(TB_TID.GetText()),
+
+            Methods = methodText == "(Any)" ? m : [GetMethodFromText(methodText)],
 
             TargetSpecies = species,
 
@@ -1791,8 +1793,36 @@ public partial class MainWindow : Form
 
         Task.Run(async () =>
         {
-            var a = await Finder.Generate(_123, cfg);
+            var res = await Finder.Generate(_1234, cfg);
         });
     }
+
+    private void CB_Finder_Species_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var name = CB_Finder_Species.GetText();
+        _ = SpeciesName.TryGetSpecies(name, 2, out var species);
+
+        var m = GetMethodsForSpecies(species, (Game)CB_Game.GetSelectedIndex());
+
+        CB_Finder_Method.Items.Clear();
+        CB_Finder_Method.Items.Add("(Any)");
+        foreach (var item in m) CB_Finder_Method.Items.Add(item);
+        CB_Finder_Method.SelectedIndex = 0;
+    }
+
+    private static Method GetMethodFromText(string m) => m switch
+    {
+        "Method1" => Method.Method1,
+        "Method2" => Method.Method2,
+        "Method3" => Method.Method3,
+        "Method4" => Method.Method4,
+
+        "MethodH1" => Method.MethodH1,
+        "MethodH2" => Method.MethodH2,
+        "MethodH3" => Method.MethodH3,
+        "MethodH4" => Method.MethodH4,
+
+        _ => Method.Method1
+    };
 }
 

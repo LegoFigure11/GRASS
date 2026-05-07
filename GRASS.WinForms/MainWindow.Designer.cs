@@ -62,7 +62,6 @@ namespace GRASS.WinForms;
         CB_Finder_Method = new ComboBox();
         L_Finder_Species = new Label();
         CB_Finder_Species = new ComboBox();
-        CB_Finder_Roamer = new CheckBox();
         GB_Finder_Filters = new GroupBox();
         L_Finder_Spe = new Label();
         L_Finder_SpA = new Label();
@@ -702,7 +701,6 @@ namespace GRASS.WinForms;
         TP_Searcher.Controls.Add(CB_Finder_Method);
         TP_Searcher.Controls.Add(L_Finder_Species);
         TP_Searcher.Controls.Add(CB_Finder_Species);
-        TP_Searcher.Controls.Add(CB_Finder_Roamer);
         TP_Searcher.Controls.Add(GB_Finder_Filters);
         TP_Searcher.Location = new Point(4, 24);
         TP_Searcher.Name = "TP_Searcher";
@@ -757,18 +755,7 @@ namespace GRASS.WinForms;
         CB_Finder_Species.Name = "CB_Finder_Species";
         CB_Finder_Species.Size = new Size(101, 23);
         CB_Finder_Species.TabIndex = 186;
-        // 
-        // CB_Finder_Roamer
-        // 
-        CB_Finder_Roamer.AutoSize = true;
-        CB_Finder_Roamer.CheckAlign = ContentAlignment.MiddleRight;
-        CB_Finder_Roamer.Location = new Point(21, 194);
-        CB_Finder_Roamer.Name = "CB_Finder_Roamer";
-        CB_Finder_Roamer.Size = new Size(134, 19);
-        CB_Finder_Roamer.TabIndex = 185;
-        CB_Finder_Roamer.Tag = "";
-        CB_Finder_Roamer.Text = "Bugged Roamer IVs?";
-        CB_Finder_Roamer.UseVisualStyleBackColor = true;
+        CB_Finder_Species.SelectedIndexChanged += CB_Finder_Species_SelectedIndexChanged;
         // 
         // GB_Finder_Filters
         // 
@@ -3979,7 +3966,6 @@ namespace GRASS.WinForms;
     public ComboBox CB_Finder_Method;
     private Label L_Finder_Species;
     public ComboBox CB_Finder_Species;
-    public CheckBox CB_Finder_Roamer;
     private Button B_Finder_Search;
     private Label L_Finder_SpA;
     private Label L_Finder_Spe;
