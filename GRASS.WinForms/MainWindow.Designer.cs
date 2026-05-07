@@ -322,6 +322,7 @@ namespace GRASS.WinForms;
         BS_PIDtoIVs = new BindingSource(components);
         BS_IVsToPID = new BindingSource(components);
         BS_NaturePair = new BindingSource(components);
+        BS_Finder = new BindingSource(components);
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -398,6 +399,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)BS_PIDtoIVs).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_IVsToPID).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_NaturePair).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)BS_Finder).BeginInit();
         SuspendLayout();
         // 
         // GB_Connection
@@ -3559,6 +3561,10 @@ namespace GRASS.WinForms;
         // 
         BS_NaturePair.DataSource = typeof(Core.Interfaces.NaturePairFrame);
         // 
+        // BS_Finder
+        // 
+        BS_Finder.DataSource = typeof(Core.Interfaces.FinderFrame);
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -3672,6 +3678,7 @@ namespace GRASS.WinForms;
         ((System.ComponentModel.ISupportInitialize)BS_PIDtoIVs).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_IVsToPID).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_NaturePair).EndInit();
+        ((System.ComponentModel.ISupportInitialize)BS_Finder).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -3969,5 +3976,6 @@ namespace GRASS.WinForms;
     private Button B_Finder_Search;
     private Label L_Finder_SpA;
     private Label L_Finder_Spe;
+    private BindingSource BS_Finder;
 }
 

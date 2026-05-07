@@ -404,6 +404,7 @@ public partial class MainWindow : Form
                     d.Columns["_12th"]?.HeaderText = "50% F";
                     d.Columns["_34th"]?.Width = 75;
                     d.Columns["_34th"]?.HeaderText = "75% F";
+                    d.Columns["Locations"]?.DisplayIndex = d.Columns.Count - 1;
                 });
             }
             else
@@ -446,6 +447,7 @@ public partial class MainWindow : Form
                 d.Columns["_12th"]?.HeaderText = "50% F";
                 d.Columns["_34th"]?.Width = 75;
                 d.Columns["_34th"]?.HeaderText = "75% F";
+                d.Columns["Locations"]?.DisplayIndex = d.Columns.Count - 1;
             }
         }
     }
@@ -1786,6 +1788,8 @@ public partial class MainWindow : Form
 
             AcceptableEncounterSlots = t,
 
+            RarePID = CB_Finder_RarePID.GetIsChecked(),
+
             TargetMinIVs = MinIVs,
             TargetMaxIVs = MaxIVs,
             SearchTypes = Types,
@@ -1794,6 +1798,11 @@ public partial class MainWindow : Form
         Task.Run(async () =>
         {
             var res = await Finder.Generate(_1234, cfg);
+            res = res.OrderBy(x => x.Method).ToList();
+            SetBindingSourceDataSource(res, BS_Finder);
+            SetDataGridViewDataSource(BS_Finder, DGV_Results);
+            //SetControlEnabledState(true, B_SID_Generate);
+            Frames = [.. res.Cast<object>()];
         });
     }
 

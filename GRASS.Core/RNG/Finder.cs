@@ -1,17 +1,16 @@
 ﻿using GRASS.Core.Enums;
 using GRASS.Core.Interfaces;
 using PKHeX.Core;
-using System.Diagnostics;
 
 namespace GRASS.Core.RNG;
 
 public static class Finder
 {
-    public static Task<List<StaticFrame>> Generate(List<uint> seeds, FinderConfig cfg)
+    public static Task<List<FinderFrame>> Generate(List<uint> seeds, FinderConfig cfg)
     {
         return Task.Run(() =>
         {
-            List<StaticFrame> results = [];
+            List<FinderFrame> results = [];
 
             var personal = PersonalTable.FR[cfg.TargetSpecies];
 
@@ -21,6 +20,8 @@ public static class Finder
                 {
                     var s = seed;
                     var PID = Recovery.RecoverPIDFromIVSeed(ref s, method);
+
+                    if (cfg.RarePID && PID % 100 != 0) continue;
 
                     var shinyXor = RNGUtil.GetShinyXOR(PID, cfg.TSV);
                     if (!Validator.CheckIsShiny(shinyXor, cfg.TargetShiny)) continue;
@@ -45,7 +46,7 @@ public static class Finder
                         uint huntPID;
                         uint nextRNG = LCRNG.Prev16(ref s);
                         uint nextRNG2 = LCRNG.Prev16(ref s);
-                        var ct = 0;
+                        var ct = 0u;
 
                         do
                         {
@@ -58,10 +59,22 @@ public static class Finder
                                 {
                                     var areas = Encounters.GetAllAreasForSpeciesAndSlot(cfg.TargetSpecies, SlotRand, cfg.Game);
 
-                                    Debug.WriteLine($"({LCRNG.Prev(s):X8}:{ct:000}) {PID:X8} ({(Nature)Nature}) - {method} - {string.Join("/", IVs)} | {string.Join(", ", areas)}");
+                                    var f = new FinderFrame()
+                                    {
+                                        _seed = s,
+                                        _species = cfg.TargetSpecies,
+                                        _pid = PID,
+                                        Rerolls = ct,
+                                        _method = method,
+                                        _ivs = IVs,
+                                        Locations = string.Join(", ", areas.OrderBy(x => x)),
+                                        _shinyXor = (ushort)shinyXor,
+                                        Gender = Gender,
+                                        Ability = $"{Validator.Abilities[personal.GetAbilityAtIndex(PID.Ability)]} ({PID.Ability})",
+                                    };
 
+                                    results.Add(f);
                                 }
-
                             }
 
                             huntPID = (nextRNG << 16) | nextRNG2;
@@ -69,6 +82,23 @@ public static class Finder
                             nextRNG2 = LCRNG.Prev16(ref s);
                             ct++;
                         } while (huntPID.Nature != Nature);
+                    }
+                    else
+                    {
+                        var f = new FinderFrame()
+                        {
+                            _seed = LCRNG.Prev(s),
+                            _species = cfg.TargetSpecies,
+                            _pid = PID,
+                            _method = method,
+                            _ivs = IVs,
+                            Locations = "Static",
+                            _shinyXor = (ushort)shinyXor,
+                            Gender = Gender,
+                            Ability = $"{Validator.Abilities[personal.GetAbilityAtIndex(PID.Ability)]} ({PID.Ability})",
+                        };
+
+                        results.Add(f);
                     }
                 }
             }
