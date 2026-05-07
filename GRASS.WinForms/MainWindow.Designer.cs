@@ -858,7 +858,6 @@ namespace GRASS.WinForms;
         CB_Finder_RarePID.Tag = "";
         CB_Finder_RarePID.Text = "Rare PID?";
         CB_Finder_RarePID.UseVisualStyleBackColor = true;
-        CB_Finder_RarePID.Visible = false;
         // 
         // L_Finder_Shiny
         // 

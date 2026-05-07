@@ -57,7 +57,7 @@ public static class Wild
 
                 if (cfg.FiltersEnabled &&
                     (
-                        !CheckIsShiny(shinyXor, cfg.TargetShiny)   ||
+                        !CheckIsShiny(shinyXor, cfg.TargetShiny) ||
                         !CheckIVs(IVs, cfg)
                     )
                 )
