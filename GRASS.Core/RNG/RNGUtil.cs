@@ -7,18 +7,20 @@ public static class RNGUtil
 {
     extension(LCRNG)
     {
-        public static uint Skip(uint seed, uint dist)
+        public static uint Skip(uint seed, uint dist, uint mult = LCRNG.Mult, uint add = LCRNG.Add)
         {
-            var (Mult, Add) = GetJumpConstants(dist);
+            var (Mult, Add) = GetJumpConstants(dist, mult, add);
             return seed * Mult + Add;
+        }
+
+        public static uint SkipBack(uint seed, uint dist)
+        {
+            return Skip(seed, dist, LCRNG.rMult, LCRNG.rAdd);
         }
     }
 
-    private static (uint Mult, uint Add) GetJumpConstants(uint dist)
+    private static (uint Mult, uint Add) GetJumpConstants(uint dist, uint m, uint a)
     {
-        var m = LCRNG.Mult;
-        var a = LCRNG.Add;
-
         var outM = 1u;
         var outA = 0u;
 
