@@ -4,7 +4,7 @@ using PKHeX.Core;
 
 namespace GRASS.Core.Interfaces;
 
-internal interface IAdvancesFrame
+public interface IAdvancesFrame
 {
     string Advances { get; }
 }

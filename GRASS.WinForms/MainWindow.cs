@@ -1839,29 +1839,43 @@ public partial class MainWindow : Form
         e.Cancel = !(DGV_Results.CurrentRow?.Index >= 0);
         bool hasSeed = false;
         bool hasPID = false;
-        if (Frames.Count > 0 && Frames[0] is ISeedFrame)
+        bool hasAdvances = false;
+        if (Frames.Count > 0)
         {
-            TSMI_CopySeed.Visible = true;
-            TSMI_SetToInitial.Visible = true;
-            hasSeed = true;
-        }
-        else
-        {
-            TSMI_CopySeed.Visible = false;
-            TSMI_SetToInitial.Visible = false;
+            if (Frames[0] is ISeedFrame)
+            {
+                TSMI_CopySeed.Visible = true;
+                TSMI_SetToInitial.Visible = true;
+                hasSeed = true;
+            }
+            else
+            {
+                TSMI_CopySeed.Visible = false;
+                TSMI_SetToInitial.Visible = false;
+            }
+
+            if (Frames[0] is IPIDFrame)
+            {
+                TSMI_CopyPID.Visible = true;
+                hasPID = true;
+            }
+            else
+            {
+                TSMI_CopyPID.Visible = false;
+            }
+
+            if (Frames[0] is IAdvancesFrame)
+            {
+                TSMI_CopyAdvances.Visible = true;
+                hasAdvances = true;
+            }
+            else
+            {
+                TSMI_CopyAdvances.Visible = false;
+            }
         }
 
-        if (Frames.Count > 0 && Frames[0] is IPIDFrame)
-        {
-            TSMI_CopyPID.Visible = true;
-            hasPID = true;
-        }
-        else
-        {
-            TSMI_CopyPID.Visible = false;
-        }
-
-        if (!hasSeed && !hasPID)
+        if (!hasSeed && !hasPID && !hasAdvances)
         {
             e.Cancel = true;
         }
@@ -1915,6 +1929,20 @@ public partial class MainWindow : Form
             // Columns["PID"] never null due to validation in CMS_RightClick_Opening
             var pid = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["PID"]!.Index].Value;
             Clipboard.SetText($"{pid}");
+        }
+        catch (NullReferenceException)
+        {
+            this.DisplayMessageBox("No row selected!");
+        }
+    }
+
+    private void TSMI_CopyAdvances_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Columns["Advances"] never null due to validation in CMS_RightClick_Opening
+            var adv = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["Advances"]!.Index].Value;
+            Clipboard.SetText($"{adv}");
         }
         catch (NullReferenceException)
         {
