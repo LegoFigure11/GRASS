@@ -1871,11 +1871,13 @@ public partial class MainWindow : Form
             if (Frames[0] is IAdvancesFrame)
             {
                 TSMI_CopyAdvances.Visible = true;
+                TSMI_SetToBabyMode.Visible = true;
                 hasAdvances = true;
             }
             else
             {
                 TSMI_CopyAdvances.Visible = false;
+                TSMI_SetToBabyMode.Visible = false;
             }
         }
 
@@ -1947,6 +1949,20 @@ public partial class MainWindow : Form
             // Columns["Advances"] never null due to validation in CMS_RightClick_Opening
             var adv = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["Advances"]!.Index].Value;
             Clipboard.SetText($"{adv}");
+        }
+        catch (NullReferenceException)
+        {
+            this.DisplayMessageBox("No row selected!");
+        }
+    }
+
+    private void TSMI_SetToBabyMode_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Columns["Advances"] never null due to validation in CMS_RightClick_Opening
+            var adv = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["Advances"]!.Index].Value;
+            SetControlText($"{adv}".Replace(",", string.Empty), TB_BabyMode);
         }
         catch (NullReferenceException)
         {

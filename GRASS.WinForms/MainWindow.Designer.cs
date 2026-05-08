@@ -328,6 +328,7 @@ namespace GRASS.WinForms;
         BS_IVsToPID = new BindingSource(components);
         BS_NaturePair = new BindingSource(components);
         BS_Finder = new BindingSource(components);
+        TSMI_SetToBabyMode = new ToolStripMenuItem();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -3516,36 +3517,36 @@ namespace GRASS.WinForms;
         // 
         // CMS_RightClick
         // 
-        CMS_RightClick.Items.AddRange(new ToolStripItem[] { TSMI_CopySeed, TSMI_SetToInitial, TSMI_CopyPID, TSMI_CopyAdvances });
+        CMS_RightClick.Items.AddRange(new ToolStripItem[] { TSMI_CopySeed, TSMI_SetToInitial, TSMI_CopyPID, TSMI_CopyAdvances, TSMI_SetToBabyMode });
         CMS_RightClick.Name = "CMS_RightClick";
-        CMS_RightClick.Size = new Size(226, 92);
+        CMS_RightClick.Size = new Size(252, 114);
         CMS_RightClick.Opening += CMS_RightClick_Opening;
         // 
         // TSMI_CopySeed
         // 
         TSMI_CopySeed.Name = "TSMI_CopySeed";
-        TSMI_CopySeed.Size = new Size(225, 22);
+        TSMI_CopySeed.Size = new Size(251, 22);
         TSMI_CopySeed.Text = "Copy Seed to Clipboard";
         TSMI_CopySeed.Click += TSMI_CopySeed_Click;
         // 
         // TSMI_SetToInitial
         // 
         TSMI_SetToInitial.Name = "TSMI_SetToInitial";
-        TSMI_SetToInitial.Size = new Size(225, 22);
+        TSMI_SetToInitial.Size = new Size(251, 22);
         TSMI_SetToInitial.Text = "Set as Initial Seed";
         TSMI_SetToInitial.Click += TSMI_SetToInitial_Click;
         // 
         // TSMI_CopyPID
         // 
         TSMI_CopyPID.Name = "TSMI_CopyPID";
-        TSMI_CopyPID.Size = new Size(225, 22);
+        TSMI_CopyPID.Size = new Size(251, 22);
         TSMI_CopyPID.Text = "Copy PID to Clipboard";
         TSMI_CopyPID.Click += TSMI_CopyPID_Click;
         // 
         // TSMI_CopyAdvances
         // 
         TSMI_CopyAdvances.Name = "TSMI_CopyAdvances";
-        TSMI_CopyAdvances.Size = new Size(225, 22);
+        TSMI_CopyAdvances.Size = new Size(251, 22);
         TSMI_CopyAdvances.Text = "Copy Advances to Clipboard";
         TSMI_CopyAdvances.Click += TSMI_CopyAdvances_Click;
         // 
@@ -3606,6 +3607,13 @@ namespace GRASS.WinForms;
         // BS_Finder
         // 
         BS_Finder.DataSource = typeof(Core.Interfaces.FinderFrame);
+        // 
+        // TSMI_SetToBabyMode
+        // 
+        TSMI_SetToBabyMode.Name = "TSMI_SetToBabyMode";
+        TSMI_SetToBabyMode.Size = new Size(251, 22);
+        TSMI_SetToBabyMode.Text = "Set Advance as Baby Mode Target";
+        TSMI_SetToBabyMode.Click += TSMI_SetToBabyMode_Click;
         // 
         // MainWindow
         // 
@@ -4025,5 +4033,6 @@ namespace GRASS.WinForms;
     private ToolStripMenuItem TSMI_SetToInitial;
     private ToolStripMenuItem TSMI_CopyPID;
     private ToolStripMenuItem TSMI_CopyAdvances;
+    private ToolStripMenuItem TSMI_SetToBabyMode;
 }
 
