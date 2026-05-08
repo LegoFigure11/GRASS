@@ -4,10 +4,19 @@ using PKHeX.Core;
 
 namespace GRASS.Core.Interfaces;
 
-internal interface IBasicFrame
+internal interface IAdvancesFrame
 {
     string Advances { get; }
+}
+
+public interface ISeedFrame
+{
     string Seed { get; }
+}
+
+public interface IPIDFrame
+{
+    string PID { get; }
 }
 
 public interface IIVFrame
@@ -25,13 +34,18 @@ public interface IShinyFrame
     string Shiny { get; }
 }
 
+public interface ILocations
+{
+    string Locations { get; }
+}
+
 public interface IHiddenPowerFrame
 {
     string Hidden { get; }
     int Power { get; }
 }
 
-public class SIDFrame : IBasicFrame
+public class SIDFrame : IAdvancesFrame, ISeedFrame
 {
     internal uint _advances { get; set; } = 0;
     internal uint _seed { get; set; } = 0;
@@ -42,7 +56,7 @@ public class SIDFrame : IBasicFrame
     public string SID => $"{_sid:00000}";
 }
 
-public class StaticFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
+public class StaticFrame : IAdvancesFrame, ISeedFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame, IPIDFrame
 {
     internal uint _advances { get; set; } = 0;
     internal uint _seed { get; set; } = 0;
@@ -76,7 +90,7 @@ public class StaticFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
     public string Seed => $"{_seed:X8}";
 }
 
-public class WildFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
+public class WildFrame : IAdvancesFrame, ISeedFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame, IPIDFrame
 {
     internal uint _advances { get; set; } = 0;
     internal uint _seed { get; set; } = 0;
@@ -115,7 +129,7 @@ public class WildFrame : IBasicFrame, IIVFrame, IShinyFrame, IHiddenPowerFrame
     public string Seed => $"{_seed:X8}";
 }
 
-public class FinderFrame : IIVFrame, IHiddenPowerFrame, IShinyFrame
+public class FinderFrame : IIVFrame, ISeedFrame, IHiddenPowerFrame, IShinyFrame, ILocations, IPIDFrame
 {
     internal uint _seed { get; set; } = 0;
     internal uint _pid { get; set; } = 0;
@@ -154,7 +168,7 @@ public class FinderFrame : IIVFrame, IHiddenPowerFrame, IShinyFrame
     public string Seed => $"{_seed:X8}";
 }
 
-public class PIDtoIVsFrame : IIVFrame, IHiddenPowerFrame
+public class PIDtoIVsFrame : ISeedFrame, IIVFrame, IHiddenPowerFrame
 {
     internal uint _seed { get; set; } = 0;
     internal Method _method { get; set; } = Enums.Method.Method1;
@@ -175,7 +189,7 @@ public class PIDtoIVsFrame : IIVFrame, IHiddenPowerFrame
     public int Power => ((40 * _HPBitValPower) / 63) + 30;
 }
 
-public class IVsToPIDFrame
+public class IVsToPIDFrame : ISeedFrame, IPIDFrame
 {
     internal uint _seed { get; set; } = 0;
     internal Method _method { get; set; } = Enums.Method.Method1;
@@ -197,7 +211,7 @@ public class IVsToPIDFrame
     public char _34th => GenderVal <= 190 ? 'F' : 'M';
 }
 
-public class NaturePairFrame
+public class NaturePairFrame : IPIDFrame
 {
     internal uint _pid { get; set; } = 0;
     internal byte _nature => _pid.Nature;

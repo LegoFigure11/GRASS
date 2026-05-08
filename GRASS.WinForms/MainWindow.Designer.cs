@@ -313,6 +313,9 @@ namespace GRASS.WinForms;
         TB_BabyMode = new TextBox();
         B_ConnectionSettings = new Button();
         DGV_Results = new DataGridView();
+        CMS_RightClick = new ContextMenuStrip(components);
+        TSMI_CopySeed = new ToolStripMenuItem();
+        TSMI_SetToInitial = new ToolStripMenuItem();
         BS_SID = new BindingSource(components);
         B_ReadParty = new Button();
         NUD_PartySlot = new NumericUpDown();
@@ -323,6 +326,7 @@ namespace GRASS.WinForms;
         BS_IVsToPID = new BindingSource(components);
         BS_NaturePair = new BindingSource(components);
         BS_Finder = new BindingSource(components);
+        TSMI_CopyPID = new ToolStripMenuItem();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -392,6 +396,7 @@ namespace GRASS.WinForms;
         GB_ConnectionSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).BeginInit();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
+        CMS_RightClick.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)BS_SID).BeginInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).BeginInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).BeginInit();
@@ -3497,6 +3502,7 @@ namespace GRASS.WinForms;
         DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
         DGV_Results.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         DGV_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        DGV_Results.ContextMenuStrip = CMS_RightClick;
         DGV_Results.Location = new Point(11, 332);
         DGV_Results.Name = "DGV_Results";
         DGV_Results.ReadOnly = true;
@@ -3505,6 +3511,28 @@ namespace GRASS.WinForms;
         DGV_Results.Size = new Size(1254, 306);
         DGV_Results.TabIndex = 129;
         DGV_Results.CellFormatting += DGV_Results_CellFormatting;
+        DGV_Results.MouseDown += DGV_Results_MouseDown;
+        // 
+        // CMS_RightClick
+        // 
+        CMS_RightClick.Items.AddRange(new ToolStripItem[] { TSMI_CopySeed, TSMI_SetToInitial, TSMI_CopyPID });
+        CMS_RightClick.Name = "CMS_RightClick";
+        CMS_RightClick.Size = new Size(200, 70);
+        CMS_RightClick.Opening += CMS_RightClick_Opening;
+        // 
+        // TSMI_CopySeed
+        // 
+        TSMI_CopySeed.Name = "TSMI_CopySeed";
+        TSMI_CopySeed.Size = new Size(199, 22);
+        TSMI_CopySeed.Text = "Copy Seed to Clipboard";
+        TSMI_CopySeed.Click += TSMI_CopySeed_Click;
+        // 
+        // TSMI_SetToInitial
+        // 
+        TSMI_SetToInitial.Name = "TSMI_SetToInitial";
+        TSMI_SetToInitial.Size = new Size(199, 22);
+        TSMI_SetToInitial.Text = "Set as Initial Seed";
+        TSMI_SetToInitial.Click += TSMI_SetToInitial_Click;
         // 
         // BS_SID
         // 
@@ -3563,6 +3591,13 @@ namespace GRASS.WinForms;
         // BS_Finder
         // 
         BS_Finder.DataSource = typeof(Core.Interfaces.FinderFrame);
+        // 
+        // TSMI_CopyPID
+        // 
+        TSMI_CopyPID.Name = "TSMI_CopyPID";
+        TSMI_CopyPID.Size = new Size(199, 22);
+        TSMI_CopyPID.Text = "Copy PID to Clipboard";
+        TSMI_CopyPID.Click += TSMI_CopyPID_Click;
         // 
         // MainWindow
         // 
@@ -3670,6 +3705,7 @@ namespace GRASS.WinForms;
         GB_ConnectionSettings.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)NUD_BabyModeDelay).EndInit();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).EndInit();
+        CMS_RightClick.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)BS_SID).EndInit();
         ((System.ComponentModel.ISupportInitialize)NUD_PartySlot).EndInit();
         ((System.ComponentModel.ISupportInitialize)BS_Static).EndInit();
@@ -3976,5 +4012,9 @@ namespace GRASS.WinForms;
     private Label L_Finder_SpA;
     private Label L_Finder_Spe;
     private BindingSource BS_Finder;
+    private ContextMenuStrip CMS_RightClick;
+    private ToolStripMenuItem TSMI_CopySeed;
+    private ToolStripMenuItem TSMI_SetToInitial;
+    private ToolStripMenuItem TSMI_CopyPID;
 }
 

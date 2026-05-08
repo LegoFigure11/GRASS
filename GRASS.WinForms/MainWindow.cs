@@ -388,7 +388,8 @@ public partial class MainWindow : Form
                     d.Columns["Gender"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["Hidden"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["Power"]?.DisplayIndex = d.Columns.Count - 1;
-                    d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
+                    d.Columns["Seed"]?.DisplayIndex = d.Columns["Locations"] is not null ? 0 : d.Columns.Count - 1;
+                    d.Columns["Locations"]?.DisplayIndex = d.Columns.Count - 1;
                     d.Columns["HP"]?.Width = 50;
                     d.Columns["Atk"]?.Width = 50;
                     d.Columns["Def"]?.Width = 50;
@@ -404,7 +405,6 @@ public partial class MainWindow : Form
                     d.Columns["_12th"]?.HeaderText = "50% F";
                     d.Columns["_34th"]?.Width = 75;
                     d.Columns["_34th"]?.HeaderText = "75% F";
-                    d.Columns["Locations"]?.DisplayIndex = d.Columns.Count - 1;
                 });
             }
             else
@@ -431,7 +431,8 @@ public partial class MainWindow : Form
                 d.Columns["Gender"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["Hidden"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["Power"]?.DisplayIndex = d.Columns.Count - 1;
-                d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
+                d.Columns["Seed"]?.DisplayIndex = d.Columns["Locations"] is not null ? 0 : d.Columns.Count - 1;
+                d.Columns["Locations"]?.DisplayIndex = d.Columns.Count - 1;
                 d.Columns["HP"]?.Width = 50;
                 d.Columns["Atk"]?.Width = 50;
                 d.Columns["Def"]?.Width = 50;
@@ -447,7 +448,6 @@ public partial class MainWindow : Form
                 d.Columns["_12th"]?.HeaderText = "50% F";
                 d.Columns["_34th"]?.Width = 75;
                 d.Columns["_34th"]?.HeaderText = "75% F";
-                d.Columns["Locations"]?.DisplayIndex = d.Columns.Count - 1;
             }
         }
     }
@@ -1833,5 +1833,93 @@ public partial class MainWindow : Form
 
         _ => Method.Method1
     };
+
+    private void CMS_RightClick_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        e.Cancel = !(DGV_Results.CurrentRow?.Index >= 0);
+        bool hasSeed = false;
+        bool hasPID = false;
+        if (Frames.Count > 0 && Frames[0] is ISeedFrame)
+        {
+            TSMI_CopySeed.Visible = true;
+            TSMI_SetToInitial.Visible = true;
+            hasSeed = true;
+        }
+        else
+        {
+            TSMI_CopySeed.Visible = false;
+            TSMI_SetToInitial.Visible = false;
+        }
+
+        if (Frames.Count > 0 && Frames[0] is IPIDFrame)
+        {
+            TSMI_CopyPID.Visible = true;
+            hasPID = true;
+        }
+        else
+        {
+            TSMI_CopyPID.Visible = false;
+        }
+
+        if (!hasSeed && !hasPID)
+        {
+            e.Cancel = true;
+        }
+
+    }
+
+    private void DGV_Results_MouseDown(object sender, MouseEventArgs e)
+    {
+        if (e.Button is MouseButtons.Right)
+        {
+            var hti = DGV_Results.HitTest(e.X, e.Y);
+            if (hti.RowIndex is not -1)
+            {
+                DGV_Results.CurrentCell = DGV_Results.Rows[hti.RowIndex].Cells[hti.ColumnIndex];
+            }
+        }
+    }
+
+    private void TSMI_CopySeed_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Columns["Seed"] never null due to validation in CMS_RightClick_Opening
+            var seed = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["Seed"]!.Index].Value;
+            Clipboard.SetText($"{seed}");
+        }
+        catch (NullReferenceException)
+        {
+            this.DisplayMessageBox("No row selected!");
+        }
+    }
+
+    private void TSMI_SetToInitial_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Columns["Seed"] never null due to validation in CMS_RightClick_Opening
+            var seed = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["Seed"]!.Index].Value;
+            SetControlText($"{seed}", TB_InitialSeed);
+        }
+        catch (NullReferenceException)
+        {
+            this.DisplayMessageBox("No row selected!");
+        }
+    }
+
+    private void TSMI_CopyPID_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Columns["PID"] never null due to validation in CMS_RightClick_Opening
+            var pid = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["PID"]!.Index].Value;
+            Clipboard.SetText($"{pid}");
+        }
+        catch (NullReferenceException)
+        {
+            this.DisplayMessageBox("No row selected!");
+        }
+    }
 }
 
