@@ -1582,7 +1582,11 @@ public partial class MainWindow : Form
 
     private void CB_BabyMode_Action_SelectedIndexChanged(object sender, EventArgs e)
     {
-        babyModeButton = CB_BabyMode_Action.GetSelectedIndex() == 0 ? SwitchButton.A : SwitchButton.HOME;
+        babyModeButton = CB_BabyMode_Action.GetSelectedIndex() switch {
+            2 => SwitchButton.DUP,
+            1 => SwitchButton.HOME,
+            _ => SwitchButton.A,
+        };
     }
 
     private void CB_Wild_Delay_CheckedChanged(object sender, EventArgs e)

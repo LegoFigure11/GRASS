@@ -317,6 +317,7 @@ namespace GRASS.WinForms;
         TSMI_CopySeed = new ToolStripMenuItem();
         TSMI_SetToInitial = new ToolStripMenuItem();
         TSMI_CopyPID = new ToolStripMenuItem();
+        TSMI_CopyAdvances = new ToolStripMenuItem();
         BS_SID = new BindingSource(components);
         B_ReadParty = new Button();
         NUD_PartySlot = new NumericUpDown();
@@ -327,7 +328,6 @@ namespace GRASS.WinForms;
         BS_IVsToPID = new BindingSource(components);
         BS_NaturePair = new BindingSource(components);
         BS_Finder = new BindingSource(components);
-        TSMI_CopyAdvances = new ToolStripMenuItem();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         GB_SAVInfo.SuspendLayout();
@@ -3412,7 +3412,7 @@ namespace GRASS.WinForms;
         // CB_BabyMode_Action
         // 
         CB_BabyMode_Action.FormattingEnabled = true;
-        CB_BabyMode_Action.Items.AddRange(new object[] { "A", "HOME" });
+        CB_BabyMode_Action.Items.AddRange(new object[] { "A", "HOME", "D-Up" });
         CB_BabyMode_Action.Location = new Point(134, 65);
         CB_BabyMode_Action.Name = "CB_BabyMode_Action";
         CB_BabyMode_Action.Size = new Size(72, 23);
@@ -3542,6 +3542,13 @@ namespace GRASS.WinForms;
         TSMI_CopyPID.Text = "Copy PID to Clipboard";
         TSMI_CopyPID.Click += TSMI_CopyPID_Click;
         // 
+        // TSMI_CopyAdvances
+        // 
+        TSMI_CopyAdvances.Name = "TSMI_CopyAdvances";
+        TSMI_CopyAdvances.Size = new Size(225, 22);
+        TSMI_CopyAdvances.Text = "Copy Advances to Clipboard";
+        TSMI_CopyAdvances.Click += TSMI_CopyAdvances_Click;
+        // 
         // BS_SID
         // 
         BS_SID.DataSource = typeof(Core.Interfaces.SIDFrame);
@@ -3599,13 +3606,6 @@ namespace GRASS.WinForms;
         // BS_Finder
         // 
         BS_Finder.DataSource = typeof(Core.Interfaces.FinderFrame);
-        // 
-        // TSMI_CopyAdvances
-        // 
-        TSMI_CopyAdvances.Name = "TSMI_CopyAdvances";
-        TSMI_CopyAdvances.Size = new Size(225, 22);
-        TSMI_CopyAdvances.Text = "Copy Advances to Clipboard";
-        TSMI_CopyAdvances.Click += TSMI_CopyAdvances_Click;
         // 
         // MainWindow
         // 
