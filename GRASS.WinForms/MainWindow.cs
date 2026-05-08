@@ -1962,7 +1962,9 @@ public partial class MainWindow : Form
         {
             // Columns["Advances"] never null due to validation in CMS_RightClick_Opening
             var adv = DGV_Results.CurrentRow!.Cells[DGV_Results.Columns["Advances"]!.Index].Value;
-            SetControlText($"{adv}".Replace(",", string.Empty), TB_BabyMode);
+            var num = long.Parse($"{adv}".Replace(",", string.Empty));
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) num = long.Max(0, num - 20000);
+            SetControlText($"{num}", TB_BabyMode);
         }
         catch (NullReferenceException)
         {
