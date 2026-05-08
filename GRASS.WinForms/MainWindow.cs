@@ -24,7 +24,7 @@ public partial class MainWindow : Form
     private static readonly Lock _connectLock = new();
 
     public ClientConfig Config;
-    private ConnectionWrapperAsync ConnectionWrapper = default!;
+    private ConnectionWrapperAsync? ConnectionWrapper = default;
     private readonly SwitchConnectionConfig ConnectionConfig;
 
     private bool stop;
@@ -142,7 +142,7 @@ public partial class MainWindow : Form
                 try
                 {
                     ConnectionConfig.IP = TB_SwitchIP.Text;
-                    (bool success, string err) = await ConnectionWrapper
+                    (bool success, string err) = await ConnectionWrapper!
                         .Connect(token)
                         .ConfigureAwait(false);
                     if (!success)
@@ -261,7 +261,7 @@ public partial class MainWindow : Form
                 stop = true;
                 try
                 {
-                    var (success, err) = await ConnectionWrapper.DisconnectAsync(token).ConfigureAwait(false);
+                    var (success, err) = await ConnectionWrapper!.DisconnectAsync(token).ConfigureAwait(false);
                     if (!success) this.DisplayMessageBox(err);
                 }
                 catch (Exception ex)
@@ -695,7 +695,7 @@ public partial class MainWindow : Form
 
     private void B_ReadWildPokemon_Click(object sender, EventArgs e)
     {
-        if (ConnectionWrapper.Connected)
+        if (ConnectionWrapper is not null && ConnectionWrapper.Connected)
         {
             Task.Run(async () =>
             {
@@ -725,7 +725,7 @@ public partial class MainWindow : Form
 
     private void B_ReadParty_Click(object sender, EventArgs e)
     {
-        if (ConnectionWrapper.Connected)
+        if (ConnectionWrapper is not null && ConnectionWrapper.Connected)
         {
             Task.Run(async () =>
             {
@@ -1007,7 +1007,7 @@ public partial class MainWindow : Form
 
     private void B_TID_Reset_Click(object sender, EventArgs e)
     {
-        if (ConnectionWrapper.Connected)
+        if (ConnectionWrapper is not null && ConnectionWrapper.Connected)
         {
             readPause = true;
             reset = true;
@@ -1145,7 +1145,7 @@ public partial class MainWindow : Form
             try
             {
                 await Task.Delay(100, Source.Token).ConfigureAwait(false);
-                var (tid, sid) = await ConnectionWrapper.GetSavIDs(Source.Token).ConfigureAwait(false);
+                var (tid, sid) = await ConnectionWrapper!.GetSavIDs(Source.Token).ConfigureAwait(false);
                 SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
                 SetControlText($"{sid:D5}", TB_SID, TB_SIDSID);
 
@@ -1173,7 +1173,7 @@ public partial class MainWindow : Form
             try
             {
                 await Task.Delay(100, Source.Token).ConfigureAwait(false);
-                var tid = await ConnectionWrapper.GetInitialRNGState(Source.Token).ConfigureAwait(false);
+                var tid = await ConnectionWrapper!.GetInitialRNGState(Source.Token).ConfigureAwait(false);
                 SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
 
                 readPause = false;
@@ -1227,7 +1227,7 @@ public partial class MainWindow : Form
     private void B_ResetSeed_Click(object sender, EventArgs e)
     {
         ValidateInputs();
-        if (ConnectionWrapper.Connected)
+        if (ConnectionWrapper is not null && ConnectionWrapper.Connected)
         {
             readPause = true;
             reset = true;
@@ -1388,7 +1388,7 @@ public partial class MainWindow : Form
         {
             Task.Run(async () =>
             {
-                await ConnectionWrapper.DetachController(Source.Token).ConfigureAwait(false);
+                await ConnectionWrapper!.DetachController(Source.Token).ConfigureAwait(false);
             });
         }
         catch
