@@ -1138,57 +1138,63 @@ public partial class MainWindow : Form
 
     private void B_ReadIDs_Click(object sender, EventArgs e)
     {
-        readPause = true;
-        SetControlEnabledState(false, B_ReadIDs);
-        Task.Run(async () =>
+        if (ConnectionWrapper is not null && ConnectionWrapper.Connected)
         {
-            try
+            readPause = true;
+            SetControlEnabledState(false, B_ReadIDs);
+            Task.Run(async () =>
             {
-                await Task.Delay(100, Source.Token).ConfigureAwait(false);
-                var (tid, sid) = await ConnectionWrapper!.GetSavIDs(Source.Token).ConfigureAwait(false);
-                SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
-                SetControlText($"{sid:D5}", TB_SID, TB_SIDSID);
+                try
+                {
+                    await Task.Delay(100, Source.Token).ConfigureAwait(false);
+                    var (tid, sid) = await ConnectionWrapper!.GetSavIDs(Source.Token).ConfigureAwait(false);
+                    SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
+                    SetControlText($"{sid:D5}", TB_SID, TB_SIDSID);
 
-                readPause = false;
+                    readPause = false;
 
-                SetControlEnabledState(true, B_ReadIDs);
+                    SetControlEnabledState(true, B_ReadIDs);
 
-            }
-            catch (Exception ex)
-            {
-                readPause = false;
+                }
+                catch (Exception ex)
+                {
+                    readPause = false;
 
-                SetControlEnabledState(true, B_ReadIDs);
-                this.DisplayMessageBox(ex.Message);
-            }
-        });
+                    SetControlEnabledState(true, B_ReadIDs);
+                    this.DisplayMessageBox(ex.Message);
+                }
+            });
+        }
     }
 
     private void B_ReadTempTID_Click(object sender, EventArgs e)
     {
-        readPause = true;
-        SetControlEnabledState(false, B_ReadIDs);
-        Task.Run(async () =>
+        if (ConnectionWrapper is not null && ConnectionWrapper.Connected)
         {
-            try
+            readPause = true;
+            SetControlEnabledState(false, B_ReadIDs);
+            Task.Run(async () =>
             {
-                await Task.Delay(100, Source.Token).ConfigureAwait(false);
-                var tid = await ConnectionWrapper!.GetInitialRNGState(Source.Token).ConfigureAwait(false);
-                SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
+                try
+                {
+                    await Task.Delay(100, Source.Token).ConfigureAwait(false);
+                    var tid = await ConnectionWrapper!.GetInitialRNGState(Source.Token).ConfigureAwait(false);
+                    SetControlText($"{tid:D5}", TB_TID, TB_SIDTID);
 
-                readPause = false;
+                    readPause = false;
 
-                SetControlEnabledState(true, B_ReadIDs);
+                    SetControlEnabledState(true, B_ReadIDs);
 
-            }
-            catch (Exception ex)
-            {
-                readPause = false;
+                }
+                catch (Exception ex)
+                {
+                    readPause = false;
 
-                SetControlEnabledState(true, B_ReadIDs);
-                this.DisplayMessageBox(ex.Message);
-            }
-        });
+                    SetControlEnabledState(true, B_ReadIDs);
+                    this.DisplayMessageBox(ex.Message);
+                }
+            });
+        }
     }
 
     private void B_SS_FindMax_Click(object sender, EventArgs e)
