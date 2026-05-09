@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using GRASS.Core.RNG;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace GRASS.WinForms.Subforms;
 
@@ -14,6 +16,8 @@ public partial class TIDList : Form
 
         this.IDs = IDs;
         this.parent = parent;
+
+        CB_CombineMode.SelectedIndex = 0;
 
         ReloadList();
     }
@@ -95,5 +99,62 @@ public partial class TIDList : Form
                 e.Handled = true;
             }
         }
+    }
+
+    private void B_Autofill_Click(object sender, EventArgs e)
+    {
+        var bin = 0;
+        if (CB_Palindrome.GetIsChecked()) bin += 1 << 0;
+        if (CB_OneNumber.GetIsChecked()) bin += 1 << 1;
+        if (CB_TwoNumbers.GetIsChecked()) bin += 1 << 2;
+        if (CB_Sequential.GetIsChecked()) bin += 1 << 3;
+        if (CB_LessThan.GetIsChecked()) bin += 1 << 4;
+        if (CB_GreaterThan.GetIsChecked()) bin += 1 << 5;
+
+        var lt = NUD_LessThan.GetValue();
+        var gt = NUD_GreaterThan.GetValue();
+
+        var match = CB_CombineMode.GetSelectedIndex() == 0 ? -1 : bin & 0b111111;
+
+        var ct = 0;
+
+        for (uint i = 0; i <= ushort.MaxValue; i++)
+        {
+            var id = (ushort)i;
+            var idbin = 0;
+            if (((bin >> 0) & 1) == 1) idbin += (id.IsPalindrome() ? 1 : 0) << 0;
+            if (((bin >> 1) & 1) == 1) idbin += (id.IsOneNumberOnly() ? 1 : 0) << 1;
+            if (((bin >> 2) & 1) == 1) idbin += (id.IsTwoNumbersOnly() ? 1 : 0) << 2;
+            if (((bin >> 3) & 1) == 1) idbin += (id.IsSequential() ? 1 : 0) << 3;
+            if (((bin >> 4) & 1) == 1) idbin += (id.IsLessThan(lt) ? 1 : 0) << 4;
+            if (((bin >> 5) & 1) == 1) idbin += (id.IsGreaterThan(gt) ? 1 : 0) << 5;
+
+            // match == -1 when OR, else AND
+            if ((match == -1 && idbin > 0) || (match & idbin) == match)
+            {
+                ct++;
+                var t = $"{id:00000}";
+                if (!IDs.Contains(t)) IDs.Add(t);
+            }
+        }
+
+        if (ct > 0)
+        {
+            IDs.Sort();
+            ReloadList();
+            LB_IDs.SelectedIndex = IDs.Count - 1;
+        }
+
+        this.DisplayMessageBox($"Added {ct:N0} TID{(ct == 1 ? string.Empty : "s")} matching filters!", "TID List Autofill");
+    }
+
+    private void CB_LessThan_CheckedChanged(object sender, EventArgs e)
+    {
+        NUD_LessThan.Enabled = CB_LessThan.Checked;
+    }
+
+    private void CB_GreaterThan_CheckedChanged(object sender, EventArgs e)
+    {
+        NUD_GreaterThan.Enabled = CB_GreaterThan.Checked;
     }
 }

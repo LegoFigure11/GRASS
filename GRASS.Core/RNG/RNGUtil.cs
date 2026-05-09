@@ -56,5 +56,65 @@ public static class RNGUtil
 
         return f;
     }
+
+    extension (ushort id)
+    {
+        public bool IsPalindrome()
+        {
+            var d1 = (id / 10000) % 10;
+            var d2 = (id /  1000) % 10;
+          //var d3 = (id /   100) % 10;
+            var d4 = (id /    10) % 10;
+            var d5 = (id /     1) % 10;
+
+            return d1 == d5 && d2 == d4;
+        }
+
+        public bool IsOneNumberOnly() => id % 11111 == 0;
+        public bool IsTwoNumbersOnly()
+        {
+            var bin =
+                (1 << ((id / 10000) % 10)) |
+                (1 << ((id /  1000) % 10)) |
+                (1 << ((id /   100) % 10)) |
+                (1 << ((id /    10) % 10)) |
+                (1 << ((id /     1) % 10)) ;
+
+            var ct = 0;
+            while (bin > 0) {
+                bin &= (bin - 1);
+                ct++;
+            }
+
+            return ct == 2;
+        }
+
+        public bool IsSequential()
+        {
+            var first = id % 10;
+            bool up = true;
+            bool down = true;
+            id /= 10;
+
+            for (var i = 1; i < 5; i++)
+            {
+                var nextUp = first + i;
+                var nextDown = first - i;
+
+                var next = id % 10;
+                id /= 10;
+
+                if (up && nextUp != next) up = false;
+                if (down && nextDown != next) down = false;
+
+                if (!up && !down) return false;
+            }
+
+            return true;
+        }
+
+        public bool IsLessThan(uint val) => id < val;
+        public bool IsGreaterThan(uint val) => id > val;
+    }
 }
 
