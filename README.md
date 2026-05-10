@@ -5,7 +5,7 @@
 [![Usage Guide](https://img.shields.io/badge/usage_guide-click_me!-purple)](https://billo-guides.github.io/)
 <br />
 [![Version](https://img.shields.io/github/v/release/LegoFigure11/GRASS?label=latest%20release)](https://github.com/LegoFigure11/GRASS/releases/latest)
-![Download Count](https://img.shields.io/github/downloads/LegoFigure11/GRASS/total?label=total%20downloads
+![Download Count](https://img.shields.io/github/downloads/LegoFigure11/GRASS/total?label=total%20downloads)
 
 _by [@LegoFigure11](https://github.com/LegoFigure11/)_
 
