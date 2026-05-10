@@ -2,20 +2,19 @@
 
 [![.NET Core Desktop](https://img.shields.io/github/actions/workflow/status/LegoFigure11/GRASS/dotnet-desktop.yml?branch=main)](https://github.com/LegoFigure11/GRASS/actions/workflows/dotnet-desktop.yml)
 [![GitHub License](https://img.shields.io/github/license/legofigure11/GRASS?color=ff69b4)](https://github.com/LegoFigure11/GRASS/blob/main/LICENSE.txt)
-<!-- [![Usage Guide](https://img.shields.io/badge/usage_guide-click_me!-purple)](https://billo-guides.github.io/)
+[![Usage Guide](https://img.shields.io/badge/usage_guide-click_me!-purple)](https://billo-guides.github.io/)
 <br />
 [![Version](https://img.shields.io/github/v/release/LegoFigure11/GRASS?label=latest%20release)](https://github.com/LegoFigure11/GRASS/releases/latest)
-![Download Count](https://img.shields.io/github/downloads/LegoFigure11/GRASS/total?label=total%20downloads) -->
+![Download Count](https://img.shields.io/github/downloads/LegoFigure11/GRASS/total?label=total%20downloads
 
 _by [@LegoFigure11](https://github.com/LegoFigure11/)_
 
 Work-in-progress RNG Tool and sys-botbase client for Pok&eacute;mon FireRed and LeafGreen for the Nintendo Switch.
 
 ![Tool screenshot](https://legofigure11.github.io/tools/desktop/res/GRASS/readme.png)
+A comprehensive usage guide brought to you by [Billo-PS](https://github.com/Billo-PS) can be found **[here](https://billo-guides.github.io/)**.
 
-<!--A comprehensive usage guide brought to you by [Billo-PS](https://github.com/Billo-PS) can be found **[here](https://billo-guides.github.io/)**.
-
-
+<!--
 ## Features & shortcuts
 
 * Read Wild Encounters with the "Read Encounter" button.
