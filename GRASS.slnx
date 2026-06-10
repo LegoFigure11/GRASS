@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="GRASS.Core/GRASS.Core.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="GRASS.WinForms/GRASS.WinForms.csproj">
+    <BuildDependency Project="GRASS.Core/GRASS.Core.csproj" />
+    <Platform Project="x64" />
+  </Project>
+</Solution>
